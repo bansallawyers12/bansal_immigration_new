@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use App\Models\Contact;
-use App\Models\Enquiry;
 use App\Mail\ContactUsMail;
 
 class ContactController extends Controller
@@ -110,16 +109,6 @@ class ContactController extends Controller
                 'status' => 'unread',
                 'form_source' => $validatedData['form_source'] ?? null,
                 'form_variant' => $validatedData['form_variant'] ?? null,
-                'ip_address' => $request->ip(),
-            ]);
-
-            // Create Enquiry record
-            $enquiry = Enquiry::create([
-                'first_name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'] ?? null,
-                'subject' => $validatedData['subject'],
-                'message' => $validatedData['message'],
                 'ip_address' => $request->ip(),
             ]);
 

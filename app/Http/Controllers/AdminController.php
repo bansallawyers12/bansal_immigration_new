@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use App\Models\Contact;
-use App\Models\Enquiry;
 use App\Models\Blog;
 use App\Models\Service;
-use App\Models\Slider;
 use App\Models\HomeContent;
 use App\Models\User;
+use App\Models\Appointment;
+use App\Models\BlockedTime;
 
 class AdminController extends Controller
 {
@@ -28,18 +28,24 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
+        // Optimize with single queries and caching
         $stats = [
-            'unread_contacts' => Contact::unread()->count(),
+            'unread_contacts' => Contact::where('status', 'unread')->count(),
             'total_contacts' => Contact::count(),
-            'recent_enquiries' => Enquiry::recent(7)->count(),
+            'recent_contacts' => Contact::where('created_at', '>=', now()->subDays(7))->count(),
             'total_blogs' => Blog::count(),
             'total_services' => Service::count(),
-            'active_sliders' => Slider::active()->count(),
+            'active_sliders' => 0, // Slider removed
+            'today_appointments' => Appointment::whereDate('appointment_date', today())->count(),
+            'upcoming_appointments' => Appointment::where('appointment_date', '>', now())->count(),
+            'active_blocked_times' => BlockedTime::where('blocked_date', '>=', today())->where('is_active', true)->count(),
+            'total_blocked_times' => BlockedTime::count(),
         ];
 
-        $recent_contacts = Contact::with([])
+        // Optimize recent contacts query
+        $recent_contacts = Contact::select('id', 'name', 'contact_email', 'status', 'created_at')
             ->orderBy('created_at', 'desc')
-            ->take(5)
+            ->limit(5)
             ->get();
 
         return view('admin.dashboard', compact('stats', 'recent_contacts'));
@@ -50,15 +56,15 @@ class AdminController extends Controller
      */
     public function contacts(Request $request)
     {
-        $query = Contact::query();
+        $query = Contact::select('id', 'name', 'contact_email', 'subject', 'status', 'created_at');
 
         // Filter by status if provided
-        if ($request->has('status') && $request->status !== '') {
+        if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
         // Search functionality
-        if ($request->has('search') && $request->search !== '') {
+        if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
@@ -99,14 +105,6 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Contact status updated successfully.');
     }
 
-    /**
-     * Show all enquiries
-     */
-    public function enquiries()
-    {
-        $enquiries = Enquiry::orderBy('created_at', 'desc')->paginate(20);
-        return view('admin.enquiries.index', compact('enquiries'));
-    }
 
     /**
      * Content management dashboard
@@ -116,7 +114,7 @@ class AdminController extends Controller
         $content_stats = [
             'blogs' => Blog::count(),
             'services' => Service::count(),
-            'sliders' => Slider::count(),
+            'sliders' => 0, // Slider removed
             'pages' => \App\Models\Page::count(),
         ];
 
@@ -159,10 +157,10 @@ class AdminController extends Controller
      */
     public function users(Request $request)
     {
-        $query = User::query();
+        $query = User::select('id', 'name', 'email', 'company_name', 'role', 'status', 'created_at');
 
         // Search functionality
-        if ($request->has('search') && $request->search !== '') {
+        if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
@@ -172,12 +170,12 @@ class AdminController extends Controller
         }
 
         // Filter by status
-        if ($request->has('status') && $request->status !== '') {
+        if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
         // Filter by role
-        if ($request->has('role') && $request->role !== '') {
+        if ($request->filled('role')) {
             $query->where('role', $request->role);
         }
 

@@ -48,7 +48,7 @@
                 </div>
                 <div class="ml-4">
                     <p class="text-sm font-medium text-gray-600">Sliders</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ $content_stats['sliders'] }}</p>
+                    <p class="text-2xl font-bold text-gray-900">0 (removed)</p>
                 </div>
             </div>
         </div>
@@ -119,8 +119,8 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="text-lg font-bold text-gray-900">{{ $content_stats['sliders'] }}</p>
-                            <p class="text-xs text-gray-500">Total sliders</p>
+                            <p class="text-lg font-bold text-gray-900">0</p>
+                            <p class="text-xs text-gray-500">Removed</p>
                         </div>
                     </div>
 

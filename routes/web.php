@@ -11,11 +11,16 @@ Route::get('/ourservices', [HomeController::class, 'services'])->name('services'
 Route::get('/services/{slug}', [HomeController::class, 'serviceDetail'])->name('service.detail');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
+Route::get('/success-stories', [HomeController::class, 'successStories'])->name('success-stories');
+Route::get('/success-stories/{slug}', [HomeController::class, 'successStoryDetail'])->name('success-story.detail');
 Route::get('/book-an-appointment', [HomeController::class, 'appointment'])->name('appointment');
-Route::post('/book-an-appointment/store', [HomeController::class, 'storeAppointment'])->name('appointment.store');
+Route::post('/book-an-appointment/store', [\App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'storeContact'])->name('contact.store');
 Route::post('/contact/submit', [\App\Http\Controllers\ContactController::class, 'submit'])->name('contact.submit');
+
+// Cache management (for admin use)
+Route::post('/clear-cache', [HomeController::class, 'clearCache'])->name('clear-cache');
 
 // Dashboard redirect route (Laravel default after login)
 Route::middleware(['auth'])->get('/dashboard', function () {
@@ -28,7 +33,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/contacts', [\App\Http\Controllers\AdminController::class, 'contacts'])->name('contacts');
     Route::get('/contacts/{contact}', [\App\Http\Controllers\AdminController::class, 'showContact'])->name('contacts.show');
     Route::patch('/contacts/{contact}/status', [\App\Http\Controllers\AdminController::class, 'updateContactStatus'])->name('contacts.update-status');
-    Route::get('/enquiries', [\App\Http\Controllers\AdminController::class, 'enquiries'])->name('enquiries');
     Route::get('/content', [\App\Http\Controllers\AdminController::class, 'content'])->name('content');
     Route::get('/settings', [\App\Http\Controllers\AdminController::class, 'settings'])->name('settings');
     Route::post('/settings', [\App\Http\Controllers\AdminController::class, 'updateSettings'])->name('settings.update');
@@ -40,6 +44,35 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/users/{user}/edit', [\App\Http\Controllers\AdminController::class, 'editUser'])->name('users.edit');
     Route::patch('/users/{user}', [\App\Http\Controllers\AdminController::class, 'updateUser'])->name('users.update');
     Route::delete('/users/{user}', [\App\Http\Controllers\AdminController::class, 'deleteUser'])->name('users.delete');
+    
+    // Appointment Management Routes
+    Route::resource('/appointments', \App\Http\Controllers\AppointmentController::class)->names('appointments');
+    Route::post('/appointments/{appointment}/confirm', [\App\Http\Controllers\AppointmentController::class, 'confirm'])->name('appointments.confirm');
+    
+    // CMS Management Routes
+    Route::resource('/cms', \App\Http\Controllers\Admin\AdminCmsController::class)->names('cms');
+    Route::patch('/cms/{page}/status', [\App\Http\Controllers\Admin\AdminCmsController::class, 'updateStatus'])->name('cms.update-status');
+    Route::post('/cms/reorder', [\App\Http\Controllers\Admin\AdminCmsController::class, 'reorder'])->name('cms.reorder');
+    
+    // Blog Management Routes
+    Route::resource('/blog', \App\Http\Controllers\Admin\AdminBlogController::class)->names('blog');
+    Route::patch('/blog/{blog}/status', [\App\Http\Controllers\Admin\AdminBlogController::class, 'updateStatus'])->name('blog.update-status');
+    Route::patch('/blog/{blog}/featured', [\App\Http\Controllers\Admin\AdminBlogController::class, 'toggleFeatured'])->name('blog.toggle-featured');
+    
+    // Success Stories Management Routes
+    Route::resource('/success-stories', \App\Http\Controllers\Admin\AdminSuccessStoryController::class)->names('success-stories');
+    Route::patch('/success-stories/{successStory}/status', [\App\Http\Controllers\Admin\AdminSuccessStoryController::class, 'updateStatus'])->name('success-stories.update-status');
+    Route::patch('/success-stories/{successStory}/featured', [\App\Http\Controllers\Admin\AdminSuccessStoryController::class, 'toggleFeatured'])->name('success-stories.toggle-featured');
+    Route::post('/success-stories/reorder', [\App\Http\Controllers\Admin\AdminSuccessStoryController::class, 'reorder'])->name('success-stories.reorder');
+    Route::post('/appointments/{appointment}/cancel', [\App\Http\Controllers\AppointmentController::class, 'cancel'])->name('appointments.cancel');
+    Route::get('/appointments-calendar', [\App\Http\Controllers\AppointmentController::class, 'calendar'])->name('appointments.calendar');
+    Route::get('/appointments-calendar-view', function() { return view('admin.appointments.calendar'); })->name('appointments.calendar-view');
+    Route::get('/appointments-weekly-calendar', function() { return view('admin.appointments.weekly-calendar'); })->name('appointments.weekly-calendar');
+    
+    // Blocked Times Management Routes
+    Route::resource('/blocked-times', \App\Http\Controllers\BlockedTimeController::class)->names('blocked-times');
+    Route::post('/blocked-times/{blockedTime}/toggle-active', [\App\Http\Controllers\BlockedTimeController::class, 'toggleActive'])->name('blocked-times.toggle-active');
+    Route::get('/blocked-times-calendar', [\App\Http\Controllers\BlockedTimeController::class, 'calendar'])->name('blocked-times.calendar');
 });
 
 // Include specialized route files

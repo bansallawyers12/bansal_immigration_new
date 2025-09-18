@@ -7,58 +7,85 @@
 
     <title>{{ config('app.name', 'Laravel') }} - Admin Panel</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Minimal Icons - Local fallback -->
+    <style>
+        .fas, .far { font-family: sans-serif; }
+        .fa-home::before { content: '🏠'; }
+        .fa-envelope::before { content: '✉️'; }
+        .fa-question-circle::before { content: '❓'; }
+        .fa-calendar-check::before { content: '📅'; }
+        .fa-calendar-times::before { content: '🚫'; }
+        .fa-users::before { content: '👥'; }
+        .fa-file-alt::before { content: '📄'; }
+        .fa-cog::before { content: '⚙️'; }
+        .fa-external-link-alt::before { content: '🔗'; }
+        .fa-sign-out-alt::before { content: '🚪'; }
+        .fa-user::before { content: '👤'; }
+        .fa-eye::before { content: '👁'; }
+        .fa-arrow-right::before { content: '→'; }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
-    <!-- Custom Admin Styles -->
+    <!-- Minimal Fast Admin Styles -->
     <style>
         .admin-sidebar {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            background: #f8fafc;
+            border-right: 1px solid #e2e8f0;
         }
         
         .sidebar-brand {
-            padding: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            background: #ffffff;
+        }
+        
+        .sidebar-brand a {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
         }
         
         .sidebar-menu {
-            padding: 1rem 0;
+            padding: 0.5rem 0;
         }
         
         .menu-item {
-            margin: 0.25rem 1rem;
+            margin: 0;
         }
         
         .menu-link {
             display: flex;
             align-items: center;
             padding: 0.75rem 1rem;
-            color: rgba(255,255,255,0.8);
+            color: #4b5563;
             text-decoration: none;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
         }
         
-        .menu-link:hover, .menu-link.active {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            transform: translateX(4px);
+        .menu-link:hover {
+            background: #e5e7eb;
+            color: #1f2937;
+            border-left-color: #3b82f6;
+        }
+        
+        .menu-link.active {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left-color: #3b82f6;
         }
         
         .menu-icon {
-            width: 1.25rem;
+            width: 1rem;
             margin-right: 0.75rem;
+            text-align: center;
         }
         
         .admin-header {
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             border-bottom: 1px solid #e5e7eb;
         }
         
@@ -68,57 +95,44 @@
         }
         
         .navigation-container {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background: #f8fafc;
             min-height: 100vh;
-            padding: 3rem 2rem;
+            padding: 2rem;
         }
         
         .nav-card {
             background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 1.5rem;
             border: 1px solid #e2e8f0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            margin-bottom: 1rem;
         }
         
         .nav-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-color: #3b82f6;
         }
         
         .nav-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             color: white;
         }
         
-        .nav-icon.contacts { background: linear-gradient(135deg, #ef4444, #dc2626); }
-        .nav-icon.users { background: linear-gradient(135deg, #10b981, #059669); }
-        .nav-icon.content { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
-        .nav-icon.settings { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .nav-icon.enquiries { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .nav-icon.contacts { background: #ef4444; }
+        .nav-icon.users { background: #10b981; }
+        .nav-icon.content { background: #8b5cf6; }
+        .nav-icon.settings { background: #f59e0b; }
+        .nav-icon.appointments { background: #3b82f6; }
+        .nav-icon.blocked-times { background: #ef4444; }
         
         .nav-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #1f2937;
             margin-bottom: 0.5rem;
@@ -127,24 +141,22 @@
         .nav-description {
             color: #6b7280;
             font-size: 0.875rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .primary-action {
             display: inline-flex;
             align-items: center;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            padding: 0.5rem 1rem;
+            background: #3b82f6;
             color: white;
             text-decoration: none;
-            border-radius: 0.5rem;
+            border-radius: 4px;
             font-weight: 500;
-            transition: all 0.3s ease;
         }
         
         .primary-action:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            background: #2563eb;
         }
         
         .primary-action i {
@@ -158,9 +170,9 @@
         <!-- Sidebar -->
         <div class="admin-sidebar w-64 flex-shrink-0">
             <div class="sidebar-brand">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center">
+                <a href="{{ route('admin.dashboard') }}">
                     <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-8 w-auto mr-3">
-                    <span class="text-white font-semibold text-lg">Admin Panel</span>
+                    <span class="text-lg font-semibold">Admin Panel</span>
                 </a>
             </div>
             
@@ -180,9 +192,19 @@
                 </div>
                 
                 <div class="menu-item">
-                    <a href="{{ route('admin.enquiries') }}" class="menu-link {{ request()->routeIs('admin.enquiries*') ? 'active' : '' }}">
-                        <i class="menu-icon fas fa-question-circle"></i>
-                        <span>Enquiries</span>
+                </div>
+                
+                <div class="menu-item">
+                    <a href="{{ route('admin.appointments.index') }}" class="menu-link {{ request()->routeIs('admin.appointments*') ? 'active' : '' }}">
+                        <i class="menu-icon fas fa-calendar-check"></i>
+                        <span>Appointments</span>
+                    </a>
+                </div>
+                
+                <div class="menu-item">
+                    <a href="{{ route('admin.blocked-times.index') }}" class="menu-link {{ request()->routeIs('admin.blocked-times*') ? 'active' : '' }}">
+                        <i class="menu-icon fas fa-calendar-times"></i>
+                        <span>Blocked Times</span>
                     </a>
                 </div>
                 
@@ -194,9 +216,23 @@
                 </div>
                 
                 <div class="menu-item">
-                    <a href="{{ route('admin.content') }}" class="menu-link {{ request()->routeIs('admin.content*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.cms.index') }}" class="menu-link {{ request()->routeIs('admin.cms*') ? 'active' : '' }}">
                         <i class="menu-icon fas fa-file-alt"></i>
-                        <span>Content</span>
+                        <span>CMS Pages</span>
+                    </a>
+                </div>
+                
+                <div class="menu-item">
+                    <a href="{{ route('admin.blog.index') }}" class="menu-link {{ request()->routeIs('admin.blog*') ? 'active' : '' }}">
+                        <i class="menu-icon fas fa-blog"></i>
+                        <span>Blog</span>
+                    </a>
+                </div>
+                
+                <div class="menu-item">
+                    <a href="{{ route('admin.success-stories.index') }}" class="menu-link {{ request()->routeIs('admin.success-stories*') ? 'active' : '' }}">
+                        <i class="menu-icon fas fa-star"></i>
+                        <span>Success Stories</span>
                     </a>
                 </div>
                 
@@ -207,8 +243,8 @@
                     </a>
                 </div>
                 
-                <div class="menu-item mt-8">
-                    <a href="{{ route('home') }}" class="menu-link">
+                <div class="menu-item" style="margin-top: 2rem;">
+                    <a href="{{ route('home') }}" class="menu-link" target="_blank">
                         <i class="menu-icon fas fa-external-link-alt"></i>
                         <span>Visit Website</span>
                     </a>

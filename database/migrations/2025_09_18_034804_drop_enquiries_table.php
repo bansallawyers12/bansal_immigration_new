@@ -11,6 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('enquiries');
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
         Schema::create('enquiries', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
@@ -25,13 +33,5 @@ return new class extends Migration
             $table->index('email');
             $table->index('created_at');
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('enquiries');
     }
 };

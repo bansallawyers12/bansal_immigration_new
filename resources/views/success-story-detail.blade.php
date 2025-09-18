@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
-@section('title', $blogdetailists->meta_title ?: $blogdetailists->title . ' | Bansal Immigration Blog')
-@section('description', $blogdetailists->meta_description ?: $blogdetailists->short_description)
+@section('title', $story->meta_title ?: $story->title . ' - Success Story | Bansal Immigration')
+@section('description', $story->meta_description ?: $story->excerpt)
 
 @section('content')
 <!-- Breadcrumb -->
@@ -17,13 +17,13 @@
                 <li>
                     <div class="flex items-center">
                         <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
-                        <a href="{{ route('blogs') }}" class="text-gray-700 hover:text-blue-600">Blog</a>
+                        <a href="{{ route('success-stories') }}" class="text-gray-700 hover:text-blue-600">Success Stories</a>
                     </div>
                 </li>
                 <li aria-current="page">
                     <div class="flex items-center">
                         <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
-                        <span class="text-gray-500 truncate">{{ $blogdetailists->title }}</span>
+                        <span class="text-gray-500 truncate">{{ $story->title }}</span>
                     </div>
                 </li>
             </ol>
@@ -31,59 +31,64 @@
     </div>
 </section>
 
-<!-- Article Header -->
-<section class="py-16">
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
     <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ $blogdetailists->title }}</h1>
-                <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-gray-600">
-                    @if($blogdetailists->author)
-                    <div class="flex items-center">
-                        <i class="fas fa-user mr-2"></i>
-                        <span>By {{ $blogdetailists->author }}</span>
-                    </div>
-                    @endif
-                    <div class="flex items-center">
-                        <i class="fas fa-calendar mr-2"></i>
-                        <span>{{ $blogdetailists->published_at ? $blogdetailists->published_at->format('M d, Y') : $blogdetailists->created_at->format('M d, Y') }}</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-clock mr-2"></i>
-                        <span>{{ ceil(str_word_count(strip_tags($blogdetailists->description)) / 200) }} min read</span>
-                    </div>
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex justify-center mb-6">
+                <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white bg-opacity-20">
+                    <i class="fas fa-star mr-2"></i>{{ $story->visa_type }}
+                </span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-6">{{ $story->title }}</h1>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-lg">
+                <div class="flex items-center">
+                    <i class="fas fa-user mr-2"></i>
+                    <span>{{ $story->client_name }}</span>
                 </div>
+                @if($story->client_country)
+                <div class="flex items-center">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>{{ $story->client_country }}</span>
+                </div>
+                @endif
+                @if($story->success_date)
+                <div class="flex items-center">
+                    <i class="fas fa-calendar mr-2"></i>
+                    <span>{{ $story->success_date->format('M Y') }}</span>
+                </div>
+                @endif
             </div>
-            
-            @if($blogdetailists->image)
-            <div class="mb-8">
-                <img src="{{ asset('img/blog/' . $blogdetailists->image) }}" alt="{{ $blogdetailists->image_alt }}" class="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg">
-            </div>
-            @endif
         </div>
     </div>
 </section>
 
-<!-- Article Content -->
-<section class="pb-16">
+<!-- Story Content -->
+<section class="py-16">
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <!-- Main Content -->
                 <div class="lg:col-span-2">
+                    @if($story->image)
+                    <div class="mb-8">
+                        <img src="{{ asset('storage/' . $story->image) }}" alt="{{ $story->image_alt }}" class="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg">
+                    </div>
+                    @endif
+                    
                     <div class="prose prose-lg max-w-none">
-                        {!! nl2br(e($blogdetailists->description)) !!}
+                        {!! nl2br(e($story->content)) !!}
                     </div>
                     
                     <!-- Share Buttons -->
                     <div class="mt-12 pt-8 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Share this article</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Share this success story</h3>
                         <div class="flex space-x-4">
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}" 
                                target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
                                 <i class="fab fa-facebook-f mr-2"></i>Facebook
                             </a>
-                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($blogdetailists->title) }}" 
+                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($story->title) }}" 
                                target="_blank" class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg">
                                 <i class="fab fa-twitter mr-2"></i>Twitter
                             </a>
@@ -101,29 +106,30 @@
                 
                 <!-- Sidebar -->
                 <div class="lg:col-span-1">
-                    <!-- Article Info Card -->
+                    <!-- Story Info Card -->
                     <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Article Details</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Story Details</h3>
                         <div class="space-y-4">
-                            @if($blogdetailists->author)
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Author</label>
-                                <p class="text-sm text-gray-600">{{ $blogdetailists->author }}</p>
+                                <label class="block text-sm font-medium text-gray-700">Client Name</label>
+                                <p class="text-sm text-gray-600">{{ $story->client_name }}</p>
+                            </div>
+                            @if($story->client_country)
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Country</label>
+                                <p class="text-sm text-gray-600">{{ $story->client_country }}</p>
                             </div>
                             @endif
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Published</label>
-                                <p class="text-sm text-gray-600">{{ $blogdetailists->published_at ? $blogdetailists->published_at->format('F d, Y') : $blogdetailists->created_at->format('F d, Y') }}</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Reading Time</label>
-                                <p class="text-sm text-gray-600">{{ ceil(str_word_count(strip_tags($blogdetailists->description)) / 200) }} minutes</p>
-                            </div>
-                            @if($blogdetailists->featured)
-                            <div>
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    <i class="fas fa-star mr-1"></i>Featured Article
+                                <label class="block text-sm font-medium text-gray-700">Visa Type</label>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    {{ $story->visa_type }}
                                 </span>
+                            </div>
+                            @if($story->success_date)
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Success Date</label>
+                                <p class="text-sm text-gray-600">{{ $story->success_date->format('F d, Y') }}</p>
                             </div>
                             @endif
                         </div>
@@ -131,8 +137,8 @@
                     
                     <!-- CTA Card -->
                     <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 text-white">
-                        <h3 class="text-lg font-semibold mb-4">Need Immigration Help?</h3>
-                        <p class="text-blue-100 mb-6">Our experts are here to guide you through your immigration journey.</p>
+                        <h3 class="text-lg font-semibold mb-4">Ready to Start Your Journey?</h3>
+                        <p class="text-blue-100 mb-6">Let us help you write your own success story.</p>
                         <div class="space-y-3">
                             <a href="{{ route('appointment') }}" class="block w-full bg-white text-blue-600 hover:bg-gray-100 text-center px-4 py-3 rounded-lg font-medium">
                                 Book Free Consultation
@@ -148,66 +154,74 @@
     </div>
 </section>
 
-<!-- Related Articles -->
+<!-- Related Stories -->
+@if($relatedStories->count() > 0)
 <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">More Articles</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">More Success Stories</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @php
-                    $relatedBlogs = \App\Models\Blog::where('status', true)
-                        ->where('id', '!=', $blogdetailists->id)
-                        ->latest()
-                        ->take(3)
-                        ->get();
-                @endphp
-                
-                @foreach($relatedBlogs as $relatedBlog)
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    @if($relatedBlog->image)
-                    <img src="{{ asset('img/blog/' . $relatedBlog->image) }}" alt="{{ $relatedBlog->image_alt }}" class="w-full h-48 object-cover">
+                @foreach($relatedStories as $relatedStory)
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    @if($relatedStory->image)
+                    <img src="{{ asset('storage/' . $relatedStory->image) }}" alt="{{ $relatedStory->image_alt }}" class="w-full h-48 object-cover">
                     @else
                     <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                        <i class="fas fa-blog text-white text-4xl"></i>
+                        <i class="fas fa-star text-white text-4xl"></i>
                     </div>
                     @endif
                     
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="text-sm text-gray-500">
-                                {{ $relatedBlog->published_at ? $relatedBlog->published_at->format('M d, Y') : $relatedBlog->created_at->format('M d, Y') }}
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                {{ $relatedStory->visa_type }}
                             </span>
-                            @if($relatedBlog->author)
-                            <span class="text-sm text-gray-500">By {{ $relatedBlog->author }}</span>
-                            @endif
+                            <span class="text-sm text-gray-500">
+                                {{ $relatedStory->success_date ? $relatedStory->success_date->format('M Y') : $relatedStory->created_at->format('M Y') }}
+                            </span>
                         </div>
                         
                         <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                            {{ $relatedBlog->title }}
+                            {{ $relatedStory->title }}
                         </h3>
                         
                         <p class="text-gray-600 mb-4 line-clamp-2">
-                            {{ $relatedBlog->short_description }}
+                            {{ $relatedStory->excerpt }}
                         </p>
                         
-                        <a href="{{ route('blog.detail', $relatedBlog->slug) }}" 
-                           class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                            Read More
-                            <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-blue-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900">{{ $relatedStory->client_name }}</p>
+                                    @if($relatedStory->client_country)
+                                    <p class="text-xs text-gray-500">{{ $relatedStory->client_country }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <a href="{{ route('success-story.detail', $relatedStory->slug) }}" 
+                               class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                                Read More
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
                     </div>
-                </article>
+                </div>
                 @endforeach
             </div>
             
             <div class="text-center mt-12">
-                <a href="{{ route('blogs') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium">
-                    View All Articles
+                <a href="{{ route('success-stories') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium">
+                    View All Success Stories
                 </a>
             </div>
         </div>
     </div>
 </section>
+@endif
 @endsection
 
 @push('styles')

@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         // Run immigration data seeder
         $this->call([
             ImmigrationSeeder::class,
+            AppointmentSeeder::class,
         ]);
     }
 }

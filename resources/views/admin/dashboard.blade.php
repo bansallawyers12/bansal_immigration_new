@@ -10,7 +10,7 @@
     </div>
 
     <!-- Navigation Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
         <!-- Contacts Management Card -->
         <div class="nav-card">
             <div class="nav-icon contacts">
@@ -44,10 +44,7 @@
             
             <div class="flex justify-between items-center mb-4">
                 <div class="text-sm text-gray-500">
-                    <span class="font-semibold text-green-600">{{ \App\Models\User::active()->count() }}</span> active
-                </div>
-                <div class="text-sm text-gray-500">
-                    <span class="font-semibold text-blue-600">{{ \App\Models\User::count() }}</span> total
+                    <span class="font-semibold text-blue-600">{{ \App\Models\User::count() }}</span> total users
                 </div>
             </div>
             
@@ -57,25 +54,49 @@
             </a>
         </div>
 
-        <!-- Enquiries Card -->
+
+        <!-- Appointments Management Card -->
         <div class="nav-card">
-            <div class="nav-icon enquiries">
-                <i class="fas fa-question-circle"></i>
+            <div class="nav-icon appointments">
+                <i class="fas fa-calendar-check"></i>
             </div>
-            <h3 class="nav-title">Enquiries</h3>
-            <p class="nav-description">Track and manage customer enquiries and requests</p>
+            <h3 class="nav-title">Appointments</h3>
+            <p class="nav-description">Manage appointments across 4 different calendar types</p>
             
             <div class="flex justify-between items-center mb-4">
                 <div class="text-sm text-gray-500">
-                    <span class="font-semibold text-blue-600">{{ $stats['recent_enquiries'] }}</span> recent
+                    <span class="font-semibold text-blue-600">{{ $stats['today_appointments'] }}</span> today
                 </div>
                 <div class="text-sm text-gray-500">
-                    <span class="font-semibold text-gray-600">{{ \App\Models\Enquiry::count() }}</span> total
+                    <span class="font-semibold text-green-600">{{ $stats['upcoming_appointments'] }}</span> upcoming
                 </div>
             </div>
             
-            <a href="{{ route('admin.enquiries') }}" class="primary-action">
-                View Enquiries
+            <a href="{{ route('admin.appointments.index') }}" class="primary-action">
+                Manage Appointments
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <!-- Blocked Times Management Card -->
+        <div class="nav-card">
+            <div class="nav-icon blocked-times">
+                <i class="fas fa-calendar-times"></i>
+            </div>
+            <h3 class="nav-title">Blocked Times</h3>
+            <p class="nav-description">Block specific times and manage calendar availability</p>
+            
+            <div class="flex justify-between items-center mb-4">
+                <div class="text-sm text-gray-500">
+                    <span class="font-semibold text-red-600">{{ $stats['active_blocked_times'] }}</span> active
+                </div>
+                <div class="text-sm text-gray-500">
+                    <span class="font-semibold text-gray-600">{{ $stats['total_blocked_times'] }}</span> total
+                </div>
+            </div>
+            
+            <a href="{{ route('admin.blocked-times.index') }}" class="primary-action">
+                Manage Blocked Times
                 <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -113,7 +134,7 @@
             
             <div class="flex justify-between items-center mb-4">
                 <div class="text-sm text-gray-500">
-                    <span class="font-semibold text-orange-600">{{ $stats['active_sliders'] }}</span> active sliders
+                    <span class="font-semibold text-orange-600">0</span> active sliders (removed)
                 </div>
                 <div class="text-sm text-gray-500">
                     Last updated today
@@ -150,49 +171,16 @@
         </div>
     </div>
 
-    <!-- Recent Activity Section -->
-    @if($recent_contacts->count() > 0)
-    <div class="max-w-4xl mx-auto mt-12">
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-lg font-semibold text-gray-900">Recent Contacts</h3>
-                    <a href="{{ route('admin.contacts') }}" class="text-sm text-blue-600 hover:text-blue-800">View All →</a>
-                </div>
-            </div>
-            <div class="p-6">
-                <div class="space-y-4">
-                    @foreach($recent_contacts as $contact)
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user text-blue-600"></i>
-                            </div>
-                            <div>
-                                <p class="font-medium text-gray-900">{{ $contact->name }}</p>
-                                <p class="text-sm text-gray-600">{{ $contact->contact_email }}</p>
-                                <p class="text-xs text-gray-500">{{ $contact->created_at->diffForHumans() }}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
-                                @if($contact->status === 'unread') bg-red-100 text-red-800
-                                @elseif($contact->status === 'read') bg-yellow-100 text-yellow-800
-                                @elseif($contact->status === 'resolved') bg-green-100 text-green-800
-                                @else bg-gray-100 text-gray-800 @endif">
-                                {{ ucfirst($contact->status) }}
-                            </span>
-                            <a href="{{ route('admin.contacts.show', $contact) }}" 
-                               class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-                    @endforeach
+    <!-- Quick Stats Summary -->
+    <div class="max-w-4xl mx-auto mt-8">
+        <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-semibold text-gray-900">Quick Overview</h3>
+                <div class="text-sm text-gray-500">
+                    {{ $stats['unread_contacts'] }} unread contacts • {{ $stats['today_appointments'] }} appointments today
                 </div>
             </div>
         </div>
     </div>
-    @endif
 </div>
 @endsection

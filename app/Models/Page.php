@@ -192,7 +192,6 @@ class Page extends Model
                 'business-innovation-and-investment-permanent-visa-subclass-888' => 'business-visa.business-permanent-888',
                 'business-innovation-and-investment-provisional-visa-subclass-188' => 'business-visa.business-provisional-188',
                 'business-talent-permanent-visa-subclass-132' => 'business-visa.business-talent-132',
-                'visa-checklists' => 'business-visa.visa-checklists',
                 'business-visa' => 'business-visa.index',
             ],
             'appeals' => [

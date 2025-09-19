@@ -16,8 +16,8 @@ Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/success-stories', [HomeController::class, 'successStories'])->name('success-stories');
 Route::get('/success-stories/{slug}', [HomeController::class, 'successStoryDetail'])->name('success-story.detail');
+// Legacy route for backward compatibility
 Route::get('/book-an-appointment', [HomeController::class, 'appointment'])->name('appointment');
-Route::post('/book-an-appointment/store', [\App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'storeContact'])->name('contact.store');
 Route::post('/contact/submit', [\App\Http\Controllers\ContactController::class, 'submit'])->name('contact.submit');
@@ -48,10 +48,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::patch('/users/{user}', [\App\Http\Controllers\AdminController::class, 'updateUser'])->name('users.update');
     Route::delete('/users/{user}', [\App\Http\Controllers\AdminController::class, 'deleteUser'])->name('users.delete');
     
-    // Appointment Management Routes
-    Route::resource('/appointments', \App\Http\Controllers\AppointmentController::class)->names('appointments');
-    Route::post('/appointments/{appointment}/confirm', [\App\Http\Controllers\AppointmentController::class, 'confirm'])->name('appointments.confirm');
-    
     // CMS Management Routes
     Route::resource('/cms', \App\Http\Controllers\Admin\AdminCmsController::class)->names('cms')->parameters(['cms' => 'page']);
     Route::patch('/cms/{page}/status', [\App\Http\Controllers\Admin\AdminCmsController::class, 'updateStatus'])->name('cms.update-status');
@@ -67,11 +63,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::patch('/success-stories/{successStory}/status', [\App\Http\Controllers\Admin\AdminSuccessStoryController::class, 'updateStatus'])->name('success-stories.update-status');
     Route::patch('/success-stories/{successStory}/featured', [\App\Http\Controllers\Admin\AdminSuccessStoryController::class, 'toggleFeatured'])->name('success-stories.toggle-featured');
     Route::post('/success-stories/reorder', [\App\Http\Controllers\Admin\AdminSuccessStoryController::class, 'reorder'])->name('success-stories.reorder');
-    Route::post('/appointments/{appointment}/cancel', [\App\Http\Controllers\AppointmentController::class, 'cancel'])->name('appointments.cancel');
-    Route::get('/appointments-calendar', [\App\Http\Controllers\AppointmentController::class, 'calendar'])->name('appointments.calendar');
-    Route::get('/appointments-calendar-view', function() { return view('admin.appointments.calendar'); })->name('appointments.calendar-view');
-    Route::get('/appointments-weekly-calendar', function() { return view('admin.appointments.weekly-calendar'); })->name('appointments.weekly-calendar');
-    
     // Blocked Times Management Routes
     Route::resource('/blocked-times', \App\Http\Controllers\BlockedTimeController::class)->names('blocked-times');
     Route::post('/blocked-times/{blockedTime}/toggle-active', [\App\Http\Controllers\BlockedTimeController::class, 'toggleActive'])->name('blocked-times.toggle-active');
@@ -79,6 +70,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 });
 
 // Include specialized route files
+require __DIR__.'/appointment-routes.php';
 require __DIR__.'/visa-routes.php';
 require __DIR__.'/utility-routes.php';
 require __DIR__.'/auth.php';

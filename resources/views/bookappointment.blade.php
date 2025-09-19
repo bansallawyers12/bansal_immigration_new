@@ -1645,6 +1645,15 @@ body {
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="promo-code">Promo Code (Optional)</label>
+                                    <div style="display: flex; gap: 8px;">
+                                        <input type="text" id="promo-code" name="promo_code" class="form-input" placeholder="Enter promo code" style="flex: 1;">
+                                        <button type="button" id="validate-promo-btn" class="appointment-btn appointment-btn-secondary" style="flex: 0 0 auto; padding: 12px 16px;">Apply</button>
+                                    </div>
+                                    <div id="promo-message" class="promo-message" style="margin-top: 8px; font-size: 14px; display: none;"></div>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Select Date & Time</label>
                                     <div class="calendar-container">
                                         <div class="calendar-widget">
@@ -2198,6 +2207,112 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Payment integration would be implemented here. For now, this will submit as a paid appointment.');
         document.getElementById('appointment-form').submit();
     });
+
+    // Promo code validation
+    let currentPromoCode = '';
+    let currentDiscountAmount = 0;
+    let currentFinalAmount = 0;
+
+    document.getElementById('validate-promo-btn').addEventListener('click', function() {
+        const promoCode = document.getElementById('promo-code').value.trim();
+        const promoMessage = document.getElementById('promo-message');
+        
+        if (!promoCode) {
+            showPromoMessage('Please enter a promo code.', 'error');
+            return;
+        }
+
+        // Show loading state
+        this.disabled = true;
+        this.textContent = 'Validating...';
+
+        // Get current service type for validation
+        const selectedService = document.querySelector('input[name="service"]:checked');
+        const serviceType = selectedService ? selectedService.value : 'tr';
+        
+        // Get base amount (you might want to calculate this based on service type)
+        const baseAmount = getServicePrice(serviceType);
+
+        fetch('{{ route("payments.validate-promo") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({
+                promo_code: promoCode,
+                enquiry_type: serviceType,
+                amount: baseAmount
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                currentPromoCode = promoCode;
+                currentDiscountAmount = data.discount_amount;
+                currentFinalAmount = data.final_amount;
+                
+                showPromoMessage(data.message, 'success');
+                
+                // Update confirmation display if on confirmation step
+                updateConfirmationDisplay();
+            } else {
+                showPromoMessage(data.message, 'error');
+                resetPromoCode();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showPromoMessage('Error validating promo code. Please try again.', 'error');
+        })
+        .finally(() => {
+            this.disabled = false;
+            this.textContent = 'Apply';
+        });
+    });
+
+    function showPromoMessage(message, type) {
+        const promoMessage = document.getElementById('promo-message');
+        promoMessage.textContent = message;
+        promoMessage.className = 'promo-message ' + (type === 'success' ? 'success' : 'error');
+        promoMessage.style.display = 'block';
+        promoMessage.style.color = type === 'success' ? '#10b981' : '#ef4444';
+    }
+
+    function resetPromoCode() {
+        currentPromoCode = '';
+        currentDiscountAmount = 0;
+        currentFinalAmount = 0;
+        updateConfirmationDisplay();
+    }
+
+    function getServicePrice(serviceType) {
+        const prices = {
+            'tr': 150.00,
+            'tourist': 100.00,
+            'education': 200.00,
+            'pr_complex': 300.00
+        };
+        return prices[serviceType] || 150.00;
+    }
+
+    function updateConfirmationDisplay() {
+        // Update confirmation section with promo code info if visible
+        const confirmationSection = document.getElementById('confirmation-section');
+        if (confirmationSection && !confirmationSection.classList.contains('section-hidden')) {
+            // Add promo code info to confirmation display
+            let promoInfo = '';
+            if (currentPromoCode) {
+                promoInfo = `
+                    <tr>
+                        <th>Promo Code</th>
+                        <td>${currentPromoCode} ($${currentDiscountAmount.toFixed(2)} off)</td>
+                    </tr>
+                `;
+            }
+            // You can add this to the confirmation table
+        }
+    }
 });
 </script>
 @endsection

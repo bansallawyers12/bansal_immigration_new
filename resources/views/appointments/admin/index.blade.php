@@ -74,6 +74,11 @@
                                     <div>
                                         <div class="font-medium text-gray-900">{{ $appointment->full_name }}</div>
                                         <div class="text-sm text-gray-500">{{ $appointment->email }}</div>
+                                        @if($appointment->assignedAdmin)
+                                        <div class="text-xs text-blue-600 mt-1">
+                                            <i class="fas fa-user mr-1"></i>{{ $appointment->assignedAdmin->name }}
+                                        </div>
+                                        @endif
                                     </div>
                                 </td>
                                 <td class="py-3 px-4">

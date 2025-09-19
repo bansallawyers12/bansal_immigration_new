@@ -93,6 +93,6 @@ class User extends Authenticatable
      */
     public function scopeAdmins($query)
     {
-        return $query->where('role', 'admin');
+        return $query->where('role', 'admin')->active();
     }
 }

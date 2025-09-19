@@ -305,9 +305,6 @@ Route::prefix('business-visas')->name('business-visa.')->group(function () {
     Route::get('/business-talent-permanent-132', function() {
         return app(\App\Http\Controllers\PageController::class)->show('business-visa', 'business-talent-permanent-visa-subclass-132');
     })->name('business-talent-132');
-    Route::get('/visa-checklists', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('business-visa', 'visa-checklists');
-    })->name('visa-checklists');
 });
 
 // Appeals Routes

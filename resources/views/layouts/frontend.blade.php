@@ -429,9 +429,6 @@
                                     <a href="{{ route('business-visa.business-talent-132') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
                                         <span class="group-hover/item:font-medium">Business Talent (132)</span>
                                     </a>
-                                    <a href="{{ route('business-visa.visa-checklists') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Visa Checklists</span>
-                                    </a>
                                 </div>
                             </div>
                         </div>

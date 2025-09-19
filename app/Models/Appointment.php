@@ -38,7 +38,12 @@ class Appointment extends Model
         'ip_address',
         'user_agent',
         'form_data',
-        'assigned_to'
+        'assigned_to',
+        'is_paid',
+        'amount',
+        'promo_code',
+        'discount_amount',
+        'final_amount'
     ];
 
     protected $casts = [
@@ -48,7 +53,11 @@ class Appointment extends Model
         'confirmed_at' => 'datetime',
         'cancelled_at' => 'datetime',
         'form_data' => 'array',
-        'duration_minutes' => 'integer'
+        'duration_minutes' => 'integer',
+        'is_paid' => 'boolean',
+        'amount' => 'decimal:2',
+        'discount_amount' => 'decimal:2',
+        'final_amount' => 'decimal:2'
     ];
 
     // Boot method to auto-generate appointment_datetime
@@ -71,6 +80,94 @@ class Appointment extends Model
     public function assignedAdmin()
     {
         return $this->belongsTo(User::class, 'assigned_to');
+    }
+
+    /**
+     * Relationship with Payment
+     */
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+
+    /**
+     * Get pricing for different enquiry types
+     */
+    public static function getPricing()
+    {
+        return [
+            'tr' => 150.00,        // TR (TRand JRP) - $150
+            'tourist' => 100.00,   // Tourist Visa - $100
+            'education' => 200.00, // Education - $200
+            'pr_complex' => 300.00, // PR/Complex - $300
+        ];
+    }
+
+    /**
+     * Get price for this appointment's enquiry type
+     */
+    public function getPrice()
+    {
+        $pricing = self::getPricing();
+        return $pricing[$this->enquiry_type] ?? 0;
+    }
+
+    /**
+     * Check if appointment requires payment
+     */
+    public function requiresPayment()
+    {
+        return $this->is_paid && $this->getPrice() > 0;
+    }
+
+    /**
+     * Calculate final amount after promo code
+     */
+    public function calculateFinalAmount($promoCode = null)
+    {
+        $baseAmount = $this->getPrice();
+        
+        if (!$promoCode) {
+            return $baseAmount;
+        }
+
+        $promo = PromoCode::where('code', $promoCode)
+                         ->where('is_active', true)
+                         ->where(function($query) {
+                             $query->whereNull('valid_from')
+                                   ->orWhere('valid_from', '<=', now());
+                         })
+                         ->where(function($query) {
+                             $query->whereNull('valid_until')
+                                   ->orWhere('valid_until', '>=', now());
+                         })
+                         ->where(function($query) {
+                             $query->whereNull('applicable_enquiry_types')
+                                   ->orWhereJsonContains('applicable_enquiry_types', $this->enquiry_type);
+                         })
+                         ->where(function($query) {
+                             $query->whereNull('usage_limit')
+                                   ->orWhereRaw('used_count < usage_limit');
+                         })
+                         ->where('minimum_amount', '<=', $baseAmount)
+                         ->first();
+
+        if (!$promo) {
+            return $baseAmount;
+        }
+
+        $discountAmount = 0;
+        
+        if ($promo->type === 'percentage') {
+            $discountAmount = ($baseAmount * $promo->value) / 100;
+            if ($promo->maximum_discount) {
+                $discountAmount = min($discountAmount, $promo->maximum_discount);
+            }
+        } else {
+            $discountAmount = min($promo->value, $baseAmount);
+        }
+
+        return max(0, $baseAmount - $discountAmount);
     }
 
     /**

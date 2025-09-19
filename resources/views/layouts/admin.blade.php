@@ -211,6 +211,13 @@
                 </div>
                 
                 <div class="menu-item">
+                    <a href="{{ route('admin.promo-codes.index') }}" class="menu-link {{ request()->routeIs('admin.promo-codes*') ? 'active' : '' }}">
+                        <i class="menu-icon fas fa-tags"></i>
+                        <span>Promo Codes</span>
+                    </a>
+                </div>
+                
+                <div class="menu-item">
                     <a href="{{ route('admin.users') }}" class="menu-link {{ request()->routeIs('admin.users*') ? 'active' : '' }}">
                         <i class="menu-icon fas fa-users"></i>
                         <span>User Management</span>

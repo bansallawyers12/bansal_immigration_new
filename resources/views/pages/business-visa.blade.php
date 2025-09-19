@@ -53,8 +53,6 @@
                         $haystack = strtolower($slug . ' ' . $title);
                         $routeName = null;
 
-                        if (strpos($haystack, 'checklist') !== false) {
-                            $routeName = 'business-visa.visa-checklists';
                         } elseif (strpos($haystack, '888') !== false || strpos($haystack, 'subclass 888') !== false || strpos($haystack, 'permanent') !== false && strpos($haystack, 'investment') !== false) {
                             $routeName = 'business-visa.business-permanent-888';
                         } elseif (strpos($haystack, '188') !== false || strpos($haystack, 'subclass 188') !== false || strpos($haystack, 'provisional') !== false) {

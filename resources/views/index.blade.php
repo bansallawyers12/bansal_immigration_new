@@ -610,7 +610,7 @@
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Meet Our Expert Team</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">"Expert Guidance, Personalised Care – Meet the Team Behind Your Migration Success"</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 <!-- Arun Bansal -->
                 <div class="text-center group">
                     <div class="relative mb-8">
@@ -657,19 +657,42 @@
                     </div>
                 </div>
 
-                <!-- Maleesha Thawalampola -->
+                <!-- Mamta Puri -->
                 <div class="text-center group">
                     <div class="relative mb-8">
                         <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-300 transition-colors">
-                            <img src="{{ asset('img/profile_imgs/Maleesha Maam.png') }}" alt="Maleesha Thawalampola" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="{{ asset('img/profile_imgs/Maleesha Maam.png') }}" alt="Mamta Puri" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         </div>
                         <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-bold">
                             Migration Agent
                         </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2">Maleesha Thawalampola</h3>
-                    <p class="text-yellow-400 text-sm mb-4 font-medium">MARN: 2518893</p>
-                    <p class="text-gray-300 text-sm leading-relaxed">Dedicated Migration Agent with expertise in student visas and partner visas. Committed to providing personalized service to every client.</p>
+                    <h3 class="text-2xl font-bold mb-2">Mamta Puri</h3>
+                    <p class="text-yellow-400 text-sm mb-4 font-medium">MARN: 1569359</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">Dedicated Migration Agent with expertise in student visas and partner visa applications. Committed to providing personalized service to every client.</p>
+                    <div class="mt-4 flex justify-center space-x-4">
+                        <a href="#" class="text-yellow-400 hover:text-yellow-300 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-yellow-400 hover:text-yellow-300 transition-colors">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Iqbal -->
+                <div class="text-center group">
+                    <div class="relative mb-8">
+                        <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-300 transition-colors">
+                            <img src="{{ asset('img/profile_imgs/user_img_default_gy0h1YJFfN.png') }}" alt="Iqbal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-bold">
+                            Migration Agent
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Iqbal</h3>
+                    <p class="text-yellow-400 text-sm mb-4 font-medium">MARN: [To be provided]</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">Experienced Migration Agent committed to providing personalized service and expert guidance for all immigration needs.</p>
                     <div class="mt-4 flex justify-center space-x-4">
                         <a href="#" class="text-yellow-400 hover:text-yellow-300 transition-colors">
                             <i class="fab fa-linkedin text-xl"></i>

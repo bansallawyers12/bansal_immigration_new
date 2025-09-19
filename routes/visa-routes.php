@@ -81,40 +81,40 @@ Route::prefix('family-visa')->name('family-visa.')->group(function () {
     Route::get('/', [PageController::class, 'show'])->defaults('category', 'family-visa')->name('index');
     
     // Partner Visa Subpages
-    Route::get('/partner-provisional-visa-309', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-provisional-309')->name('partner-provisional-309');
-    Route::get('/partner-permanent-visa-100', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-permanent-100')->name('partner-permanent-100');
-    Route::get('/partner-provisional-visa-820', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-provisional-820')->name('partner-provisional-820');
-    Route::get('/partner-permanent-visa-801', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-permanent-801')->name('partner-permanent-801');
-    Route::get('/prospective-marriage-visa-300', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'prospective-marriage-300')->name('prospective-marriage');
+    Route::get('/partner-provisional-visa-309', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-provisional-visa-subclass-309')->name('partner-provisional-309');
+    Route::get('/partner-permanent-visa-100', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-permanent-visa-subclass-100')->name('partner-permanent-100');
+    Route::get('/partner-provisional-visa-820', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-provisional-visa-subclass-820')->name('partner-provisional-820');
+    Route::get('/partner-permanent-visa-801', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'partner-permanent-visa-subclass-801')->name('partner-permanent-801');
+    Route::get('/prospective-marriage-visa-300', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'prospective-marriage-visa-subclass-300')->name('prospective-marriage');
     
     // Parents Visa Subpages
-    Route::get('/contributory-aged-parent-temporary-884', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-aged-parent-884')->name('contributory-aged-parent-884');
-    Route::get('/contributory-aged-parent-864', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-aged-parent-864')->name('contributory-aged-parent-864');
-    Route::get('/contributory-parent-temporary-173', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-parent-173')->name('contributory-parent-173');
-    Route::get('/contributory-parent-143', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-parent-143')->name('contributory-parent-143');
-    Route::get('/parent-visa-103', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'parent-visa-103')->name('parent-visa-103');
-    Route::get('/aged-parent-visa-804', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'aged-parent-804')->name('aged-parent-804');
-    Route::get('/sponsored-parent-temporary-870', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'sponsored-parent-870')->name('sponsored-parent-870');
+    Route::get('/contributory-aged-parent-temporary-884', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-aged-parent-temporary-visa-subclass-884')->name('contributory-aged-parent-884');
+    Route::get('/contributory-aged-parent-864', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-aged-parent-visa-subclass-864')->name('contributory-aged-parent-864');
+    Route::get('/contributory-parent-temporary-173', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-parent-temporary-visa-subclass-173')->name('contributory-parent-173');
+    Route::get('/contributory-parent-143', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-parent-subclass-143')->name('contributory-parent-143');
+    Route::get('/parent-visa-103', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'parent-visa-subclass-103')->name('parent-visa-103');
+    Route::get('/aged-parent-visa-804', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'aged-parent-visa-subclass-804')->name('aged-parent-804');
+    Route::get('/sponsored-parent-temporary-870', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'sponsored-parent-temporary-visa-subclass-870')->name('sponsored-parent-870');
     
     // Child Visas
-    Route::get('/child-visa-101', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'child-visa-101')->name('child-visa-101');
-    Route::get('/child-visa-802', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'child-visa-802')->name('child-visa-802');
+    Route::get('/child-visa-101', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'child-visa-subclass-101')->name('child-visa-101');
+    Route::get('/child-visa-802', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'child-visa-subclass-802')->name('child-visa-802');
     Route::get('/adoption-visa-australia', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'adoption-visa')->name('adoption-visa');
-    Route::get('/remaining-relative-visa-115', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'remaining-relative-115')->name('remaining-relative-115');
-    Route::get('/remaining-relative-visa-835', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'remaining-relative-835')->name('remaining-relative-835');
-    Route::get('/orphan-relative-visa-117', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'orphan-relative-117')->name('orphan-relative-117');
-    Route::get('/orphan-relative-visa-837', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'orphan-relative-837')->name('orphan-relative-837');
-    Route::get('/dependent-child-visa', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'dependent-child')->name('dependent-child');
+    Route::get('/remaining-relative-visa-115', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'remaining-relative-visa-subclass-115')->name('remaining-relative-115');
+    Route::get('/remaining-relative-visa-835', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'remaining-relative-visa-subclass-835')->name('remaining-relative-835');
+    Route::get('/orphan-relative-visa-117', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'orphan-reletive-visa-117')->name('orphan-relative-117');
+    Route::get('/orphan-relative-visa-837', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'orphan-relative-visa-837')->name('orphan-relative-837');
+    Route::get('/dependent-child-visa', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'dependent-child-visa')->name('dependent-child');
     
     // Relative Visas
     Route::get('/aged-dependent-relative-visa-114', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'aged-dependent-114')->name('aged-dependent-114');
     Route::get('/aged-dependent-relative-visa-offshore-114', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'aged-dependent-offshore-114')->name('aged-dependent-offshore-114');
     Route::get('/aged-dependent-relative-visa-onshore-838', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'aged-dependent-onshore-838')->name('aged-dependent-onshore-838');
-    Route::get('/carer-visa-offshore-116', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'carer-offshore-116')->name('carer-offshore-116');
-    Route::get('/carer-visa-onshore-836', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'carer-onshore-836')->name('carer-onshore-836');
+    Route::get('/carer-visa-offshore-116', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'carer-visa-offshore-subclass-116')->name('carer-offshore-116');
+    Route::get('/carer-visa-onshore-836', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'carer-visa-onshore-subclass-836')->name('carer-onshore-836');
     
     // Others
-    Route::get('/cost-for-contributory-visas', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'contributory-costs')->name('contributory-costs');
+    Route::get('/cost-for-contributory-visas', [PageController::class, 'show'])->defaults('category', 'family-visa', 'slug', 'cost-for-contributory-visas')->name('contributory-costs');
 });
 
 // Employee Sponsored Visas Routes

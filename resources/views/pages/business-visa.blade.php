@@ -47,7 +47,25 @@
                     @if($relatedPage->excerpt)
                     <p class="text-gray-600 mb-4">{{ $relatedPage->excerpt }}</p>
                     @endif
-                    <a href="{{ route('business-visa.' . str_replace(['business-', 'visa-'], '', $relatedPage->slug)) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    @php
+                        $slug = $relatedPage->slug ?? '';
+                        $title = $relatedPage->title ?? '';
+                        $haystack = strtolower($slug . ' ' . $title);
+                        $routeName = null;
+
+                        if (strpos($haystack, 'checklist') !== false) {
+                            $routeName = 'business-visa.visa-checklists';
+                        } elseif (strpos($haystack, '888') !== false || strpos($haystack, 'subclass 888') !== false || strpos($haystack, 'permanent') !== false && strpos($haystack, 'investment') !== false) {
+                            $routeName = 'business-visa.business-permanent-888';
+                        } elseif (strpos($haystack, '188') !== false || strpos($haystack, 'subclass 188') !== false || strpos($haystack, 'provisional') !== false) {
+                            $routeName = 'business-visa.business-provisional-188';
+                        } elseif (strpos($haystack, '132') !== false || strpos($haystack, 'subclass 132') !== false || strpos($haystack, 'talent') !== false) {
+                            $routeName = 'business-visa.business-talent-132';
+                        }
+
+                        $href = $routeName ? route($routeName) : route('business-visa.index');
+                    @endphp
+                    <a href="{{ $href }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             @endforeach

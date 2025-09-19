@@ -166,14 +166,6 @@ class HomeController extends Controller
 
     // Stub other methods (about, services, etc.) – return view('about'); for now
     public function about() { return view('about'); }
-    public function services() { 
-        $serviceLists = Service::active()->orderBy('order')->get();
-        return view('ourservices', compact('serviceLists')); 
-    }
-    public function serviceDetail($slug) { 
-        $servicesdetailists = Service::active()->where('slug', $slug)->firstOrFail();
-        return view('servicesdetail', compact('servicesdetailists')); 
-    }
     public function blogs(Request $request) { 
         // Cache total count separately to avoid expensive COUNT(*) on every request
         $blogTotal = Cache::remember('blog_total_count', 300, function () {

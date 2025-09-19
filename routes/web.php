@@ -7,8 +7,6 @@ use App\Http\Controllers\PageController;
 // Main pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/ourservices', [HomeController::class, 'services'])->name('services');
-Route::get('/services/{slug}', [HomeController::class, 'serviceDetail'])->name('service.detail');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/success-stories', [HomeController::class, 'successStories'])->name('success-stories');

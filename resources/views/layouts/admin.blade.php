@@ -28,6 +28,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
+    @stack('styles')
+    
     <!-- Minimal Fast Admin Styles -->
     <style>
         .admin-sidebar {
@@ -282,6 +284,8 @@
         </div>
     </div>
 
+    @stack('scripts')
+    
     <!-- Remove loading screen when page loads -->
     <script>
         window.addEventListener('load', function() {

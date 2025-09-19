@@ -6,6 +6,11 @@ use App\Http\Controllers\PageController;
 
 // Main pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Test page for editor comparison
+Route::get('/test-editors', function () {
+    return view('test-editors');
+})->name('test-editors');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
@@ -48,7 +53,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/appointments/{appointment}/confirm', [\App\Http\Controllers\AppointmentController::class, 'confirm'])->name('appointments.confirm');
     
     // CMS Management Routes
-    Route::resource('/cms', \App\Http\Controllers\Admin\AdminCmsController::class)->names('cms');
+    Route::resource('/cms', \App\Http\Controllers\Admin\AdminCmsController::class)->names('cms')->parameters(['cms' => 'page']);
     Route::patch('/cms/{page}/status', [\App\Http\Controllers\Admin\AdminCmsController::class, 'updateStatus'])->name('cms.update-status');
     Route::post('/cms/reorder', [\App\Http\Controllers\Admin\AdminCmsController::class, 'reorder'])->name('cms.reorder');
     

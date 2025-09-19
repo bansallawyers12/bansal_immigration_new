@@ -47,7 +47,7 @@
                     @if($relatedPage->excerpt)
                     <p class="text-gray-600 mb-4">{{ $relatedPage->excerpt }}</p>
                     @endif
-                    <a href="{{ route('visitor-visa.' . str_replace('visitor-visa-', '', $relatedPage->slug)) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ route($relatedPage->route_name) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             @endforeach

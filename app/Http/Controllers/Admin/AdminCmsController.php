@@ -63,6 +63,8 @@ class AdminCmsController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:pages,slug',
+            'route_name' => 'nullable|string|max:255|unique:pages,route_name',
             'content' => 'required|string',
             'category' => 'nullable|string|max:100|in:' . implode(',', CategoryConstants::getCategoryKeys()),
             'subcategory' => 'nullable|string|max:100',
@@ -76,12 +78,40 @@ class AdminCmsController extends Controller
             'status' => 'required|boolean',
             'featured' => 'boolean',
             'order' => 'nullable|integer|min:0'
+        ], [
+            'title.required' => 'The page title is required.',
+            'title.max' => 'The page title cannot exceed 255 characters.',
+            'slug.unique' => 'This URL slug is already in use. Please choose a different one.',
+            'slug.max' => 'The URL slug cannot exceed 255 characters.',
+            'content.required' => 'The page content is required.',
+            'category.in' => 'Please select a valid category from the dropdown.',
+            'subcategory.max' => 'The subcategory cannot exceed 100 characters.',
+            'template.max' => 'The template name cannot exceed 100 characters.',
+            'parent_id.exists' => 'The selected parent page does not exist.',
+            'excerpt.max' => 'The short description cannot exceed 500 characters.',
+            'image.image' => 'The uploaded file must be an image.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
+            'image.max' => 'The image size cannot exceed 2MB.',
+            'meta_title.max' => 'The SEO title cannot exceed 255 characters.',
+            'meta_description.max' => 'The SEO description cannot exceed 500 characters.',
+            'meta_keywords.max' => 'The SEO keywords cannot exceed 500 characters.',
+            'status.required' => 'Please specify whether the page should be published.',
+            'order.integer' => 'The display order must be a number.',
+            'order.min' => 'The display order cannot be negative.'
         ]);
 
         $data = $request->all();
         
-        // Generate slug from title
-        $data['slug'] = Str::slug($request->title);
+        // Generate slug from title if not provided
+        if (empty($data['slug'])) {
+            $data['slug'] = Str::slug($request->title);
+        }
+        
+        // Generate route_name if not provided
+        if (empty($data['route_name'])) {
+            $page = new Page($data);
+            $data['route_name'] = $page->generateRouteName();
+        }
         
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -131,6 +161,8 @@ class AdminCmsController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:pages,slug,' . $page->id,
+            'route_name' => 'nullable|string|max:255|unique:pages,route_name,' . $page->id,
             'content' => 'required|string',
             'category' => 'nullable|string|max:100|in:' . implode(',', CategoryConstants::getCategoryKeys()),
             'subcategory' => 'nullable|string|max:100',
@@ -144,13 +176,41 @@ class AdminCmsController extends Controller
             'status' => 'required|boolean',
             'featured' => 'boolean',
             'order' => 'nullable|integer|min:0'
+        ], [
+            'title.required' => 'The page title is required.',
+            'title.max' => 'The page title cannot exceed 255 characters.',
+            'slug.unique' => 'This URL slug is already in use. Please choose a different one.',
+            'slug.max' => 'The URL slug cannot exceed 255 characters.',
+            'content.required' => 'The page content is required.',
+            'category.in' => 'Please select a valid category from the dropdown.',
+            'subcategory.max' => 'The subcategory cannot exceed 100 characters.',
+            'template.max' => 'The template name cannot exceed 100 characters.',
+            'parent_id.exists' => 'The selected parent page does not exist.',
+            'excerpt.max' => 'The short description cannot exceed 500 characters.',
+            'image.image' => 'The uploaded file must be an image.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
+            'image.max' => 'The image size cannot exceed 2MB.',
+            'meta_title.max' => 'The SEO title cannot exceed 255 characters.',
+            'meta_description.max' => 'The SEO description cannot exceed 500 characters.',
+            'meta_keywords.max' => 'The SEO keywords cannot exceed 500 characters.',
+            'status.required' => 'Please specify whether the page should be published.',
+            'order.integer' => 'The display order must be a number.',
+            'order.min' => 'The display order cannot be negative.'
         ]);
 
         $data = $request->all();
         
-        // Generate slug from title if title changed
-        if ($request->title !== $page->title) {
+        // Generate slug from title if slug is empty or title changed
+        if (empty($data['slug']) || $request->title !== $page->title) {
             $data['slug'] = Str::slug($request->title);
+        }
+        
+        // Generate route_name if not provided or if category/slug changed
+        if (empty($data['route_name']) || 
+            $request->category !== $page->category || 
+            $request->slug !== $page->slug) {
+            $tempPage = new Page($data);
+            $data['route_name'] = $tempPage->generateRouteName();
         }
         
         // Handle image upload
@@ -225,4 +285,5 @@ class AdminCmsController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Pages reordered successfully.']);
     }
+
 }

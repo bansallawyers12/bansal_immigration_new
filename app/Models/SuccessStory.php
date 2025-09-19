@@ -12,6 +12,7 @@ class SuccessStory extends Model
     protected $fillable = [
         'title',
         'slug',
+        'parent_category',
         'excerpt',
         'content',
         'client_name',
@@ -19,6 +20,8 @@ class SuccessStory extends Model
         'visa_type',
         'image',
         'image_alt',
+        'pdf_doc',
+        'youtube_url',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -58,5 +61,43 @@ class SuccessStory extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    // Relationships
+    public function category()
+    {
+        return $this->belongsTo(BlogCategory::class, 'parent_category');
+    }
+
+    // Helper methods
+    public function getCategoryNameAttribute()
+    {
+        return $this->category ? $this->category->name : 'Uncategorized';
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : null;
+    }
+
+    public function getPdfUrlAttribute()
+    {
+        return $this->pdf_doc ? asset('storage/' . $this->pdf_doc) : null;
+    }
+
+    public function hasVideo()
+    {
+        return !empty($this->youtube_url) || !empty($this->pdf_doc);
+    }
+
+    public function getVideoTypeAttribute()
+    {
+        if (!empty($this->youtube_url)) {
+            return 'youtube';
+        } elseif (!empty($this->pdf_doc)) {
+            $extension = pathinfo($this->pdf_doc, PATHINFO_EXTENSION);
+            return strtolower($extension) === 'mp4' ? 'video' : 'pdf';
+        }
+        return null;
     }
 }

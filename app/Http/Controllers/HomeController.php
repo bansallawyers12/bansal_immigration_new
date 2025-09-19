@@ -174,16 +174,34 @@ class HomeController extends Controller
         $servicesdetailists = Service::active()->where('slug', $slug)->firstOrFail();
         return view('servicesdetail', compact('servicesdetailists')); 
     }
-    public function blogs() { 
+    public function blogs(Request $request) { 
         // Cache total count separately to avoid expensive COUNT(*) on every request
         $blogTotal = Cache::remember('blog_total_count', 300, function () {
             return Blog::active()->count();
         });
 
-        // Select only fields needed for the list view and use simplePaginate to skip COUNT(*)
-        $bloglists = Blog::active()
-            ->select('id', 'title', 'slug', 'short_description', 'image', 'image_alt', 'author', 'featured', 'published_at', 'created_at')
-            ->orderByDesc(DB::raw('COALESCE(published_at, created_at)'))
+        // Build query with search and filters
+        $query = Blog::active()
+            ->select('id', 'title', 'slug', 'short_description', 'image', 'image_alt', 'author', 'featured', 'published_at', 'created_at');
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('short_description', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('author', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter by featured
+        if ($request->filled('featured')) {
+            $query->where('featured', $request->featured);
+        }
+
+        // Order by published date or created date
+        $bloglists = $query->orderByDesc(DB::raw('COALESCE(published_at, created_at)'))
             ->simplePaginate(12);
 
         return view('blogs', compact('bloglists', 'blogTotal')); 
@@ -210,12 +228,12 @@ class HomeController extends Controller
     
     // Success Stories
     public function successStories() { 
-        $successStories = SuccessStory::active()->ordered()->paginate(12);
+        $successStories = SuccessStory::active()->with('category')->ordered()->paginate(12);
         return view('success-stories', compact('successStories')); 
     }
     public function successStoryDetail($slug) { 
-        $story = SuccessStory::active()->where('slug', $slug)->firstOrFail();
-        $relatedStories = SuccessStory::active()->where('visa_type', $story->visa_type)->where('id', '!=', $story->id)->take(3)->get();
+        $story = SuccessStory::active()->with('category')->where('slug', $slug)->firstOrFail();
+        $relatedStories = SuccessStory::active()->with('category')->where('visa_type', $story->visa_type)->where('id', '!=', $story->id)->take(3)->get();
         return view('success-story-detail', compact('story', 'relatedStories')); 
     }
 }

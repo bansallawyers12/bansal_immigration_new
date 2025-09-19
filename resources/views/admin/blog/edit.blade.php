@@ -37,6 +37,48 @@
                         @enderror
                     </div>
 
+                    <!-- Slug -->
+                    <div class="md:col-span-2">
+                        <label for="slug" class="block text-sm font-medium text-gray-700 mb-2">
+                            Slug <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="slug" id="slug" value="{{ old('slug', $blog->slug) }}" required
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('slug') border-red-500 @enderror"
+                               placeholder="URL-friendly version of title">
+                        @error('slug')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        <p class="mt-1 text-xs text-gray-500">Leave empty to auto-generate from title</p>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="md:col-span-2">
+                        <label for="parent_category" class="block text-sm font-medium text-gray-700 mb-2">
+                            Category <span class="text-red-500">*</span>
+                        </label>
+                        <select name="parent_category" id="parent_category" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('parent_category') border-red-500 @enderror">
+                            <option value="">Select Category</option>
+                            @if($categories)
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('parent_category', $blog->parent_category) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                    @if($category->subcategories->count() > 0)
+                                        @foreach($category->subcategories as $subcategory)
+                                            <option value="{{ $subcategory->id }}" {{ old('parent_category', $blog->parent_category) == $subcategory->id ? 'selected' : '' }}>
+                                                &nbsp;&nbsp;{{ $subcategory->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                @endforeach
+                            @endif
+                        </select>
+                        @error('parent_category')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- Author -->
                     <div>
                         <label for="author" class="block text-sm font-medium text-gray-700 mb-2">Author</label>
@@ -94,21 +136,6 @@
             <div class="border-b border-gray-200 pb-6">
                 <h3 class="text-lg font-medium text-gray-900 mb-4">Media</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Current Image -->
-                    @if($blog->image)
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Image</label>
-                        <div class="relative">
-                            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->image_alt }}" class="h-32 w-32 object-cover rounded-lg border">
-                            <div class="absolute top-2 right-2">
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    Current
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-
                     <!-- New Image -->
                     <div>
                         <label for="image" class="block text-sm font-medium text-gray-700 mb-2">
@@ -125,6 +152,21 @@
                         </div>
                     </div>
 
+                    <!-- Current Image -->
+                    @if($blog->image)
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Image</label>
+                        <div class="relative">
+                            <img src="{{ asset('img/blog/' . $blog->image) }}" alt="{{ $blog->image_alt }}" class="h-32 w-32 object-cover rounded-lg border">
+                            <div class="absolute top-2 right-2">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    Current
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
                     <!-- Image Alt Text -->
                     <div class="md:col-span-2">
                         <label for="image_alt" class="block text-sm font-medium text-gray-700 mb-2">Image Alt Text</label>
@@ -134,6 +176,71 @@
                         @error('image_alt')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
+                    </div>
+                </div>
+
+                <!-- Additional Media Fields -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <!-- Current PDF/Video -->
+                    @if($blog->pdf_doc)
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Document</label>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                            @php
+                                $extension = pathinfo($blog->pdf_doc, PATHINFO_EXTENSION);
+                                $isVideo = in_array(strtolower($extension), ['mp4', 'avi', 'mov', 'wmv']);
+                            @endphp
+                            
+                            @if($isVideo)
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-video text-blue-500 text-xl"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">{{ $blog->pdf_doc }}</p>
+                                    <p class="text-xs text-gray-500">Video File</p>
+                                </div>
+                            @else
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-file-pdf text-red-500 text-xl"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">{{ $blog->pdf_doc }}</p>
+                                    <p class="text-xs text-gray-500">PDF Document</p>
+                                </div>
+                            @endif
+                            <div class="flex-shrink-0">
+                                <a href="{{ asset('storage/' . $blog->pdf_doc) }}" target="_blank" 
+                                   class="text-blue-600 hover:text-blue-800 text-sm">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- PDF/Video Upload -->
+                    <div>
+                        <label for="pdf_doc" class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ $blog->pdf_doc ? 'Replace Document' : 'PDF/Video Document' }}
+                        </label>
+                        <input type="file" name="pdf_doc" id="pdf_doc" accept=".pdf,.mp4,.avi,.mov,.wmv"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('pdf_doc') border-red-500 @enderror">
+                        @error('pdf_doc')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        <p class="mt-1 text-xs text-gray-500">Supported formats: PDF, MP4, AVI, MOV, WMV (Max: 10MB)</p>
+                    </div>
+
+                    <!-- YouTube URL -->
+                    <div>
+                        <label for="youtube_url" class="block text-sm font-medium text-gray-700 mb-2">YouTube Video URL</label>
+                        <input type="url" name="youtube_url" id="youtube_url" value="{{ old('youtube_url', $blog->youtube_url) }}"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('youtube_url') border-red-500 @enderror"
+                               placeholder="https://www.youtube.com/watch?v=...">
+                        @error('youtube_url')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                        <p class="mt-1 text-xs text-gray-500">Optional: Embed a YouTube video in your blog post</p>
                     </div>
                 </div>
             </div>
@@ -210,6 +317,38 @@
     </div>
 </div>
 
+<!-- CKEditor CDN - Stable Version -->
+<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+<!-- CKEditor Custom Styles -->
+<style>
+.ck-editor__editable {
+    min-height: 300px;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+}
+
+.ck-editor__editable:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.ck.ck-editor {
+    border-radius: 0.5rem;
+}
+
+.ck.ck-toolbar {
+    border-radius: 0.5rem 0.5rem 0 0;
+    border: 1px solid #d1d5db;
+    border-bottom: none;
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+    border-radius: 0 0 0.5rem 0.5rem;
+    border-top: none;
+}
+</style>
+
 <script>
 function previewImage(input) {
     if (input.files && input.files[0]) {
@@ -221,5 +360,69 @@ function previewImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+// Auto-generate slug from title (only if slug is empty)
+document.getElementById('title').addEventListener('input', function() {
+    const title = this.value;
+    const slugField = document.getElementById('slug');
+    
+    // Only auto-generate if slug field is empty or matches the previous title
+    if (!slugField.value || slugField.dataset.autoGenerated === 'true') {
+        const slug = title
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+            .replace(/\s+/g, '-') // Replace spaces with hyphens
+            .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+            .trim();
+        
+        slugField.value = slug;
+        slugField.dataset.autoGenerated = 'true';
+    }
+});
+
+// Mark slug as manually edited when user types in it
+document.getElementById('slug').addEventListener('input', function() {
+    this.dataset.autoGenerated = 'false';
+});
+
+// Initialize CKEditor
+document.addEventListener('DOMContentLoaded', function() {
+    ClassicEditor
+        .create(document.querySelector('#description'), {
+            toolbar: {
+                items: [
+                    'heading', '|',
+                    'bold', 'italic', '|',
+                    'bulletedList', 'numberedList', '|',
+                    'outdent', 'indent', '|',
+                    'blockQuote', 'insertTable', '|',
+                    'link', 'imageUpload', '|',
+                    'undo', 'redo'
+                ]
+            },
+            language: 'en',
+            image: {
+                toolbar: [
+                    'imageTextAlternative', '|',
+                    'imageStyle:alignLeft',
+                    'imageStyle:alignCenter',
+                    'imageStyle:alignRight'
+                ]
+            },
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells'
+                ]
+            }
+        })
+        .then(editor => {
+            console.log('CKEditor initialized successfully');
+        })
+        .catch(error => {
+            console.error('Error initializing CKEditor:', error);
+        });
+});
 </script>
 @endsection

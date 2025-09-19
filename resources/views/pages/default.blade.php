@@ -7,7 +7,7 @@
     <meta property="og:title" content="{{ $page->meta_title ?? $page->title }}">
     <meta property="og:description" content="{{ $page->meta_description ?? $page->excerpt }}">
     @if($page->image)
-    <meta property="og:image" content="{{ asset('img/pages/' . $page->image) }}">
+    <meta property="og:image" content="{{ asset('storage/' . $page->image) }}">
     @endif
 @endsection
 
@@ -33,7 +33,7 @@
         <div class="lg:col-span-2">
             @if($page->image)
             <div class="mb-6">
-                <img src="{{ asset('img/pages/' . $page->image) }}" alt="{{ $page->image_alt ?? $page->title }}" class="w-full h-64 object-cover rounded-lg">
+                <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->image_alt ?? $page->title }}" class="w-full h-64 object-cover rounded-lg">
             </div>
             @endif
 

@@ -113,6 +113,26 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'bansal_immigration' => [
+            'driver' => 'mysql',
+            'url' => env('BANSAL_DB_URL'),
+            'host' => env('BANSAL_DB_HOST', '127.0.0.1'),
+            'port' => env('BANSAL_DB_PORT', '3306'),
+            'database' => env('BANSAL_DB_DATABASE', 'bansal_immigration'),
+            'username' => env('BANSAL_DB_USERNAME', 'root'),
+            'password' => env('BANSAL_DB_PASSWORD', ''),
+            'unix_socket' => env('BANSAL_DB_SOCKET', ''),
+            'charset' => env('BANSAL_DB_CHARSET', 'utf8mb4'),
+            'collation' => env('BANSAL_DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('BANSAL_MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
     ],
 
     /*

@@ -6,7 +6,7 @@
     <meta property="og:title" content="{{ $page->meta_title ?? $page->title }}">
     <meta property="og:description" content="{{ $page->meta_description ?? $page->excerpt }}">
     @if($page->image)
-    <meta property="og:image" content="{{ asset('img/pages/' . $page->image) }}">
+    <meta property="og:image" content="{{ asset('storage/' . $page->image) }}">
     @endif
 @endsection
 
@@ -23,7 +23,7 @@
     <!-- Page Image -->
     @if($page->image)
     <div class="mb-8">
-        <img src="{{ asset('img/pages/' . $page->image) }}" alt="{{ $page->image_alt ?? $page->title }}" class="w-full h-64 object-cover rounded-lg shadow-lg">
+        <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->image_alt ?? $page->title }}" class="w-full h-64 object-cover rounded-lg shadow-lg">
     </div>
     @endif
 
@@ -73,7 +73,7 @@
             @foreach($relatedPages as $relatedPage)
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                 @if($relatedPage->image)
-                <img src="{{ asset('img/pages/' . $relatedPage->image) }}" alt="{{ $relatedPage->image_alt ?? $relatedPage->title }}" class="w-full h-48 object-cover">
+                <img src="{{ asset('storage/' . $relatedPage->image) }}" alt="{{ $relatedPage->image_alt ?? $relatedPage->title }}" class="w-full h-48 object-cover">
                 @endif
                 <div class="p-6">
                     <h3 class="text-xl font-semibold mb-2">{{ $relatedPage->title }}</h3>

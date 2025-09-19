@@ -3,7 +3,7 @@
 @section('title', 'Edit Success Story')
 
 @section('content')
-<div class="p-6">
+<div class="p-4 md:p-6 ml-0 md:ml-4">
     <div class="flex justify-between items-center mb-6">
         <div>
             <h1 class="text-2xl font-bold text-gray-800">Edit Success Story</h1>
@@ -33,6 +33,44 @@
                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('title') border-red-500 @enderror"
                                placeholder="Enter success story title">
                         @error('title')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Slug -->
+                    <div class="md:col-span-2">
+                        <label for="slug" class="block text-sm font-medium text-gray-700 mb-2">
+                            Slug
+                        </label>
+                        <input type="text" name="slug" id="slug" value="{{ old('slug', $successStory->slug) }}"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('slug') border-red-500 @enderror"
+                               placeholder="URL-friendly version of the title">
+                        <p class="mt-1 text-sm text-gray-500">Leave empty to auto-generate from title</p>
+                        @error('slug')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Category -->
+                    <div class="md:col-span-2">
+                        <label for="parent_category" class="block text-sm font-medium text-gray-700 mb-2">
+                            Category
+                        </label>
+                        <select name="parent_category" id="parent_category"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('parent_category') border-red-500 @enderror">
+                            <option value="">Select Category</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('parent_category', $successStory->parent_category) == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                                @foreach($category->subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}" {{ old('parent_category', $successStory->parent_category) == $subcategory->id ? 'selected' : '' }}>
+                                        &nbsp;&nbsp;{{ $subcategory->name }}
+                                    </option>
+                                @endforeach
+                            @endforeach
+                        </select>
+                        @error('parent_category')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
@@ -178,6 +216,50 @@
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <!-- Current PDF/Video -->
+                    @if($successStory->pdf_doc)
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Document</label>
+                        <div class="flex items-center space-x-2">
+                            @if($successStory->video_type === 'pdf')
+                                <i class="fas fa-file-pdf text-red-500 text-2xl"></i>
+                                <a href="{{ $successStory->pdf_url }}" target="_blank" class="text-blue-600 hover:text-blue-800">
+                                    View PDF
+                                </a>
+                            @elseif($successStory->video_type === 'video')
+                                <i class="fas fa-video text-blue-500 text-2xl"></i>
+                                <a href="{{ $successStory->pdf_url }}" target="_blank" class="text-blue-600 hover:text-blue-800">
+                                    View Video
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- PDF/Video Upload -->
+                    <div>
+                        <label for="pdf_doc" class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ $successStory->pdf_doc ? 'Replace Document' : 'PDF/Video Document' }}
+                        </label>
+                        <input type="file" name="pdf_doc" id="pdf_doc" accept=".pdf,.mp4,.avi,.mov,.wmv"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('pdf_doc') border-red-500 @enderror">
+                        <p class="mt-1 text-sm text-gray-500">Upload PDF or video files (max 10MB)</p>
+                        @error('pdf_doc')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- YouTube URL -->
+                    <div>
+                        <label for="youtube_url" class="block text-sm font-medium text-gray-700 mb-2">YouTube URL</label>
+                        <input type="url" name="youtube_url" id="youtube_url" value="{{ old('youtube_url', $successStory->youtube_url) }}"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('youtube_url') border-red-500 @enderror"
+                               placeholder="https://www.youtube.com/watch?v=...">
+                        @error('youtube_url')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
             </div>
 
@@ -253,7 +335,90 @@
     </div>
 </div>
 
+<!-- CKEditor 5 CDN -->
+<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+<style>
+/* CKEditor styling */
+.ck-editor__editable {
+    min-height: 300px;
+    border-radius: 0.5rem;
+}
+
+.ck-editor__editable:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+    border-color: #d1d5db;
+}
+
+.ck.ck-editor__main > .ck-editor__editable.ck-focused {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+</style>
+
 <script>
+// Auto-generate slug from title
+document.getElementById('title').addEventListener('input', function() {
+    const slugField = document.getElementById('slug');
+    if (!slugField.dataset.autoGenerated || slugField.dataset.autoGenerated === 'true') {
+        slugField.value = this.value
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim('-');
+    }
+});
+
+// Mark slug as manually edited when user types in it
+document.getElementById('slug').addEventListener('input', function() {
+    this.dataset.autoGenerated = 'false';
+});
+
+// Initialize CKEditor
+document.addEventListener('DOMContentLoaded', function() {
+    ClassicEditor
+        .create(document.querySelector('#content'), {
+            toolbar: {
+                items: [
+                    'heading', '|',
+                    'bold', 'italic', '|',
+                    'bulletedList', 'numberedList', '|',
+                    'outdent', 'indent', '|',
+                    'blockQuote', 'insertTable', '|',
+                    'link', 'imageUpload', '|',
+                    'undo', 'redo'
+                ]
+            },
+            language: 'en',
+            image: {
+                toolbar: [
+                    'imageTextAlternative', '|',
+                    'imageStyle:alignLeft',
+                    'imageStyle:alignCenter',
+                    'imageStyle:alignRight'
+                ]
+            },
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells'
+                ]
+            }
+        })
+        .then(editor => {
+            console.log('CKEditor initialized successfully');
+        })
+        .catch(error => {
+            console.error('Error initializing CKEditor:', error);
+        });
+});
+
 function previewImage(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();

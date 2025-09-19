@@ -81,9 +81,16 @@
                     
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                {{ $story->visa_type }}
-                            </span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    {{ $story->visa_type }}
+                                </span>
+                                @if($story->category_name && $story->category_name !== 'Uncategorized')
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    {{ $story->category_name }}
+                                </span>
+                                @endif
+                            </div>
                             <span class="text-sm text-gray-500">
                                 {{ $story->success_date ? $story->success_date->format('M Y') : $story->created_at->format('M Y') }}
                             </span>
@@ -96,6 +103,24 @@
                         <p class="text-gray-600 mb-4 line-clamp-3">
                             {{ $story->excerpt }}
                         </p>
+
+                        <!-- Media Indicators -->
+                        @if($story->hasVideo() || $story->youtube_url)
+                        <div class="flex items-center space-x-4 mb-4">
+                            @if($story->youtube_url)
+                            <div class="flex items-center text-red-600">
+                                <i class="fab fa-youtube mr-1"></i>
+                                <span class="text-xs font-medium">YouTube Video</span>
+                            </div>
+                            @endif
+                            @if($story->pdf_doc)
+                            <div class="flex items-center text-red-500">
+                                <i class="fas fa-file-pdf mr-1"></i>
+                                <span class="text-xs font-medium">PDF Document</span>
+                            </div>
+                            @endif
+                        </div>
+                        @endif
                         
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SuccessStory;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -65,7 +66,9 @@ class AdminSuccessStoryController extends Controller
             'Citizenship'
         ];
 
-        return view('admin.success-stories.create', compact('visaTypes'));
+        $categories = BlogCategory::active()->parent()->with('subcategories')->get();
+
+        return view('admin.success-stories.create', compact('visaTypes', 'categories'));
     }
 
     /**
@@ -75,6 +78,8 @@ class AdminSuccessStoryController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:success_stories,slug',
+            'parent_category' => 'nullable|exists:blog_categories,id',
             'excerpt' => 'required|string|max:500',
             'content' => 'required|string',
             'client_name' => 'required|string|max:255',
@@ -82,6 +87,8 @@ class AdminSuccessStoryController extends Controller
             'visa_type' => 'required|string|max:100',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image_alt' => 'nullable|string|max:255',
+            'pdf_doc' => 'nullable|file|mimes:pdf,mp4,avi,mov,wmv|max:10240',
+            'youtube_url' => 'nullable|url',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
             'meta_keywords' => 'nullable|string|max:500',
@@ -93,13 +100,21 @@ class AdminSuccessStoryController extends Controller
 
         $data = $request->all();
         
-        // Generate slug from title
-        $data['slug'] = Str::slug($request->title);
+        // Generate slug from title if not provided
+        if (empty($data['slug'])) {
+            $data['slug'] = Str::slug($request->title);
+        }
         
         // Handle image upload
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('success-stories', 'public');
             $data['image'] = $imagePath;
+        }
+
+        // Handle PDF/Video upload
+        if ($request->hasFile('pdf_doc')) {
+            $pdfPath = $request->file('pdf_doc')->store('success-stories', 'public');
+            $data['pdf_doc'] = $pdfPath;
         }
 
         // Set default values
@@ -137,7 +152,9 @@ class AdminSuccessStoryController extends Controller
             'Citizenship'
         ];
 
-        return view('admin.success-stories.edit', compact('successStory', 'visaTypes'));
+        $categories = BlogCategory::active()->parent()->with('subcategories')->get();
+
+        return view('admin.success-stories.edit', compact('successStory', 'visaTypes', 'categories'));
     }
 
     /**
@@ -147,6 +164,8 @@ class AdminSuccessStoryController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:success_stories,slug,' . $successStory->id,
+            'parent_category' => 'nullable|exists:blog_categories,id',
             'excerpt' => 'required|string|max:500',
             'content' => 'required|string',
             'client_name' => 'required|string|max:255',
@@ -154,6 +173,8 @@ class AdminSuccessStoryController extends Controller
             'visa_type' => 'required|string|max:100',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image_alt' => 'nullable|string|max:255',
+            'pdf_doc' => 'nullable|file|mimes:pdf,mp4,avi,mov,wmv|max:10240',
+            'youtube_url' => 'nullable|url',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
             'meta_keywords' => 'nullable|string|max:500',
@@ -165,8 +186,8 @@ class AdminSuccessStoryController extends Controller
 
         $data = $request->all();
         
-        // Generate slug from title if title changed
-        if ($request->title !== $successStory->title) {
+        // Generate slug from title if title changed or slug is empty
+        if ($request->title !== $successStory->title || empty($data['slug'])) {
             $data['slug'] = Str::slug($request->title);
         }
         
@@ -179,6 +200,17 @@ class AdminSuccessStoryController extends Controller
             
             $imagePath = $request->file('image')->store('success-stories', 'public');
             $data['image'] = $imagePath;
+        }
+
+        // Handle PDF/Video upload
+        if ($request->hasFile('pdf_doc')) {
+            // Delete old PDF/Video
+            if ($successStory->pdf_doc) {
+                \Storage::disk('public')->delete($successStory->pdf_doc);
+            }
+            
+            $pdfPath = $request->file('pdf_doc')->store('success-stories', 'public');
+            $data['pdf_doc'] = $pdfPath;
         }
 
         // Set boolean values
@@ -199,6 +231,11 @@ class AdminSuccessStoryController extends Controller
         // Delete image if exists
         if ($successStory->image) {
             \Storage::disk('public')->delete($successStory->image);
+        }
+
+        // Delete PDF/Video if exists
+        if ($successStory->pdf_doc) {
+            \Storage::disk('public')->delete($successStory->pdf_doc);
         }
 
         $successStory->delete();

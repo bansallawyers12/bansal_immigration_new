@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Constants\CategoryConstants;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -38,8 +39,8 @@ class AdminCmsController extends Controller
 
         $pages = $query->with('parent')->orderBy('order')->orderBy('created_at', 'desc')->paginate(20);
 
-        // Get categories for filter
-        $categories = Page::distinct()->pluck('category')->filter()->sort()->values();
+        // Get categories for filter - use constants for consistency
+        $categories = CategoryConstants::getCategoriesForDropdown();
 
         return view('admin.cms.index', compact('pages', 'categories'));
     }
@@ -50,7 +51,7 @@ class AdminCmsController extends Controller
     public function create()
     {
         $parentPages = Page::whereNull('parent_id')->where('status', true)->orderBy('title')->get();
-        $categories = Page::distinct()->pluck('category')->filter()->sort()->values();
+        $categories = CategoryConstants::getCategoriesForDropdown();
         
         return view('admin.cms.create', compact('parentPages', 'categories'));
     }
@@ -63,7 +64,7 @@ class AdminCmsController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'category' => 'nullable|string|max:100',
+            'category' => 'nullable|string|max:100|in:' . implode(',', CategoryConstants::getCategoryKeys()),
             'subcategory' => 'nullable|string|max:100',
             'template' => 'nullable|string|max:100',
             'parent_id' => 'nullable|exists:pages,id',
@@ -118,7 +119,7 @@ class AdminCmsController extends Controller
             ->orderBy('title')
             ->get();
         
-        $categories = Page::distinct()->pluck('category')->filter()->sort()->values();
+        $categories = CategoryConstants::getCategoriesForDropdown();
         
         return view('admin.cms.edit', compact('page', 'parentPages', 'categories'));
     }
@@ -131,7 +132,7 @@ class AdminCmsController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'category' => 'nullable|string|max:100',
+            'category' => 'nullable|string|max:100|in:' . implode(',', CategoryConstants::getCategoryKeys()),
             'subcategory' => 'nullable|string|max:100',
             'template' => 'nullable|string|max:100',
             'parent_id' => 'nullable|exists:pages,id',

@@ -77,8 +77,35 @@
                     @endif
                     
                     <div class="prose prose-lg max-w-none">
-                        {!! nl2br(e($story->content)) !!}
+                        {!! $story->content !!}
                     </div>
+
+                    <!-- Media Section -->
+                    @if($story->hasVideo() || $story->youtube_url)
+                    <div class="mt-8 p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Media</h3>
+                        <div class="space-y-4">
+                            @if($story->youtube_url)
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700 mb-2">YouTube Video</h4>
+                                <a href="{{ $story->youtube_url }}" target="_blank" class="inline-flex items-center text-red-600 hover:text-red-800 font-medium">
+                                    <i class="fab fa-youtube mr-2 text-xl"></i>
+                                    Watch on YouTube
+                                </a>
+                            </div>
+                            @endif
+                            @if($story->pdf_doc)
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-700 mb-2">Document</h4>
+                                <a href="{{ $story->pdf_url }}" target="_blank" class="inline-flex items-center text-red-600 hover:text-red-800 font-medium">
+                                    <i class="fas fa-file-pdf mr-2 text-xl"></i>
+                                    View {{ $story->video_type === 'pdf' ? 'PDF' : 'Video' }}
+                                </a>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
                     
                     <!-- Share Buttons -->
                     <div class="mt-12 pt-8 border-t border-gray-200">
@@ -126,6 +153,14 @@
                                     {{ $story->visa_type }}
                                 </span>
                             </div>
+                            @if($story->category_name && $story->category_name !== 'Uncategorized')
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Category</label>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    {{ $story->category_name }}
+                                </span>
+                            </div>
+                            @endif
                             @if($story->success_date)
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Success Date</label>

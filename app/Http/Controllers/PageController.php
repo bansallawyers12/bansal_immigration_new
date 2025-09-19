@@ -32,6 +32,11 @@ class PageController extends Controller
 
         // Determine template to use
         $template = $page->template ?: $this->getDefaultTemplate($category);
+        
+        // Ensure template has 'pages.' prefix if not already present
+        if (!str_starts_with($template, 'pages.')) {
+            $template = 'pages.' . $template;
+        }
 
         return view($template, compact('page', 'relatedPages'));
     }
@@ -53,6 +58,11 @@ class PageController extends Controller
                            ->get();
 
         $template = $page->template ?: $this->getDefaultTemplate($category);
+        
+        // Ensure template has 'pages.' prefix if not already present
+        if (!str_starts_with($template, 'pages.')) {
+            $template = 'pages.' . $template;
+        }
 
         return view($template, compact('page', 'relatedPages'));
     }
@@ -90,36 +100,10 @@ class PageController extends Controller
         return view('tools.student-visa-calculator');
     }
 
-    // Method for handling contact form submissions
+    // Method for handling contact form submissions - redirects to unified contact system
     public function storeContact(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'tel' => 'nullable|string|max:20',
-            'query' => 'required|string|max:2000',
-        ]);
-
-        // Create contact inquiry record
-        \App\Models\ContactInquiry::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->tel,
-            'subject' => 'Website Contact Form',
-            'message' => $request->query,
-            'status' => 'new'
-        ]);
-
-        // You can add email notification here
-        // Mail::to('admin@bansalimmigration.com')->send(new ContactInquiry($data));
-        
-        if ($request->ajax()) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Thank you for your inquiry. We will contact you within 24 hours!'
-            ]);
-        }
-
-        return redirect()->back()->with('success', 'Thank you for your inquiry. We will contact you within 24 hours!');
+        // Redirect to the unified contact form submission
+        return app(\App\Http\Controllers\ContactController::class)->submit($request);
     }
 }

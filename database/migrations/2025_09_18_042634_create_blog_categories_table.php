@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('blog_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->boolean('status')->default(true);
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
+            
+            $table->foreign('parent_id')->references('id')->on('blog_categories')->onDelete('cascade');
+            $table->index(['parent_id', 'status']);
         });
     }
 

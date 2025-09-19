@@ -50,19 +50,18 @@
     <!-- Blog Posts Table -->
     <div class="bg-white rounded-lg shadow overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="w-full divide-y divide-gray-200 table-fixed">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Post</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Published</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/3">Post</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">Author</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">Published</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse($blogs as $blog)
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-gray-50 cursor-pointer" onclick="window.location.href='{{ route('admin.blog.edit', $blog) }}'">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-12 w-12">
@@ -74,9 +73,9 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">{{ $blog->title }}</div>
-                                    <div class="text-sm text-gray-500">{{ Str::limit($blog->short_description, 60) }}</div>
+                                <div class="ml-4 flex-1 min-w-0">
+                                    <div class="text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors truncate">{{ Str::limit($blog->title, 50) }}</div>
+                                    <div class="text-sm text-gray-500 truncate">{{ Str::limit($blog->short_description, 40) }}</div>
                                     @if($blog->featured)
                                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
                                             <i class="fas fa-star mr-1"></i>Featured
@@ -97,30 +96,10 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $blog->published_at ? $blog->published_at->format('M d, Y') : 'Not published' }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <div class="flex items-center space-x-2">
-                                <a href="{{ route('admin.blog.show', $blog) }}" 
-                                   class="text-blue-600 hover:text-blue-900 p-2 rounded-full hover:bg-blue-50">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a href="{{ route('admin.blog.edit', $blog) }}" 
-                                   class="text-indigo-600 hover:text-indigo-900 p-2 rounded-full hover:bg-indigo-50">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form method="POST" action="{{ route('admin.blog.destroy', $blog) }}" class="inline" 
-                                      onsubmit="return confirm('Are you sure you want to delete this blog post?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900 p-2 rounded-full hover:bg-red-50">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-12 text-center">
+                        <td colspan="4" class="px-6 py-12 text-center">
                             <div class="text-gray-500">
                                 <i class="fas fa-blog text-4xl mb-4"></i>
                                 <p class="text-lg font-medium">No blog posts found</p>

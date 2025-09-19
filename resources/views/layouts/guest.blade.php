@@ -26,5 +26,12 @@
                 {{ $slot }}
             </div>
         </div>
+
+        <!-- Remove loading screen when page loads -->
+        <script>
+            window.addEventListener('load', function() {
+                document.body.classList.add('loaded');
+            });
+        </script>
     </body>
 </html>

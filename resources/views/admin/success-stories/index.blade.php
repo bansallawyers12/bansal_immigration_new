@@ -3,7 +3,7 @@
 @section('title', 'Success Stories Management')
 
 @section('content')
-<div class="p-6">
+<div class="p-4 md:p-6 ml-0 md:ml-4">
     <div class="flex justify-between items-center mb-6">
         <div>
             <h1 class="text-2xl font-bold text-gray-800">Success Stories Management</h1>
@@ -60,20 +60,19 @@
     <!-- Success Stories Table -->
     <div class="bg-white rounded-lg shadow overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="w-full table-fixed divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Story</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visa Type</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Success Date</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th class="w-1/3 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Story</th>
+                        <th class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+                        <th class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visa Type</th>
+                        <th class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="w-1/6 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Success Date</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse($successStories as $story)
-                    <tr class="hover:bg-gray-50">
+                    <tr class="hover:bg-gray-50 cursor-pointer" onclick="window.location.href='{{ route('admin.success-stories.edit', $story) }}'">
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-12 w-12">
@@ -86,7 +85,7 @@
                                     @endif
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-medium text-gray-900">{{ $story->title }}</div>
+                                    <div class="text-sm font-medium text-gray-900 truncate">{{ Str::limit($story->title, 50) }}</div>
                                     <div class="text-sm text-gray-500">{{ Str::limit($story->excerpt, 60) }}</div>
                                     @if($story->featured)
                                         <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
@@ -116,30 +115,10 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ $story->success_date ? $story->success_date->format('M d, Y') : 'N/A' }}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <div class="flex items-center space-x-2">
-                                <a href="{{ route('admin.success-stories.show', $story) }}" 
-                                   class="text-blue-600 hover:text-blue-900 p-2 rounded-full hover:bg-blue-50">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a href="{{ route('admin.success-stories.edit', $story) }}" 
-                                   class="text-indigo-600 hover:text-indigo-900 p-2 rounded-full hover:bg-indigo-50">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form method="POST" action="{{ route('admin.success-stories.destroy', $story) }}" class="inline" 
-                                      onsubmit="return confirm('Are you sure you want to delete this success story?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900 p-2 rounded-full hover:bg-red-50">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="px-6 py-12 text-center">
+                        <td colspan="5" class="px-6 py-12 text-center">
                             <div class="text-gray-500">
                                 <i class="fas fa-star text-4xl mb-4"></i>
                                 <p class="text-lg font-medium">No success stories found</p>

@@ -3,7 +3,7 @@
 @section('title', 'View Success Story')
 
 @section('content')
-<div class="p-6">
+<div class="p-4 md:p-6 ml-0 md:ml-4">
     <div class="flex justify-between items-center mb-6">
         <div>
             <h1 class="text-2xl font-bold text-gray-800">Success Story Details</h1>

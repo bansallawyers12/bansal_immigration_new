@@ -337,13 +337,13 @@ Route::prefix('appeals')->name('appeals.')->group(function () {
 Route::prefix('citizenship')->name('citizenship.')->group(function () {
     Route::get('/', [PageController::class, 'show'])->defaults('category', 'citizenship')->name('index');
     Route::get('/citizenship-by-conferral', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'by-conferral');
+        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'citizenship-by-conferral');
     })->name('by-conferral');
     Route::get('/citizenship-by-descent', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'by-descent');
+        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'citizenship-by-descent');
     })->name('by-descent');
     Route::get('/evidence-of-australian-citizenship', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'evidence');
+        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'evidence-of-australian-citizenship');
     })->name('evidence');
 });
 

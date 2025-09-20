@@ -23,6 +23,24 @@
         .fa-user::before { content: '👤'; }
         .fa-eye::before { content: '👁'; }
         .fa-arrow-right::before { content: '→'; }
+        .fa-arrow-left::before { content: '←'; }
+        .fa-search::before { content: '🔍'; }
+        .fa-globe::before { content: '🌐'; }
+        .fa-phone::before { content: '📞'; }
+        .fa-share-alt::before { content: '📤'; }
+        .fa-shield-alt::before { content: '🛡️'; }
+        .fa-building::before { content: '🏢'; }
+        .fa-save::before { content: '💾'; }
+        .fa-info-circle::before { content: 'ℹ️'; }
+        .fa-check-circle::before { content: '✅'; }
+        .fa-tags::before { content: '🏷️'; }
+        .fa-star::before { content: '⭐'; }
+        .fa-blog::before { content: '📝'; }
+        .fa-archive::before { content: '📦'; }
+        .fa-box-open::before { content: '📤'; }
+        .fa-bolt::before { content: '⚡'; }
+        .fa-clock::before { content: '🕐'; }
+        .fa-exclamation-circle::before { content: '⚠️'; }
     </style>
 
     <!-- Scripts -->
@@ -173,7 +191,7 @@
         <div class="admin-sidebar w-64 flex-shrink-0">
             <div class="sidebar-brand">
                 <a href="{{ route('admin.dashboard') }}">
-                    <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-8 w-auto mr-3">
+                    <img src="{{ asset('img/logo/logo.png') }}" alt="Logo" class="h-16 w-auto mr-3">
                     <span class="text-lg font-semibold">Admin Panel</span>
                 </a>
             </div>

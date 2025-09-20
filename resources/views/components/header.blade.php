@@ -1,29 +1,29 @@
 <!-- Header Section -->
-<header class="bg-white header-shadow">
+<header class="bg-white header-shadow sticky top-0 z-50">
     <!-- Main Navigation Bar -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-3 sm:py-4">
             <!-- Logo -->
-            <div class="flex items-center">
+            <div class="flex items-center flex-shrink-0 px-4">
                 <a href="/" class="flex items-center group logo-hover">
-                    <img src="/img/bansal-immigration-icon.jpg" alt="Bansal Immigration" class="h-20 w-20 object-contain group-hover:scale-105 transition-transform duration-300">
+                    <img src="/img/logo/logo_transparent.png" alt="Bansal Immigration" class="header-logo h-10 sm:h-12 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300 border-2 border-sg-light-blue rounded-lg p-2 bg-white shadow-sm">
                 </a>
             </div>
 
             <!-- Main Menu Items - Services -->
-            <nav class="hidden lg:flex items-center space-x-8">
+            <nav class="hidden lg:flex items-center space-x-6 px-4">
                 <a href="/study-australia" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Study in Australia</a>
                 <a href="/migration" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Skilled Migration</a>
                 <a href="/family-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Partner Visas</a>
                 <a href="/visitor-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Visitor Visas</a>
-                <a href="/business-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
+                <a href="/business-visas" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
                 <a href="/employee-sponsored" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Employee Sponsored</a>
                 <a href="/citizenship" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Citizenship</a>
                 <a href="/appeals" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Appeals</a>
             </nav>
 
             <!-- Action Buttons -->
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 px-4">
                 <button class="text-sg-dark-gray hover:text-sg-light-blue p-2 rounded-lg hover:bg-gray-100 transition-all duration-200">
                     <i class="fas fa-search text-lg"></i>
                 </button>
@@ -39,9 +39,9 @@
     </div>
 
     <!-- Sub-Navigation/General Pages Bar -->
-    <div class="bg-sg-light-gray border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap items-center justify-center py-4 space-x-8 text-sm">
+    <div class="bg-sg-light-gray border-t border-gray-200 -mt-2">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-center py-1 space-x-6 text-sm">
                 <!-- General Pages -->
                 <a href="/about" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
                     <i class="fas fa-info-circle mr-2 text-sg-light-blue"></i>About
@@ -84,7 +84,7 @@
                     <a href="/migration" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Skilled Migration</a>
                     <a href="/family-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Partner Visas</a>
                     <a href="/visitor-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Visitor Visas</a>
-                    <a href="/business-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
+                    <a href="/business-visas" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
                     <a href="/employee-sponsored" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Employee Sponsored</a>
                     <a href="/citizenship" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Citizenship</a>
                     <a href="/appeals" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Appeals</a>

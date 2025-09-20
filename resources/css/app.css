@@ -179,7 +179,7 @@ body:not(.loaded)::after {
 
 /* Hero section specific styles */
 .hero-bg {
-    background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)), url('/img/Frontend/bg-2.jpg');
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)), url('/img/homepage.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

@@ -10,17 +10,17 @@
     <div class="absolute inset-0"></div>
     
     <!-- Hero Content -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="max-w-2xl">
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="max-w-md">
             <!-- Hero Overlay Box -->
-            <div class="hero-overlay p-8 rounded-lg shadow-2xl">
-                <h1 class="text-5xl md:text-6xl font-bold sg-navy mb-6 leading-tight">
+            <div class="hero-overlay p-4 rounded-lg shadow-2xl">
+                <h1 class="text-2xl md:text-3xl font-bold sg-navy mb-3 leading-tight">
                     Your Australian Dream Starts Here
                 </h1>
-                <p class="text-xl sg-dark-gray mb-8 leading-relaxed">
+                <p class="text-base sg-dark-gray mb-4 leading-relaxed">
                     Professional Australian immigration consultants helping you achieve permanent residency, study abroad, and family reunification in Australia. MARA registered migration agents.
                 </p>
-                <a href="/appointment" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold inline-block">
+                <a href="/appointment" class="btn-primary px-5 py-2 rounded-lg text-sm font-semibold inline-block">
                     Book Free Consultation
                 </a>
             </div>
@@ -79,7 +79,7 @@
                     <i class="fas fa-chart-line text-4xl"></i>
                 </div>
                 <h3 class="text-lg font-semibold sg-dark-gray mb-2">Business Visas</h3>
-                <a href="/business-visa" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
+                <a href="/business-visas" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
             </div>
 
             <!-- Employee Sponsored -->

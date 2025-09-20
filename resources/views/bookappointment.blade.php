@@ -11,7 +11,7 @@
 <meta property="og:description" content="Book An Appointment with our experienced immigration consultants" />
 <meta property="og:url" content="{{ URL::to('/') }}/book-an-appointment/" />
 <meta property="og:site_name" content="Bansal Immigration - Your Future, Our Priority" />
-<meta property="og:image" content="{{asset('img/bansal-immigration-icon.jpg')}}" />
+<meta property="og:image" content="{{asset('img/logo/logo.jpg')}}" />
 <meta name="twitter:card" content="summary_large_image" />
 @endpush
 
@@ -940,17 +940,32 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .sidebar-logo {
-    max-width: 120px;
+    max-width: 100%;
+    width: 100%;
     height: auto;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    max-height: 200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     background: white;
     padding: 8px;
-    border: 3px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.3);
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .sidebar-logo {
+        max-height: 150px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sidebar-logo {
+        max-height: 250px;
+    }
 }
 
 .company-name {
@@ -1741,7 +1756,7 @@ body {
                             <!-- Logo Section -->
                             <div class="sidebar-section logo-section">
                                 <div class="logo-container">
-                                    <img src="{{asset('img/logo_img/bansal-imm-logo-11_vrUFM77pu7.png')}}" alt="Bansal Immigration" class="sidebar-logo" onerror="this.style.display='none'">
+                                    <img src="{{asset('img/logo/logo.png')}}" alt="Bansal Immigration" class="sidebar-logo" onerror="this.style.display='none'">
                                     <div class="logo-text">
                                         <h2 class="company-name">Bansal Immigration</h2>
                                         <p class="company-tagline">Your Future, Our Priority</p>

@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/logo/favicon.png">
     <style>
         /* Slater & Gordon inspired color scheme */
         :root {
@@ -36,7 +37,7 @@
         /* Hero section with background image */
         .hero-bg {
             background: linear-gradient(rgba(30, 58, 138, 0.7), rgba(30, 58, 138, 0.7)), 
-                        url('/img/Frontend/bg-2.jpg');
+                        url('/img/homepage.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -172,6 +173,17 @@
             .service-card p {
                 font-size: 0.875rem;
             }
+
+            /* Mobile header adjustments */
+            .header-logo {
+                height: 1.5rem !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .header-logo {
+                height: 2rem !important;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -203,7 +215,13 @@
 
     <!-- Floating Call Button -->
     <div class="fixed bottom-6 right-6 z-50">
-        <a href="tel:+61396021330" class="bg-sg-light-blue hover:bg-sg-navy text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110">
+        <!-- Desktop: Modal Button -->
+        <button id="open-call-back-modal" class="hidden md:block bg-sg-light-blue hover:bg-sg-navy text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110">
+            <i class="fas fa-phone text-xl"></i>
+        </button>
+        
+        <!-- Mobile: Direct Call Link -->
+        <a href="tel:+61396021330" class="md:hidden bg-sg-light-blue hover:bg-sg-navy text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110">
             <i class="fas fa-phone text-xl"></i>
         </a>
     </div>
@@ -222,6 +240,9 @@
 
     <!-- Footer -->
     <x-footer />
+
+    <!-- Call Back Modal -->
+    <x-call-back-modal />
 
     <!-- JavaScript -->
     <script>
@@ -252,6 +273,119 @@
                     if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
                         mobileMenu.classList.add('hidden');
                     }
+                });
+            }
+
+            // Call Back Modal functionality
+            const openModalBtn = document.getElementById('open-call-back-modal');
+            const modal = document.getElementById('call-back-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const callBackForm = document.getElementById('call-back-form');
+            const submitBtn = document.getElementById('modal-submit-btn');
+            const messagesContainer = document.getElementById('modal-messages');
+            const successMessage = document.getElementById('modal-success');
+            const errorMessage = document.getElementById('modal-error');
+
+            // Open modal
+            if (openModalBtn && modal) {
+                openModalBtn.addEventListener('click', function() {
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            // Close modal
+            function closeModal() {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                // Reset form
+                if (callBackForm) {
+                    callBackForm.reset();
+                }
+                // Hide messages
+                if (messagesContainer) {
+                    messagesContainer.classList.add('hidden');
+                }
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            // Close modal when clicking outside
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // Form submission
+            if (callBackForm) {
+                callBackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.querySelector('.btn-text').classList.add('hidden');
+                    submitBtn.querySelector('.btn-loading').classList.remove('hidden');
+                    
+                    // Hide previous messages
+                    messagesContainer.classList.add('hidden');
+                    successMessage.classList.add('hidden');
+                    errorMessage.classList.add('hidden');
+                    
+                    // Get form data
+                    const formData = new FormData(callBackForm);
+                    
+                    // Submit form
+                    fetch(callBackForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Show success message
+                            successMessage.querySelector('.message-text').textContent = data.message || 'Thank you! We will call you back soon.';
+                            successMessage.classList.remove('hidden');
+                            messagesContainer.classList.remove('hidden');
+                            
+                            // Close modal after 3 seconds
+                            setTimeout(() => {
+                                closeModal();
+                            }, 3000);
+                        } else {
+                            // Show error message
+                            errorMessage.querySelector('.message-text').textContent = data.message || 'Something went wrong. Please try again.';
+                            errorMessage.classList.remove('hidden');
+                            messagesContainer.classList.remove('hidden');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        errorMessage.querySelector('.message-text').textContent = 'Something went wrong. Please try again.';
+                        errorMessage.classList.remove('hidden');
+                        messagesContainer.classList.remove('hidden');
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        submitBtn.disabled = false;
+                        submitBtn.querySelector('.btn-text').classList.remove('hidden');
+                        submitBtn.querySelector('.btn-loading').classList.add('hidden');
+                    });
                 });
             }
         });

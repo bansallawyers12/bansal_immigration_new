@@ -12,7 +12,7 @@
     <!-- Add Bootstrap if preferred: <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <style>
         /* Inline styles from your files (e.g., hero bg, team colors) */
-        .hero-area { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/Frontend/bg-2.jpg'); }
+        .hero-area { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/homepage.jpg'); }
         .meet_us { background-color: #1a365d; color: white; }
         .cryptos-btn { background: #ddcc14; color: #000; padding: 10px 20px; border-radius: 5px; text-decoration: none; }
         /* Add more from your truncated styles as needed */

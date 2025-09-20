@@ -205,7 +205,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="/" class="flex items-center group logo-hover">
-                        <img src="/img/bansal-immigration-icon.jpg" alt="Bansal Immigration" class="h-20 w-20 object-contain group-hover:scale-105 transition-transform duration-300">
+                        <img src="/img/logo/logo.jpg" alt="Bansal Immigration" class="h-12 sm:h-14 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
                     </a>
                 </div>
 
@@ -215,7 +215,7 @@
                     <a href="/migration" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Skilled Migration</a>
                     <a href="/family-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Partner Visas</a>
                     <a href="/visitor-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Visitor Visas</a>
-                    <a href="/business-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
+                    <a href="/business-visas" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
                     <a href="/employee-sponsored" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Employee Sponsored</a>
                     <a href="/citizenship" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Citizenship</a>
                     <a href="/appeals" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Appeals</a>
@@ -284,7 +284,7 @@
                         <a href="/migration" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Skilled Migration</a>
                         <a href="/family-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Partner Visas</a>
                         <a href="/visitor-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Visitor Visas</a>
-                        <a href="/business-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
+                        <a href="/business-visas" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
                         <a href="/employee-sponsored" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Employee Sponsored</a>
                         <a href="/citizenship" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Citizenship</a>
                         <a href="/appeals" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Appeals</a>
@@ -401,7 +401,7 @@
                         <i class="fas fa-chart-line text-4xl"></i>
                     </div>
                     <h3 class="text-lg font-semibold sg-dark-gray mb-2">Business Visas</h3>
-                    <a href="/business-visa" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
+                    <a href="/business-visas" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
                 </div>
 
                 <!-- Employee Sponsored -->
@@ -719,7 +719,7 @@
                 <!-- Company Info & Call Button -->
                 <div>
                     <div class="mb-6">
-                        <img src="/img/bansal-immigration-icon.jpg" alt="Bansal Immigration" class="h-24 w-24 object-contain mb-4">
+                        <img src="/img/logo/logo.jpg" alt="Bansal Immigration" class="h-12 sm:h-14 lg:h-16 w-auto object-contain mb-4">
                         <div class="text-sm text-sg-light-blue font-medium">MARA Registered Migration Agents</div>
                     </div>
                     
@@ -739,7 +739,7 @@
                         <li><a href="/migration" class="hover:text-sg-light-blue transition-colors">Skilled Migration</a></li>
                         <li><a href="/family-visa" class="hover:text-sg-light-blue transition-colors">Partner Visas</a></li>
                         <li><a href="/visitor-visa" class="hover:text-sg-light-blue transition-colors">Visitor Visas</a></li>
-                        <li><a href="/business-visa" class="hover:text-sg-light-blue transition-colors">Business Visas</a></li>
+                        <li><a href="/business-visas" class="hover:text-sg-light-blue transition-colors">Business Visas</a></li>
                         <li><a href="/employee-sponsored" class="hover:text-sg-light-blue transition-colors">Employee Sponsored</a></li>
                         <li><a href="/citizenship" class="hover:text-sg-light-blue transition-colors">Citizenship</a></li>
                         <li><a href="/appeals" class="hover:text-sg-light-blue transition-colors">Appeals & Reviews</a></li>
@@ -770,7 +770,7 @@
                         <div class="space-y-1 text-sm text-sg-navy">
                             <p class="flex items-start"><i class="fas fa-map-marker-alt mr-2 text-sg-light-blue mt-1"></i>Level 8/278 Collins St<br>Melbourne VIC 3000, Australia</p>
                             <p class="flex items-center"><i class="fas fa-phone mr-2 text-sg-light-blue"></i>+61 3 9602 1330</p>
-                            <p class="flex items-center"><i class="fas fa-envelope mr-2 text-sg-light-blue"></i>melbourne@bansalimmigration.com.au</p>
+                            <p class="flex items-center"><i class="fas fa-envelope mr-2 text-sg-light-blue"></i><a href="mailto:melbourne@bansalimmigration.com.au" class="hover:text-sg-light-blue transition-colors">melbourne@bansalimmigration.com.au</a></p>
                     </div>
                 </div>
 
@@ -780,7 +780,7 @@
                         <div class="space-y-1 text-sm text-sg-navy">
                             <p class="flex items-start"><i class="fas fa-map-marker-alt mr-2 text-sg-light-blue mt-1"></i>Unit 5 5/55 Gawler Pl<br>Adelaide SA 5000, Australia</p>
                             <p class="flex items-center"><i class="fas fa-phone mr-2 text-sg-light-blue"></i>0400434884</p>
-                            <p class="flex items-center"><i class="fas fa-envelope mr-2 text-sg-light-blue"></i>adelaide@bansalimmigration.com.au</p>
+                            <p class="flex items-center"><i class="fas fa-envelope mr-2 text-sg-light-blue"></i><a href="mailto:adelaide@bansalimmigration.com.au" class="hover:text-sg-light-blue transition-colors">adelaide@bansalimmigration.com.au</a></p>
                         </div>
                     </div>
                 </div>

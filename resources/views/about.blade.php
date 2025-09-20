@@ -6,7 +6,7 @@
 @push('styles')
 <meta property="og:title" content="About Bansal Immigration Consultants - Expert Migration Agents">
 <meta property="og:description" content="MARA registered migration agents with 10+ years experience helping clients achieve permanent residency, study abroad, and family reunification in Australia.">
-<meta property="og:image" content="{{ asset('img/bansal-immigration-icon.jpg') }}">
+<meta property="og:image" content="{{ asset('img/logo/logo.jpg') }}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ url('/about') }}">
 @endpush

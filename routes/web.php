@@ -16,6 +16,15 @@ Route::get('/test-editors', function () {
 Route::get('/test-slater-gordon', function () {
     return view('test-slater-gordon');
 })->name('test-slater-gordon');
+
+// Tailwind CSS comparison test pages
+Route::get('/test-tailwind-comparison', function () {
+    return view('test-tailwind-comparison');
+})->name('test-tailwind-comparison');
+
+Route::get('/test-vite', function () {
+    return view('test-vite');
+})->name('test-vite');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');
@@ -43,9 +52,19 @@ Route::get('/admin', function () {
 // Admin Routes (protected by auth middleware and verified user)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
+    // Contact Management Routes
     Route::get('/contacts', [\App\Http\Controllers\AdminController::class, 'contacts'])->name('contacts');
     Route::get('/contacts/{contact}', [\App\Http\Controllers\AdminController::class, 'showContact'])->name('contacts.show');
     Route::patch('/contacts/{contact}/status', [\App\Http\Controllers\AdminController::class, 'updateContactStatus'])->name('contacts.update-status');
+    Route::post('/contacts/{contact}/forward', [\App\Http\Controllers\AdminController::class, 'forwardContact'])->name('contacts.forward');
+    Route::patch('/contacts/{contact}/archive', [\App\Http\Controllers\AdminController::class, 'archiveContact'])->name('contacts.archive');
+    Route::patch('/contacts/{contact}/unarchive', [\App\Http\Controllers\AdminController::class, 'unarchiveContact'])->name('contacts.unarchive');
+    
+    // Bulk Contact Actions
+    Route::post('/contacts/bulk-status', [\App\Http\Controllers\AdminController::class, 'bulkUpdateContactStatus'])->name('contacts.bulk-status');
+    Route::post('/contacts/bulk-forward', [\App\Http\Controllers\AdminController::class, 'bulkForwardContacts'])->name('contacts.bulk-forward');
+    Route::post('/contacts/bulk-archive', [\App\Http\Controllers\AdminController::class, 'bulkArchiveContacts'])->name('contacts.bulk-archive');
+    Route::post('/contacts/bulk-unarchive', [\App\Http\Controllers\AdminController::class, 'bulkUnarchiveContacts'])->name('contacts.bulk-unarchive');
     Route::get('/content', [\App\Http\Controllers\AdminController::class, 'content'])->name('content');
     Route::get('/settings', [\App\Http\Controllers\AdminController::class, 'settings'])->name('settings');
     Route::post('/settings', [\App\Http\Controllers\AdminController::class, 'updateSettings'])->name('settings.update');

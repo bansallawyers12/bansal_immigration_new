@@ -79,7 +79,7 @@
                     <i class="fas fa-chart-line text-4xl"></i>
                 </div>
                 <h3 class="text-lg font-semibold sg-dark-gray mb-2">Business Visas</h3>
-                <a href="/business-visa" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
+                <a href="/business-visas" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
             </div>
 
             <!-- Employee Sponsored -->

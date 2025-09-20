@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use App\Models\Contact;
 use App\Models\Blog;
@@ -105,6 +106,123 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Contact status updated successfully.');
     }
 
+    /**
+     * Bulk update contact statuses
+     */
+    public function bulkUpdateContactStatus(Request $request)
+    {
+        $request->validate([
+            'contact_ids' => 'required|array|min:1',
+            'contact_ids.*' => 'exists:contacts,id',
+            'status' => 'required|in:unread,read,resolved,archived'
+        ]);
+
+        $updatedCount = Contact::whereIn('id', $request->contact_ids)
+            ->update(['status' => $request->status]);
+
+        return redirect()->back()->with('success', "Updated {$updatedCount} contact(s) successfully.");
+    }
+
+    /**
+     * Forward contact information via email
+     */
+    public function forwardContact(Request $request, Contact $contact)
+    {
+        $request->validate([
+            'recipient_email' => 'required|email|max:255',
+            'message' => 'nullable|string|max:1000'
+        ]);
+
+        try {
+            // Forward the contact information
+            $contact->forwardTo($request->recipient_email);
+            
+            // Send email with contact details
+            Mail::to($request->recipient_email)->send(new \App\Mail\ContactForwardMail($contact, $request->recipient_email));
+
+            return redirect()->back()->with('success', "Contact information forwarded to {$request->recipient_email} successfully.");
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to forward contact. Please try again.');
+        }
+    }
+
+    /**
+     * Bulk forward contacts
+     */
+    public function bulkForwardContacts(Request $request)
+    {
+        $request->validate([
+            'contact_ids' => 'required|array|min:1',
+            'contact_ids.*' => 'exists:contacts,id',
+            'recipient_email' => 'required|email|max:255'
+        ]);
+
+        $contacts = Contact::whereIn('id', $request->contact_ids)->get();
+        $forwardedCount = 0;
+
+        try {
+            foreach ($contacts as $contact) {
+                $contact->forwardTo($request->recipient_email);
+                Mail::to($request->recipient_email)->send(new \App\Mail\ContactForwardMail($contact, $request->recipient_email));
+                $forwardedCount++;
+            }
+
+            return redirect()->back()->with('success', "Forwarded {$forwardedCount} contact(s) to {$request->recipient_email} successfully.");
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to forward contacts. Please try again.');
+        }
+    }
+
+    /**
+     * Archive contact
+     */
+    public function archiveContact(Contact $contact)
+    {
+        $contact->markAsArchived();
+        return redirect()->back()->with('success', 'Contact archived successfully.');
+    }
+
+    /**
+     * Unarchive contact
+     */
+    public function unarchiveContact(Contact $contact)
+    {
+        $contact->markAsUnarchived();
+        return redirect()->back()->with('success', 'Contact unarchived successfully.');
+    }
+
+    /**
+     * Bulk archive contacts
+     */
+    public function bulkArchiveContacts(Request $request)
+    {
+        $request->validate([
+            'contact_ids' => 'required|array|min:1',
+            'contact_ids.*' => 'exists:contacts,id'
+        ]);
+
+        $archivedCount = Contact::whereIn('id', $request->contact_ids)
+            ->update(['status' => 'archived']);
+
+        return redirect()->back()->with('success', "Archived {$archivedCount} contact(s) successfully.");
+    }
+
+    /**
+     * Bulk unarchive contacts
+     */
+    public function bulkUnarchiveContacts(Request $request)
+    {
+        $request->validate([
+            'contact_ids' => 'required|array|min:1',
+            'contact_ids.*' => 'exists:contacts,id'
+        ]);
+
+        $unarchivedCount = Contact::whereIn('id', $request->contact_ids)
+            ->update(['status' => 'read']);
+
+        return redirect()->back()->with('success', "Unarchived {$unarchivedCount} contact(s) successfully.");
+    }
+
 
     /**
      * Content management dashboard
@@ -127,7 +245,64 @@ class AdminController extends Controller
     public function settings()
     {
         $settings = HomeContent::all()->pluck('meta_value', 'meta_key');
-        return view('admin.settings', compact('settings'));
+        
+        // Define default settings with organized structure
+        $defaultSettings = [
+            // SEO Settings
+            'meta_title' => 'Bansal Immigration Consultants - Your Future, Our Priority',
+            'meta_description' => 'Expert Australian immigration consultants providing visa services, migration advice, and pathway guidance for students, skilled workers, and families.',
+            'meta_keywords' => 'immigration, visa, Australia, consultant, migration, student visa, skilled visa',
+            'og_title' => 'Bansal Immigration Consultants',
+            'og_description' => 'Professional immigration services for Australia',
+            'og_image' => '',
+            
+            // Website Settings
+            'site_name' => 'Bansal Immigration Consultants',
+            'site_tagline' => 'Your Future, Our Priority',
+            'contact_email' => 'info@bansalimmigration.com',
+            'contact_phone' => '+61 123 456 789',
+            'contact_address' => '123 Main Street, Sydney NSW 2000, Australia',
+            'office_hours' => 'Monday - Friday: 9:00 AM - 6:00 PM',
+            
+            // Social Media
+            'facebook_url' => '',
+            'twitter_url' => '',
+            'instagram_url' => '',
+            'linkedin_url' => '',
+            'youtube_url' => '',
+            
+            // Homepage Settings
+            'sliderstatus' => '1',
+            'meet_link' => '/contact',
+            'hero_title' => 'Your Future, Our Priority',
+            'hero_subtitle' => 'Professional Immigration Services for Australia',
+            
+            // Contact & Communication
+            'contact_form_email' => 'info@bansalimmigration.com',
+            'appointment_email' => 'appointments@bansalimmigration.com',
+            'support_email' => 'support@bansalimmigration.com',
+            
+            // Security & Features
+            'recaptcha_enabled' => '1',
+            'maintenance_mode' => '0',
+            'analytics_code' => '',
+            'google_tag_manager' => '',
+            
+            // Business Information
+            'business_registration' => '',
+            'mara_number' => '',
+            'abn_number' => '',
+            'business_description' => 'Professional immigration consultancy services',
+            
+            // Footer Settings
+            'footer_copyright' => '© ' . date('Y') . ' Bansal Immigration Consultants. All rights reserved.',
+            'footer_description' => 'Your trusted partner for Australian immigration services.',
+        ];
+        
+        // Merge with existing settings
+        $allSettings = array_merge($defaultSettings, $settings->toArray());
+        
+        return view('admin.settings', compact('allSettings'));
     }
 
     /**
@@ -135,21 +310,115 @@ class AdminController extends Controller
      */
     public function updateSettings(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
+            // SEO Settings
             'meta_title' => 'required|string|max:255',
             'meta_description' => 'required|string|max:500',
+            'meta_keywords' => 'nullable|string|max:500',
+            'og_title' => 'nullable|string|max:255',
+            'og_description' => 'nullable|string|max:500',
+            'og_image' => 'nullable|string|max:500',
+            
+            // Website Settings
+            'site_name' => 'required|string|max:255',
+            'site_tagline' => 'nullable|string|max:255',
+            'contact_email' => 'required|email|max:255',
+            'contact_phone' => 'nullable|string|max:50',
+            'contact_address' => 'nullable|string|max:500',
+            'office_hours' => 'nullable|string|max:255',
+            
+            // Social Media
+            'facebook_url' => 'nullable|url|max:255',
+            'twitter_url' => 'nullable|url|max:255',
+            'instagram_url' => 'nullable|url|max:255',
+            'linkedin_url' => 'nullable|url|max:255',
+            'youtube_url' => 'nullable|url|max:255',
+            
+            // Homepage Settings
             'sliderstatus' => 'required|in:0,1',
             'meet_link' => 'required|string|max:255',
+            'hero_title' => 'nullable|string|max:255',
+            'hero_subtitle' => 'nullable|string|max:255',
+            
+            // Contact & Communication
+            'contact_form_email' => 'required|email|max:255',
+            'appointment_email' => 'required|email|max:255',
+            'support_email' => 'required|email|max:255',
+            
+            // Security & Features
+            'recaptcha_enabled' => 'required|in:0,1',
+            'maintenance_mode' => 'required|in:0,1',
+            'analytics_code' => 'nullable|string|max:1000',
+            'google_tag_manager' => 'nullable|string|max:1000',
+            
+            // Business Information
+            'business_registration' => 'nullable|string|max:255',
+            'mara_number' => 'nullable|string|max:255',
+            'abn_number' => 'nullable|string|max:255',
+            'business_description' => 'nullable|string|max:500',
+            
+            // Footer Settings
+            'footer_copyright' => 'nullable|string|max:255',
+            'footer_description' => 'nullable|string|max:500',
         ]);
 
-        foreach ($request->only(['meta_title', 'meta_description', 'sliderstatus', 'meet_link']) as $key => $value) {
+        // Update or create each setting
+        foreach ($validatedData as $key => $value) {
             HomeContent::updateOrCreate(
                 ['meta_key' => $key],
-                ['meta_value' => $value]
+                [
+                    'meta_value' => $value,
+                    'meta_description' => $this->getSettingDescription($key)
+                ]
             );
         }
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
+    }
+    
+    /**
+     * Get setting description for help text
+     */
+    private function getSettingDescription($key)
+    {
+        $descriptions = [
+            'meta_title' => 'The main title that appears in search engine results and browser tabs',
+            'meta_description' => 'Brief description that appears in search engine results',
+            'meta_keywords' => 'Keywords relevant to your business for SEO purposes',
+            'og_title' => 'Title for social media sharing (Facebook, Twitter, etc.)',
+            'og_description' => 'Description for social media sharing',
+            'og_image' => 'Image URL for social media sharing',
+            'site_name' => 'Official name of your business',
+            'site_tagline' => 'Short tagline or motto for your business',
+            'contact_email' => 'Primary contact email address',
+            'contact_phone' => 'Primary contact phone number',
+            'contact_address' => 'Physical office address',
+            'office_hours' => 'Business operating hours',
+            'facebook_url' => 'Facebook page URL',
+            'twitter_url' => 'Twitter profile URL',
+            'instagram_url' => 'Instagram profile URL',
+            'linkedin_url' => 'LinkedIn company page URL',
+            'youtube_url' => 'YouTube channel URL',
+            'sliderstatus' => 'Enable or disable homepage slider',
+            'meet_link' => 'URL for the main call-to-action button',
+            'hero_title' => 'Main headline on homepage',
+            'hero_subtitle' => 'Subtitle on homepage',
+            'contact_form_email' => 'Email address for contact form submissions',
+            'appointment_email' => 'Email address for appointment bookings',
+            'support_email' => 'Email address for customer support',
+            'recaptcha_enabled' => 'Enable Google reCAPTCHA for forms',
+            'maintenance_mode' => 'Enable maintenance mode to temporarily disable site',
+            'analytics_code' => 'Google Analytics tracking code',
+            'google_tag_manager' => 'Google Tag Manager code',
+            'business_registration' => 'Business registration number',
+            'mara_number' => 'MARA registration number',
+            'abn_number' => 'Australian Business Number',
+            'business_description' => 'Brief description of your business services',
+            'footer_copyright' => 'Copyright text for website footer',
+            'footer_description' => 'Description text for website footer',
+        ];
+        
+        return $descriptions[$key] ?? 'Setting description';
     }
     
     /**

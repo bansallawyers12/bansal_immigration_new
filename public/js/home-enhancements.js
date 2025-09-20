@@ -308,26 +308,93 @@ class HomePageEnhancements {
      * Real-time search functionality
      */
     setupSearch() {
+        const searchToggle = document.querySelector('#search-toggle');
+        const searchBox = document.querySelector('#search-box');
         const searchInput = document.querySelector('#search-input');
+        const searchClose = document.querySelector('#search-close');
         const searchResults = document.querySelector('#search-results');
+        const searchLoading = document.querySelector('#search-loading');
+        const searchResultsList = document.querySelector('#search-results-list');
+        const searchNoResults = document.querySelector('#search-no-results');
         
-        if (!searchInput || !searchResults) return;
+        if (!searchToggle || !searchBox || !searchInput) return;
 
         let searchTimeout;
+        let isSearchOpen = false;
         
+        // Toggle search box
+        searchToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isSearchOpen) {
+                this.closeSearch();
+            } else {
+                this.openSearch();
+            }
+        });
+
+        // Close search box
+        if (searchClose) {
+            searchClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.closeSearch();
+            });
+        }
+
+        // Handle search input
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
             const query = e.target.value.trim();
             
             if (query.length < 2) {
-                searchResults.classList.add('hidden');
+                this.hideSearchResults();
                 return;
             }
             
+            this.showSearchLoading();
             searchTimeout = setTimeout(() => {
                 this.performSearch(query);
             }, 300); // Debounce search
         });
+
+        // Close search when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isSearchOpen && !searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+                this.closeSearch();
+            }
+        });
+
+        // Handle escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isSearchOpen) {
+                this.closeSearch();
+            }
+        });
+
+        // Store methods for external access
+        this.openSearch = () => {
+            searchBox.classList.remove('hidden');
+            searchInput.focus();
+            isSearchOpen = true;
+        };
+
+        this.closeSearch = () => {
+            searchBox.classList.add('hidden');
+            searchInput.value = '';
+            this.hideSearchResults();
+            isSearchOpen = false;
+        };
+
+        this.showSearchLoading = () => {
+            if (searchLoading) searchLoading.classList.remove('hidden');
+            if (searchResults) searchResults.classList.remove('hidden');
+            if (searchResultsList) searchResultsList.innerHTML = '';
+            if (searchNoResults) searchNoResults.classList.add('hidden');
+        };
+
+        this.hideSearchResults = () => {
+            if (searchResults) searchResults.classList.add('hidden');
+            if (searchLoading) searchLoading.classList.add('hidden');
+        };
     }
 
     async performSearch(query) {
@@ -337,29 +404,74 @@ class HomePageEnhancements {
             
             if (data.success) {
                 this.displaySearchResults(data.data);
+            } else {
+                this.showNoResults();
             }
         } catch (error) {
             console.error('Search error:', error);
+            this.showNoResults();
         }
     }
 
     displaySearchResults(results) {
+        const searchLoading = document.querySelector('#search-loading');
         const searchResults = document.querySelector('#search-results');
-        if (!searchResults) return;
+        const searchResultsList = document.querySelector('#search-results-list');
+        const searchNoResults = document.querySelector('#search-no-results');
+        
+        if (searchLoading) searchLoading.classList.add('hidden');
+        if (searchResults) searchResults.classList.remove('hidden');
+        if (searchNoResults) searchNoResults.classList.add('hidden');
 
         if (results.length === 0) {
-            searchResults.innerHTML = '<p class="p-4 text-gray-500">No results found</p>';
-        } else {
-            searchResults.innerHTML = results.map(result => `
-                <div class="p-4 hover:bg-gray-50 border-b">
-                    <h4 class="font-semibold text-blue-600">${result.title}</h4>
-                    <p class="text-sm text-gray-600">${result.description}</p>
-                    <span class="text-xs text-gray-400 capitalize">${result.type}</span>
-                </div>
+            this.showNoResults();
+            return;
+        }
+
+        if (searchResultsList) {
+            searchResultsList.innerHTML = results.map(result => `
+                <a href="${result.url}" class="block p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200 border-b border-gray-100 last:border-b-0">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="fas ${this.getResultIcon(result.type)} text-sg-light-blue text-sm"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-semibold text-sg-dark-gray text-sm leading-tight">${this.highlightSearchTerm(result.title, document.querySelector('#search-input').value)}</h4>
+                            <p class="text-xs text-gray-600 mt-1 line-clamp-2">${this.highlightSearchTerm(result.description, document.querySelector('#search-input').value)}</p>
+                            <div class="flex items-center mt-2 space-x-2">
+                                <span class="inline-block px-2 py-1 text-xs font-medium text-sg-light-blue bg-blue-50 rounded-full capitalize">${result.type}</span>
+                                ${result.category ? `<span class="text-xs text-gray-500">${result.category}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </a>
             `).join('');
         }
+    }
+
+    showNoResults() {
+        const searchLoading = document.querySelector('#search-loading');
+        const searchResults = document.querySelector('#search-results');
+        const searchNoResults = document.querySelector('#search-no-results');
         
-        searchResults.classList.remove('hidden');
+        if (searchLoading) searchLoading.classList.add('hidden');
+        if (searchResults) searchResults.classList.remove('hidden');
+        if (searchNoResults) searchNoResults.classList.remove('hidden');
+    }
+
+    getResultIcon(type) {
+        const icons = {
+            'blog': 'fa-blog',
+            'service': 'fa-cogs',
+            'page': 'fa-file-alt'
+        };
+        return icons[type] || 'fa-file';
+    }
+
+    highlightSearchTerm(text, term) {
+        if (!term) return text;
+        const regex = new RegExp(`(${term})`, 'gi');
+        return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
     }
 
     /**

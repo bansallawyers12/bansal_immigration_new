@@ -389,4 +389,15 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script>
+    // Initialize home page enhancements when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof HomePageEnhancements !== 'undefined') {
+            new HomePageEnhancements();
+        }
+    });
+</script>
+@endpush
 @endsection

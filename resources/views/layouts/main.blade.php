@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Bansal Immigration - Expert Australian Migration Services')</title>
     <meta name="description" content="@yield('description', 'Professional Australian immigration consultants helping you achieve permanent residency, study abroad, and family reunification in Australia. MARA registered migration agents.')">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -390,6 +391,10 @@
             }
         });
     </script>
+    
+    <!-- Home Enhancements Script -->
+    <script src="{{ asset('js/home-enhancements.js') }}"></script>
+    
     @stack('scripts')
 </body>
 </html>

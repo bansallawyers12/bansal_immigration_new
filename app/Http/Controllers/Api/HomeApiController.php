@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\Service;
 use App\Models\SuccessStory;
 use App\Models\Contact;
+use App\Models\Page;
 
 class HomeApiController extends Controller
 {
@@ -181,7 +182,7 @@ class HomeApiController extends Controller
                 ->where('title', 'like', "%{$query}%")
                 ->orWhere('short_description', 'like', "%{$query}%")
                 ->select('id', 'title', 'slug', 'short_description')
-                ->take(5)
+                ->take(3)
                 ->get()
                 ->map(function ($blog) {
                     return [
@@ -196,7 +197,7 @@ class HomeApiController extends Controller
                 ->where('title', 'like', "%{$query}%")
                 ->orWhere('short_description', 'like', "%{$query}%")
                 ->select('id', 'title', 'slug', 'short_description')
-                ->take(5)
+                ->take(3)
                 ->get()
                 ->map(function ($service) {
                     return [
@@ -207,7 +208,37 @@ class HomeApiController extends Controller
                     ];
                 });
 
-            return $blogs->concat($services)->take(10);
+            $pages = Page::active()
+                ->where('title', 'like', "%{$query}%")
+                ->orWhere('excerpt', 'like', "%{$query}%")
+                ->orWhere('content', 'like', "%{$query}%")
+                ->select('id', 'title', 'slug', 'excerpt', 'category', 'route_name')
+                ->take(4)
+                ->get()
+                ->map(function ($page) {
+                    // Generate URL based on route name or category/slug
+                    $url = '#';
+                    if ($page->route_name) {
+                        try {
+                            $url = route($page->route_name);
+                        } catch (\Exception $e) {
+                            // Fallback to category-based URL
+                            $url = '/' . $page->category . '/' . $page->slug;
+                        }
+                    } else {
+                        $url = '/' . $page->category . '/' . $page->slug;
+                    }
+
+                    return [
+                        'type' => 'page',
+                        'title' => $page->title,
+                        'description' => $page->excerpt ?: 'Learn more about ' . $page->title,
+                        'url' => $url,
+                        'category' => ucfirst(str_replace('-', ' ', $page->category))
+                    ];
+                });
+
+            return $blogs->concat($services)->concat($pages)->take(10);
         });
 
         return response()->json([

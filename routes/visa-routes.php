@@ -250,7 +250,12 @@ Route::prefix('family-visa')->name('family-visa.')->group(function () {
 });
 
 // Employee Sponsored Visas Routes
-Route::prefix('employee-sponsored-visas')->name('employee-sponsored.')->group(function () {
+// Redirect from old plural URL to new singular URL for backward compatibility
+Route::get('/employee-sponsored-visas', function () {
+    return redirect()->route('employee-sponsored.index');
+})->name('employee-sponsored-visas-redirect');
+
+Route::prefix('employee-sponsored')->name('employee-sponsored.')->group(function () {
     Route::get('/', [PageController::class, 'show'])->defaults('category', 'employee-sponsored')->name('index');
     
     // Temporary Visas

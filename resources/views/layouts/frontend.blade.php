@@ -374,33 +374,66 @@
                         <a href="{{ route('visitor-visa.index') }}" class="hover:text-blue-600 flex items-center">
                             Visitor Visa <span class="ml-1">▾</span>
                         </a>
-                        <div class="absolute left-0 mt-3 w-80 bg-white rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20 transform group-hover:translate-y-0 translate-y-2">
+                        <div class="absolute left-0 mt-3 w-[600px] bg-white rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20 transform group-hover:translate-y-0 translate-y-2">
                             <div class="p-6">
                                 <div class="flex items-center mb-4">
                                     <div class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center mr-3">
                                         <i class="fas fa-plane text-cyan-600 text-sm"></i>
                                     </div>
-                                    <h6 class="font-bold text-gray-900 text-base">Visitor Visas</h6>
+                                    <h6 class="font-bold text-gray-900 text-base">Visitor Visas & Other Countries</h6>
                                 </div>
-                                <div class="space-y-2">
-                                    <a href="{{ route('visitor-visa.600') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Visitor Visa (600)</span>
-                                    </a>
-                                    <a href="{{ route('visitor-visa.work-holiday-462') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Work & Holiday (462)</span>
-                                    </a>
-                                    <a href="{{ route('visitor-visa.work-holiday-417') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Work & Holiday (417)</span>
-                                    </a>
-                                    <a href="{{ route('visitor-visa.sponsored-family') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Sponsored Family</span>
-                                    </a>
-                                    <a href="{{ route('visitor-visa.offshore-extension') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Offshore Tourist Extension</span>
-                                    </a>
-                                    <a href="{{ route('visitor-visa.travel-exemption') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Travel Exemption</span>
-                                    </a>
+                                
+                                <div class="grid grid-cols-2 gap-6">
+                                    <!-- Australian Visitor Visas -->
+                                    <div>
+                                        <h6 class="font-semibold text-gray-800 mb-3 text-sm">🇦🇺 Australian Visas</h6>
+                                        <div class="space-y-2">
+                                            <a href="{{ route('visitor-visa.600') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">Visitor Visa (600)</span>
+                                            </a>
+                                            <a href="{{ route('visitor-visa.work-holiday-462') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">Work & Holiday (462)</span>
+                                            </a>
+                                            <a href="{{ route('visitor-visa.work-holiday-417') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">Work & Holiday (417)</span>
+                                            </a>
+                                            <a href="{{ route('visitor-visa.sponsored-family') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">Sponsored Family</span>
+                                            </a>
+                                            <a href="{{ route('visitor-visa.offshore-extension') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">Offshore Tourist Extension</span>
+                                            </a>
+                                            <a href="{{ route('visitor-visa.travel-exemption') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">Travel Exemption</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Other Countries -->
+                                    <div>
+                                        <h6 class="font-semibold text-gray-800 mb-3 text-sm">🌍 Other Countries</h6>
+                                        <div class="space-y-2">
+                                            <a href="{{ route('other-countries.canada') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">🇨🇦 Canada</span>
+                                            </a>
+                                            <a href="{{ route('other-countries.new-zealand') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">🇳🇿 New Zealand</span>
+                                            </a>
+                                            <a href="{{ route('other-countries.usa') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
+                                                <span class="group-hover/item:font-medium">🇺🇸 United States</span>
+                                            </a>
+                                        </div>
+                                        
+                                        <!-- Quick Links -->
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <h6 class="font-semibold text-gray-800 mb-2 text-sm">Quick Links</h6>
+                                            <div class="space-y-1">
+                                                <a href="{{ route('visitor-visa.index') }}" class="block px-3 py-1 text-xs text-cyan-600 hover:text-cyan-800 font-medium">
+                                                    View All Services →
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

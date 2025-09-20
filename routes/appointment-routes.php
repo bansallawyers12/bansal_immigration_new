@@ -24,6 +24,9 @@ Route::prefix('appointments')->name('appointments.')->group(function () {
     Route::get('/{appointment}/details', [AppointmentController::class, 'showPublic'])->name('show');
     Route::post('/{appointment}/confirm', [AppointmentController::class, 'confirmPublic'])->name('confirm');
     Route::post('/{appointment}/cancel', [AppointmentController::class, 'cancelPublic'])->name('cancel');
+    
+    // Public appointment success page
+    Route::get('/{appointment}/success', [AppointmentController::class, 'success'])->name('success');
 });
 
 // Payment Routes
@@ -62,12 +65,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin/appointments')->name('adm
     // Payment Management
     Route::get('/{appointment}/payment', [PaymentController::class, 'showPayment'])->name('payment.show');
     Route::post('/payments/{payment}/refund', [PaymentController::class, 'refund'])->name('payment.refund');
-    
-    // Promo Code Management
-    Route::resource('/promo-codes', \App\Http\Controllers\Admin\PromoCodeController::class)->names('promo-codes');
-    Route::post('/promo-codes/{promoCode}/toggle-active', [\App\Http\Controllers\Admin\PromoCodeController::class, 'toggleActive'])->name('promo-codes.toggle-active');
-    Route::post('/promo-codes/generate-code', [\App\Http\Controllers\Admin\PromoCodeController::class, 'generateCode'])->name('promo-codes.generate-code');
-    Route::post('/promo-codes/test-calculation', [\App\Http\Controllers\Admin\PromoCodeController::class, 'testCalculation'])->name('promo-codes.test-calculation');
 });
 
 // API Routes for AJAX calls

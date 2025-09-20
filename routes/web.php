@@ -30,6 +30,11 @@ Route::middleware(['auth'])->get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 })->name('dashboard');
 
+// Admin route redirect to login
+Route::get('/admin', function () {
+    return redirect()->route('login');
+});
+
 // Admin Routes (protected by auth middleware and verified user)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
@@ -67,6 +72,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('/blocked-times', \App\Http\Controllers\BlockedTimeController::class)->names('blocked-times');
     Route::post('/blocked-times/{blockedTime}/toggle-active', [\App\Http\Controllers\BlockedTimeController::class, 'toggleActive'])->name('blocked-times.toggle-active');
     Route::get('/blocked-times-calendar', [\App\Http\Controllers\BlockedTimeController::class, 'calendar'])->name('blocked-times.calendar');
+    
+    // Promo Code Management Routes
+    Route::resource('/promo-codes', \App\Http\Controllers\Admin\PromoCodeController::class)->names('promo-codes');
+    Route::post('/promo-codes/{promoCode}/toggle-active', [\App\Http\Controllers\Admin\PromoCodeController::class, 'toggleActive'])->name('promo-codes.toggle-active');
+    Route::post('/promo-codes/generate-code', [\App\Http\Controllers\Admin\PromoCodeController::class, 'generateCode'])->name('promo-codes.generate-code');
+    Route::post('/promo-codes/test-calculation', [\App\Http\Controllers\Admin\PromoCodeController::class, 'testCalculation'])->name('promo-codes.test-calculation');
 });
 
 // Include specialized route files

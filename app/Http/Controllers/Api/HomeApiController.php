@@ -82,7 +82,7 @@ class HomeApiController extends Controller
                         'slug' => $service->slug,
                         'description' => $service->short_description,
                         'icon' => $service->icon,
-                        'url' => route('service.detail', $service->slug)
+                        'url' => '#'
                     ];
                 });
         });
@@ -203,7 +203,7 @@ class HomeApiController extends Controller
                         'type' => 'service',
                         'title' => $service->title,
                         'description' => $service->short_description,
-                        'url' => route('service.detail', $service->slug)
+                        'url' => '#'
                     ];
                 });
 

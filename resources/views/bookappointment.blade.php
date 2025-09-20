@@ -1389,7 +1389,7 @@ body {
                             </div>
                         </div>
 
-                        <form id="appointment-form" method="POST" action="{{ route('appointment.store') }}">
+                        <form id="appointment-form" method="POST" action="{{ route('appointments.store') }}">
                     @csrf
                             
                             <!-- Step 1: Location Selection -->

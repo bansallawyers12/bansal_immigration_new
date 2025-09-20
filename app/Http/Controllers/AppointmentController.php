@@ -563,4 +563,188 @@ class AppointmentController extends Controller
             return redirect()->back()->with('error', 'Failed to delete appointment. Please try again.');
         }
     }
+
+    /**
+     * Show the public booking form
+     */
+    public function showBookingForm()
+    {
+        $enquiryTypes = [
+            'tr' => 'TR (TRand JRP)',
+            'tourist' => 'Tourist Visa',
+            'education' => 'Education',
+            'pr_complex' => 'PR/Complex'
+        ];
+
+        $pricing = Appointment::getPricing();
+
+        return view('appointments.public.book', compact('enquiryTypes', 'pricing'));
+    }
+
+    /**
+     * Show public appointment details (with token verification)
+     */
+    public function showPublic(Request $request, Appointment $appointment)
+    {
+        // Verify token if provided
+        $token = $request->get('token');
+        if ($token && $appointment->confirmation_token !== $token) {
+            return view('appointments.public.error', [
+                'message' => 'Invalid appointment token. Please check your confirmation email.'
+            ]);
+        }
+
+        // If no token provided, check if user is admin
+        if (!$token && (!auth()->check() || !auth()->user()->isAdmin())) {
+            return view('appointments.public.error', [
+                'message' => 'Access denied. Please use the link from your confirmation email.'
+            ]);
+        }
+
+        return view('appointments.public.show', compact('appointment'));
+    }
+
+    /**
+     * Confirm appointment publicly (with token verification)
+     */
+    public function confirmPublic(Request $request, Appointment $appointment)
+    {
+        $validator = Validator::make($request->all(), [
+            'token' => 'required|string',
+            'confirmation_method' => 'required|in:email,phone'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Verify token
+        if ($appointment->confirmation_token !== $request->token) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid confirmation token.'
+            ], 403);
+        }
+
+        // Check if appointment can be confirmed
+        if ($appointment->status !== 'pending') {
+            return response()->json([
+                'success' => false,
+                'message' => 'This appointment cannot be confirmed. Current status: ' . ucfirst($appointment->status)
+            ], 422);
+        }
+
+        try {
+            // Confirm the appointment
+            $appointment->confirm();
+
+            // Log the action
+            \Log::info('Appointment confirmed publicly', [
+                'appointment_id' => $appointment->id,
+                'confirmation_method' => $request->confirmation_method,
+                'confirmed_at' => now()
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Appointment confirmed successfully! You will receive a confirmation email shortly.',
+                'appointment' => [
+                    'id' => $appointment->id,
+                    'status' => $appointment->status,
+                    'appointment_datetime' => $appointment->appointment_datetime->format('M j, Y \a\t g:i A')
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            \Log::error('Failed to confirm appointment publicly', [
+                'appointment_id' => $appointment->id,
+                'error' => $e->getMessage()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to confirm appointment. Please try again.'
+            ], 500);
+        }
+    }
+
+    /**
+     * Cancel appointment publicly (with token verification)
+     */
+    public function cancelPublic(Request $request, Appointment $appointment)
+    {
+        $validator = Validator::make($request->all(), [
+            'token' => 'required|string',
+            'cancellation_reason' => 'required|string|max:500'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Verify token
+        if ($appointment->confirmation_token !== $request->token) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid cancellation token.'
+            ], 403);
+        }
+
+        // Check if appointment can be cancelled
+        if (!$appointment->canBeCancelled()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This appointment cannot be cancelled. Current status: ' . ucfirst($appointment->status)
+            ], 422);
+        }
+
+        try {
+            // Cancel the appointment
+            $appointment->cancel($request->cancellation_reason);
+
+            // Log the action
+            \Log::info('Appointment cancelled publicly', [
+                'appointment_id' => $appointment->id,
+                'cancellation_reason' => $request->cancellation_reason,
+                'cancelled_at' => now()
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Appointment cancelled successfully. You will receive a confirmation email shortly.',
+                'appointment' => [
+                    'id' => $appointment->id,
+                    'status' => $appointment->status,
+                    'cancelled_at' => $appointment->cancelled_at
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            \Log::error('Failed to cancel appointment publicly', [
+                'appointment_id' => $appointment->id,
+                'error' => $e->getMessage()
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to cancel appointment. Please try again.'
+            ], 500);
+        }
+    }
+
+    /**
+     * Show appointment success page (public)
+     */
+    public function success(Appointment $appointment)
+    {
+        return view('appointments.public.success', compact('appointment'));
+    }
 }

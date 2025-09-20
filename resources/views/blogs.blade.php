@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.main')
 
 @section('title', 'Blog - Bansal Immigration')
 @section('description', 'Stay updated with the latest immigration news, tips, and insights from our expert team at Bansal Immigration.')
@@ -154,17 +154,37 @@
 </section>
 @endauth
 
-<!-- CTA Section -->
+<!-- Contact Form Section -->
+<section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Need Immigration Help?</h2>
+                <p class="text-xl text-gray-600">Our experts are here to guide you through your immigration journey. Send us a message and we'll get back to you promptly.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                @include('components.unified-contact-form', [
+                    'form_source' => 'blogs-page',
+                    'form_variant' => 'full',
+                    'show_phone' => true,
+                    'show_subject' => true
+                ])
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional CTA Section -->
 <section class="bg-blue-600 py-16">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold text-white mb-4">Need Immigration Help?</h2>
-        <p class="text-xl text-blue-100 mb-8">Our experts are here to guide you through your immigration journey</p>
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Take Action?</h2>
+        <p class="text-xl text-blue-100 mb-8">Book a consultation with our MARA registered migration agents</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('appointment') }}" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium">
                 Book Free Consultation
             </a>
             <a href="{{ route('contact') }}" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-lg font-medium">
-                Contact Us
+                View Contact Info
             </a>
         </div>
     </div>

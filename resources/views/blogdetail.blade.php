@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.main')
 
 @section('title', $blogdetailists->meta_title ?: $blogdetailists->title . ' | Bansal Immigration Blog')
 @section('description', $blogdetailists->meta_description ?: $blogdetailists->short_description)

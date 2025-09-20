@@ -1,17 +1,19 @@
-@extends('layouts.frontend')
-@section('seoinfo')
-    <title>Book An Appointment | Bansal Immigration-Your Future, Our Priority</title>
-    <meta name="description" content="Book An Appointment with our experienced immigration consultants" />
-    <link rel="canonical" href="{{ URL::to('/') }}/book-an-appointment" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Book An Appointment | Bansal Immigration-Your Future, Our Priority" />
-    <meta property="og:description" content="Book An Appointment with our experienced immigration consultants" />
-    <meta property="og:url" content="{{ URL::to('/') }}/book-an-appointment/" />
-    <meta property="og:site_name" content="Bansal Immigration - Your Future, Our Priority" />
-    <meta property="og:image" content="{{asset('img/bansal-immigration-icon.jpg')}}" />
-    <meta name="twitter:card" content="summary_large_image" />
-@endsection
+@extends('layouts.main')
+
+@section('title', 'Book An Appointment | Bansal Immigration-Your Future, Our Priority')
+@section('description', 'Book An Appointment with our experienced immigration consultants')
+
+@push('styles')
+<link rel="canonical" href="{{ URL::to('/') }}/book-an-appointment" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Book An Appointment | Bansal Immigration-Your Future, Our Priority" />
+<meta property="og:description" content="Book An Appointment with our experienced immigration consultants" />
+<meta property="og:url" content="{{ URL::to('/') }}/book-an-appointment/" />
+<meta property="og:site_name" content="Bansal Immigration - Your Future, Our Priority" />
+<meta property="og:image" content="{{asset('img/bansal-immigration-icon.jpg')}}" />
+<meta name="twitter:card" content="summary_large_image" />
+@endpush
 
 @section('content')
 <style>

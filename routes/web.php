@@ -11,6 +11,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/test-editors', function () {
     return view('test-editors');
 })->name('test-editors');
+
+// Test page for Slater & Gordon inspired design
+Route::get('/test-slater-gordon', function () {
+    return view('test-slater-gordon');
+})->name('test-slater-gordon');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');

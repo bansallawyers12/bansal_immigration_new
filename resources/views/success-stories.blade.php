@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.main')
 
 @section('title', 'Success Stories - Bansal Immigration')
 @section('description', 'Read inspiring success stories from our clients who achieved their immigration dreams with Bansal Immigration.')
@@ -178,17 +178,37 @@
     </div>
 </section>
 
-<!-- CTA Section -->
+<!-- Contact Form Section -->
+<section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Write Your Success Story?</h2>
+                <p class="text-xl text-gray-600">Let us help you achieve your immigration dreams. Contact our expert team for personalized guidance.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                @include('components.unified-contact-form', [
+                    'form_source' => 'success-stories-page',
+                    'form_variant' => 'full',
+                    'show_phone' => true,
+                    'show_subject' => true
+                ])
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional CTA Section -->
 <section class="bg-blue-600 py-16">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold text-white mb-4">Ready to Write Your Success Story?</h2>
-        <p class="text-xl text-blue-100 mb-8">Let us help you achieve your immigration dreams</p>
+        <h2 class="text-3xl font-bold text-white mb-4">Start Your Journey Today</h2>
+        <p class="text-xl text-blue-100 mb-8">Join thousands of successful clients who achieved their Australian dreams</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('appointment') }}" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium">
                 Book Free Consultation
             </a>
             <a href="{{ route('contact') }}" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-lg font-medium">
-                Contact Us
+                View Contact Info
             </a>
         </div>
     </div>

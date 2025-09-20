@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.main')
 
 @section('title', $story->meta_title ?: $story->title . ' - Success Story | Bansal Immigration')
 @section('description', $story->meta_description ?: $story->excerpt)

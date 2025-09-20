@@ -1,15 +1,16 @@
-@extends('layouts.frontend')
+@extends('layouts.main')
 
-@section('seoinfo')
-    <title>{{ $page->meta_title ?? $page->title }} - Study in Australia | Bansal Immigration</title>
-    <meta name="description" content="{{ $page->meta_description ?? $page->excerpt }}">
-    <meta name="keywords" content="{{ $page->meta_keywords ?? 'study australia, student visa, education australia' }}">
-    <meta property="og:title" content="{{ $page->meta_title ?? $page->title }}">
-    <meta property="og:description" content="{{ $page->meta_description ?? $page->excerpt }}">
-    @if($page->image)
-    <meta property="og:image" content="{{ asset('storage/' . $page->image) }}">
-    @endif
-@endsection
+@section('title', ($page->meta_title ?? $page->title) . ' - Study in Australia | Bansal Immigration')
+@section('description', $page->meta_description ?? $page->excerpt)
+
+@push('styles')
+<meta name="keywords" content="{{ $page->meta_keywords ?? 'study australia, student visa, education australia' }}">
+<meta property="og:title" content="{{ $page->meta_title ?? $page->title }}">
+<meta property="og:description" content="{{ $page->meta_description ?? $page->excerpt }}">
+@if($page->image)
+<meta property="og:image" content="{{ asset('storage/' . $page->image) }}">
+@endif
+@endpush
 
 @section('content')
 <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
@@ -112,13 +113,25 @@
                 </div>
             </div>
 
-            <!-- Contact CTA -->
+            <!-- Contact Form Section -->
+            <div class="mt-8 bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Ready to Start Your Australian Education Journey?</h3>
+                <p class="text-gray-600 mb-6">Our education consultants will guide you through every step of the process. Send us your details and we'll get back to you with personalized guidance.</p>
+                @include('components.unified-contact-form', [
+                    'form_source' => 'study-australia-page',
+                    'form_variant' => 'full',
+                    'show_phone' => true,
+                    'show_subject' => true
+                ])
+            </div>
+
+            <!-- Additional CTA -->
             <div class="mt-8 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg p-6 text-white">
-                <h3 class="text-xl font-semibold mb-2">Ready to Start Your Australian Education Journey?</h3>
-                <p class="mb-4">Our education consultants will guide you through every step of the process.</p>
+                <h3 class="text-xl font-semibold mb-2">Prefer to Talk Directly?</h3>
+                <p class="mb-4">Book a free consultation or call us for immediate assistance.</p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="{{ route('appointment') }}" class="bg-white text-yellow-600 px-6 py-2 rounded font-medium hover:bg-gray-100 inline-block text-center">Book Free Consultation</a>
-                    <a href="{{ route('contact') }}" class="border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-yellow-600 inline-block text-center">Get Information</a>
+                    <a href="{{ route('contact') }}" class="border border-white text-white px-6 py-2 rounded hover:bg-white hover:text-yellow-600 inline-block text-center">View Contact Info</a>
                 </div>
             </div>
         </div>

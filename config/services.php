@@ -40,4 +40,9 @@ return [
         'site_key' => env('RECAPTCHA_SITE_KEY'),
     ],
 
+    'google' => [
+        'places_api_key' => env('GOOGLE_PLACES_API_KEY'),
+        'business_place_id' => env('GOOGLE_BUSINESS_PLACE_ID'),
+    ],
+
 ];

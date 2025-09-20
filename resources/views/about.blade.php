@@ -1,13 +1,15 @@
-@extends('layouts.frontend')
-@section('seoinfo')
-    <title>About Us - Bansal Immigration Consultants | Expert Migration Agents</title>
-    <meta name="description" content="Learn about Bansal Immigration Consultants - MARA registered migration agents with 10+ years experience helping 5000+ clients achieve their Australian dreams.">
-    <meta property="og:title" content="About Bansal Immigration Consultants - Expert Migration Agents">
-    <meta property="og:description" content="MARA registered migration agents with 10+ years experience helping clients achieve permanent residency, study abroad, and family reunification in Australia.">
-    <meta property="og:image" content="{{ asset('img/bansal-immigration-icon.jpg') }}">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url('/about') }}">
-@endsection
+@extends('layouts.main')
+
+@section('title', 'About Us - Bansal Immigration Consultants | Expert Migration Agents')
+@section('description', 'Learn about Bansal Immigration Consultants - MARA registered migration agents with 10+ years experience helping 5000+ clients achieve their Australian dreams.')
+
+@push('styles')
+<meta property="og:title" content="About Bansal Immigration Consultants - Expert Migration Agents">
+<meta property="og:description" content="MARA registered migration agents with 10+ years experience helping clients achieve permanent residency, study abroad, and family reunification in Australia.">
+<meta property="og:image" content="{{ asset('img/bansal-immigration-icon.jpg') }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ url('/about') }}">
+@endpush
 @section('content')
     <!-- Hero Section -->
     <section class="py-20 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
@@ -220,34 +222,84 @@
         </div>
     </section>
 
-    <!-- Contact CTA -->
-    <section class="py-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-black">
-        <div class="container mx-auto px-4 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Migration Journey?</h2>
-                <p class="text-xl md:text-2xl mb-8 text-gray-800">Don't let your dreams wait. Get expert guidance from MARA registered migration agents today.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                    <a href="{{ route('appointment') }}" class="group bg-black text-white hover:bg-gray-800 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-calendar-alt mr-2"></i>Book Free Consultation
-                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                    <a href="tel:+61396021330" class="group border-2 border-black text-black hover:bg-black hover:text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-phone mr-2"></i>Call Now: +61 3 9602 1330
-                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
+    <!-- Contact Form Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Get in Touch with Our Team</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Have questions about your immigration journey? Our expert team is here to help you every step of the way.</p>
                 </div>
-                <div class="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-700">
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
-                        <span>Free Initial Consultation</span>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+                        @include('components.unified-contact-form', [
+                            'form_source' => 'about-page',
+                            'form_variant' => 'full',
+                            'show_phone' => true,
+                            'show_subject' => true
+                        ])
                     </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
-                        <span>MARA Registered Agents</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
-                        <span>No Win, No Fee Policy</span>
+                    <div class="space-y-8">
+                        <div class="bg-white rounded-2xl shadow-lg p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Office Address</h4>
+                                        <p class="text-gray-600">Level 8/278 Collins St<br>Melbourne VIC 3000, Australia</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-phone text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Phone</h4>
+                                        <p class="text-gray-600">+61 3 9602 1330</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-envelope text-purple-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
+                                        <p class="text-gray-600">info@bansalimmigration.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-white">
+                            <h3 class="text-2xl font-bold mb-4">Ready to Start Your Migration Journey?</h3>
+                            <p class="text-blue-100 mb-6">Don't let your dreams wait. Get expert guidance from MARA registered migration agents today.</p>
+                            <div class="space-y-4">
+                                <a href="{{ route('appointment') }}" class="block w-full bg-yellow-400 text-black hover:bg-yellow-300 px-6 py-3 rounded-lg font-bold text-center transition-colors">
+                                    <i class="fas fa-calendar-alt mr-2"></i>Book Free Consultation
+                                </a>
+                                <a href="tel:+61396021330" class="block w-full border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-lg font-bold text-center transition-colors">
+                                    <i class="fas fa-phone mr-2"></i>Call Now: +61 3 9602 1330
+                                </a>
+                            </div>
+                            <div class="flex flex-wrap justify-center items-center gap-6 text-sm text-blue-100 mt-6">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>Free Initial Consultation</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>MARA Registered Agents</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>No Win, No Fee Policy</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

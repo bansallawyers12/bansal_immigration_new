@@ -1,5 +1,7 @@
-@extends('layouts.frontend')
-@section('title', 'Contact Us')
+@extends('layouts.main')
+
+@section('title', 'Contact Us - Bansal Immigration Consultants')
+@section('description', 'Get in touch with our MARA registered migration agents. Contact us for expert immigration advice and consultation services.')
 @section('content')
     <section class="py-16 bg-gray-200">
         <div class="container mx-auto px-4">

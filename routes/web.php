@@ -109,3 +109,9 @@ require __DIR__.'/appointment-routes.php';
 require __DIR__.'/visa-routes.php';
 require __DIR__.'/utility-routes.php';
 require __DIR__.'/auth.php';
+
+// Dynamic page route - MUST be last to avoid conflicts
+Route::get('{category}/{slug?}', [PageController::class, 'show'])
+    ->where('category', '[a-z0-9-]+')
+    ->where('slug', '[a-z0-9-]+')
+    ->name('pages.dynamic');

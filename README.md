@@ -30,7 +30,7 @@ A comprehensive Laravel-based immigration services website with admin panel, app
 
 ## Technology Stack
 
-- **Backend**: Laravel 11.x
+- **Backend**: Laravel 12.x
 - **Frontend**: Blade templates with Tailwind CSS
 - **Database**: SQLite (development) / MySQL (production)
 - **JavaScript**: Vanilla JS with Alpine.js components

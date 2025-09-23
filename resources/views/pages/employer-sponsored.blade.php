@@ -48,7 +48,7 @@
                     @if($relatedPage->excerpt)
                     <p class="text-gray-600 mb-4">{{ $relatedPage->excerpt }}</p>
                     @endif
-                    <a href="{{ route($relatedPage->route_name) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url($relatedPage->category . '/' . $relatedPage->slug) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             @endforeach
@@ -110,7 +110,7 @@
                     @if($relatedPage->excerpt)
                     <p class="text-gray-600 mb-4">{{ $relatedPage->excerpt }}</p>
                     @endif
-                    <a href="{{ route($relatedPage->route_name) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url($relatedPage->category . '/' . $relatedPage->slug) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             @endforeach

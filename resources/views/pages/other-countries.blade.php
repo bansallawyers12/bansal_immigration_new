@@ -42,7 +42,7 @@
                     <div class="text-4xl mb-4">🇨🇦</div>
                     <h3 class="text-xl font-semibold mb-2">Canada Immigration</h3>
                     <p class="text-gray-600 mb-4">Explore immigration opportunities in Canada including Express Entry, Provincial Nominee Programs, and more.</p>
-                    <a href="{{ route('other-countries.canada') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/canada') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             
@@ -51,7 +51,7 @@
                     <div class="text-4xl mb-4">🇳🇿</div>
                     <h3 class="text-xl font-semibold mb-2">New Zealand Immigration</h3>
                     <p class="text-gray-600 mb-4">Discover pathways to New Zealand through skilled migration, investment, and family categories.</p>
-                    <a href="{{ route('other-countries.new-zealand') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/new-zealand') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             
@@ -60,7 +60,7 @@
                     <div class="text-4xl mb-4">🇺🇸</div>
                     <h3 class="text-xl font-semibold mb-2">USA Immigration</h3>
                     <p class="text-gray-600 mb-4">Navigate US immigration options including work visas, green cards, and citizenship pathways.</p>
-                    <a href="{{ route('other-countries.usa') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/usa') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                     @if($relatedPage->excerpt)
                     <p class="text-gray-600 mb-4">{{ $relatedPage->excerpt }}</p>
                     @endif
-                    <a href="{{ route('other-countries.' . $relatedPage->slug) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/' . $relatedPage->slug) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             @endforeach
@@ -137,7 +137,7 @@
                     <div class="text-4xl mb-4">🇨🇦</div>
                     <h3 class="text-xl font-semibold mb-2">Canada Immigration</h3>
                     <p class="text-gray-600 mb-4">Explore immigration opportunities in Canada including Express Entry, Provincial Nominee Programs, and more.</p>
-                    <a href="{{ route('other-countries.canada') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/canada') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             
@@ -146,7 +146,7 @@
                     <div class="text-4xl mb-4">🇳🇿</div>
                     <h3 class="text-xl font-semibold mb-2">New Zealand Immigration</h3>
                     <p class="text-gray-600 mb-4">Discover pathways to New Zealand through skilled migration, investment, and family categories.</p>
-                    <a href="{{ route('other-countries.new-zealand') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/new-zealand') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             
@@ -155,7 +155,7 @@
                     <div class="text-4xl mb-4">🇺🇸</div>
                     <h3 class="text-xl font-semibold mb-2">USA Immigration</h3>
                     <p class="text-gray-600 mb-4">Navigate US immigration options including work visas, green cards, and citizenship pathways.</p>
-                    <a href="{{ route('other-countries.usa') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/usa') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
         </div>
@@ -176,7 +176,7 @@
                     @if($relatedPage->excerpt)
                     <p class="text-gray-600 mb-4">{{ $relatedPage->excerpt }}</p>
                     @endif
-                    <a href="{{ route('other-countries.' . $relatedPage->slug) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
+                    <a href="{{ url('visitor-visa/' . $relatedPage->slug) }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
             @endforeach

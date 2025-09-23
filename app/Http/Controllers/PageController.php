@@ -74,7 +74,7 @@ class PageController extends Controller
             'visitor-visa' => 'pages.visitor-visa',
             'migration' => 'pages.migration',
             'family-visa' => 'pages.family-visa',
-            'employee-sponsored' => 'pages.employee-sponsored',
+            'employer-sponsored' => 'pages.employer-sponsored',
             'business-visa' => 'pages.business-visa',
             'appeals' => 'pages.appeals',
             'citizenship' => 'pages.citizenship',

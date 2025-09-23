@@ -251,50 +251,50 @@ Route::prefix('family-visa')->name('family-visa.')->group(function () {
 
 // Employee Sponsored Visas Routes
 // Redirect from old plural URL to new singular URL for backward compatibility
-Route::get('/employee-sponsored-visas', function () {
-    return redirect()->route('employee-sponsored.index');
-})->name('employee-sponsored-visas-redirect');
+Route::get('/employer-sponsored-visas', function () {
+    return redirect()->route('employer-sponsored.index');
+})->name('employer-sponsored-visas-redirect');
 
-Route::prefix('employee-sponsored')->name('employee-sponsored.')->group(function () {
-    Route::get('/', [PageController::class, 'show'])->defaults('category', 'employee-sponsored')->name('index');
+Route::prefix('employer-sponsored')->name('employer-sponsored.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'employer-sponsored')->name('index');
     
     // Temporary Visas
     Route::get('/temporary-skill-shortage-visa-482', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'tss-visa-482');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'tss-visa-482');
     })->name('tss-482');
     Route::get('/designated-area-migration-agreements-dama', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'dama');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'dama');
     })->name('dama');
     Route::get('/skilled-employer-sponsored-regional-494', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'skilled-regional-494');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'skilled-regional-494');
     })->name('skilled-regional-494');
     Route::get('/temporary-activity-visa-408', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'temporary-activity-408');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'temporary-activity-408');
     })->name('temporary-activity-408');
     Route::get('/temporary-work-short-stay-specialist-400', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'short-stay-400');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'short-stay-400');
     })->name('short-stay-400');
     
     // Permanent Visas
     Route::get('/employer-nomination-scheme-186-trt', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'ens-186-trt');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'ens-186-trt');
     })->name('ens-186-trt');
     Route::get('/employer-nomination-direct-entry-186', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'ens-186-direct');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'ens-186-direct');
     })->name('ens-186-direct');
     Route::get('/distinguished-talent-visa-offshore-124', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'distinguished-talent-124');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'distinguished-talent-124');
     })->name('distinguished-talent-124');
     Route::get('/distinguished-talent-visa-onshore-858', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'distinguished-talent-858');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'distinguished-talent-858');
     })->name('distinguished-talent-858');
     
     // Global Talent Visas
     Route::get('/global-talent-independent-program-gti', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'gti');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'gti');
     })->name('gti');
     Route::get('/global-talent-employer-sponsored-gtes', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employee-sponsored', 'gtes');
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'gtes');
     })->name('gtes');
 });
 
@@ -322,16 +322,16 @@ Route::prefix('appeals')->name('appeals.')->group(function () {
         return app(\App\Http\Controllers\PageController::class)->show('appeals', 'visa-cancellation');
     })->name('visa-cancellation');
     Route::get('/notice-of-intention-to-consider-cancellation', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'notice-cancellation');
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'notice-of-intention-to-consider-cancellation');
     })->name('notice-cancellation');
     Route::get('/waiver-request', function() {
         return app(\App\Http\Controllers\PageController::class)->show('appeals', 'waiver-request');
     })->name('waiver-request');
     Route::get('/applying-for-work-rights', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'work-rights');
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'applying-for-work-rights');
     })->name('work-rights');
     Route::get('/applying-for-study-rights', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'study-rights');
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'applying-for-study-rights');
     })->name('study-rights');
 });
 

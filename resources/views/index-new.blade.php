@@ -82,13 +82,13 @@
                 <a href="/business-visas" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
             </div>
 
-            <!-- Employee Sponsored -->
+            <!-- Employer Sponsored -->
             <div class="service-card bg-white p-6 rounded-lg text-center">
                 <div class="service-icon mx-auto mb-4">
                     <i class="fas fa-user-tie text-4xl"></i>
                 </div>
-                <h3 class="text-lg font-semibold sg-dark-gray mb-2">Employee Sponsored</h3>
-                <a href="/employee-sponsored" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
+                <h3 class="text-lg font-semibold sg-dark-gray mb-2">Employer Sponsored</h3>
+                <a href="/employer-sponsored" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
             </div>
 
             <!-- Appeals & Reviews -->

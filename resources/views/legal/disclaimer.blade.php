@@ -51,6 +51,7 @@
                 <li>Approval of any particular application</li>
                 <li>Changes in immigration policies or requirements</li>
             </ul>
+            <p>Our fees are service-based and are not contingent on outcomes; we do not offer contingency or success-fee arrangements.</p>
 
             <h2>Third-Party Information</h2>
             <p>Our website may contain links to third-party websites or information. We:</p>
@@ -149,6 +150,7 @@
                 <li>Approval of any particular application</li>
                 <li>Changes in immigration policies or requirements</li>
             </ul>
+            <p>Our fees are service-based and are not contingent on outcomes; we do not offer contingency or success-fee arrangements.</p>
 
             <h2>Third-Party Information</h2>
             <p>Our website may contain links to third-party websites or information. We:</p>

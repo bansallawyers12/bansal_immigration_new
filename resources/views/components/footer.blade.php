@@ -26,7 +26,7 @@
                     <li><a href="/family-visa" class="hover:text-sg-light-blue transition-colors">Partner Visas</a></li>
                     <li><a href="/visitor-visa" class="hover:text-sg-light-blue transition-colors">Visitor Visas</a></li>
                     <li><a href="/business-visas" class="hover:text-sg-light-blue transition-colors">Business Visas</a></li>
-                    <li><a href="/employee-sponsored" class="hover:text-sg-light-blue transition-colors">Employee Sponsored</a></li>
+                    <li><a href="/employer-sponsored" class="hover:text-sg-light-blue transition-colors">Employer Sponsored</a></li>
                     <li><a href="/citizenship" class="hover:text-sg-light-blue transition-colors">Citizenship</a></li>
                     <li><a href="/appeals" class="hover:text-sg-light-blue transition-colors">Appeals & Reviews</a></li>
                 </ul>

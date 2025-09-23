@@ -249,7 +249,7 @@ Route::prefix('family-visa')->name('family-visa.')->group(function () {
     })->name('contributory-costs');
 });
 
-// Employee Sponsored Visas Routes
+// Employer Sponsored Visas Routes
 // Redirect from old plural URL to new singular URL for backward compatibility
 Route::get('/employer-sponsored-visas', function () {
     return redirect()->route('employer-sponsored.index');

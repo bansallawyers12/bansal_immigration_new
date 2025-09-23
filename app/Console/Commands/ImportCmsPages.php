@@ -159,7 +159,7 @@ class ImportCmsPages extends Command
             'visitor' => 'visitor-visa',
             'migration' => 'migration',
             'family' => 'family-visa',
-            'employee' => 'employee-sponsored',
+            'employee' => 'employer-sponsored',
             'business' => 'business-visa',
             'appeals' => 'appeals',
             'citizenship' => 'citizenship',
@@ -196,9 +196,9 @@ class ImportCmsPages extends Command
             return 'family-visa';
         }
         
-        // Employee sponsored patterns
+        // Employer sponsored patterns
         if (preg_match('/\b(employee|sponsored|employer|tss|482|186|dama|global.*talent|gti|gtes|distinguished.*talent|temporary.*activity|408|400)\b/', $text)) {
-            return 'employee-sponsored';
+            return 'employer-sponsored';
         }
         
         // Business visa patterns

@@ -17,7 +17,7 @@
                 <a href="/family-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Partner Visas</a>
                 <a href="/visitor-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Visitor Visas</a>
                 <a href="/business-visas" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
-                <a href="/employee-sponsored" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Employee Sponsored</a>
+                <a href="/employer-sponsored" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Employer Sponsored</a>
                 <a href="/citizenship" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Citizenship</a>
                 <a href="/appeals" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Appeals</a>
             </nav>
@@ -119,7 +119,7 @@
                     <a href="/family-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Partner Visas</a>
                     <a href="/visitor-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Visitor Visas</a>
                     <a href="/business-visas" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
-                    <a href="/employee-sponsored" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Employee Sponsored</a>
+                    <a href="/employer-sponsored" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Employer Sponsored</a>
                     <a href="/citizenship" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Citizenship</a>
                     <a href="/appeals" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Appeals</a>
                 </div>

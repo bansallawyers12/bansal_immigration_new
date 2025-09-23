@@ -32,8 +32,8 @@ class CategoryConstants
             'icon' => 'fas fa-globe',
             'color' => 'orange'
         ],
-        'employee-sponsored' => [
-            'name' => 'Employee Sponsored',
+        'employer-sponsored' => [
+            'name' => 'Employer Sponsored',
             'description' => 'Work visa and employment sponsorship content',
             'icon' => 'fas fa-briefcase',
             'color' => 'indigo'

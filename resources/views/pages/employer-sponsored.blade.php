@@ -36,7 +36,7 @@
     <!-- Related Pages -->
     @if($relatedPages->count() > 0)
     <div class="mt-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Related Employee Sponsored Visa Services</h2>
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Related Employer Sponsored Visa Services</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($relatedPages as $relatedPage)
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -58,11 +58,11 @@
 
     <!-- Contact Form Section -->
     <div class="mt-16 bg-white rounded-lg shadow-lg p-8">
-        <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Ready to Explore Employee Sponsored Visa Options?</h3>
-        <p class="text-gray-600 mb-6 text-center">Let our experts help you navigate the employee sponsored visa process. Send us your details for personalized visa assistance.</p>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Ready to Explore Employer Sponsored Visa Options?</h3>
+        <p class="text-gray-600 mb-6 text-center">Let our experts help you navigate the employer sponsored visa process. Send us your details for personalized visa assistance.</p>
         
         @include('components.unified-contact-form', [
-            'form_source' => 'employee-sponsored-page',
+            'form_source' => 'employer-sponsored-page',
             'form_variant' => 'compact',
             'show_phone' => true,
             'show_subject' => false
@@ -98,7 +98,7 @@
     <!-- Related Pages -->
     @if($relatedPages->count() > 0)
     <div class="mt-16">
-        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Related Employee Sponsored Visa Services</h2>
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Related Employer Sponsored Visa Services</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($relatedPages as $relatedPage)
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -120,11 +120,11 @@
 
     <!-- Contact Form Section -->
     <div class="mt-16 bg-white rounded-lg shadow-lg p-8">
-        <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Ready to Explore Employee Sponsored Visa Options?</h3>
-        <p class="text-gray-600 mb-6 text-center">Let our experts help you navigate the employee sponsored visa process. Send us your details for personalized visa assistance.</p>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Ready to Explore Employer Sponsored Visa Options?</h3>
+        <p class="text-gray-600 mb-6 text-center">Let our experts help you navigate the employer sponsored visa process. Send us your details for personalized visa assistance.</p>
         
         @include('components.unified-contact-form', [
-            'form_source' => 'employee-sponsored-page',
+            'form_source' => 'employer-sponsored-page',
             'form_variant' => 'compact',
             'show_phone' => true,
             'show_subject' => false

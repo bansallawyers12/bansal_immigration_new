@@ -467,10 +467,10 @@
                         </div>
                     </div>
 
-                    <!-- Employee Sponsored Dropdown -->
+                    <!-- Employer Sponsored Dropdown -->
                     <div class="relative group">
-                        <a href="{{ route('employee-sponsored.index') }}" class="hover:text-blue-600 flex items-center">
-                            Employee Sponsored <span class="ml-1">▾</span>
+                        <a href="{{ route('employer-sponsored.index') }}" class="hover:text-blue-600 flex items-center">
+                            Employer Sponsored <span class="ml-1">▾</span>
                         </a>
                         <div class="absolute left-0 mt-3 w-[600px] bg-white rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20 transform group-hover:translate-y-0 translate-y-2">
                             <div class="grid grid-cols-3 gap-0">
@@ -482,19 +482,19 @@
                                         <h6 class="font-bold text-gray-900 text-base">Temporary Visas</h6>
                                     </div>
                                     <div class="space-y-2">
-                                        <a href="{{ route('employee-sponsored.tss-482') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.tss-482') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">TSS Visa (482)</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.dama') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.dama') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">DAMA</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.skilled-regional-494') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.skilled-regional-494') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Skilled Regional (494)</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.temporary-activity-408') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.temporary-activity-408') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Temporary Activity (408)</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.short-stay-400') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.short-stay-400') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Short Stay (400)</span>
                                         </a>
                                     </div>
@@ -507,16 +507,16 @@
                                         <h6 class="font-bold text-gray-900 text-base">Permanent Visas</h6>
                                     </div>
                                     <div class="space-y-2">
-                                        <a href="{{ route('employee-sponsored.ens-186-trt') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.ens-186-trt') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">ENS 186 TRT</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.ens-186-direct') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.ens-186-direct') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">ENS 186 Direct</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.distinguished-talent-124') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.distinguished-talent-124') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Distinguished Talent (124)</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.distinguished-talent-858') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.distinguished-talent-858') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Distinguished Talent (858)</span>
                                         </a>
                                     </div>
@@ -529,10 +529,10 @@
                                         <h6 class="font-bold text-gray-900 text-base">Global Talent</h6>
                                     </div>
                                     <div class="space-y-2">
-                                        <a href="{{ route('employee-sponsored.gti') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.gti') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">GTI Program</span>
                                         </a>
-                                        <a href="{{ route('employee-sponsored.gtes') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="{{ route('employer-sponsored.gtes') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">GTES Program</span>
                                         </a>
                                     </div>
@@ -735,24 +735,24 @@
                         </div>
                     </div>
 
-                    <!-- Employee Sponsored Section -->
+                    <!-- Employer Sponsored Section -->
                     <div class="border-b border-gray-100">
                         <button onclick="toggleMobileSection('employee-section')" class="w-full flex items-center justify-between py-3 px-4 text-left text-gray-700 hover:bg-purple-50 transition-colors duration-200">
                             <div class="flex items-center">
                                 <i class="fas fa-user-tie w-5 h-5 mr-3 text-purple-500"></i>
-                                <span class="font-semibold">Employee Sponsored</span>
+                                <span class="font-semibold">Employer Sponsored</span>
                             </div>
                             <i id="employee-section-icon" class="fas fa-chevron-down text-gray-400 transition-transform duration-200"></i>
                         </button>
                         <div id="employee-section" class="hidden bg-gray-50">
                             <div class="px-4 py-2 space-y-1">
-                                <a href="{{ route('employee-sponsored.tss-482') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors duration-200">
+                                <a href="{{ route('employer-sponsored.tss-482') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors duration-200">
                                     <i class="fas fa-id-card w-4 h-4 mr-2 text-purple-400"></i>TSS Visa (482)
                                 </a>
-                                <a href="{{ route('employee-sponsored.ens-186-trt') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors duration-200">
+                                <a href="{{ route('employer-sponsored.ens-186-trt') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors duration-200">
                                     <i class="fas fa-check-circle w-4 h-4 mr-2 text-purple-400"></i>ENS 186 TRT
                                 </a>
-                                <a href="{{ route('employee-sponsored.gti') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors duration-200">
+                                <a href="{{ route('employer-sponsored.gti') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors duration-200">
                                     <i class="fas fa-rocket w-4 h-4 mr-2 text-purple-400"></i>GTI Program
                                 </a>
                             </div>

@@ -216,7 +216,7 @@
                     <a href="/family-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Partner Visas</a>
                     <a href="/visitor-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Visitor Visas</a>
                     <a href="/business-visas" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
-                    <a href="/employee-sponsored" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Employee Sponsored</a>
+                    <a href="/employer-sponsored" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Employer Sponsored</a>
                     <a href="/citizenship" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Citizenship</a>
                     <a href="/appeals" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Appeals</a>
                 </nav>
@@ -285,7 +285,7 @@
                         <a href="/family-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Partner Visas</a>
                         <a href="/visitor-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Visitor Visas</a>
                         <a href="/business-visas" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
-                        <a href="/employee-sponsored" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Employee Sponsored</a>
+                        <a href="/employer-sponsored" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Employer Sponsored</a>
                         <a href="/citizenship" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Citizenship</a>
                         <a href="/appeals" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Appeals</a>
                     </div>
@@ -404,13 +404,13 @@
                     <a href="/business-visas" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
                 </div>
 
-                <!-- Employee Sponsored -->
+                <!-- Employer Sponsored -->
                 <div class="service-card bg-white p-6 rounded-lg text-center">
                     <div class="service-icon mx-auto mb-4">
                         <i class="fas fa-user-tie text-4xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold sg-dark-gray mb-2">Employee Sponsored</h3>
-                    <a href="/employee-sponsored" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
+                    <h3 class="text-lg font-semibold sg-dark-gray mb-2">Employer Sponsored</h3>
+                    <a href="/employer-sponsored" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
                 </div>
 
                 <!-- Appeals & Reviews -->
@@ -740,7 +740,7 @@
                         <li><a href="/family-visa" class="hover:text-sg-light-blue transition-colors">Partner Visas</a></li>
                         <li><a href="/visitor-visa" class="hover:text-sg-light-blue transition-colors">Visitor Visas</a></li>
                         <li><a href="/business-visas" class="hover:text-sg-light-blue transition-colors">Business Visas</a></li>
-                        <li><a href="/employee-sponsored" class="hover:text-sg-light-blue transition-colors">Employee Sponsored</a></li>
+                        <li><a href="/employer-sponsored" class="hover:text-sg-light-blue transition-colors">Employer Sponsored</a></li>
                         <li><a href="/citizenship" class="hover:text-sg-light-blue transition-colors">Citizenship</a></li>
                         <li><a href="/appeals" class="hover:text-sg-light-blue transition-colors">Appeals & Reviews</a></li>
                     </ul>

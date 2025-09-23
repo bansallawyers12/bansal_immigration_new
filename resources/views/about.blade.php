@@ -104,7 +104,7 @@
                             <i class="fas fa-shield-alt text-2xl text-red-600"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Trust</h3>
-                        <p class="text-gray-600">Backed by MARA certification, we guarantee a No Visa, No Fee policy, providing added assurance to our clients.</p>
+                        <p class="text-gray-600">Backed by MARA certification, we operate with transparent, service-based fees and do not offer a success-fee model.</p>
                     </div>
                 </div>
             </div>
@@ -296,7 +296,7 @@
                                 </div>
                                 <div class="flex items-center">
                                     <i class="fas fa-check-circle mr-2"></i>
-                                    <span>No Win, No Fee Policy</span>
+                                    <span>Transparent, Service-Based Fees</span>
                                 </div>
                             </div>
                         </div>

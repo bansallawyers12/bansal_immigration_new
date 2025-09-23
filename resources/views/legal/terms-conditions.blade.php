@@ -51,6 +51,7 @@
                 <li>Initial consultation fees are payable in advance</li>
                 <li>Service fees are due as per the payment schedule</li>
                 <li>Government fees are separate and payable directly to authorities</li>
+                <li>Fees are not contingent on outcomes; we do not offer contingency or success-fee arrangements</li>
                 <li>Late payment may result in service suspension</li>
             </ul>
 
@@ -137,6 +138,7 @@
                 <li>Initial consultation fees are payable in advance</li>
                 <li>Service fees are due as per the payment schedule</li>
                 <li>Government fees are separate and payable directly to authorities</li>
+                <li>Fees are not contingent on outcomes; we do not offer contingency or success-fee arrangements</li>
                 <li>Late payment may result in service suspension</li>
             </ul>
 

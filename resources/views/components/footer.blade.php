@@ -14,7 +14,7 @@
                     <i class="fas fa-phone mr-2 text-sg-light-blue"></i>Call +61 3 9602 1330
                 </a>
                 
-                <p class="text-sg-navy text-sm mb-2">To see our consultation terms and conditions</p>
+				<p class="text-sg-navy text-sm mb-2">Please review our <a href="{{ route('terms-conditions') }}" class="text-sg-light-blue hover:underline">consultation Terms &amp; Conditions</a>.</p>
             </div>
             
             <!-- Services -->
@@ -36,13 +36,12 @@
             <div>
                 <h3 class="text-lg font-semibold mb-3 text-sg-navy">Company</h3>
                 <ul class="space-y-1 text-sm text-sg-navy">
-                    <li><a href="/about" class="hover:text-sg-light-blue transition-colors">About Us</a></li>
-                    <li><a href="/team" class="hover:text-sg-light-blue transition-colors">Our Team</a></li>
-                    <li><a href="/blogs" class="hover:text-sg-light-blue transition-colors">Blog</a></li>
-                    <li><a href="/success-stories" class="hover:text-sg-light-blue transition-colors">Success Stories</a></li>
-                    <li><a href="/contact" class="hover:text-sg-light-blue transition-colors">Contact</a></li>
-                    <li><a href="/mission-vision" class="hover:text-sg-light-blue transition-colors">Mission & Vision</a></li>
-                    <li><a href="/why-choose" class="hover:text-sg-light-blue transition-colors">Why Choose Us</a></li>
+					<li><a href="{{ route('about') }}" class="hover:text-sg-light-blue transition-colors">About Us</a></li>
+					<li><a href="{{ route('team') }}" class="hover:text-sg-light-blue transition-colors">Our Team</a></li>
+					<li><a href="{{ route('blogs') }}" class="hover:text-sg-light-blue transition-colors">Blog</a></li>
+					<li><a href="{{ route('success-stories') }}" class="hover:text-sg-light-blue transition-colors">Success Stories</a></li>
+					<li><a href="{{ route('contact') }}" class="hover:text-sg-light-blue transition-colors">Contact</a></li>
+					<li><a href="{{ route('why-choose') }}" class="hover:text-sg-light-blue transition-colors">Why Choose Us</a></li>
                 </ul>
             </div>
 
@@ -56,7 +55,7 @@
                     <div class="space-y-1 text-sm text-sg-navy">
                         <p class="flex items-start"><i class="fas fa-map-marker-alt mr-2 text-sg-light-blue mt-1"></i>Level 8/278 Collins St<br>Melbourne VIC 3000, Australia</p>
                         <p class="flex items-center text-sg-navy"><i class="fas fa-phone mr-2 text-sg-light-blue"></i><span class="text-sg-navy">+61 3 9602 1330</span></p>
-                        <p class="flex items-center"><i class="fas fa-envelope mr-2 text-sg-light-blue"></i><a href="mailto:melbourne@bansalimmigration.com.au" class="hover:text-sg-light-blue transition-colors">melbourne@bansalimmigration.com.au</a></p>
+						<p class="flex items-center"><i class="fas fa-envelope mr-2 text-sg-light-blue"></i><a href="mailto:info@bansalimmigration.com.au" class="hover:text-sg-light-blue transition-colors">info@bansalimmigration.com.au</a></p>
                     </div>
                 </div>
 
@@ -78,11 +77,12 @@
                 <div class="text-sm text-sg-navy mb-2 md:mb-0">
                     <p>&copy; {{ date('Y') }} Bansal Immigration. All rights reserved. | MARA Registered Migration Agents</p>
                 </div>
-                <div class="flex space-x-6 text-sm text-sg-navy">
-                    <a href="/privacy-policy" class="hover:text-sg-light-blue transition-colors">Privacy Policy</a>
-                    <a href="/terms-of-service" class="hover:text-sg-light-blue transition-colors">Terms of Service</a>
-                    <a href="/disclaimer" class="hover:text-sg-light-blue transition-colors">Disclaimer</a>
-                </div>
+				<div class="flex space-x-6 text-sm text-sg-navy">
+					<a href="{{ route('privacy-policy') }}" class="hover:text-sg-light-blue transition-colors">Privacy Policy</a>
+					<a href="{{ route('terms-conditions') }}" class="hover:text-sg-light-blue transition-colors">Terms &amp; Conditions</a>
+					<a href="{{ route('disclaimer') }}" class="hover:text-sg-light-blue transition-colors">Disclaimer</a>
+					<a href="{{ route('cookie-policy') }}" class="hover:text-sg-light-blue transition-colors">Cookie Policy</a>
+				</div>
             </div>
         </div>
     </div>

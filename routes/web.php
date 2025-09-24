@@ -25,6 +25,25 @@ Route::get('/test-tailwind-comparison', function () {
 Route::get('/test-vite', function () {
     return view('test-vite');
 })->name('test-vite');
+// Internal service design test page
+Route::get('/design/service-test', function () {
+    return view('pages.service-test');
+})->name('design.service-test');
+// Unique 485 visa detail design test page (with real DB content)
+Route::get('/design/visa-485-test', function () {
+    $page = \App\Models\Page::where('category', 'migration')
+        ->where('slug', 'post-study-work-visa-subclass-485')
+        ->active()
+        ->first();
+    return view('pages.visa-485-test', compact('page'));
+})->name('design.visa-485-test');
+// CMS advanced layout test (no backend changes, uses existing fields)
+Route::get('/design/cms-advanced-test', function () {
+    $page = \App\Models\Page::where('status', true)
+        ->orderBy('id', 'desc')
+        ->first();
+    return view('pages.cms-advanced-test', compact('page'));
+})->name('design.cms-advanced-test');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');

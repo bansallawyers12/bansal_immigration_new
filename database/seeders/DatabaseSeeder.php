@@ -19,11 +19,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@bansalimmigration.com',
         ]);
 
-        // Run immigration data seeder
+        // Run immigration data seeder and postcode data
         $this->call([
             ImmigrationSeeder::class,
             AppointmentSeeder::class,
             BusinessVisaPagesSeeder::class,
+            SuburbSeeder::class,
+            PostcodeRangeSeeder::class,
         ]);
     }
 }

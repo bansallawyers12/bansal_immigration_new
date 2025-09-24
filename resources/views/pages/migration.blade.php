@@ -10,6 +10,9 @@
     @if($page->image)
     <meta property="og:image" content="{{ asset('storage/' . $page->image) }}">
     @endif
+    @if(($page->slug ?? '') === 'skilled-recognised-graduate-visa-476')
+    <meta name="robots" content="noindex,follow">
+    @endif
 
 
 @section('content')
@@ -23,6 +26,11 @@
 </div>
 
 <div class="container mx-auto px-4 py-8">
+    @if($page->slug === 'skilled-recognised-graduate-visa-476')
+    <div class="mb-6 bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+        <strong>Note:</strong> This visa subclass is currently closed to new applications. Information is provided for reference only.
+    </div>
+    @endif
     <!-- Breadcrumb -->
     <nav class="mb-6">
         <ol class="flex items-center space-x-2 text-sm text-gray-600">

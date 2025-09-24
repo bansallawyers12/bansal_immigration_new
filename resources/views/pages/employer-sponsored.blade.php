@@ -9,6 +9,12 @@
     @if($page->image)
     <meta property="og:image" content="{{ asset('storage/' . $page->image) }}">
     @endif
+    @php $noindexClosed = in_array(($page->slug ?? ''), [
+        'distinguished-talent-124',
+    ]); @endphp
+    @if($noindexClosed)
+    <meta name="robots" content="noindex,follow">
+    @endif
 
 
 @section('content')
@@ -20,6 +26,19 @@
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">{{ $page->excerpt }}</p>
         @endif
     </div>
+
+    @php
+    $closedSlugs = [
+        'distinguished-talent-124', // 124
+        'business-talent-permanent-visa-subclass-132', // 132
+        'business-innovation-and-investment-provisional-visa-subclass-188', // 188
+    ];
+    @endphp
+    @if(in_array($page->slug, $closedSlugs))
+    <div class="mb-8 bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+        <strong>Note:</strong> This visa subclass is currently closed to new applications. Information is provided for reference only.
+    </div>
+    @endif
 
     <!-- Page Image -->
     @if($page->image)

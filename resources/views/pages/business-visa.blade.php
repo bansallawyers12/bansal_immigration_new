@@ -9,6 +9,13 @@
     @if($page->image)
     <meta property="og:image" content="{{ asset('storage/' . $page->image) }}">
     @endif
+    @php $noindexClosed = in_array(($page->slug ?? ''), [
+        'business-talent-permanent-visa-subclass-132',
+        'business-innovation-and-investment-provisional-visa-subclass-188',
+    ]); @endphp
+    @if($noindexClosed)
+    <meta name="robots" content="noindex,follow">
+    @endif
 @endpush
 
 @section('content')
@@ -20,6 +27,18 @@
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">{{ $page->excerpt }}</p>
         @endif
     </div>
+
+    @php
+    $closedSlugs = [
+        'business-talent-permanent-visa-subclass-132', // 132
+        'business-innovation-and-investment-provisional-visa-subclass-188', // 188
+    ];
+    @endphp
+    @if(in_array($page->slug, $closedSlugs))
+    <div class="mb-8 bg-yellow-50 border border-yellow-200 text-yellow-900 rounded-lg p-4">
+        <strong>Note:</strong> This visa subclass is currently closed to new applications. Information is provided for reference only.
+    </div>
+    @endif
 
     <!-- Page Image -->
     @if($page->image)
@@ -57,9 +76,9 @@
                         if (strpos($haystack, '888') !== false || strpos($haystack, 'subclass 888') !== false || (strpos($haystack, 'permanent') !== false && strpos($haystack, 'investment') !== false)) {
                             $routeName = 'business-visa.business-permanent-888';
                         } elseif (strpos($haystack, '188') !== false || strpos($haystack, 'subclass 188') !== false || strpos($haystack, 'provisional') !== false) {
-                            $routeName = 'business-visa.business-provisional-188';
+                            $routeName = null; // hide closed 188 in related link routing
                         } elseif (strpos($haystack, '132') !== false || strpos($haystack, 'subclass 132') !== false || strpos($haystack, 'talent') !== false) {
-                            $routeName = 'business-visa.business-talent-132';
+                            $routeName = null; // hide closed 132 in related link routing
                         }
 
                         $href = $routeName ? route($routeName) : route('business-visa.index');

@@ -191,9 +191,7 @@
                                         <a href="{{ route('migration.post-study-work') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Post Study Work (485)</span>
                                         </a>
-                                        <a href="{{ route('migration.skilled-graduate') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
-                                            <span class="group-hover/item:font-medium">Skilled Graduate (476)</span>
-                                        </a>
+                                        {{-- Removed closed subclass 476 from menu --}}
                                         <a href="{{ route('migration.skilled-independent') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Skilled Independent (189)</span>
                                         </a>
@@ -456,12 +454,7 @@
                                     <a href="{{ route('business-visa.business-permanent-888') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
                                         <span class="group-hover/item:font-medium">Business Innovation (888)</span>
                                     </a>
-                                    <a href="{{ route('business-visa.business-provisional-188') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Business Innovation (188)</span>
-                                    </a>
-                                    <a href="{{ route('business-visa.business-talent-132') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
-                                        <span class="group-hover/item:font-medium">Business Talent (132)</span>
-                                    </a>
+                                    {{-- Removed closed subclasses 188 and 132 from menu --}}
                                 </div>
                             </div>
                         </div>
@@ -513,9 +506,7 @@
                                         <a href="{{ route('employer-sponsored.ens-186-direct') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">ENS 186 Direct</span>
                                         </a>
-                                        <a href="{{ route('employer-sponsored.distinguished-talent-124') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
-                                            <span class="group-hover/item:font-medium">Distinguished Talent (124)</span>
-                                        </a>
+                                        {{-- Removed closed subclass 124 from menu --}}
                                         <a href="{{ route('employer-sponsored.distinguished-talent-858') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Distinguished Talent (858)</span>
                                         </a>
@@ -725,12 +716,7 @@
                                 <a href="{{ route('business-visa.business-permanent-888') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
                                     <i class="fas fa-building w-4 h-4 mr-2 text-indigo-400"></i>Business Innovation (888)
                                 </a>
-                                <a href="{{ route('business-visa.business-provisional-188') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
-                                    <i class="fas fa-building w-4 h-4 mr-2 text-indigo-400"></i>Business Innovation (188)
-                                </a>
-                                <a href="{{ route('business-visa.business-talent-132') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
-                                    <i class="fas fa-star w-4 h-4 mr-2 text-indigo-400"></i>Business Talent (132)
-                                </a>
+                                {{-- Removed closed subclasses 188 and 132 from mobile menu --}}
                             </div>
                         </div>
                     </div>

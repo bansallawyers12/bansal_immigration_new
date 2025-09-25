@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
-@section('title', $blogdetailists->meta_title ?: $blogdetailists->title . ' | Bansal Immigration Blog')
-@section('description', $blogdetailists->meta_description ?: $blogdetailists->short_description)
+@section('title', $blogdetails->meta_title ?: $blogdetails->title . ' | Bansal Immigration Blog')
+@section('description', $blogdetails->meta_description ?: $blogdetails->short_description)
 
 @section('content')
 <!-- Breadcrumb -->
@@ -23,7 +23,7 @@
                 <li aria-current="page">
                     <div class="flex items-center">
                         <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
-                        <span class="text-gray-500 truncate">{{ $blogdetailists->title }}</span>
+                        <span class="text-gray-500 truncate">{{ $blogdetails->title }}</span>
                     </div>
                 </li>
             </ol>
@@ -36,28 +36,28 @@
     <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ $blogdetailists->title }}</h1>
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ $blogdetails->title }}</h1>
                 <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-gray-600">
-                    @if($blogdetailists->author)
+                    @if($blogdetails->author)
                     <div class="flex items-center">
                         <i class="fas fa-user mr-2"></i>
-                        <span>By {{ $blogdetailists->author }}</span>
+                        <span>By {{ $blogdetails->author }}</span>
                     </div>
                     @endif
                     <div class="flex items-center">
                         <i class="fas fa-calendar mr-2"></i>
-                        <span>{{ $blogdetailists->published_at ? $blogdetailists->published_at->format('M d, Y') : $blogdetailists->created_at->format('M d, Y') }}</span>
+                        <span>{{ $blogdetails->published_at ? $blogdetails->published_at->format('M d, Y') : $blogdetails->created_at->format('M d, Y') }}</span>
                     </div>
                     <div class="flex items-center">
                         <i class="fas fa-clock mr-2"></i>
-                        <span>{{ ceil(str_word_count(strip_tags($blogdetailists->description)) / 200) }} min read</span>
+                        <span>{{ $blogdetails->reading_time }} min read</span>
                     </div>
                 </div>
             </div>
             
-            @if($blogdetailists->image)
+            @if($blogdetails->image)
             <div class="mb-8">
-                <img src="{{ asset('img/blog/' . $blogdetailists->image) }}" alt="{{ $blogdetailists->image_alt }}" class="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg">
+                <img src="{{ asset('img/blog/' . $blogdetails->image) }}" alt="{{ $blogdetails->image_alt }}" class="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg">
             </div>
             @endif
         </div>
@@ -72,7 +72,7 @@
                 <!-- Main Content -->
                 <div class="lg:col-span-2">
                     <div class="prose prose-lg max-w-none">
-                        {!! nl2br(e($blogdetailists->description)) !!}
+                        {!! $blogdetails->description !!}
                     </div>
                     
                     <!-- Share Buttons -->
@@ -83,7 +83,7 @@
                                target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
                                 <i class="fab fa-facebook-f mr-2"></i>Facebook
                             </a>
-                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($blogdetailists->title) }}" 
+                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($blogdetails->title) }}" 
                                target="_blank" class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg">
                                 <i class="fab fa-twitter mr-2"></i>Twitter
                             </a>
@@ -105,21 +105,21 @@
                     <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Article Details</h3>
                         <div class="space-y-4">
-                            @if($blogdetailists->author)
+                            @if($blogdetails->author)
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Author</label>
-                                <p class="text-sm text-gray-600">{{ $blogdetailists->author }}</p>
+                                <p class="text-sm text-gray-600">{{ $blogdetails->author }}</p>
                             </div>
                             @endif
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Published</label>
-                                <p class="text-sm text-gray-600">{{ $blogdetailists->published_at ? $blogdetailists->published_at->format('F d, Y') : $blogdetailists->created_at->format('F d, Y') }}</p>
+                                <p class="text-sm text-gray-600">{{ $blogdetails->published_at ? $blogdetails->published_at->format('F d, Y') : $blogdetails->created_at->format('F d, Y') }}</p>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Reading Time</label>
-                                <p class="text-sm text-gray-600">{{ ceil(str_word_count(strip_tags($blogdetailists->description)) / 200) }} minutes</p>
+                                <p class="text-sm text-gray-600">{{ $blogdetails->reading_time }} minutes</p>
                             </div>
-                            @if($blogdetailists->featured)
+                            @if($blogdetails->featured)
                             <div>
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                                     <i class="fas fa-star mr-1"></i>Featured Article
@@ -156,7 +156,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @php
                     $relatedBlogs = \App\Models\Blog::where('status', true)
-                        ->where('id', '!=', $blogdetailists->id)
+                        ->where('id', '!=', $blogdetails->id)
                         ->latest()
                         ->take(3)
                         ->get();

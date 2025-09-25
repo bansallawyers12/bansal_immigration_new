@@ -70,7 +70,21 @@ class Blog extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? asset('storage/' . $this->image) : null;
+        if (!$this->image) {
+            return null;
+        }
+        
+        // Check if image exists in public/img/blog/ directory first
+        if (file_exists(public_path('img/blog/' . $this->image))) {
+            return asset('img/blog/' . $this->image);
+        }
+        
+        // Fallback to storage directory
+        if (file_exists(storage_path('app/public/' . $this->image))) {
+            return asset('storage/' . $this->image);
+        }
+        
+        return null;
     }
 
     public function getPdfUrlAttribute()
@@ -92,5 +106,17 @@ class Blog extends Model
             return strtolower($extension) === 'mp4' ? 'video' : 'pdf';
         }
         return null;
+    }
+
+    public function getReadingTimeAttribute()
+    {
+        if (empty($this->description)) {
+            return 1; // Default 1 minute for empty content
+        }
+        
+        $wordCount = str_word_count(strip_tags($this->description));
+        $readingTime = max(1, ceil($wordCount / 200)); // 200 words per minute
+        
+        return $readingTime;
     }
 }

@@ -55,7 +55,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($bloglists as $blog)
                 <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    @if($blog->image)
+                    @if($blog->image && file_exists(public_path('img/blog/' . $blog->image)))
                     <div class="relative">
                         <img src="{{ asset('img/blog/' . $blog->image) }}" alt="{{ $blog->image_alt ?: $blog->title }}" class="w-full h-48 object-cover" loading="lazy">
                         @if($blog->featured)
@@ -67,8 +67,15 @@
                         @endif
                     </div>
                     @else
-                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center relative">
                         <i class="fas fa-blog text-white text-4xl"></i>
+                        @if($blog->featured)
+                        <div class="absolute top-4 right-4">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        @endif
                     </div>
                     @endif
                     

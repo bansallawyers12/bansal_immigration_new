@@ -167,40 +167,58 @@ class HomeController extends Controller
     // Stub other methods (about, services, etc.) – return view('about'); for now
     public function about() { return view('about'); }
     public function blogs(Request $request) { 
-        // Cache total count separately to avoid expensive COUNT(*) on every request
-        $blogTotal = Cache::remember('blog_total_count', 300, function () {
-            return Blog::active()->count();
-        });
-
-        // Build query with search and filters
-        $query = Blog::active()
-            ->select('id', 'title', 'slug', 'short_description', 'image', 'image_alt', 'author', 'featured', 'published_at', 'created_at');
-
-        // Search functionality
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('short_description', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%")
-                  ->orWhere('author', 'like', "%{$search}%");
+        try {
+            // Cache total count separately to avoid expensive COUNT(*) on every request
+            $blogTotal = Cache::remember('blog_total_count', 300, function () {
+                return Blog::active()->count();
             });
+
+            // Build query with search and filters
+            $query = Blog::active()
+                ->select('id', 'title', 'slug', 'short_description', 'image', 'image_alt', 'author', 'featured', 'published_at', 'created_at');
+
+            // Search functionality
+            if ($request->filled('search')) {
+                $search = trim($request->search);
+                $query->where(function($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                      ->orWhere('short_description', 'like', "%{$search}%")
+                      ->orWhere('description', 'like', "%{$search}%")
+                      ->orWhere('author', 'like', "%{$search}%");
+                });
+            }
+
+            // Filter by featured
+            if ($request->filled('featured')) {
+                $query->where('featured', $request->featured);
+            }
+
+            // Order by published date or created date
+            $bloglists = $query->orderByDesc(DB::raw('COALESCE(published_at, created_at)'))
+                ->simplePaginate(12);
+
+            return view('blogs', compact('bloglists', 'blogTotal')); 
+        } catch (\Exception $e) {
+            // Log the error
+            \Log::error('Blog listing error: ' . $e->getMessage());
+            
+            // Return empty results on error
+            $bloglists = collect()->paginate(12);
+            $blogTotal = 0;
+            return view('blogs', compact('bloglists', 'blogTotal')); 
         }
-
-        // Filter by featured
-        if ($request->filled('featured')) {
-            $query->where('featured', $request->featured);
-        }
-
-        // Order by published date or created date
-        $bloglists = $query->orderByDesc(DB::raw('COALESCE(published_at, created_at)'))
-            ->simplePaginate(12);
-
-        return view('blogs', compact('bloglists', 'blogTotal')); 
     }
     public function blogDetail($slug) { 
-        $blogdetailists = Blog::active()->where('slug', $slug)->firstOrFail();
-        return view('blogdetail', compact('blogdetailists')); 
+        try {
+            $blogdetails = Blog::active()->where('slug', $slug)->firstOrFail();
+            
+            // Increment view count if needed (optional)
+            // $blogdetails->increment('views');
+            
+            return view('blogdetail', compact('blogdetails')); 
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            abort(404, 'Blog post not found');
+        }
     }
     public function appointment() { return view('bookappointment'); }
     public function storeAppointment(Request $request) { /* Handle form */ return response()->json(['success' => true, 'message' => 'Appointment booked!']); }

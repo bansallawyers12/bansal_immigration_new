@@ -44,6 +44,14 @@ Route::get('/design/cms-advanced-test', function () {
         ->first();
     return view('pages.cms-advanced-test', compact('page'));
 })->name('design.cms-advanced-test');
+// National Innovation Visa test page
+Route::get('/design/innovation-visa-test', function () {
+    $page = \App\Models\Page::where('category', 'migration')
+        ->where('slug', 'national-innovation-visa')
+        ->active()
+        ->first();
+    return view('pages.innovation-visa-test', compact('page'));
+})->name('design.innovation-visa-test');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');

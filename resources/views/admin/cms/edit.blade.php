@@ -142,6 +142,7 @@
                                 <option value="full-width" {{ old('template', $page->template) === 'full-width' ? 'selected' : '' }}>Full Width</option>
                                 <option value="sidebar" {{ old('template', $page->template) === 'sidebar' ? 'selected' : '' }}>With Sidebar</option>
                                 <option value="landing" {{ old('template', $page->template) === 'landing' ? 'selected' : '' }}>Landing Page</option>
+                                <option value="visa-structured" {{ old('template', $page->template) === 'visa-structured' ? 'selected' : '' }}>Visa (Structured)</option>
                             </select>
                             @error('template')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -163,9 +164,77 @@
                         @error('content')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>
+                </div>
                 </div>
 
+                <!-- Visa Structured Fields -->
+                <div class="border-b border-gray-200 pb-6" id="visa-structured-section" style="display: none;">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-lg font-medium text-gray-900">Visa Structured Content</h3>
+                        <p class="text-xs text-gray-500">Shown only when Template = Visa (Structured)</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Highlights JSON</label>
+                            <textarea name="visa_highlights" rows="3" placeholder='[{"label":"Duration","value":"4 years"}]'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_highlights') border-red-500 @enderror">{{ old('visa_highlights', $page->visa_highlights ? json_encode($page->visa_highlights) : '') }}</textarea>
+                            @error('visa_highlights')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-gray-500">[{label, value}] up to 6 items. Keep values ≤14 chars.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Eligibility (JSON array)</label>
+                            <textarea name="visa_eligibility" rows="3" placeholder='["Item 1","Item 2"]'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_eligibility') border-red-500 @enderror">{{ old('visa_eligibility', $page->visa_eligibility ? json_encode($page->visa_eligibility) : '') }}</textarea>
+                            @error('visa_eligibility')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Benefits (JSON array)</label>
+                            <textarea name="visa_benefits" rows="3" placeholder='["Item 1","Item 2"]'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_benefits') border-red-500 @enderror">{{ old('visa_benefits', $page->visa_benefits ? json_encode($page->visa_benefits) : '') }}</textarea>
+                            @error('visa_benefits')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Steps (JSON array)</label>
+                            <textarea name="visa_steps" rows="3" placeholder='["Step 1","Step 2"]'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_steps') border-red-500 @enderror">{{ old('visa_steps', $page->visa_steps ? json_encode($page->visa_steps) : '') }}</textarea>
+                            @error('visa_steps')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">FAQs JSON</label>
+                            <textarea name="visa_faqs" rows="4" placeholder='[{"question":"Q?","answer":"A."}]'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_faqs') border-red-500 @enderror">{{ old('visa_faqs', $page->visa_faqs ? json_encode($page->visa_faqs) : '') }}</textarea>
+                            @error('visa_faqs')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-gray-500">Store Markdown in answers for best safety/formatting.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Processing Times (JSON object)</label>
+                            <textarea name="visa_processing_times" rows="3" placeholder='{"standard":"6–12 months","priority":"3–6 months","complex":"Up to 18 months"}'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_processing_times') border-red-500 @enderror">{{ old('visa_processing_times', $page->visa_processing_times ? json_encode($page->visa_processing_times) : '') }}</textarea>
+                            @error('visa_processing_times')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Costs (JSON array)</label>
+                            <textarea name="visa_costs" rows="3" placeholder='[{"label":"Primary Applicant","amount":"AUD $4,640"}]'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_costs') border-red-500 @enderror">{{ old('visa_costs', $page->visa_costs ? json_encode($page->visa_costs) : '') }}</textarea>
+                            @error('visa_costs')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-gray-500">[{label, amount, notes?}]</p>
+                        </div>
+                    </div>
+                </div>
             <!-- Media -->
             <div class="border-b border-gray-200 pb-6">
                 <h3 class="text-lg font-medium text-gray-900 mb-4">Page Media</h3>
@@ -499,6 +568,29 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Error initializing CKEditor:', error);
         });
+});
+
+// Toggle visa structured section based on template selection
+document.addEventListener('DOMContentLoaded', function() {
+    const templateSelect = document.getElementById('template');
+    const visaSection = document.getElementById('visa-structured-section');
+    const defaultVisaHighlights = [
+        { label: 'Duration', value: '4 years' },
+        { label: 'Cost', value: 'AUD $4,640' },
+        { label: 'Processing', value: 'Standard' },
+        { label: 'Pathway', value: 'PR' }
+    ];
+    function toggleVisaSection() {
+        visaSection.style.display = templateSelect.value === 'visa-structured' ? '' : 'none';
+        if (templateSelect.value === 'visa-structured') {
+            const hl = document.querySelector('textarea[name="visa_highlights"]');
+            if (hl && !hl.value.trim()) {
+                hl.value = JSON.stringify(defaultVisaHighlights, null, 2);
+            }
+        }
+    }
+    templateSelect.addEventListener('change', toggleVisaSection);
+    toggleVisaSection();
 });
 </script>
 @endpush

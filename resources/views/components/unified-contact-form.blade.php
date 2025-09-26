@@ -4,9 +4,19 @@
     $showPhone = $show_phone ?? true;
     $showSubject = $show_subject ?? true;
     $recaptchaSiteKey = $recaptcha_site_key ?? config('services.recaptcha.site_key');
+    $formTitle = $form_title ?? 'Request Call Back';
+    $formSubtitle = $form_subtitle ?? null;
 @endphp
 
 <div class="unified-contact-form-container">
+    @if($formTitle)
+    <div class="mb-4">
+        <h3 class="text-xl font-semibold text-gray-900">{{ $formTitle }}</h3>
+        @if($formSubtitle)
+            <p class="text-sm text-gray-600 mt-1">{{ $formSubtitle }}</p>
+        @endif
+    </div>
+    @endif
     <!-- Success/Error Messages -->
     <div id="contact-messages" class="mb-4 hidden">
         <div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded hidden">

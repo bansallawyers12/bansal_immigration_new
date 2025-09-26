@@ -28,14 +28,28 @@ class Page extends Model
         'status',
         'featured',
         'order',
-        'parent_id'
+        'parent_id',
+        'visa_highlights',
+        'visa_eligibility',
+        'visa_benefits',
+        'visa_steps',
+        'visa_faqs',
+        'visa_processing_times',
+        'visa_costs'
     ];
 
     protected $casts = [
         'status' => 'boolean',
         'featured' => 'boolean',
         'order' => 'integer',
-        'parent_id' => 'integer'
+        'parent_id' => 'integer',
+        'visa_highlights' => 'array',
+        'visa_eligibility' => 'array',
+        'visa_benefits' => 'array',
+        'visa_steps' => 'array',
+        'visa_faqs' => 'array',
+        'visa_processing_times' => 'array',
+        'visa_costs' => 'array'
     ];
 
     public function scopeActive($query)

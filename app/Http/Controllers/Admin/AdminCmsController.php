@@ -77,7 +77,15 @@ class AdminCmsController extends Controller
             'meta_keywords' => 'nullable|string|max:500',
             'status' => 'required|boolean',
             'featured' => 'boolean',
-            'order' => 'nullable|integer|min:0'
+            'order' => 'nullable|integer|min:0',
+            // Visa structured inputs (accept JSON or plain text; we'll normalize)
+            'visa_highlights' => 'nullable',
+            'visa_eligibility' => 'nullable',
+            'visa_benefits' => 'nullable',
+            'visa_steps' => 'nullable',
+            'visa_faqs' => 'nullable',
+            'visa_processing_times' => 'nullable',
+            'visa_costs' => 'nullable',
         ], [
             'title.required' => 'The page title is required.',
             'title.max' => 'The page title cannot exceed 255 characters.',
@@ -118,6 +126,9 @@ class AdminCmsController extends Controller
             $imagePath = $request->file('image')->store('pages', 'public');
             $data['image'] = $imagePath;
         }
+
+        // Normalize visa structured fields (accept JSON or formatted text)
+        $this->normalizeVisaInputs($data, $request);
 
         // Set default values
         $data['status'] = $request->has('status') ? 1 : 0;
@@ -175,7 +186,15 @@ class AdminCmsController extends Controller
             'meta_keywords' => 'nullable|string|max:500',
             'status' => 'required|boolean',
             'featured' => 'boolean',
-            'order' => 'nullable|integer|min:0'
+            'order' => 'nullable|integer|min:0',
+            // Visa structured inputs (accept JSON or plain text; we'll normalize)
+            'visa_highlights' => 'nullable',
+            'visa_eligibility' => 'nullable',
+            'visa_benefits' => 'nullable',
+            'visa_steps' => 'nullable',
+            'visa_faqs' => 'nullable',
+            'visa_processing_times' => 'nullable',
+            'visa_costs' => 'nullable',
         ], [
             'title.required' => 'The page title is required.',
             'title.max' => 'The page title cannot exceed 255 characters.',
@@ -223,6 +242,9 @@ class AdminCmsController extends Controller
             $imagePath = $request->file('image')->store('pages', 'public');
             $data['image'] = $imagePath;
         }
+
+        // Normalize visa structured fields (accept JSON or formatted text)
+        $this->normalizeVisaInputs($data, $request, $page);
 
         // Set boolean values
         $data['status'] = $request->has('status') ? 1 : 0;
@@ -286,4 +308,147 @@ class AdminCmsController extends Controller
         return response()->json(['success' => true, 'message' => 'Pages reordered successfully.']);
     }
 
+    /**
+     * Normalize visa inputs from the request into arrays/objects.
+     * Accepts valid JSON or plain text lists. Mutates $data.
+     */
+    private function normalizeVisaInputs(array &$data, Request $request, ?Page $existingPage = null): void
+    {
+        $jsonFields = ['visa_highlights','visa_eligibility','visa_benefits','visa_steps','visa_faqs','visa_processing_times','visa_costs'];
+        foreach ($jsonFields as $key) {
+            if (!$request->has($key)) {
+                continue;
+            }
+            $raw = (string) $request->input($key);
+            if ($raw === '') {
+                $data[$key] = null;
+                continue;
+            }
+            $decoded = json_decode($raw, true);
+            if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded))) {
+                $data[$key] = $decoded;
+                continue;
+            }
+
+            // Fallback parsing from plain text
+            if (in_array($key, ['visa_eligibility','visa_benefits','visa_steps'], true)) {
+                $data[$key] = $this->linesToArray($raw);
+                continue;
+            }
+
+            if ($key === 'visa_processing_times') {
+                $data[$key] = $this->parseProcessingTimes($raw);
+                continue;
+            }
+
+            if ($key === 'visa_costs') {
+                $data[$key] = $this->parseCosts($raw);
+                continue;
+            }
+
+            if ($key === 'visa_highlights') {
+                // Try to parse "Label: Value" per line into {label,value}
+                $pairs = [];
+                foreach ($this->linesToArray($raw) as $line) {
+                    if (preg_match('/^(.+?)\s*[:\-–]\s*(.+)$/u', $line, $m)) {
+                        $pairs[] = ['label' => trim($m[1]), 'value' => trim($m[2])];
+                    }
+                }
+                $data[$key] = $pairs ?: null;
+                continue;
+            }
+
+            if ($key === 'visa_faqs') {
+                // Try to split plain text into multiple Q&A pairs
+                $parsedFaqs = $this->parseFaqsPlainText($raw);
+                $data[$key] = $parsedFaqs ?: [['question' => 'FAQ', 'answer' => trim($raw)]];
+            }
+        }
+    }
+
+    private function linesToArray(string $text): array
+    {
+        $lines = preg_split('/\r?\n/', $text);
+        $items = [];
+        foreach ($lines as $line) {
+            $clean = trim($line);
+            if ($clean === '') { continue; }
+            $clean = preg_replace('/^[-*•\s]+/u', '', $clean); // strip bullets
+            $clean = trim($clean);
+            if ($clean !== '') { $items[] = $clean; }
+        }
+        return $items;
+    }
+
+    private function parseProcessingTimes(string $text): array
+    {
+        $result = [];
+        foreach ($this->linesToArray($text) as $line) {
+            $l = mb_strtolower($line);
+            if (str_contains($l, 'standard')) { $result['standard'] = $line; }
+            elseif (str_contains($l, 'priority')) { $result['priority'] = $line; }
+            elseif (str_contains($l, 'complex')) { $result['complex'] = $line; }
+        }
+        if (empty($result)) { $result['standard'] = $text; }
+        return $result;
+    }
+
+    private function parseCosts(string $text): array
+    {
+        $rows = [];
+        foreach ($this->linesToArray($text) as $line) {
+            if (preg_match('/^(.+?)\s*[:\-–]\s*(.+)$/u', $line, $m)) {
+                $rows[] = ['label' => trim($m[1], " *-•"), 'amount' => trim($m[2])];
+            } else {
+                $rows[] = ['label' => trim($line, " *-•")];
+            }
+        }
+        return $rows;
+    }
+
+    /**
+     * Parse plain text FAQs into [{question, answer}]
+     * Detect lines ending with '?' as questions; capture subsequent lines until next question.
+     */
+    private function parseFaqsPlainText(string $text): array
+    {
+        $lines = preg_split('/\r?\n/', trim($text));
+        $faqs = [];
+        $currentQuestion = null;
+        $currentAnswerLines = [];
+
+        foreach ($lines as $rawLine) {
+            $line = trim($rawLine);
+            if ($line === '') { continue; }
+            // Normalize bullets
+            $line = preg_replace('/^[-*•\s]+/u', '', $line);
+            if (str_ends_with($line, '?')) {
+                // Save previous
+                if ($currentQuestion !== null) {
+                    $faqs[] = [
+                        'question' => $currentQuestion,
+                        'answer' => trim(implode("\n", $currentAnswerLines))
+                    ];
+                }
+                $currentQuestion = $line;
+                $currentAnswerLines = [];
+            } else {
+                $currentAnswerLines[] = $line;
+            }
+        }
+
+        if ($currentQuestion !== null) {
+            $faqs[] = [
+                'question' => $currentQuestion,
+                'answer' => trim(implode("\n", $currentAnswerLines))
+            ];
+        }
+
+        // Filter empty
+        $faqs = array_values(array_filter($faqs, function ($faq) {
+            return !empty($faq['question']) && !empty($faq['answer']);
+        }));
+
+        return $faqs;
+    }
 }

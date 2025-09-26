@@ -86,17 +86,17 @@
             <div class="bg-white rounded-xl shadow-soft p-6">
                 <h2 class="text-xl font-bold text-gray-900 mb-4">What's on this page</h2>
                 <div class="grid sm:grid-cols-2 gap-3 text-sm">
-                    <a href="#overview" class="text-sg-light-blue hover:text-sg-navy">Overview</a>
-                    <a href="#eligibility" class="text-sg-light-blue hover:text-sg-navy">Eligibility</a>
-                    <a href="#innovation-criteria" class="text-sg-light-blue hover:text-sg-navy">Innovation Criteria</a>
-                    <a href="#benefits" class="text-sg-light-blue hover:text-sg-navy">Benefits</a>
-                    <a href="#how-apply" class="text-sg-light-blue hover:text-sg-navy">How to apply</a>
-                    <a href="#faq" class="text-sg-light-blue hover:text-sg-navy">FAQs</a>
+                    <a href="#overview" class="text-sg-light-blue hover:text-sg-navy">Welcome to Your Future Down Under</a>
+                    <a href="#eligibility" class="text-sg-light-blue hover:text-sg-navy">Do You Have What It Takes?</a>
+                    <a href="#innovation-criteria" class="text-sg-light-blue hover:text-sg-navy">The Innovation Gold Standard</a>
+                    <a href="#benefits" class="text-sg-light-blue hover:text-sg-navy">Why Choose This Path?</a>
+                    <a href="#how-apply" class="text-sg-light-blue hover:text-sg-navy">Your Roadmap to Success</a>
+                    <a href="#faq" class="text-sg-light-blue hover:text-sg-navy">Got Questions? We've Got Answers</a>
                 </div>
             </div>
 
             <div id="overview" class="bg-white rounded-xl shadow-soft p-6">
-                <h2 class="text-2xl font-bold text-gray-900 mb-3">Overview</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Welcome to Your Future Down Under</h2>
                 @if(!empty($page) && !empty($page->content))
                     <div class="prose max-w-none">
                         {!! $page->content !!}
@@ -107,7 +107,7 @@
             </div>
 
             <div id="eligibility" class="bg-white rounded-xl shadow-soft p-6">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Eligibility</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Do You Have What It Takes?</h2>
                 <div class="grid md:grid-cols-2 gap-6">
                     <ul class="space-y-2 text-sm text-gray-700">
                         <li class="flex items-start gap-2"><span class="check-badge px-2 py-0.5 rounded">✔</span><span>Exceptional innovation track record</span></li>
@@ -123,17 +123,17 @@
             </div>
 
             <div id="innovation-criteria" class="bg-white rounded-xl shadow-soft p-6">
-                <h2 class="text-2xl font-bold text-gray-900 mb-3">Innovation Criteria</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">The Innovation Gold Standard</h2>
                 <p class="text-gray-700">Demonstrate exceptional ability in technology, research, or entrepreneurship with proven track record of innovation and impact.</p>
             </div>
 
             <div id="benefits" class="bg-white rounded-xl shadow-soft p-6">
-                <h2 class="text-2xl font-bold text-gray-900 mb-3">Benefits</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Why Choose This Path?</h2>
                 <p class="text-gray-700">Permanent residency, work and study rights, access to Australia's innovation ecosystem, and pathway to citizenship.</p>
             </div>
 
             <div id="how-apply" class="bg-white rounded-xl shadow-soft p-6">
-                <h2 class="text-2xl font-bold text-gray-900 mb-3">How to apply</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Your Roadmap to Success</h2>
                 <ol class="list-decimal pl-5 space-y-2 text-gray-700">
                     <li>Prepare innovation portfolio and documentation</li>
                     <li>Submit Expression of Interest (EOI)</li>
@@ -145,7 +145,7 @@
             </div>
 
             <div id="faq" class="bg-white rounded-xl shadow-soft p-6">
-                <h2 class="text-2xl font-bold text-gray-900 mb-3">FAQs</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Got Questions? We've Got Answers</h2>
                 <details class="border rounded-lg p-4 mb-3">
                     <summary class="font-semibold cursor-pointer">What makes an innovation exceptional?</summary>
                     <p class="mt-2 text-gray-700">Exceptional innovation typically involves breakthrough technology, significant research contributions, or transformative business solutions with measurable impact.</p>

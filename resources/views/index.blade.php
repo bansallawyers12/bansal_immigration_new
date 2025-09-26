@@ -190,6 +190,135 @@
     </div>
 </section>
 
+<!-- Testimonials & Partners Section -->
+<section class="py-20 bg-sg-light-gray">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Rotating Quotes Above Partners -->
+        <div class="text-center mb-12">
+            <div class="quotes-container relative overflow-hidden mb-8">
+                <div class="quotes-slider flex transition-transform duration-1000 ease-in-out" id="quotesSlider">
+                    <!-- Quote 1 -->
+                    <div class="quote-slide w-full flex-shrink-0 text-center">
+                        <blockquote class="text-4xl md:text-5xl font-bold italic text-sg-navy mb-6 leading-tight">
+                            "Be the change that you wish to see in the world."
+                        </blockquote>
+                        <cite class="text-lg text-sg-dark-gray font-medium">— Mahatma Gandhi, Father of the Nation</cite>
+                    </div>
+                    
+                    <!-- Quote 2 -->
+                    <div class="quote-slide w-full flex-shrink-0 text-center">
+                        <blockquote class="text-4xl md:text-5xl font-bold italic text-sg-navy mb-6 leading-tight">
+                            "Excellence is a continuous process and not an accident."
+                        </blockquote>
+                        <cite class="text-lg text-sg-dark-gray font-medium">— Dr. A.P.J. Abdul Kalam, Former President of India</cite>
+                    </div>
+                    
+                    <!-- Quote 3 -->
+                    <div class="quote-slide w-full flex-shrink-0 text-center">
+                        <blockquote class="text-4xl md:text-5xl font-bold italic text-sg-navy mb-6 leading-tight">
+                            "Success is not final, failure is not fatal: it is the courage to continue that counts."
+                        </blockquote>
+                        <cite class="text-lg text-sg-dark-gray font-medium">— Winston Churchill, Former Prime Minister of the United Kingdom</cite>
+                    </div>
+                    
+                    <!-- Quote 4 -->
+                    <div class="quote-slide w-full flex-shrink-0 text-center">
+                        <blockquote class="text-4xl md:text-5xl font-bold italic text-sg-navy mb-6 leading-tight">
+                            "The future belongs to those who believe in the beauty of their dreams."
+                        </blockquote>
+                        <cite class="text-lg text-sg-dark-gray font-medium">— Eleanor Roosevelt, Former First Lady of the United States</cite>
+                    </div>
+                    
+                    <!-- Quote 5 -->
+                    <div class="quote-slide w-full flex-shrink-0 text-center">
+                        <blockquote class="text-4xl md:text-5xl font-bold italic text-sg-navy mb-6 leading-tight">
+                            "Nothing is impossible, the word itself says 'I'm possible'!"
+                        </blockquote>
+                        <cite class="text-lg text-sg-dark-gray font-medium">— Audrey Hepburn, Actress and Humanitarian</cite>
+                    </div>
+                </div>
+                
+                <!-- Quote Indicators -->
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button class="quote-indicator w-3 h-3 rounded-full bg-sg-light-blue transition-colors duration-300" data-slide="0"></button>
+                    <button class="quote-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-slide="1"></button>
+                    <button class="quote-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-slide="2"></button>
+                    <button class="quote-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-slide="3"></button>
+                    <button class="quote-indicator w-3 h-3 rounded-full bg-gray-300 transition-colors duration-300" data-slide="4"></button>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-sg-navy mb-8">Partnered with Leading Organizations</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <!-- Partner 1 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">UNI</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2018</span>
+                </div>
+                
+                <!-- Partner 2 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">EDU</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2019</span>
+                </div>
+                
+                <!-- Partner 3 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">TECH</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2020</span>
+                </div>
+                
+                <!-- Partner 4 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">GOV</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2017</span>
+                </div>
+                
+                <!-- Partner 5 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">HEALTH</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2021</span>
+                </div>
+                
+                <!-- Partner 6 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">FIN</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2019</span>
+                </div>
+                
+                <!-- Partner 7 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">LEGAL</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2016</span>
+                </div>
+                
+                <!-- Partner 8 -->
+                <div class="partner-logo flex flex-col items-center">
+                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
+                        <div class="text-2xl font-bold text-sg-navy">CONS</div>
+                    </div>
+                    <span class="text-sm text-sg-dark-gray">Partners since 2022</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
 <!-- Blog Section -->
 <section class="py-20 bg-sg-light-gray">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -397,7 +526,52 @@
         if (typeof HomePageEnhancements !== 'undefined') {
             new HomePageEnhancements();
         }
+        
+        // Initialize rotating quotes
+        initRotatingQuotes();
     });
+    
+    function initRotatingQuotes() {
+        const slider = document.getElementById('quotesSlider');
+        const indicators = document.querySelectorAll('.quote-indicator');
+        const totalSlides = 5;
+        let currentSlide = 0;
+        
+        function updateSlider() {
+            const translateX = -currentSlide * 100;
+            slider.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.remove('bg-gray-300');
+                    indicator.classList.add('bg-sg-light-blue');
+                } else {
+                    indicator.classList.remove('bg-sg-light-blue');
+                    indicator.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+        
+        // Auto-rotate every 4 seconds
+        setInterval(nextSlide, 4000);
+        
+        // Manual navigation via indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateSlider();
+            });
+        });
+        
+        // Initialize first slide
+        updateSlider();
+    }
 </script>
 @endpush
 @endsection

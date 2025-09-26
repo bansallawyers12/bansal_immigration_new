@@ -52,6 +52,41 @@ Route::get('/design/innovation-visa-test', function () {
         ->first();
     return view('pages.innovation-visa-test', compact('page'));
 })->name('design.innovation-visa-test');
+// Visa Structured design preview (renders new template with real data)
+Route::get('/design/visa-structured-preview', function () {
+    $page = \App\Models\Page::where('category', 'migration')
+        ->where('status', true)
+        ->orderBy('id', 'desc')
+        ->first();
+    if ($page) {
+        $page->template = 'visa-structured';
+    }
+    return view('pages.visa-structured', [
+        'page' => $page,
+        'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migration')
+            ->where('id', '!=', $page?->id ?? 0)
+            ->active()
+            ->take(6)
+            ->get()
+    ]);
+})->name('design.visa-structured-preview');
+
+// Modern variant preview for visa structured page
+Route::get('/design/visa-structured-modern', function () {
+    $page = \App\Models\Page::where('category', 'migration')
+        ->where('status', true)
+        ->orderBy('id', 'desc')
+        ->first();
+    if ($page) { $page->template = 'visa-structured-modern'; }
+    return view('pages.visa-structured-modern', [
+        'page' => $page,
+        'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migration')
+            ->where('id', '!=', $page?->id ?? 0)
+            ->active()
+            ->take(6)
+            ->get()
+    ]);
+})->name('design.visa-structured-modern');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');

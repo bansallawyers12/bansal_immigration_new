@@ -65,7 +65,7 @@
                         <li><a href="{{ route('study-australia.student-guardian') }}" class="text-blue-600 hover:text-blue-800">Student Guardian Visa (590)</a></li>
                         <li><a href="{{ route('study-australia.student-journey') }}" class="text-blue-600 hover:text-blue-800">Student Visa Journey</a></li>
                         <li><a href="{{ route('study-australia.student-info') }}" class="text-blue-600 hover:text-blue-800">Student Visa Information</a></li>
-                        <li><a href="{{ route('study-australia.training-visa') }}" class="text-blue-600 hover:text-blue-800">Training Visa (407)</a></li>
+                        <!-- Training Visa (407) moved under Employer Sponsored -->
                     </ul>
                 </div>
 

@@ -50,8 +50,8 @@
                         <li><a href="{{ route('visitor-visa.work-holiday-462') }}" class="text-green-600 hover:text-green-800">Work & Holiday Visa (462)</a></li>
                         <li><a href="{{ route('visitor-visa.work-holiday-417') }}" class="text-green-600 hover:text-green-800">Work & Holiday Visa (417)</a></li>
                         <li><a href="{{ route('visitor-visa.sponsored-family') }}" class="text-green-600 hover:text-green-800">Sponsored Family Stream</a></li>
-                        <li><a href="{{ route('visitor-visa.offshore-extension') }}" class="text-green-600 hover:text-green-800">Offshore Tourist Extension</a></li>
-                        <li><a href="{{ route('visitor-visa.travel-exemption') }}" class="text-green-600 hover:text-green-800">Travel Exemption</a></li>
+                        <li><a href="{{ route('visitor-visa.onshore-extension') }}" class="text-green-600 hover:text-green-800">Onshore Visitor Visa Extension</a></li>
+                        <!-- Travel Exemption removed -->
                     </ul>
                 </div>
 
@@ -177,12 +177,12 @@
                     <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
                         <h3 class="text-xl font-semibold text-gray-900 mb-3">⭐ Special Services</h3>
                         <ul class="space-y-2 text-sm text-gray-600">
-                            <li>• Travel Exemptions</li>
+                            
                             <li>• Visa Extensions</li>
                             <li>• Family Sponsorship</li>
                             <li>• Emergency Applications</li>
                         </ul>
-                        <a href="{{ route('visitor-visa.travel-exemption') }}" class="inline-block mt-4 text-purple-600 hover:text-purple-800 font-medium">Learn More →</a>
+                        
                     </div>
                 </div>
             </div>

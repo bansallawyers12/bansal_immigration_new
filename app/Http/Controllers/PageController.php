@@ -11,11 +11,21 @@ class PageController extends Controller
     {
         // If no slug provided, show category index page
         if (!$slug) {
+            // Try conventional index page where slug matches category
             $page = Page::where('category', $category)
                        ->whereNull('parent_id')
                        ->where('slug', $category)
                        ->active()
-                       ->firstOrFail();
+                       ->first();
+
+            // Fallback: pick the first active top-level page within the category
+            if (!$page) {
+                $page = Page::where('category', $category)
+                           ->whereNull('parent_id')
+                           ->active()
+                           ->orderBy('id')
+                           ->firstOrFail();
+            }
         } else {
             $page = Page::where('category', $category)
                        ->where('slug', $slug)
@@ -32,6 +42,11 @@ class PageController extends Controller
 
         // Determine template to use
         $template = $page->template ?: $this->getDefaultTemplate($category);
+
+        // Force the new hub design for the migrate-to-australia index page
+        if (!$slug && $category === 'migrate-to-australia') {
+            $template = 'pages.migrate-to-australia';
+        }
         
         // Ensure template has 'pages.' prefix if not already present
         if (!str_starts_with($template, 'pages.')) {

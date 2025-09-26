@@ -72,18 +72,7 @@
                     </ul>
                 </div>
 
-                <!-- Skill Assessment -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-2">Skill Assessment</h4>
-                    <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migrate-to-australia.acs-assessment') }}" class="text-blue-600 hover:text-blue-800">ACS Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.vetassess-assessment') }}" class="text-blue-600 hover:text-blue-800">VETASSESS Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.ea-assessment') }}" class="text-blue-600 hover:text-blue-800">Engineers Australia</a></li>
-                        <li><a href="{{ route('migrate-to-australia.accountant-assessment') }}" class="text-blue-600 hover:text-blue-800">Accountant Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.nursing-assessment') }}" class="text-blue-600 hover:text-blue-800">Nursing Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.job-ready-program') }}" class="text-blue-600 hover:text-blue-800">Job Ready Program</a></li>
-                    </ul>
-                </div>
+                
 
                 <!-- Tools -->
                 <div>
@@ -92,6 +81,54 @@
                         <li><a href="{{ route('migrate-to-australia.pr-calculator') }}" class="text-blue-600 hover:text-blue-800">PR Points Calculator</a></li>
                         <li><a href="{{ route('migrate-to-australia.regional-points') }}" class="text-blue-600 hover:text-blue-800">Regional Points Guide</a></li>
                         <li><a href="{{ route('migrate-to-australia.english-points') }}" class="text-blue-600 hover:text-blue-800">English Score Points</a></li>
+                    </ul>
+                </div>
+
+                <!-- Family Visa Sections -->
+                <div class="mt-6">
+                    <h4 class="font-medium text-gray-800 mb-2">Family Visas</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li class="font-semibold text-gray-700 mt-2">Partner Visas</li>
+                        <li><a href="{{ route('family-visa.partner-provisional-309') }}" class="text-blue-600 hover:text-blue-800">Partner Provisional (309)</a></li>
+                        <li><a href="{{ route('family-visa.partner-permanent-100') }}" class="text-blue-600 hover:text-blue-800">Partner Permanent (100)</a></li>
+                        <li><a href="{{ route('family-visa.partner-provisional-820') }}" class="text-blue-600 hover:text-blue-800">Partner Provisional (820)</a></li>
+                        <li><a href="{{ route('family-visa.partner-permanent-801') }}" class="text-blue-600 hover:text-blue-800">Partner Permanent (801)</a></li>
+                        <li><a href="{{ route('family-visa.prospective-marriage') }}" class="text-blue-600 hover:text-blue-800">Prospective Marriage (300)</a></li>
+
+                        <li class="font-semibold text-gray-700 mt-3">Parent Visas</li>
+                        <li><a href="{{ route('family-visa.contributory-parent-143') }}" class="text-blue-600 hover:text-blue-800">Contributory Parent (143)</a></li>
+                        <li><a href="{{ route('family-visa.parent-visa-103') }}" class="text-blue-600 hover:text-blue-800">Parent Visa (103)</a></li>
+                        <li><a href="{{ route('family-visa.contributory-aged-parent-884') }}" class="text-blue-600 hover:text-blue-800">Contributory Aged Parent (884)</a></li>
+                        <li><a href="{{ route('family-visa.contributory-aged-parent-864') }}" class="text-blue-600 hover:text-blue-800">Contributory Aged Parent (864)</a></li>
+                        <li><a href="{{ route('family-visa.contributory-parent-173') }}" class="text-blue-600 hover:text-blue-800">Contributory Parent (173)</a></li>
+                        <li><a href="{{ route('family-visa.aged-parent-804') }}" class="text-blue-600 hover:text-blue-800">Aged Parent (804)</a></li>
+                        <li><a href="{{ route('family-visa.sponsored-parent-870') }}" class="text-blue-600 hover:text-blue-800">Sponsored Parent (870)</a></li>
+
+                        <li class="font-semibold text-gray-700 mt-3">Child Visas</li>
+                        <li><a href="{{ route('family-visa.child-visa-101') }}" class="text-blue-600 hover:text-blue-800">Child Visa (101)</a></li>
+                        <li><a href="{{ route('family-visa.child-visa-802') }}" class="text-blue-600 hover:text-blue-800">Child Visa (802)</a></li>
+                        <li><a href="{{ route('family-visa.adoption-visa') }}" class="text-blue-600 hover:text-blue-800">Adoption Visa (102)</a></li>
+                        <li><a href="{{ route('family-visa.dependent-child') }}" class="text-blue-600 hover:text-blue-800">Dependent Child Visa (445)</a></li>
+
+                        <li class="font-semibold text-gray-700 mt-3">Other Family Visas</li>
+                        <li><a href="{{ route('family-visa.remaining-relative-115') }}" class="text-blue-600 hover:text-blue-800">Remaining Relative (115)</a></li>
+                        <li><a href="{{ route('family-visa.remaining-relative-835') }}" class="text-blue-600 hover:text-blue-800">Remaining Relative (835)</a></li>
+                        <li><a href="{{ route('family-visa.orphan-relative-117') }}" class="text-blue-600 hover:text-blue-800">Orphan Relative (117)</a></li>
+                        <li><a href="{{ route('family-visa.orphan-relative-837') }}" class="text-blue-600 hover:text-blue-800">Orphan Relative (837)</a></li>
+                    </ul>
+                </div>
+
+                <!-- More Sections -->
+                <div class="mt-6">
+                    <h4 class="font-medium text-gray-800 mb-2">More Visa Sections</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li><a href="{{ route('visitor-visa.index') }}" class="text-blue-600 hover:text-blue-800">Visitor & Work Visas</a></li>
+                        <li><a href="{{ route('employer-sponsored.index') }}" class="text-blue-600 hover:text-blue-800">Employer Sponsored</a></li>
+                        <li><a href="{{ route('business-visa.index') }}" class="text-blue-600 hover:text-blue-800">Business & Investment</a></li>
+                        <li><a href="{{ route('transit-special-purpose.index') }}" class="text-blue-600 hover:text-blue-800">Transit & Special Purpose</a></li>
+                        <li><a href="{{ route('medical-humanitarian.index') }}" class="text-blue-600 hover:text-blue-800">Medical & Humanitarian</a></li>
+                        <li><a href="{{ route('maritime-crew.index') }}" class="text-blue-600 hover:text-blue-800">Maritime & Crew</a></li>
+                        <li><a href="{{ route('bridging-return-visas.index') }}" class="text-blue-600 hover:text-blue-800">Bridging & Return Visas</a></li>
                     </ul>
                 </div>
             </div>
@@ -238,18 +275,7 @@
                     </ul>
                 </div>
 
-                <!-- Skill Assessment -->
-                <div class="mb-6">
-                    <h4 class="font-medium text-gray-800 mb-2">Skill Assessment</h4>
-                    <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migrate-to-australia.acs-assessment') }}" class="text-blue-600 hover:text-blue-800">ACS Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.vetassess-assessment') }}" class="text-blue-600 hover:text-blue-800">VETASSESS Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.ea-assessment') }}" class="text-blue-600 hover:text-blue-800">Engineers Australia</a></li>
-                        <li><a href="{{ route('migrate-to-australia.accountant-assessment') }}" class="text-blue-600 hover:text-blue-800">Accountant Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.nursing-assessment') }}" class="text-blue-600 hover:text-blue-800">Nursing Assessment</a></li>
-                        <li><a href="{{ route('migrate-to-australia.job-ready-program') }}" class="text-blue-600 hover:text-blue-800">Job Ready Program</a></li>
-                    </ul>
-                </div>
+                
 
                 <!-- Tools -->
                 <div>

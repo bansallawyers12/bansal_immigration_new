@@ -145,11 +145,7 @@ class AllMissingPagesSeeder extends Seeder
                 'meta_description' => 'Complete guide to extending your tourist visa while in Australia, requirements and application process.'
             ],
             [
-                'slug' => 'travel-exemption',
-                'title' => 'Travel Exemption',
-                'content' => '<h2>Travel Exemption</h2><p>During COVID-19 restrictions, certain travellers may be eligible for travel exemptions to enter Australia.</p><h3>Exemption Categories</h3><ul><li>Critical skills and sectors</li><li>Medical and health services</li><li>Humanitarian and compassionate grounds</li><li>National interest</li></ul>',
-                'excerpt' => 'Travel Exemption for entering Australia during COVID-19 restrictions.',
-                'meta_title' => 'Travel Exemption Australia - COVID-19 Travel Restrictions',
+                // Travel Exemption removed
                 'meta_description' => 'Complete guide to travel exemptions for entering Australia during COVID-19 restrictions.'
             ]
         ];

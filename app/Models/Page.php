@@ -133,8 +133,8 @@ class Page extends Model
             ],
             'visitor-visa' => [
                 'visitor-visa-600' => 'visitor-visa.600',
-                'offshore-extension' => 'visitor-visa.offshore-extension',
-                'travel-exemption' => 'visitor-visa.travel-exemption',
+                'onshore-visitor-visa-extension' => 'visitor-visa.onshore-extension',
+                // 'travel-exemption' removed
                 'work-holiday-462' => 'visitor-visa.work-holiday-462',
                 'work-holiday-417' => 'visitor-visa.work-holiday-417',
                 'sponsored-family' => 'visitor-visa.sponsored-family',

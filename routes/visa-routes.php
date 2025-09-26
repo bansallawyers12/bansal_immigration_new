@@ -49,9 +49,7 @@ Route::prefix('study-australia')->name('study-australia.')->group(function () {
     Route::get('/student-visa-information', function() {
         return app(\App\Http\Controllers\PageController::class)->show('study-australia', 'student-visa-information');
     })->name('student-info');
-    Route::get('/training-visa-407', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('study-australia', 'training-visa-407');
-    })->name('training-visa');
+    // moved 407 to employer-sponsored section below
     
     // Other Student-Related Pages
     Route::get('/student-visa-financial-calculator', [PageController::class, 'studentVisaCalculator'])->name('calculator');
@@ -75,12 +73,11 @@ Route::prefix('visitor-visa')->name('visitor-visa.')->group(function () {
     Route::get('/visitor-visa-600', function() {
         return app(\App\Http\Controllers\PageController::class)->show('visitor-visa', 'visitor-visa-600');
     })->name('600');
-    Route::get('/offshore-tourist-visa-extension', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('visitor-visa', 'offshore-extension');
-    })->name('offshore-extension');
-    Route::get('/travel-exemption', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('visitor-visa', 'travel-exemption');
-    })->name('travel-exemption');
+    // Renamed: Onshore Visitor Visa Extension
+    Route::get('/onshore-visitor-visa-extension', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('visitor-visa', 'onshore-visitor-visa-extension');
+    })->name('onshore-extension');
+    // Travel Exemption removed
     Route::get('/work-holiday-visa-462', function() {
         return app(\App\Http\Controllers\PageController::class)->show('visitor-visa', 'work-holiday-462');
     })->name('work-holiday-462');
@@ -95,6 +92,14 @@ Route::prefix('visitor-visa')->name('visitor-visa.')->group(function () {
 // Migrate to Australia Routes
 Route::prefix('migrate-to-australia')->name('migrate-to-australia.')->group(function () {
     Route::get('/', [PageController::class, 'show'])->defaults('category', 'migrate-to-australia')->name('index');
+    // Skilled Migration dedicated hub
+    Route::get('/skilled-migration', function() {
+        $page = (object) [
+            'title' => 'Skilled Migration',
+            'excerpt' => 'Permanent and provisional skilled migration pathways including 189, 190, 491 and more.'
+        ];
+        return view('pages.skilled-migration', compact('page'));
+    })->name('skilled-hub');
     
     // Graduate Visa Subpages
     Route::get('/temporary-graduate-visa-485', function() {
@@ -176,6 +181,9 @@ Route::prefix('family-visa')->name('family-visa.')->group(function () {
     Route::get('/prospective-marriage-visa-300', function() {
         return app(\App\Http\Controllers\PageController::class)->show('family-visa', 'prospective-marriage-visa-subclass-300');
     })->name('prospective-marriage');
+    Route::get('/new-zealand-citizen-family-relationship-461', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('family-visa', 'new-zealand-citizen-family-relationship-visa-subclass-461');
+    })->name('nz-461');
     
     // Parents Visa Subpages
     Route::get('/contributory-aged-parent-temporary-884', function() {
@@ -249,6 +257,18 @@ Route::prefix('family-visa')->name('family-visa.')->group(function () {
     })->name('contributory-costs');
 });
 
+// Parent Visas dedicated hub
+Route::prefix('parent-visas')->name('parent-visas.')->group(function () {
+    Route::get('/', function() {
+        // Static hub view for Parent Visas similar to other category pages
+        $page = (object) [
+            'title' => 'Parent Visas',
+            'excerpt' => 'Overview of Australian parent visa options to reunite families.',
+        ];
+        return view('pages.parent-visas', compact('page'));
+    })->name('index');
+});
+
 // Employer Sponsored Visas Routes
 // Redirect from old plural URL to new singular URL for backward compatibility
 Route::get('/employer-sponsored-visas', function () {
@@ -271,6 +291,9 @@ Route::prefix('employer-sponsored')->name('employer-sponsored.')->group(function
     Route::get('/temporary-activity-visa-408', function() {
         return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'temporary-activity-408');
     })->name('temporary-activity-408');
+    Route::get('/training-visa-407', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'training-visa-407');
+    })->name('training-visa-407');
     Route::get('/temporary-work-short-stay-specialist-400', function() {
         return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'short-stay-400');
     })->name('short-stay-400');

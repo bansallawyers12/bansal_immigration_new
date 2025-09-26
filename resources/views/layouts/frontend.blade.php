@@ -134,9 +134,7 @@
                                         <a href="{{ route('study-australia.student-info') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Student Visa Information</span>
                                         </a>
-                                        <a href="{{ route('study-australia.training-visa') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors duration-200 group/item">
-                                            <span class="group-hover/item:font-medium">Training Visa (407)</span>
-                                        </a>
+                                        <!-- Training Visa 407 moved to Employer Sponsored -->
                                     </div>
                                 </div>
                                 <div class="p-6">
@@ -262,12 +260,10 @@
                                         <a href="{{ route('visitor-visa.sponsored-family') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Sponsored Family</span>
                                         </a>
-                                        <a href="{{ route('visitor-visa.offshore-extension') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                            <span class="group-hover/item:font-medium">Offshore Tourist Extension</span>
-                                        </a>
-                                        <a href="{{ route('visitor-visa.travel-exemption') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                                            <span class="group-hover/item:font-medium">Travel Exemption</span>
-                                        </a>
+                        <a href="{{ route('visitor-visa.onshore-extension') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                            <span class="group-hover/item:font-medium">Onshore Visitor Visa Extension</span>
+                        </a>
+                                        <!-- Travel Exemption removed -->
                                     </div>
                                 </div>
 

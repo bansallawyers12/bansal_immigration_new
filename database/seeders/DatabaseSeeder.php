@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
             ImmigrationSeeder::class,
             AppointmentSeeder::class,
             BusinessVisaPagesSeeder::class,
+            EmployerSponsoredPagesSeeder::class,
+            AllMissingPagesSeeder::class,
+            AdditionalMigrationPagesSeeder::class,
             SuburbSeeder::class,
             PostcodeRangeSeeder::class,
         ]);

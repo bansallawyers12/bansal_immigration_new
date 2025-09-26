@@ -131,11 +131,10 @@
                         </label>
                         <select name="template" id="template"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('template') border-red-500 @enderror">
-                            <option value="default" {{ old('template', 'default') === 'default' ? 'selected' : '' }}>Default</option>
+                            <option value="default" {{ old('template', 'default') === 'default' ? 'selected' : '' }}>Default (Modern)</option>
                             <option value="full-width" {{ old('template') === 'full-width' ? 'selected' : '' }}>Full Width</option>
                             <option value="sidebar" {{ old('template') === 'sidebar' ? 'selected' : '' }}>With Sidebar</option>
                             <option value="landing" {{ old('template') === 'landing' ? 'selected' : '' }}>Landing Page</option>
-                            <option value="visa-structured" {{ old('template') === 'visa-structured' ? 'selected' : '' }}>Visa (Structured)</option>
                         </select>
                         @error('template')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

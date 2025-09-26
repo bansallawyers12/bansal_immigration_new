@@ -24,9 +24,9 @@ Route::get('/design/visa-structured-preview', function () {
         ->orderBy('id', 'desc')
         ->first();
     if ($page) {
-        $page->template = 'visa-structured';
+        $page->template = 'default';
     }
-    return view('pages.visa-structured', [
+    return view('pages.default', [
         'page' => $page,
         'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migrate-to-australia')
             ->where('id', '!=', $page?->id ?? 0)

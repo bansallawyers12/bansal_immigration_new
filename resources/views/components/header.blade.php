@@ -73,7 +73,7 @@
     </div>
 
     <!-- Sub-Navigation/General Pages Bar -->
-    <div class="bg-sg-light-gray border-t border-gray-200 -mt-2">
+    <div class="hidden lg:block bg-sg-light-gray border-t border-gray-200 -mt-2">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap items-center justify-center py-1 space-x-6 text-sm">
                 <!-- General Pages -->
@@ -110,10 +110,13 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-gray-200">
         <div class="px-4 py-6">
-            <!-- Service Pages Section -->
-            <div class="mb-6">
-                <h3 class="text-sm font-semibold text-sg-navy mb-3 uppercase tracking-wide">Our Services</h3>
-                <div class="space-y-2">
+            <!-- Our Services Section -->
+            <div class="mb-4">
+                <button class="mobile-menu-section w-full flex items-center justify-between py-3 text-left font-semibold text-sg-navy hover:text-sg-light-blue transition-colors duration-200" data-section="services">
+                    <span class="uppercase tracking-wide">Our Services</span>
+                    <i class="fas fa-chevron-down transform transition-transform duration-200" id="services-arrow"></i>
+                </button>
+                <div id="services-content" class="hidden pl-4 space-y-2 mt-2">
                     <a href="/study-australia" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Study in Australia</a>
                     <a href="/migration" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Skilled Migration</a>
                     <a href="/family-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Partner Visas</a>
@@ -125,10 +128,13 @@
                 </div>
             </div>
             
-            <!-- General Pages Section -->
-            <div class="mb-6">
-                <h3 class="text-sm font-semibold text-sg-navy mb-3 uppercase tracking-wide">Company</h3>
-                <div class="space-y-2">
+            <!-- Company Section -->
+            <div class="mb-4">
+                <button class="mobile-menu-section w-full flex items-center justify-between py-3 text-left font-semibold text-sg-navy hover:text-sg-light-blue transition-colors duration-200" data-section="company">
+                    <span class="uppercase tracking-wide">Company</span>
+                    <i class="fas fa-chevron-down transform transition-transform duration-200" id="company-arrow"></i>
+                </button>
+                <div id="company-content" class="hidden pl-4 space-y-2 mt-2">
                     <a href="/about" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">About</a>
                     <a href="/blogs" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Blog</a>
                     <a href="/success-stories" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Success Stories</a>
@@ -136,11 +142,33 @@
                 </div>
             </div>
             
-            <!-- Contact Info -->
-            <div class="pt-4 border-t border-gray-200">
-                <a href="tel:+61396021330" class="block py-2 text-sg-light-blue font-medium">
-                    <i class="fas fa-phone mr-2"></i>Call +61 3 9602 1330
-                </a>
+            <!-- Tools & Calculators Section -->
+            <div class="mb-4">
+                <button class="mobile-menu-section w-full flex items-center justify-between py-3 text-left font-semibold text-sg-navy hover:text-sg-light-blue transition-colors duration-200" data-section="tools">
+                    <span class="uppercase tracking-wide">Tools & Calculators</span>
+                    <i class="fas fa-chevron-down transform transition-transform duration-200" id="tools-arrow"></i>
+                </button>
+                <div id="tools-content" class="hidden pl-4 space-y-2 mt-2">
+                    <a href="/migration.pr-calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">PR Calculator</a>
+                    <a href="/postcode-checker" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Postcode Checker</a>
+                    <a href="/study-australia.calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Student Calculator</a>
+                </div>
+            </div>
+            
+            <!-- Contact Info Section -->
+            <div class="mb-4">
+                <button class="mobile-menu-section w-full flex items-center justify-between py-3 text-left font-semibold text-sg-navy hover:text-sg-light-blue transition-colors duration-200" data-section="contact">
+                    <span class="uppercase tracking-wide">Contact Info</span>
+                    <i class="fas fa-chevron-down transform transition-transform duration-200" id="contact-arrow"></i>
+                </button>
+                <div id="contact-content" class="hidden pl-4 space-y-2 mt-2">
+                    <a href="mailto:info@bansalimmigration.com" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">
+                        <i class="fas fa-envelope mr-2"></i>info@bansalimmigration.com
+                    </a>
+                    <a href="tel:+61396021330" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">
+                        <i class="fas fa-phone mr-2"></i>+61 3 9602 1330
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -227,12 +227,6 @@
         </a>
     </div>
 
-    <!-- Floating Call Me Back Button -->
-    <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
-        <a href="/contact" class="bg-sg-navy hover:bg-sg-light-blue text-white px-2 py-6 sm:px-4 sm:py-8 rounded-l-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
-            <span class="font-semibold text-xs sm:text-sm writing-mode-vertical-rl text-orientation-mixed" style="writing-mode: vertical-rl; text-orientation: mixed;">Request Call Back</span>
-        </a>
-    </div>
 
     <!-- Main Content -->
     <main>
@@ -263,7 +257,7 @@
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            
+
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
@@ -276,6 +270,27 @@
                     }
                 });
             }
+
+            // Mobile menu accordion functionality
+            const mobileMenuSections = document.querySelectorAll('.mobile-menu-section');
+            
+            mobileMenuSections.forEach(section => {
+                section.addEventListener('click', function() {
+                    const sectionName = this.getAttribute('data-section');
+                    const content = document.getElementById(sectionName + '-content');
+                    const arrow = document.getElementById(sectionName + '-arrow');
+                    
+                    // Toggle content visibility
+                    content.classList.toggle('hidden');
+                    
+                    // Rotate arrow
+                    if (content.classList.contains('hidden')) {
+                        arrow.classList.remove('rotate-180');
+                    } else {
+                        arrow.classList.add('rotate-180');
+                    }
+                });
+            });
 
             // Call Back Modal functionality
             const openModalBtn = document.getElementById('open-call-back-modal');

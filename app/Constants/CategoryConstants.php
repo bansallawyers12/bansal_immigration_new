@@ -20,11 +20,11 @@ class CategoryConstants
             'icon' => 'fas fa-users',
             'color' => 'green'
         ],
-        'migration' => [
-            'name' => 'Migration',
-            'description' => 'General migration and permanent residency content',
-            'icon' => 'fas fa-home',
-            'color' => 'purple'
+        'migrate-to-australia' => [
+            'name' => 'Migrate to Australia',
+            'description' => 'All Australian visa and migration information',
+            'icon' => 'fas fa-plane',
+            'color' => 'blue'
         ],
         'other-countries' => [
             'name' => 'Other Countries',
@@ -61,6 +61,42 @@ class CategoryConstants
             'description' => 'Australian citizenship information',
             'icon' => 'fas fa-flag',
             'color' => 'pink'
+        ],
+        'celebrity-visas' => [
+            'name' => 'Celebrity Visas',
+            'description' => 'Special talent and celebrity visa options',
+            'icon' => 'fas fa-star',
+            'color' => 'yellow'
+        ],
+        'skill-assessment' => [
+            'name' => 'Skill Assessment',
+            'description' => 'Professional and trade skill assessments',
+            'icon' => 'fas fa-tools',
+            'color' => 'green'
+        ],
+        'transit-special-purpose' => [
+            'name' => 'Transit & Special Purpose',
+            'description' => 'Transit visas and special purpose visas',
+            'icon' => 'fas fa-exchange-alt',
+            'color' => 'purple'
+        ],
+        'medical-humanitarian' => [
+            'name' => 'Medical & Humanitarian',
+            'description' => 'Medical treatment and humanitarian visas',
+            'icon' => 'fas fa-heart',
+            'color' => 'red'
+        ],
+        'maritime-crew' => [
+            'name' => 'Maritime & Crew',
+            'description' => 'Crew and maritime-related visas',
+            'icon' => 'fas fa-ship',
+            'color' => 'cyan'
+        ],
+        'bridging-return-visas' => [
+            'name' => 'Bridging & Return Visas',
+            'description' => 'Bridging visas and resident return visas',
+            'icon' => 'fas fa-link',
+            'color' => 'indigo'
         ]
     ];
 

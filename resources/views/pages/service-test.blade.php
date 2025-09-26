@@ -47,18 +47,18 @@
             <div class="bg-white rounded-xl shadow-md p-6 sticky sticky-sidebar">
                 <h3 class="text-base font-semibold text-gray-900 mb-4">Related Services</h3>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('migration.post-study-work') }}" class="text-sg-light-blue hover:text-sg-navy">Post Study Work (485)</a></li>
-                    <li><a href="{{ route('migration.skilled-graduate') }}" class="text-sg-light-blue hover:text-sg-navy">Skilled Graduate (476)</a></li>
-                    <li><a href="{{ route('migration.skilled-independent') }}" class="text-sg-light-blue hover:text-sg-navy">Skilled Independent (189)</a></li>
-                    <li><a href="{{ route('migration.skilled-nominated') }}" class="text-sg-light-blue hover:text-sg-navy">Skilled Nominated (190)</a></li>
+                    <li><a href="{{ route('migrate-to-australia.post-study-work') }}" class="text-sg-light-blue hover:text-sg-navy">Post Study Work (485)</a></li>
+                    <li><a href="{{ route('migrate-to-australia.skilled-graduate') }}" class="text-sg-light-blue hover:text-sg-navy">Skilled Graduate (476)</a></li>
+                    <li><a href="{{ route('migrate-to-australia.skilled-independent') }}" class="text-sg-light-blue hover:text-sg-navy">Skilled Independent (189)</a></li>
+                    <li><a href="{{ route('migrate-to-australia.skilled-nominated') }}" class="text-sg-light-blue hover:text-sg-navy">Skilled Nominated (190)</a></li>
                 </ul>
 
                 <hr class="my-6">
                 <h4 class="text-sm font-semibold text-gray-900 mb-3">Helpful Tools</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('migration.pr-calculator') }}" class="hover:text-sg-light-blue">PR Points Calculator</a></li>
-                    <li><a href="{{ route('migration.regional-points') }}" class="hover:text-sg-light-blue">Regional Points Guide</a></li>
-                    <li><a href="{{ route('migration.english-points') }}" class="hover:text-sg-light-blue">English Score Points</a></li>
+                    <li><a href="{{ route('migrate-to-australia.pr-calculator') }}" class="hover:text-sg-light-blue">PR Points Calculator</a></li>
+                    <li><a href="{{ route('migrate-to-australia.regional-points') }}" class="hover:text-sg-light-blue">Regional Points Guide</a></li>
+                    <li><a href="{{ route('migrate-to-australia.english-points') }}" class="hover:text-sg-light-blue">English Score Points</a></li>
                 </ul>
             </div>
         </aside>
@@ -97,7 +97,7 @@
                 <div class="mt-8 bg-blue-50 border border-sg-light-blue rounded-lg p-6">
                     <h3 class="text-lg font-semibold text-sg-navy mb-2">Points and Next Steps</h3>
                     <p class="text-gray-700 mb-4">Thinking about permanent residency later? Start with a quick points check and we will map a pathway.</p>
-                    <a href="{{ route('migration.pr-calculator') }}" class="btn-primary inline-block px-5 py-2 rounded">Check Your Points</a>
+                    <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="btn-primary inline-block px-5 py-2 rounded">Check Your Points</a>
                 </div>
             </div>
 

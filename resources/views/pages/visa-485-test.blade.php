@@ -164,16 +164,16 @@
                         <li><strong>Include family:</strong> Yes</li>
                     </ul>
                     <div class="mt-5 flex flex-col gap-3">
-                        <a href="{{ route('migration.pr-calculator') }}" class="btn-secondary text-center px-4 py-2 rounded">Check PR Points</a>
+                        <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="btn-secondary text-center px-4 py-2 rounded">Check PR Points</a>
                         <a href="{{ route('appointment') }}" class="btn-primary text-center px-4 py-2 rounded">Free Consultation</a>
                     </div>
                 </div>
                 <div class="mt-6 bg-sg-light-gray rounded-xl p-5">
                     <h4 class="font-semibold text-gray-900 mb-2">Related</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a class="text-sg-light-blue hover:text-sg-navy" href="{{ route('migration.temporary-graduate') }}">Temporary Graduate (485)</a></li>
-                        <li><a class="text-sg-light-blue hover:text-sg-navy" href="{{ route('migration.skilled-independent') }}">Skilled Independent (189)</a></li>
-                        <li><a class="text-sg-light-blue hover:text-sg-navy" href="{{ route('migration.skilled-nominated') }}">Skilled Nominated (190)</a></li>
+                        <li><a class="text-sg-light-blue hover:text-sg-navy" href="{{ route('migrate-to-australia.temporary-graduate') }}">Temporary Graduate (485)</a></li>
+                        <li><a class="text-sg-light-blue hover:text-sg-navy" href="{{ route('migrate-to-australia.skilled-independent') }}">Skilled Independent (189)</a></li>
+                        <li><a class="text-sg-light-blue hover:text-sg-navy" href="{{ route('migrate-to-australia.skilled-nominated') }}">Skilled Nominated (190)</a></li>
                     </ul>
                 </div>
             </div>

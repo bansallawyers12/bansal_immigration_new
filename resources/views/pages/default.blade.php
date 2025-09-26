@@ -105,7 +105,7 @@
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h3 class="text-xl font-semibold text-gray-900 mb-4">Helpful Tools</h3>
                 <div class="space-y-2">
-                    <a href="{{ route('migration.pr-calculator') }}" class="block text-blue-600 hover:text-blue-800 py-1">PR Points Calculator</a>
+                    <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="block text-blue-600 hover:text-blue-800 py-1">PR Points Calculator</a>
                     <a href="{{ route('postcode-checker') }}" class="block text-blue-600 hover:text-blue-800 py-1">Postcode Checker</a>
                     <a href="{{ route('study-australia.calculator') }}" class="block text-blue-600 hover:text-blue-800 py-1">Student Visa Calculator</a>
                 </div>
@@ -210,7 +210,7 @@
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h3 class="text-xl font-semibold text-gray-900 mb-4">Helpful Tools</h3>
                 <div class="space-y-2">
-                    <a href="{{ route('migration.pr-calculator') }}" class="block text-blue-600 hover:text-blue-800 py-1">PR Points Calculator</a>
+                    <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="block text-blue-600 hover:text-blue-800 py-1">PR Points Calculator</a>
                     <a href="{{ route('postcode-checker') }}" class="block text-blue-600 hover:text-blue-800 py-1">Postcode Checker</a>
                     <a href="{{ route('study-australia.calculator') }}" class="block text-blue-600 hover:text-blue-800 py-1">Student Visa Calculator</a>
                 </div>

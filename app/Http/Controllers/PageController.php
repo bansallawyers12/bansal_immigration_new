@@ -73,12 +73,19 @@ class PageController extends Controller
             'study-australia' => 'pages.study-australia',
             'visitor-visa' => 'pages.visitor-visa',
             'migration' => 'pages.migration',
+            'migrate-to-australia' => 'pages.migrate-to-australia',
             'family-visa' => 'pages.family-visa',
             'employer-sponsored' => 'pages.employer-sponsored',
             'business-visa' => 'pages.business-visa',
             'appeals' => 'pages.appeals',
             'citizenship' => 'pages.citizenship',
             'other-countries' => 'pages.other-countries',
+            'celebrity-visas' => 'pages.celebrity-visas',
+            'skill-assessment' => 'pages.skill-assessment',
+            'transit-special-purpose' => 'pages.default',
+            'medical-humanitarian' => 'pages.default',
+            'maritime-crew' => 'pages.default',
+            'bridging-return-visas' => 'pages.default',
         ];
 
         return $templates[$category] ?? 'pages.default';

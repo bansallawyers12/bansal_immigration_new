@@ -54,9 +54,9 @@
                 <div class="mb-6">
                     <h4 class="font-medium text-gray-800 mb-2">Graduate Visas</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.temporary-graduate') }}" class="text-blue-600 hover:text-blue-800">Temporary Graduate (485)</a></li>
-                        <li><a href="{{ route('migration.post-study-work') }}" class="text-blue-600 hover:text-blue-800">Post Study Work (485)</a></li>
-                        <li><a href="{{ route('migration.skilled-graduate') }}" class="text-blue-600 hover:text-blue-800">Skilled Graduate (476)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.temporary-graduate') }}" class="text-blue-600 hover:text-blue-800">Temporary Graduate (485)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.post-study-work') }}" class="text-blue-600 hover:text-blue-800">Post Study Work (485)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-graduate') }}" class="text-blue-600 hover:text-blue-800">Skilled Graduate (476)</a></li>
                     </ul>
                 </div>
 
@@ -64,11 +64,11 @@
                 <div class="mb-6">
                     <h4 class="font-medium text-gray-800 mb-2">Permanent Visas</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.skilled-independent') }}" class="text-blue-600 hover:text-blue-800">Skilled Independent (189)</a></li>
-                        <li><a href="{{ route('migration.skilled-nominated') }}" class="text-blue-600 hover:text-blue-800">Skilled Nominated (190)</a></li>
-                        <li><a href="{{ route('migration.skilled-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Regional (887)</a></li>
-                        <li><a href="{{ route('migration.pr-skilled-regional') }}" class="text-blue-600 hover:text-blue-800">PR Skilled Regional (191)</a></li>
-                        <li><a href="{{ route('migration.skilled-work-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Work Regional (491)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-independent') }}" class="text-blue-600 hover:text-blue-800">Skilled Independent (189)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-nominated') }}" class="text-blue-600 hover:text-blue-800">Skilled Nominated (190)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Regional (887)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.pr-skilled-regional') }}" class="text-blue-600 hover:text-blue-800">PR Skilled Regional (191)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-work-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Work Regional (491)</a></li>
                     </ul>
                 </div>
 
@@ -76,12 +76,12 @@
                 <div class="mb-6">
                     <h4 class="font-medium text-gray-800 mb-2">Skill Assessment</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.acs-assessment') }}" class="text-blue-600 hover:text-blue-800">ACS Assessment</a></li>
-                        <li><a href="{{ route('migration.vetassess-assessment') }}" class="text-blue-600 hover:text-blue-800">VETASSESS Assessment</a></li>
-                        <li><a href="{{ route('migration.ea-assessment') }}" class="text-blue-600 hover:text-blue-800">Engineers Australia</a></li>
-                        <li><a href="{{ route('migration.accountant-assessment') }}" class="text-blue-600 hover:text-blue-800">Accountant Assessment</a></li>
-                        <li><a href="{{ route('migration.nursing-assessment') }}" class="text-blue-600 hover:text-blue-800">Nursing Assessment</a></li>
-                        <li><a href="{{ route('migration.job-ready-program') }}" class="text-blue-600 hover:text-blue-800">Job Ready Program</a></li>
+                        <li><a href="{{ route('migrate-to-australia.acs-assessment') }}" class="text-blue-600 hover:text-blue-800">ACS Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.vetassess-assessment') }}" class="text-blue-600 hover:text-blue-800">VETASSESS Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.ea-assessment') }}" class="text-blue-600 hover:text-blue-800">Engineers Australia</a></li>
+                        <li><a href="{{ route('migrate-to-australia.accountant-assessment') }}" class="text-blue-600 hover:text-blue-800">Accountant Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.nursing-assessment') }}" class="text-blue-600 hover:text-blue-800">Nursing Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.job-ready-program') }}" class="text-blue-600 hover:text-blue-800">Job Ready Program</a></li>
                     </ul>
                 </div>
 
@@ -89,9 +89,9 @@
                 <div>
                     <h4 class="font-medium text-gray-800 mb-2">Tools & Resources</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.pr-calculator') }}" class="text-blue-600 hover:text-blue-800">PR Points Calculator</a></li>
-                        <li><a href="{{ route('migration.regional-points') }}" class="text-blue-600 hover:text-blue-800">Regional Points Guide</a></li>
-                        <li><a href="{{ route('migration.english-points') }}" class="text-blue-600 hover:text-blue-800">English Score Points</a></li>
+                        <li><a href="{{ route('migrate-to-australia.pr-calculator') }}" class="text-blue-600 hover:text-blue-800">PR Points Calculator</a></li>
+                        <li><a href="{{ route('migrate-to-australia.regional-points') }}" class="text-blue-600 hover:text-blue-800">Regional Points Guide</a></li>
+                        <li><a href="{{ route('migrate-to-australia.english-points') }}" class="text-blue-600 hover:text-blue-800">English Score Points</a></li>
                     </ul>
                 </div>
             </div>
@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('migration.pr-calculator') }}" class="bg-white text-blue-600 px-6 py-2 rounded font-medium hover:bg-gray-100">Calculate Your Points</a>
+                    <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="bg-white text-blue-600 px-6 py-2 rounded font-medium hover:bg-gray-100">Calculate Your Points</a>
                 </div>
             </div>
 
@@ -220,9 +220,9 @@
                 <div class="mb-6">
                     <h4 class="font-medium text-gray-800 mb-2">Graduate Visas</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.temporary-graduate') }}" class="text-blue-600 hover:text-blue-800">Temporary Graduate (485)</a></li>
-                        <li><a href="{{ route('migration.post-study-work') }}" class="text-blue-600 hover:text-blue-800">Post Study Work (485)</a></li>
-                        <li><a href="{{ route('migration.skilled-graduate') }}" class="text-blue-600 hover:text-blue-800">Skilled Graduate (476)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.temporary-graduate') }}" class="text-blue-600 hover:text-blue-800">Temporary Graduate (485)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.post-study-work') }}" class="text-blue-600 hover:text-blue-800">Post Study Work (485)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-graduate') }}" class="text-blue-600 hover:text-blue-800">Skilled Graduate (476)</a></li>
                     </ul>
                 </div>
 
@@ -230,11 +230,11 @@
                 <div class="mb-6">
                     <h4 class="font-medium text-gray-800 mb-2">Permanent Visas</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.skilled-independent') }}" class="text-blue-600 hover:text-blue-800">Skilled Independent (189)</a></li>
-                        <li><a href="{{ route('migration.skilled-nominated') }}" class="text-blue-600 hover:text-blue-800">Skilled Nominated (190)</a></li>
-                        <li><a href="{{ route('migration.skilled-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Regional (887)</a></li>
-                        <li><a href="{{ route('migration.pr-skilled-regional') }}" class="text-blue-600 hover:text-blue-800">PR Skilled Regional (191)</a></li>
-                        <li><a href="{{ route('migration.skilled-work-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Work Regional (491)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-independent') }}" class="text-blue-600 hover:text-blue-800">Skilled Independent (189)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-nominated') }}" class="text-blue-600 hover:text-blue-800">Skilled Nominated (190)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Regional (887)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.pr-skilled-regional') }}" class="text-blue-600 hover:text-blue-800">PR Skilled Regional (191)</a></li>
+                        <li><a href="{{ route('migrate-to-australia.skilled-work-regional') }}" class="text-blue-600 hover:text-blue-800">Skilled Work Regional (491)</a></li>
                     </ul>
                 </div>
 
@@ -242,12 +242,12 @@
                 <div class="mb-6">
                     <h4 class="font-medium text-gray-800 mb-2">Skill Assessment</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.acs-assessment') }}" class="text-blue-600 hover:text-blue-800">ACS Assessment</a></li>
-                        <li><a href="{{ route('migration.vetassess-assessment') }}" class="text-blue-600 hover:text-blue-800">VETASSESS Assessment</a></li>
-                        <li><a href="{{ route('migration.ea-assessment') }}" class="text-blue-600 hover:text-blue-800">Engineers Australia</a></li>
-                        <li><a href="{{ route('migration.accountant-assessment') }}" class="text-blue-600 hover:text-blue-800">Accountant Assessment</a></li>
-                        <li><a href="{{ route('migration.nursing-assessment') }}" class="text-blue-600 hover:text-blue-800">Nursing Assessment</a></li>
-                        <li><a href="{{ route('migration.job-ready-program') }}" class="text-blue-600 hover:text-blue-800">Job Ready Program</a></li>
+                        <li><a href="{{ route('migrate-to-australia.acs-assessment') }}" class="text-blue-600 hover:text-blue-800">ACS Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.vetassess-assessment') }}" class="text-blue-600 hover:text-blue-800">VETASSESS Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.ea-assessment') }}" class="text-blue-600 hover:text-blue-800">Engineers Australia</a></li>
+                        <li><a href="{{ route('migrate-to-australia.accountant-assessment') }}" class="text-blue-600 hover:text-blue-800">Accountant Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.nursing-assessment') }}" class="text-blue-600 hover:text-blue-800">Nursing Assessment</a></li>
+                        <li><a href="{{ route('migrate-to-australia.job-ready-program') }}" class="text-blue-600 hover:text-blue-800">Job Ready Program</a></li>
                     </ul>
                 </div>
 
@@ -255,9 +255,9 @@
                 <div>
                     <h4 class="font-medium text-gray-800 mb-2">Tools & Resources</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('migration.pr-calculator') }}" class="text-blue-600 hover:text-blue-800">PR Points Calculator</a></li>
-                        <li><a href="{{ route('migration.regional-points') }}" class="text-blue-600 hover:text-blue-800">Regional Points Guide</a></li>
-                        <li><a href="{{ route('migration.english-points') }}" class="text-blue-600 hover:text-blue-800">English Score Points</a></li>
+                        <li><a href="{{ route('migrate-to-australia.pr-calculator') }}" class="text-blue-600 hover:text-blue-800">PR Points Calculator</a></li>
+                        <li><a href="{{ route('migrate-to-australia.regional-points') }}" class="text-blue-600 hover:text-blue-800">Regional Points Guide</a></li>
+                        <li><a href="{{ route('migrate-to-australia.english-points') }}" class="text-blue-600 hover:text-blue-800">English Score Points</a></li>
                     </ul>
                 </div>
             </div>
@@ -320,7 +320,7 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('migration.pr-calculator') }}" class="bg-white text-blue-600 px-6 py-2 rounded font-medium hover:bg-gray-100">Calculate Your Points</a>
+                    <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="bg-white text-blue-600 px-6 py-2 rounded font-medium hover:bg-gray-100">Calculate Your Points</a>
                 </div>
             </div>
 

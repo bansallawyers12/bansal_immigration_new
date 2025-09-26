@@ -12,6 +12,7 @@ Route::get('/test-editors', function () {
     return view('test-editors');
 })->name('test-editors');
 
+
 // Test page for Slater & Gordon inspired design
 Route::get('/test-slater-gordon', function () {
     return view('test-slater-gordon');

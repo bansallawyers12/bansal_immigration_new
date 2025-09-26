@@ -13,11 +13,9 @@
             <!-- Main Menu Items - Services -->
             <nav class="hidden lg:flex items-center space-x-6 px-4">
                 <a href="/study-australia" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Study in Australia</a>
-                <a href="/migration" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Skilled Migration</a>
-                <a href="/family-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Partner Visas</a>
-                <a href="/visitor-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Visitor Visas</a>
-                <a href="/business-visas" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
-                <a href="/employer-sponsored" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Employer Sponsored</a>
+                <a href="/migrate-to-australia" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Migrate to Australia</a>
+                <a href="/celebrity-visas" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Celebrity Visas</a>
+                <a href="/skill-assessment" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Skill Assessment</a>
                 <a href="/citizenship" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Citizenship</a>
                 <a href="/appeals" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Appeals</a>
             </nav>
@@ -94,7 +92,7 @@
                 <div class="h-6 w-px bg-gray-300"></div>
                 
                 <!-- Tools & Calculators -->
-                <a href="/migration.pr-calculator" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
+                <a href="/migrate-to-australia/pr-point-calculator" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
                     <i class="fas fa-calculator mr-2 text-sg-light-blue"></i>PR Calculator
                 </a>
                 <a href="/postcode-checker" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
@@ -118,11 +116,9 @@
                 </button>
                 <div id="services-content" class="hidden pl-4 space-y-2 mt-2">
                     <a href="/study-australia" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Study in Australia</a>
-                    <a href="/migration" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Skilled Migration</a>
-                    <a href="/family-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Partner Visas</a>
-                    <a href="/visitor-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Visitor Visas</a>
-                    <a href="/business-visas" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
-                    <a href="/employer-sponsored" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Employer Sponsored</a>
+                    <a href="/migrate-to-australia" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Migrate to Australia</a>
+                    <a href="/celebrity-visas" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Celebrity Visas</a>
+                    <a href="/skill-assessment" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Skill Assessment</a>
                     <a href="/citizenship" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Citizenship</a>
                     <a href="/appeals" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Appeals</a>
                 </div>
@@ -149,7 +145,7 @@
                     <i class="fas fa-chevron-down transform transition-transform duration-200" id="tools-arrow"></i>
                 </button>
                 <div id="tools-content" class="hidden pl-4 space-y-2 mt-2">
-                    <a href="/migration.pr-calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">PR Calculator</a>
+                    <a href="/migrate-to-australia/pr-point-calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">PR Calculator</a>
                     <a href="/postcode-checker" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Postcode Checker</a>
                     <a href="/study-australia.calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Student Calculator</a>
                 </div>

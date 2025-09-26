@@ -92,67 +92,67 @@ Route::prefix('visitor-visa')->name('visitor-visa.')->group(function () {
     })->name('sponsored-family');
 });
 
-// Migration Routes
-Route::prefix('migration')->name('migration.')->group(function () {
-    Route::get('/', [PageController::class, 'show'])->defaults('category', 'migration')->name('index');
+// Migrate to Australia Routes
+Route::prefix('migrate-to-australia')->name('migrate-to-australia.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'migrate-to-australia')->name('index');
     
     // Graduate Visa Subpages
     Route::get('/temporary-graduate-visa-485', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'temporary-graduate-visa-subclass-485');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'temporary-graduate-visa-subclass-485');
     })->name('temporary-graduate');
     Route::get('/post-study-work-visa-485', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'post-study-work-visa-subclass-485');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'post-study-work-visa-subclass-485');
     })->name('post-study-work');
     Route::get('/skilled-recognised-graduate-visa-476', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'skilled-recognised-graduate-visa-subclass-476');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'skilled-recognised-graduate-visa-subclass-476');
     })->name('skilled-graduate');
     
     // Permanent Visa Subpages
     Route::get('/skilled-independent-visa-189', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'skilled-independent-visa-subclass-189');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'skilled-independent-visa-subclass-189');
     })->name('skilled-independent');
     Route::get('/skilled-nominated-visa-190', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'skilled-nominated-visa-subclass-190');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'skilled-nominated-visa-subclass-190');
     })->name('skilled-nominated');
     Route::get('/skilled-regional-visa-887', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'skilled-regional-visa-subclass-887');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'skilled-regional-visa-subclass-887');
     })->name('skilled-regional');
     
     // Regional Visas
     Route::get('/permanent-residence-skilled-regional-191', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'permanent-residence-skilled-regional-visa-subclass-191');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'permanent-residence-skilled-regional-visa-subclass-191');
     })->name('pr-skilled-regional');
     Route::get('/skilled-work-regional-provisional-491', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'skilled-work-regional-provisional-visa-subclass-491');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'skilled-work-regional-provisional-visa-subclass-491');
     })->name('skilled-work-regional');
     
     // Skill Assessment
     Route::get('/acs-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'acs-skill-assessment');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'acs-skill-assessment');
     })->name('acs-assessment');
     Route::get('/vetassess-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'vetassess-skill-assessment');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'vetassess-skill-assessment');
     })->name('vetassess-assessment');
     Route::get('/job-ready-program', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'job-ready-program');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'job-ready-program');
     })->name('job-ready-program');
     Route::get('/ea-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'ea-skill-assessment');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'ea-skill-assessment');
     })->name('ea-assessment');
     Route::get('/accountant-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'accountant-skill-assessment');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'accountant-skill-assessment');
     })->name('accountant-assessment');
     Route::get('/nursing-aphara-anmac-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'nursing-aphara-registration-and-anmac-skill-assessment');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'nursing-aphara-registration-and-anmac-skill-assessment');
     })->name('nursing-assessment');
     
     // Others
     Route::get('/pr-point-calculator', [PageController::class, 'prPointCalculator'])->name('pr-calculator');
     Route::get('/how-to-claim-regional-points', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'how-to-claim-regional-points');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'how-to-claim-regional-points');
     })->name('regional-points');
     Route::get('/points-for-english-score', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migration', 'english-points');
+        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'english-points');
     })->name('english-points');
 });
 
@@ -315,6 +315,19 @@ Route::prefix('business-visas')->name('business-visa.')->group(function () {
 // Appeals Routes
 Route::prefix('appeals')->name('appeals.')->group(function () {
     Route::get('/', [PageController::class, 'show'])->defaults('category', 'appeals')->name('index');
+    // New main items
+    Route::get('/aat-appeals', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'aat-appeals');
+    })->name('aat-appeals');
+    Route::get('/federal-court-appeals', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'federal-court-appeals');
+    })->name('federal-court-appeals');
+    Route::get('/ministerial-intervention', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'ministerial-intervention');
+    })->name('ministerial-intervention');
+    Route::get('/review-process', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'review-process');
+    })->name('review-process');
     Route::get('/visa-refusal', function() {
         return app(\App\Http\Controllers\PageController::class)->show('appeals', 'visa-refusal');
     })->name('visa-refusal');
@@ -324,6 +337,10 @@ Route::prefix('appeals')->name('appeals.')->group(function () {
     Route::get('/notice-of-intention-to-consider-cancellation', function() {
         return app(\App\Http\Controllers\PageController::class)->show('appeals', 'notice-of-intention-to-consider-cancellation');
     })->name('notice-cancellation');
+    // Friendly short alias for NOICC
+    Route::get('/noicc', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'notice-of-intention-to-consider-cancellation');
+    })->name('noicc');
     Route::get('/waiver-request', function() {
         return app(\App\Http\Controllers\PageController::class)->show('appeals', 'waiver-request');
     })->name('waiver-request');
@@ -347,6 +364,17 @@ Route::prefix('citizenship')->name('citizenship.')->group(function () {
     Route::get('/evidence-of-australian-citizenship', function() {
         return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'evidence-of-australian-citizenship');
     })->name('evidence');
+
+    // New: Additional Citizenship topics
+    Route::get('/citizenship-by-birth', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'citizenship-by-birth');
+    })->name('by-birth');
+    Route::get('/dual-citizenship', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'dual-citizenship');
+    })->name('dual');
+    Route::get('/citizenship-test', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('citizenship', 'citizenship-test');
+    })->name('test');
 });
 
 // Other Countries Routes
@@ -360,4 +388,72 @@ Route::prefix('other-countries')->name('other-countries.')->group(function () {
     Route::get('/usa', function() {
         return app(\App\Http\Controllers\PageController::class)->show('other-countries', 'usa');
     })->name('usa');
+});
+
+// Celebrity Visas Routes
+Route::prefix('celebrity-visas')->name('celebrity-visas.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'celebrity-visas')->name('index');
+});
+
+// Skill Assessment Routes
+Route::prefix('skill-assessment')->name('skill-assessment.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'skill-assessment')->name('index');
+    // Professional Assessments
+    Route::get('/acs-assessment', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'acs-skill-assessment');
+    })->name('acs-assessment');
+    Route::get('/vetassess-assessment', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'vetassess-skill-assessment');
+    })->name('vetassess-assessment');
+    Route::get('/ea-assessment', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'ea-skill-assessment');
+    })->name('ea-assessment');
+    Route::get('/accountant-assessment', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'accountant-skill-assessment');
+    })->name('accountant-assessment');
+    Route::get('/nursing-assessment', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'nursing-aphara-registration-and-anmac-skill-assessment');
+    })->name('nursing-assessment');
+
+    // Trade Assessments
+    Route::get('/trades-recognition-australia', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'trades-recognition-australia');
+    })->name('trades-recognition-australia');
+    Route::get('/skills-assessment-for-trades', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'skills-assessment-for-trades');
+    })->name('skills-assessment-for-trades');
+    Route::get('/job-ready-program', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'job-ready-program');
+    })->name('job-ready-program');
+
+    // Assessment Tools
+    Route::get('/guide', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'skills-assessment-guide');
+    })->name('guide');
+    Route::get('/requirements', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'assessment-requirements');
+    })->name('requirements');
+    Route::get('/timeline', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('skill-assessment', 'assessment-timeline');
+    })->name('timeline');
+});
+
+// Transit & Special Purpose Routes
+Route::prefix('transit-special-purpose')->name('transit-special-purpose.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'transit-special-purpose')->name('index');
+});
+
+// Medical & Humanitarian Routes
+Route::prefix('medical-humanitarian')->name('medical-humanitarian.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'medical-humanitarian')->name('index');
+});
+
+// Maritime & Crew Routes
+Route::prefix('maritime-crew')->name('maritime-crew.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'maritime-crew')->name('index');
+});
+
+// Bridging & Return Visas Routes
+Route::prefix('bridging-return-visas')->name('bridging-return-visas.')->group(function () {
+    Route::get('/', [PageController::class, 'show'])->defaults('category', 'bridging-return-visas')->name('index');
 });

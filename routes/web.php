@@ -7,44 +7,8 @@ use App\Http\Controllers\PageController;
 // Main pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Test page for editor comparison
-Route::get('/test-editors', function () {
-    return view('test-editors');
-})->name('test-editors');
-
-
-// Test page for Slater & Gordon inspired design
-Route::get('/test-slater-gordon', function () {
-    return view('test-slater-gordon');
-})->name('test-slater-gordon');
-
-// Tailwind CSS comparison test pages
-Route::get('/test-tailwind-comparison', function () {
-    return view('test-tailwind-comparison');
-})->name('test-tailwind-comparison');
-
-Route::get('/test-vite', function () {
-    return view('test-vite');
-})->name('test-vite');
-// Internal service design test page
-Route::get('/design/service-test', function () {
-    return view('pages.service-test');
-})->name('design.service-test');
-// Unique 485 visa detail design test page (with real DB content)
-Route::get('/design/visa-485-test', function () {
-    $page = \App\Models\Page::where('category', 'migration')
-        ->where('slug', 'post-study-work-visa-subclass-485')
-        ->active()
-        ->first();
-    return view('pages.visa-485-test', compact('page'));
-})->name('design.visa-485-test');
-// CMS advanced layout test (no backend changes, uses existing fields)
-Route::get('/design/cms-advanced-test', function () {
-    $page = \App\Models\Page::where('status', true)
-        ->orderBy('id', 'desc')
-        ->first();
-    return view('pages.cms-advanced-test', compact('page'));
-})->name('design.cms-advanced-test');
+//
+//
 // National Innovation Visa test page
 Route::get('/design/innovation-visa-test', function () {
     $page = \App\Models\Page::where('category', 'migration')
@@ -55,7 +19,7 @@ Route::get('/design/innovation-visa-test', function () {
 })->name('design.innovation-visa-test');
 // Visa Structured design preview (renders new template with real data)
 Route::get('/design/visa-structured-preview', function () {
-    $page = \App\Models\Page::where('category', 'migration')
+    $page = \App\Models\Page::where('category', 'migrate-to-australia')
         ->where('status', true)
         ->orderBy('id', 'desc')
         ->first();
@@ -64,7 +28,7 @@ Route::get('/design/visa-structured-preview', function () {
     }
     return view('pages.visa-structured', [
         'page' => $page,
-        'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migration')
+        'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migrate-to-australia')
             ->where('id', '!=', $page?->id ?? 0)
             ->active()
             ->take(6)
@@ -74,14 +38,14 @@ Route::get('/design/visa-structured-preview', function () {
 
 // Modern variant preview for visa structured page
 Route::get('/design/visa-structured-modern', function () {
-    $page = \App\Models\Page::where('category', 'migration')
+    $page = \App\Models\Page::where('category', 'migrate-to-australia')
         ->where('status', true)
         ->orderBy('id', 'desc')
         ->first();
     if ($page) { $page->template = 'visa-structured-modern'; }
     return view('pages.visa-structured-modern', [
         'page' => $page,
-        'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migration')
+        'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migrate-to-australia')
             ->where('id', '!=', $page?->id ?? 0)
             ->active()
             ->take(6)

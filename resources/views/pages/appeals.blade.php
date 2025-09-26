@@ -131,7 +131,7 @@
     <!-- Contact Form Section -->
     <div class="mt-16 bg-white rounded-lg shadow-lg p-8">
         <h3 class="text-2xl font-bold text-gray-900 mb-4">Need Help with Your Visa Appeal?</h3>
-        <p class="text-gray-600 mb-6">Time is critical in visa appeals. Contact our experienced team immediately for urgent assistance. Send us your details for immediate appeal support.</p>
+        <p class="text-gray-600 mb-6">Time is critical in visa appeals. Contact our experienced team for urgent assistance. Send us your details for priority appeal support.</p>
         @include('components.unified-contact-form', [
             'form_source' => 'appeals-page',
             'form_variant' => 'full',
@@ -143,7 +143,7 @@
     <!-- Urgent Call to Action -->
     <div class="mt-8 bg-red-50 rounded-lg p-8 text-center">
         <h3 class="text-xl font-bold text-gray-800 mb-4">Urgent Appeal Assistance?</h3>
-        <p class="text-gray-600 mb-6">For urgent appeal matters, contact our experienced team immediately.</p>
+        <p class="text-gray-600 mb-6">For urgent appeal matters, contact our experienced team for priority assistance.</p>
         <a href="{{ route('contact') }}" class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors inline-block font-medium">Get Urgent Help</a>
     </div>
  </div>

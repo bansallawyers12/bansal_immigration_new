@@ -1819,8 +1819,8 @@ body {
                                         <div class="stat-label">Success Rate</div>
                                     </div>
                                     <div class="stat-item">
-                                        <div class="stat-number">24/7</div>
-                                        <div class="stat-label">Support</div>
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Licensed Agents</div>
                                     </div>
                                 </div>
                             </div>

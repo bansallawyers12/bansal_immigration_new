@@ -41,6 +41,11 @@
         .fa-bolt::before { content: '⚡'; }
         .fa-clock::before { content: '🕐'; }
         .fa-exclamation-circle::before { content: '⚠️'; }
+        .fa-dollar-sign::before { content: '💰'; }
+        .fa-edit::before { content: '✏️'; }
+        .fa-plus::before { content: '➕'; }
+        .fa-trash::before { content: '🗑️'; }
+        .fa-save::before { content: '💾'; }
     </style>
 
     <!-- Scripts -->
@@ -246,6 +251,13 @@
                     <a href="{{ route('admin.cms.index') }}" class="menu-link {{ request()->routeIs('admin.cms*') ? 'active' : '' }}">
                         <i class="menu-icon fas fa-file-alt"></i>
                         <span>CMS Pages</span>
+                    </a>
+                </div>
+                
+                <div class="menu-item">
+                    <a href="{{ route('admin.visa-management.index') }}" class="menu-link {{ request()->routeIs('admin.visa-management*') ? 'active' : '' }}">
+                        <i class="menu-icon fas fa-clock"></i>
+                        <span>Visa Management</span>
                     </a>
                 </div>
                 

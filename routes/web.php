@@ -129,6 +129,13 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::post('/promo-codes/{promoCode}/toggle-active', [\App\Http\Controllers\Admin\PromoCodeController::class, 'toggleActive'])->name('promo-codes.toggle-active');
     Route::post('/promo-codes/generate-code', [\App\Http\Controllers\Admin\PromoCodeController::class, 'generateCode'])->name('promo-codes.generate-code');
     Route::post('/promo-codes/test-calculation', [\App\Http\Controllers\Admin\PromoCodeController::class, 'testCalculation'])->name('promo-codes.test-calculation');
+    
+    // Visa Management Routes
+    Route::get('/visa-management', [\App\Http\Controllers\Admin\VisaManagementController::class, 'index'])->name('visa-management.index');
+    Route::get('/visa-management/{id}/edit', [\App\Http\Controllers\Admin\VisaManagementController::class, 'edit'])->name('visa-management.edit');
+    Route::put('/visa-management/{id}', [\App\Http\Controllers\Admin\VisaManagementController::class, 'update'])->name('visa-management.update');
+    Route::post('/visa-management/bulk-update', [\App\Http\Controllers\Admin\VisaManagementController::class, 'bulkUpdate'])->name('visa-management.bulk-update');
+    Route::get('/visa-management/get-by-category', [\App\Http\Controllers\Admin\VisaManagementController::class, 'getByCategory'])->name('visa-management.get-by-category');
 });
 
 // Include specialized route files

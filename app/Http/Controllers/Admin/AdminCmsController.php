@@ -314,7 +314,7 @@ class AdminCmsController extends Controller
      */
     private function normalizeVisaInputs(array &$data, Request $request, ?Page $existingPage = null): void
     {
-        $jsonFields = ['visa_highlights','visa_eligibility','visa_benefits','visa_steps','visa_faqs','visa_processing_times','visa_costs'];
+        $jsonFields = ['visa_eligibility','visa_benefits','visa_steps','visa_faqs','visa_processing_times','visa_costs','visa_duration','visa_pathways'];
         foreach ($jsonFields as $key) {
             if (!$request->has($key)) {
                 continue;
@@ -346,15 +346,16 @@ class AdminCmsController extends Controller
                 continue;
             }
 
-            if ($key === 'visa_highlights') {
-                // Try to parse "Label: Value" per line into {label,value}
-                $pairs = [];
-                foreach ($this->linesToArray($raw) as $line) {
-                    if (preg_match('/^(.+?)\s*[:\-–]\s*(.+)$/u', $line, $m)) {
-                        $pairs[] = ['label' => trim($m[1]), 'value' => trim($m[2])];
-                    }
-                }
-                $data[$key] = $pairs ?: null;
+
+            if ($key === 'visa_duration') {
+                // Try to parse duration from plain text
+                $data[$key] = $this->parseDuration($raw);
+                continue;
+            }
+
+            if ($key === 'visa_pathways') {
+                // Try to parse pathways from plain text
+                $data[$key] = $this->parsePathways($raw);
                 continue;
             }
 
@@ -450,5 +451,84 @@ class AdminCmsController extends Controller
         }));
 
         return $faqs;
+    }
+
+    private function parseDuration(string $raw): ?array
+    {
+        $raw = trim($raw);
+        if (empty($raw)) {
+            return null;
+        }
+
+        // Try to parse as JSON first
+        $decoded = json_decode($raw, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return $decoded;
+        }
+
+        // Fallback: try to parse from plain text format
+        // Expected format: "Initial: 2 years\nExtension: 2 years\nPermanent: After 2 years\nNotes: Additional info"
+        $lines = array_filter(array_map('trim', explode("\n", $raw)));
+        $duration = [];
+
+        foreach ($lines as $line) {
+            if (preg_match('/^(initial|extension|permanent|notes):\s*(.+)$/i', $line, $matches)) {
+                $key = strtolower($matches[1]);
+                $value = trim($matches[2]);
+                if (!empty($value)) {
+                    $duration[$key] = $value;
+                }
+            }
+        }
+
+        return !empty($duration) ? $duration : null;
+    }
+
+    private function parsePathways(string $raw): ?array
+    {
+        $raw = trim($raw);
+        if (empty($raw)) {
+            return null;
+        }
+
+        // Try to parse as JSON first
+        $decoded = json_decode($raw, true);
+        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+            return $decoded;
+        }
+
+        // Fallback: try to parse from plain text format
+        // Expected format: "Title: Pathway Name\nDescription: Description\nRequirements: Requirements\nSteps: Step 1, Step 2"
+        $lines = array_filter(array_map('trim', explode("\n", $raw)));
+        $pathways = [];
+        $currentPathway = [];
+
+        foreach ($lines as $line) {
+            if (preg_match('/^(title|description|requirements|steps):\s*(.+)$/i', $line, $matches)) {
+                $key = strtolower($matches[1]);
+                $value = trim($matches[2]);
+                
+                if ($key === 'title' && !empty($currentPathway)) {
+                    // Start new pathway
+                    $pathways[] = $currentPathway;
+                    $currentPathway = [];
+                }
+                
+                if ($key === 'steps') {
+                    // Parse steps as comma-separated or line-separated
+                    $steps = array_filter(array_map('trim', preg_split('/[,\n]/', $value)));
+                    $currentPathway['steps'] = $steps;
+                } else {
+                    $currentPathway[$key] = $value;
+                }
+            }
+        }
+
+        // Add the last pathway
+        if (!empty($currentPathway)) {
+            $pathways[] = $currentPathway;
+        }
+
+        return !empty($pathways) ? $pathways : null;
     }
 }

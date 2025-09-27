@@ -348,17 +348,9 @@
             </div>
             <div>
                 @php
-                    $highlights = is_array($page->visa_highlights) ? $page->visa_highlights : [];
-                    $getHighlight = function(string $label) use ($highlights) {
-                        foreach ($highlights as $h) {
-                            if (!empty($h['label']) && strcasecmp(trim($h['label']), $label) === 0) {
-                                return $h['value'] ?? null;
-                            }
-                        }
-                        return null;
-                    };
-                    $duration = $getHighlight('Duration');
-                    $pathway = $getHighlight('Pathway') ?? $getHighlight('Innovation Focus') ?? $getHighlight('Stream');
+                    // Use new field structure for hero cards
+                    $duration = $page->visa_duration['initial'] ?? null;
+                    $pathway = isset($page->visa_pathways[0]['title']) ? $page->visa_pathways[0]['title'] : null;
                     $processingTimes = is_array($page->visa_processing_times ?? null) ? $page->visa_processing_times : [];
                     $processing = $processingTimes['standard'] ?? ($processingTimes['priority'] ?? ($processingTimes['complex'] ?? null));
                     $primaryCost = null;
@@ -433,6 +425,8 @@
         $showEligibility = !empty($page->visa_eligibility);
         $showBenefits = !empty($page->visa_benefits);
         $showSteps = !empty($page->visa_steps);
+        $showDuration = !empty($page->visa_duration);
+        $showPathways = !empty($page->visa_pathways);
         $showFaqs = !empty($page->visa_faqs);
         $showProcessing = !empty($page->visa_processing_times);
         $showCosts = !empty($page->visa_costs);
@@ -488,6 +482,22 @@
                             <div class="w-2 h-2 bg-orange-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-200"></div>
                             <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">How to Apply</span>
                             <div class="absolute left-0 top-0 w-1 h-full bg-orange-500 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                        </a>
+                        @endif
+                        
+                        @if($showDuration)
+                        <a href="#duration" data-section="duration" class="nav-item group flex items-center py-3 px-4 rounded-lg text-sm font-medium text-gray-700 hover:text-cyan-600 hover:bg-cyan-50/80 transition-all duration-200 relative">
+                            <div class="w-2 h-2 bg-cyan-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-200"></div>
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">Duration</span>
+                            <div class="absolute left-0 top-0 w-1 h-full bg-cyan-500 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                        </a>
+                        @endif
+                        
+                        @if($showPathways)
+                        <a href="#pathways" data-section="pathways" class="nav-item group flex items-center py-3 px-4 rounded-lg text-sm font-medium text-gray-700 hover:text-teal-600 hover:bg-teal-50/80 transition-all duration-200 relative">
+                            <div class="w-2 h-2 bg-teal-500 rounded-full mr-3 group-hover:scale-125 transition-transform duration-200"></div>
+                            <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">Pathways</span>
+                            <div class="absolute left-0 top-0 w-1 h-full bg-teal-500 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                         </a>
                         @endif
                         
@@ -591,6 +601,119 @@
                         <li>{{ $item }}</li>
                     @endforeach
                 </ol>
+            </section>
+            @endif
+
+            <!-- Modern Duration Section -->
+            @if($showDuration)
+            <section id="duration" class="bg-white rounded-xl shadow-soft p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Visa Duration</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    @if(!empty($page->visa_duration['initial']))
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Initial Duration</h3>
+                            <p class="text-gray-600">{{ $page->visa_duration['initial'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                    
+                    @if(!empty($page->visa_duration['extension']))
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Extension Duration</h3>
+                            <p class="text-gray-600">{{ $page->visa_duration['extension'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                    
+                    @if(!empty($page->visa_duration['permanent']))
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Permanent Residency</h3>
+                            <p class="text-gray-600">{{ $page->visa_duration['permanent'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                    
+                    @if(!empty($page->visa_duration['notes']))
+                    <div class="flex items-start space-x-3 md:col-span-2">
+                        <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">Additional Notes</h3>
+                            <p class="text-gray-600">{{ $page->visa_duration['notes'] }}</p>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </section>
+            @endif
+
+            <!-- Modern Pathways Section -->
+            @if($showPathways)
+            <section id="pathways" class="bg-white rounded-xl shadow-soft p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Visa Pathways</h2>
+                <div class="space-y-6">
+                    @foreach($page->visa_pathways as $pathway)
+                        @continue(empty($pathway['title']))
+                        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ $pathway['title'] }}</h3>
+                                    @if(!empty($pathway['description']))
+                                        <p class="text-gray-600 mb-3">{{ $pathway['description'] }}</p>
+                                    @endif
+                                    
+                                    @if(!empty($pathway['requirements']))
+                                        <div class="mb-3">
+                                            <h4 class="font-medium text-gray-900 mb-2">Requirements:</h4>
+                                            <div class="prose max-w-none text-gray-600 text-sm">
+                                                {!! nl2br(e($pathway['requirements'])) !!}
+                                            </div>
+                                        </div>
+                                    @endif
+                                    
+                                    @if(!empty($pathway['steps']) && is_array($pathway['steps']))
+                                        <div>
+                                            <h4 class="font-medium text-gray-900 mb-2">Steps:</h4>
+                                            <ol class="list-decimal list-inside space-y-1 text-sm text-gray-600">
+                                                @foreach($pathway['steps'] as $step)
+                                                    @if(!empty(trim($step)))
+                                                        <li>{{ $step }}</li>
+                                                    @endif
+                                                @endforeach
+                                            </ol>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </section>
             @endif
 

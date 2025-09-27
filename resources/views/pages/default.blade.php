@@ -307,9 +307,9 @@
 <div class="relative rounded-2xl overflow-hidden mb-12 h-80 md:h-96 lg:h-[28rem] shadow-2xl group">
     @if($heroBgUrl)
         <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background-image:url('{{ $heroBgUrl }}');background-size:cover;background-position:center;"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-800/75 to-blue-700/80"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-blue-800/50 to-blue-700/60"></div>
     @else
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400"></div>
     @endif
     
     <!-- Animated background pattern -->
@@ -318,110 +318,32 @@
     </div>
     
     <div class="relative h-full text-white p-8 md:p-12 flex items-center">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full">
-            <div class="space-y-6">
-                <div class="space-y-4">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+        <div class="w-full max-w-4xl">
+            <div class="space-y-8">
+                <div class="space-y-6">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-lg">
                         {{ $page->title }}
                     </h1>
                 @if($page->excerpt)
-                    <p class="text-blue-100 text-xl leading-relaxed max-w-2xl">{{ $page->excerpt }}</p>
+                    <p class="text-white/90 text-xl md:text-2xl leading-relaxed max-w-3xl drop-shadow-md">{{ $page->excerpt }}</p>
                 @endif
                 </div>
                 
                 <div class="flex flex-wrap gap-4">
-                    <a href="#overview" class="group/btn inline-flex items-center px-6 py-3 bg-white text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <a href="#overview" class="group/btn inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg">
                         <svg class="w-5 h-5 mr-2 group-hover/btn:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         Overview
                     </a>
                     @if(!empty($page->visa_steps))
-                    <a href="#how-to-apply" class="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300">
+                    <a href="#how-to-apply" class="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-xl hover:bg-white/30 transition-all duration-300 text-lg">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         How to Apply
                     </a>
                     @endif
-                </div>
-            </div>
-            <div>
-                @php
-                    $highlights = is_array($page->visa_highlights) ? $page->visa_highlights : [];
-                    $getHighlight = function(string $label) use ($highlights) {
-                        foreach ($highlights as $h) {
-                            if (!empty($h['label']) && strcasecmp(trim($h['label']), $label) === 0) {
-                                return $h['value'] ?? null;
-                            }
-                        }
-                        return null;
-                    };
-                    $duration = $getHighlight('Duration');
-                    $pathway = $getHighlight('Pathway') ?? $getHighlight('Innovation Focus') ?? $getHighlight('Stream');
-                    $processingTimes = is_array($page->visa_processing_times ?? null) ? $page->visa_processing_times : [];
-                    $processing = $processingTimes['standard'] ?? ($processingTimes['priority'] ?? ($processingTimes['complex'] ?? null));
-                    $primaryCost = null;
-                    if (is_array($page->visa_costs ?? null)) {
-                        foreach ($page->visa_costs as $row) {
-                            if (!empty($row['label']) && stripos($row['label'], 'primary') !== false) {
-                                $primaryCost = $row['amount'] ?? null;
-                                break;
-                            }
-                        }
-                        if (!$primaryCost && !empty($page->visa_costs[0]['amount'])) {
-                            $primaryCost = $page->visa_costs[0]['amount'];
-                        }
-                    }
-                @endphp
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="group/card bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 bg-white/20 rounded-md flex items-center justify-center mr-2">
-                                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <dt class="text-xs font-medium text-white/90">Duration</dt>
-                        </div>
-                        <dd class="text-lg font-bold text-white truncate" title="{{ $duration ?? '—' }}">{{ $duration ?? '—' }}</dd>
-                    </div>
-                    
-                    <div class="group/card bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 bg-white/20 rounded-md flex items-center justify-center mr-2">
-                                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                                </svg>
-                            </div>
-                            <dt class="text-xs font-medium text-white/90">Cost</dt>
-                        </div>
-                        <dd class="text-lg font-bold text-white truncate" title="{{ $primaryCost ?? '—' }}">{{ $primaryCost ?? '—' }}</dd>
-                    </div>
-                    
-                    <div class="group/card bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 bg-white/20 rounded-md flex items-center justify-center mr-2">
-                                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                                </svg>
-                            </div>
-                            <dt class="text-xs font-medium text-white/90">Processing Time</dt>
-                        </div>
-                        <dd class="text-lg font-bold text-white truncate" title="{{ $processing ?? '—' }}">{{ $processing ?? '—' }}</dd>
-                    </div>
-                    
-                    <div class="group/card bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 bg-white/20 rounded-md flex items-center justify-center mr-2">
-                                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg>
-                            </div>
-                            <dt class="text-xs font-medium text-white/90">Pathway</dt>
-                        </div>
-                        <dd class="text-lg font-bold text-white truncate" title="{{ $pathway ?? '—' }}">{{ $pathway ?? '—' }}</dd>
-                    </div>
                 </div>
             </div>
         </div>

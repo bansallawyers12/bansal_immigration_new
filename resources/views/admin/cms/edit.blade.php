@@ -172,15 +172,6 @@
                         <p class="text-xs text-gray-500">Shown only when Template = Visa (Structured)</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Highlights JSON</label>
-                            <textarea name="visa_highlights" rows="3" placeholder='[{"label":"Duration","value":"4 years"}]'
-                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_highlights') border-red-500 @enderror">{{ old('visa_highlights', $page->visa_highlights ? json_encode($page->visa_highlights) : '') }}</textarea>
-                            @error('visa_highlights')
-                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                            <p class="mt-1 text-xs text-gray-500">[{label, value}] up to 6 items. Keep values ≤14 chars.</p>
-                        </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Eligibility (JSON array)</label>
                             <textarea name="visa_eligibility" rows="3" placeholder='["Item 1","Item 2"]'
@@ -230,6 +221,24 @@
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                             <p class="mt-1 text-xs text-gray-500">[{label, amount, notes?}]</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Duration (JSON object)</label>
+                            <textarea name="visa_duration" rows="3" placeholder='{"initial":"2 years","extension":"2 years","permanent":"After 2 years","notes":"Additional info"}'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_duration') border-red-500 @enderror">{{ old('visa_duration', $page->visa_duration ? json_encode($page->visa_duration) : '') }}</textarea>
+                            @error('visa_duration')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-gray-500">{initial, extension, permanent, notes?}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Pathways (JSON array)</label>
+                            <textarea name="visa_pathways" rows="4" placeholder='[{"title":"Skilled Migration","description":"Pathway description","requirements":"Requirements","steps":["Step 1","Step 2"]}]'
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('visa_pathways') border-red-500 @enderror">{{ old('visa_pathways', $page->visa_pathways ? json_encode($page->visa_pathways) : '') }}</textarea>
+                            @error('visa_pathways')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-1 text-xs text-gray-500">[{title, description, requirements?, steps?}]</p>
                         </div>
                     </div>
                 </div>
@@ -572,20 +581,8 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const templateSelect = document.getElementById('template');
     const visaSection = document.getElementById('visa-structured-section');
-    const defaultVisaHighlights = [
-        { label: 'Duration', value: '4 years' },
-        { label: 'Cost', value: 'AUD $4,640' },
-        { label: 'Processing', value: 'Standard' },
-        { label: 'Pathway', value: 'PR' }
-    ];
     function toggleVisaSection() {
         visaSection.style.display = templateSelect.value === 'visa-structured' ? '' : 'none';
-        if (templateSelect.value === 'visa-structured') {
-            const hl = document.querySelector('textarea[name="visa_highlights"]');
-            if (hl && !hl.value.trim()) {
-                hl.value = JSON.stringify(defaultVisaHighlights, null, 2);
-            }
-        }
     }
     templateSelect.addEventListener('change', toggleVisaSection);
     toggleVisaSection();

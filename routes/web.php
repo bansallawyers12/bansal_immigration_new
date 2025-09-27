@@ -36,22 +36,6 @@ Route::get('/design/visa-structured-preview', function () {
     ]);
 })->name('design.visa-structured-preview');
 
-// Modern variant preview for visa structured page
-Route::get('/design/visa-structured-modern', function () {
-    $page = \App\Models\Page::where('category', 'migrate-to-australia')
-        ->where('status', true)
-        ->orderBy('id', 'desc')
-        ->first();
-    if ($page) { $page->template = 'visa-structured-modern'; }
-    return view('pages.visa-structured-modern', [
-        'page' => $page,
-        'relatedPages' => \App\Models\Page::where('category', $page?->category ?? 'migrate-to-australia')
-            ->where('id', '!=', $page?->id ?? 0)
-            ->active()
-            ->take(6)
-            ->get()
-    ]);
-})->name('design.visa-structured-modern');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{slug}', [HomeController::class, 'blogDetail'])->name('blog.detail');

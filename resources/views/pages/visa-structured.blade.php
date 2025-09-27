@@ -307,15 +307,12 @@
 <div class="relative rounded-2xl overflow-hidden mb-12 h-80 md:h-96 lg:h-[28rem] shadow-2xl group">
     @if($heroBgUrl)
         <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background-image:url('{{ $heroBgUrl }}');background-size:cover;background-position:center;"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-800/75 to-blue-700/80"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/55 via-blue-800/50 to-blue-700/55"></div>
     @else
         <div class="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500"></div>
     @endif
     
-    <!-- Animated background pattern -->
-    <div class="absolute inset-0 opacity-10">
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, white 2px, transparent 2px), radial-gradient(circle at 75% 75%, white 2px, transparent 2px); background-size: 50px 50px;"></div>
-    </div>
+    <!-- Removed dotted pattern for cleaner image visibility -->
     
     <div class="relative h-full text-white p-8 md:p-12 flex items-center">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full">

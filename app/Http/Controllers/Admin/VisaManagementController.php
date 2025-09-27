@@ -60,6 +60,17 @@ class VisaManagementController extends Controller
             'visa_processing_times.standard' => 'nullable|string|max:255',
             'visa_processing_times.priority' => 'nullable|string|max:255',
             'visa_processing_times.complex' => 'nullable|string|max:255',
+            'visa_duration' => 'nullable|array',
+            'visa_duration.initial' => 'nullable|string|max:255',
+            'visa_duration.extension' => 'nullable|string|max:255',
+            'visa_duration.permanent' => 'nullable|string|max:255',
+            'visa_duration.notes' => 'nullable|string|max:500',
+            'visa_pathways' => 'nullable|array',
+            'visa_pathways.*.title' => 'required_with:visa_pathways|string|max:255',
+            'visa_pathways.*.description' => 'required_with:visa_pathways|string|max:1000',
+            'visa_pathways.*.requirements' => 'nullable|string|max:1000',
+            'visa_pathways.*.steps' => 'nullable|array',
+            'visa_pathways.*.steps.*' => 'string|max:500',
         ]);
 
         if ($validator->fails()) {
@@ -103,10 +114,58 @@ class VisaManagementController extends Controller
             $data['visa_processing_times'] = !empty($processingTimes) ? $processingTimes : null;
         }
 
+        // Handle visa duration
+        if ($request->has('visa_duration')) {
+            $duration = [];
+            $durationData = $request->input('visa_duration', []);
+            
+            if (!empty($durationData['initial'])) {
+                $duration['initial'] = trim($durationData['initial']);
+            }
+            if (!empty($durationData['extension'])) {
+                $duration['extension'] = trim($durationData['extension']);
+            }
+            if (!empty($durationData['permanent'])) {
+                $duration['permanent'] = trim($durationData['permanent']);
+            }
+            if (!empty($durationData['notes'])) {
+                $duration['notes'] = trim($durationData['notes']);
+            }
+            
+            $data['visa_duration'] = !empty($duration) ? $duration : null;
+        }
+
+        // Handle visa pathways
+        if ($request->has('visa_pathways')) {
+            $pathways = [];
+            foreach ($request->input('visa_pathways', []) as $pathway) {
+                if (!empty($pathway['title'])) {
+                    $pathwayData = [
+                        'title' => trim($pathway['title']),
+                        'description' => trim($pathway['description'] ?? ''),
+                        'requirements' => trim($pathway['requirements'] ?? ''),
+                        'steps' => []
+                    ];
+                    
+                    // Handle steps array
+                    if (!empty($pathway['steps']) && is_array($pathway['steps'])) {
+                        foreach ($pathway['steps'] as $step) {
+                            if (!empty(trim($step))) {
+                                $pathwayData['steps'][] = trim($step);
+                            }
+                        }
+                    }
+                    
+                    $pathways[] = $pathwayData;
+                }
+            }
+            $data['visa_pathways'] = !empty($pathways) ? $pathways : null;
+        }
+
         $page->update($data);
 
         return redirect()->route('admin.visa-management.index')
-            ->with('success', 'Visa costs and processing times updated successfully.');
+            ->with('success', 'Visa information updated successfully.');
     }
 
     /**
@@ -125,7 +184,18 @@ class VisaManagementController extends Controller
             'visa_processing_times.standard' => 'nullable|string|max:255',
             'visa_processing_times.priority' => 'nullable|string|max:255',
             'visa_processing_times.complex' => 'nullable|string|max:255',
-            'update_type' => 'required|in:costs,processing_times,both'
+            'visa_duration' => 'nullable|array',
+            'visa_duration.initial' => 'nullable|string|max:255',
+            'visa_duration.extension' => 'nullable|string|max:255',
+            'visa_duration.permanent' => 'nullable|string|max:255',
+            'visa_duration.notes' => 'nullable|string|max:500',
+            'visa_pathways' => 'nullable|array',
+            'visa_pathways.*.title' => 'required_with:visa_pathways|string|max:255',
+            'visa_pathways.*.description' => 'required_with:visa_pathways|string|max:1000',
+            'visa_pathways.*.requirements' => 'nullable|string|max:1000',
+            'visa_pathways.*.steps' => 'nullable|array',
+            'visa_pathways.*.steps.*' => 'string|max:500',
+            'update_type' => 'required|in:costs,processing_times,duration,pathways,all'
         ]);
 
         if ($validator->fails()) {
@@ -141,7 +211,7 @@ class VisaManagementController extends Controller
             $data = [];
             
             // Update costs if requested
-            if (in_array($request->input('update_type'), ['costs', 'both'])) {
+            if (in_array($request->input('update_type'), ['costs', 'all'])) {
                 if ($request->has('visa_costs')) {
                     $costs = [];
                     foreach ($request->input('visa_costs', []) as $cost) {
@@ -158,7 +228,7 @@ class VisaManagementController extends Controller
             }
 
             // Update processing times if requested
-            if (in_array($request->input('update_type'), ['processing_times', 'both'])) {
+            if (in_array($request->input('update_type'), ['processing_times', 'all'])) {
                 if ($request->has('visa_processing_times')) {
                     $processingTimes = [];
                     $times = $request->input('visa_processing_times', []);
@@ -174,6 +244,58 @@ class VisaManagementController extends Controller
                     }
                     
                     $data['visa_processing_times'] = !empty($processingTimes) ? $processingTimes : null;
+                }
+            }
+
+            // Update duration if requested
+            if (in_array($request->input('update_type'), ['duration', 'all'])) {
+                if ($request->has('visa_duration')) {
+                    $duration = [];
+                    $durationData = $request->input('visa_duration', []);
+                    
+                    if (!empty($durationData['initial'])) {
+                        $duration['initial'] = trim($durationData['initial']);
+                    }
+                    if (!empty($durationData['extension'])) {
+                        $duration['extension'] = trim($durationData['extension']);
+                    }
+                    if (!empty($durationData['permanent'])) {
+                        $duration['permanent'] = trim($durationData['permanent']);
+                    }
+                    if (!empty($durationData['notes'])) {
+                        $duration['notes'] = trim($durationData['notes']);
+                    }
+                    
+                    $data['visa_duration'] = !empty($duration) ? $duration : null;
+                }
+            }
+
+            // Update pathways if requested
+            if (in_array($request->input('update_type'), ['pathways', 'all'])) {
+                if ($request->has('visa_pathways')) {
+                    $pathways = [];
+                    foreach ($request->input('visa_pathways', []) as $pathway) {
+                        if (!empty($pathway['title'])) {
+                            $pathwayData = [
+                                'title' => trim($pathway['title']),
+                                'description' => trim($pathway['description'] ?? ''),
+                                'requirements' => trim($pathway['requirements'] ?? ''),
+                                'steps' => []
+                            ];
+                            
+                            // Handle steps array
+                            if (!empty($pathway['steps']) && is_array($pathway['steps'])) {
+                                foreach ($pathway['steps'] as $step) {
+                                    if (!empty(trim($step))) {
+                                        $pathwayData['steps'][] = trim($step);
+                                    }
+                                }
+                            }
+                            
+                            $pathways[] = $pathwayData;
+                        }
+                    }
+                    $data['visa_pathways'] = !empty($pathways) ? $pathways : null;
                 }
             }
 
@@ -201,7 +323,7 @@ class VisaManagementController extends Controller
         $pages = Page::where('category', $category)
             ->where('status', true)
             ->orderBy('title')
-            ->select('id', 'title', 'visa_costs', 'visa_processing_times')
+            ->select('id', 'title', 'visa_costs', 'visa_processing_times', 'visa_duration', 'visa_pathways')
             ->get();
 
         return response()->json($pages);

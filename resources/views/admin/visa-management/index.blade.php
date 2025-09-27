@@ -198,7 +198,9 @@
                             <option value="">Select update type</option>
                             <option value="costs">Costs Only</option>
                             <option value="processing_times">Processing Times Only</option>
-                            <option value="both">Both Costs and Processing Times</option>
+                            <option value="duration">Duration Only</option>
+                            <option value="pathways">Pathways Only</option>
+                            <option value="all">All Sections</option>
                         </select>
                     </div>
 
@@ -247,6 +249,56 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Duration Section -->
+                    <div id="duration-section" class="hidden">
+                        <h4 class="text-lg font-medium text-gray-900 mb-3">Visa Duration</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Initial Duration</label>
+                                <input type="text" name="visa_duration[initial]" placeholder="e.g., 2 years, 4 years" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Extension Duration</label>
+                                <input type="text" name="visa_duration[extension]" placeholder="e.g., 2 years, 1 year, N/A" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Permanent Residency</label>
+                                <input type="text" name="visa_duration[permanent]" placeholder="e.g., After 2 years, N/A" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Additional Notes</label>
+                                <input type="text" name="visa_duration[notes]" placeholder="Additional duration information" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pathways Section -->
+                    <div id="pathways-section" class="hidden">
+                        <h4 class="text-lg font-medium text-gray-900 mb-3">Visa Pathways</h4>
+                        <div id="pathways-container">
+                            <div class="pathway-item border border-gray-200 rounded-lg p-4 mb-3">
+                                <div class="grid grid-cols-1 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Pathway Title</label>
+                                        <input type="text" name="visa_pathways[0][title]" placeholder="e.g., Skilled Migration Pathway" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                        <textarea name="visa_pathways[0][description]" rows="2" placeholder="Describe this pathway" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Requirements (Optional)</label>
+                                        <textarea name="visa_pathways[0][requirements]" rows="2" placeholder="List requirements" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addPathwayField()" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                            <i class="fas fa-plus mr-1"></i>
+                            Add Another Pathway
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
@@ -264,6 +316,7 @@
 
 <script>
 let costIndex = 1;
+let pathwayIndex = 1;
 
 function showBulkUpdateModal() {
     document.getElementById('bulk-update-modal').classList.remove('hidden');
@@ -272,6 +325,36 @@ function showBulkUpdateModal() {
 function hideBulkUpdateModal() {
     document.getElementById('bulk-update-modal').classList.add('hidden');
 }
+
+// Handle update type change
+document.addEventListener('DOMContentLoaded', function() {
+    const updateTypeSelect = document.querySelector('select[name="update_type"]');
+    if (updateTypeSelect) {
+        updateTypeSelect.addEventListener('change', function() {
+            const selectedValue = this.value;
+            
+            // Hide all sections first
+            document.getElementById('costs-section').classList.add('hidden');
+            document.getElementById('processing-times-section').classList.add('hidden');
+            document.getElementById('duration-section').classList.add('hidden');
+            document.getElementById('pathways-section').classList.add('hidden');
+            
+            // Show relevant sections based on selection
+            if (selectedValue === 'costs' || selectedValue === 'all') {
+                document.getElementById('costs-section').classList.remove('hidden');
+            }
+            if (selectedValue === 'processing_times' || selectedValue === 'all') {
+                document.getElementById('processing-times-section').classList.remove('hidden');
+            }
+            if (selectedValue === 'duration' || selectedValue === 'all') {
+                document.getElementById('duration-section').classList.remove('hidden');
+            }
+            if (selectedValue === 'pathways' || selectedValue === 'all') {
+                document.getElementById('pathways-section').classList.remove('hidden');
+            }
+        });
+    }
+});
 
 function addCostField() {
     const container = document.getElementById('costs-container');
@@ -308,22 +391,56 @@ function removeCostField(button) {
     button.closest('.cost-item').remove();
 }
 
+function addPathwayField() {
+    const container = document.getElementById('pathways-container');
+    const newPathwayItem = document.createElement('div');
+    newPathwayItem.className = 'pathway-item border border-gray-200 rounded-lg p-4 mb-3';
+    newPathwayItem.innerHTML = `
+        <div class="grid grid-cols-1 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Pathway Title</label>
+                <input type="text" name="visa_pathways[${pathwayIndex}][title]" placeholder="e.g., Skilled Migration Pathway" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea name="visa_pathways[${pathwayIndex}][description]" rows="2" placeholder="Describe this pathway" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Requirements (Optional)</label>
+                <textarea name="visa_pathways[${pathwayIndex}][requirements]" rows="2" placeholder="List requirements" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+            </div>
+        </div>
+    `;
+    container.appendChild(newPathwayItem);
+    pathwayIndex++;
+}
+
 // Handle update type change
 document.querySelector('select[name="update_type"]').addEventListener('change', function() {
     const updateType = this.value;
     const costsSection = document.getElementById('costs-section');
     const processingTimesSection = document.getElementById('processing-times-section');
+    const durationSection = document.getElementById('duration-section');
+    const pathwaysSection = document.getElementById('pathways-section');
     
-    if (updateType === 'costs' || updateType === 'both') {
+    // Hide all sections first
+    costsSection.classList.add('hidden');
+    processingTimesSection.classList.add('hidden');
+    durationSection.classList.add('hidden');
+    pathwaysSection.classList.add('hidden');
+    
+    // Show relevant sections based on selection
+    if (updateType === 'costs' || updateType === 'all') {
         costsSection.classList.remove('hidden');
-    } else {
-        costsSection.classList.add('hidden');
     }
-    
-    if (updateType === 'processing_times' || updateType === 'both') {
+    if (updateType === 'processing_times' || updateType === 'all') {
         processingTimesSection.classList.remove('hidden');
-    } else {
-        processingTimesSection.classList.add('hidden');
+    }
+    if (updateType === 'duration' || updateType === 'all') {
+        durationSection.classList.remove('hidden');
+    }
+    if (updateType === 'pathways' || updateType === 'all') {
+        pathwaysSection.classList.remove('hidden');
     }
 });
 

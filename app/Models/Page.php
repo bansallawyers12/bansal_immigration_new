@@ -35,7 +35,9 @@ class Page extends Model
         'visa_steps',
         'visa_faqs',
         'visa_processing_times',
-        'visa_costs'
+        'visa_costs',
+        'visa_duration',
+        'visa_pathways'
     ];
 
     protected $casts = [
@@ -49,7 +51,9 @@ class Page extends Model
         'visa_steps' => 'array',
         'visa_faqs' => 'array',
         'visa_processing_times' => 'array',
-        'visa_costs' => 'array'
+        'visa_costs' => 'array',
+        'visa_duration' => 'array',
+        'visa_pathways' => 'array'
     ];
 
     public function scopeActive($query)

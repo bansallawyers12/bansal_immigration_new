@@ -63,7 +63,7 @@
                 <div class="mb-3">
                     <h4 class="text-sm font-semibold text-sg-navy mb-1">ADELAIDE</h4>
                     <div class="space-y-1 text-sm text-sg-navy">
-                        <p class="flex items-start"><i class="fas fa-map-marker-alt mr-2 text-sg-light-blue mt-1"></i>Unit 5 5/55 Gawler Pl<br>Adelaide SA 5000, Australia</p>
+                        <p class="flex items-start"><i class="fas fa-map-marker-alt mr-2 text-sg-light-blue mt-1"></i>Unit 5, 55 Gawler Pl<br>Adelaide SA 5000, Australia</p>
                         <p class="flex items-center text-sg-navy"><i class="fas fa-phone mr-2 text-sg-light-blue"></i><span class="text-sg-navy">0400434884</span></p>
                         <p class="flex items-center"><i class="fas fa-envelope mr-2 text-sg-light-blue"></i><a href="mailto:adelaide@bansalimmigration.com.au" class="hover:text-sg-light-blue transition-colors">adelaide@bansalimmigration.com.au</a></p>
                     </div>

@@ -666,7 +666,7 @@
             @endif
 
             <!-- Contact CTA -->
-            <div class="mt-4 bg-white rounded-lg shadow p-6">
+            <div id="contact-form" class="mt-4 bg-white rounded-lg shadow p-6">
                 @include('components.unified-contact-form', [
                     'form_source' => 'visa-structured-' . $page->slug,
                     'form_variant' => 'compact',
@@ -739,7 +739,7 @@
                                 </div>
                                 <div>
                                     <div class="text-sm font-medium text-gray-600 mb-1">Adelaide Office</div>
-                                    <div class="text-sm font-bold text-gray-900">Level 5/25 Grenfell St<br>Adelaide SA 5000</div>
+                                    <div class="text-sm font-bold text-gray-900">Unit 5, 55 Gawler Pl<br>Adelaide SA 5000</div>
                                 </div>
                             </div>
                         </div>

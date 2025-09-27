@@ -36,7 +36,7 @@
         <ol class="flex items-center space-x-2 text-sm text-gray-600">
             <li><a href="/" class="hover:text-blue-600">Home</a></li>
             <li>/</li>
-            <li><a href="/migration" class="hover:text-blue-600">Migration</a></li>
+            <li><a href="/migrate-to-australia" class="hover:text-blue-600">Migration</a></li>
             @if($page->slug !== 'migration')
             <li>/</li>
             <li class="text-gray-900">{{ $page->title }}</li>
@@ -239,7 +239,7 @@
         <ol class="flex items-center space-x-2 text-sm text-gray-600">
             <li><a href="/" class="hover:text-blue-600">Home</a></li>
             <li>/</li>
-            <li><a href="/migration" class="hover:text-blue-600">Migration</a></li>
+            <li><a href="/migrate-to-australia" class="hover:text-blue-600">Migration</a></li>
             @if($page->slug !== 'migration')
             <li>/</li>
             <li class="text-gray-900">{{ $page->title }}</li>

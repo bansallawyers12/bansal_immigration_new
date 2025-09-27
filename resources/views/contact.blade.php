@@ -3,8 +3,8 @@
 @section('title', 'Contact Us - Bansal Immigration Consultants')
 @section('description', 'Get in touch with our MARA registered migration agents. Contact us for expert immigration advice and consultation services.')
 @section('content')
-    <!-- Hero -->
-    <section class="hero-bg relative py-24 md:py-32">
+    <!-- Hero - Hidden on mobile -->
+    <section class="hero-bg relative py-24 md:py-32 hidden md:block">
         <div class="absolute inset-0"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -13,7 +13,7 @@
                         <h1 class="text-3xl md:text-5xl font-bold sg-navy leading-tight mb-4">Speak with a MARA Registered Migration Agent</h1>
                         <p class="text-base md:text-lg sg-dark-gray leading-relaxed mb-6">Personalised guidance for skilled, study, partner, and employer sponsored visas. Start your journey today.</p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="/appointment" class="btn-primary px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
+                            <a href="/book-an-appointment" class="btn-primary px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
                                 <i class="fas fa-calendar-alt mr-2"></i> Book Free Consultation
                             </a>
                             <a href="#contact-form" class="btn-secondary px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center">
@@ -44,12 +44,22 @@
         </div>
     </section>
 
-    <!-- Main Content with Sticky Form -->
-    <section class="py-16 bg-sg-light-gray">
+    <!-- Mobile Header -->
+    <section class="md:hidden bg-sg-light-gray py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-2xl font-bold sg-navy mb-2">Contact Us</h1>
+                <p class="text-sm sg-medium-gray">Get in touch with our MARA registered migration agents</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content with Mobile-First Layout -->
+    <section class="py-8 md:py-16 bg-sg-light-gray">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                <!-- Left: Content blocks -->
-                <div class="lg:col-span-2 space-y-8">
+                <!-- Mobile: Contact Form First, Desktop: Content First -->
+                <div class="lg:col-span-2 space-y-8 order-2 lg:order-1">
                     <div class="service-card bg-white p-6 md:p-8 rounded-lg">
                         <h2 class="text-2xl md:text-3xl font-bold sg-navy mb-4">How can we help?</h2>
                         <p class="sg-medium-gray mb-6">Whether you're applying for skilled migration, studying in Australia, reuniting with family, or seeking employer sponsorship, our team provides expert, personalised advice.</p>
@@ -129,14 +139,14 @@
 
                     <!-- Final CTA -->
                     <div class="text-center">
-                        <a href="/appointment" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold inline-block">
+                        <a href="/book-an-appointment" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold inline-block">
                             <i class="fas fa-calendar-alt mr-2"></i> Book a Consultation Now
                         </a>
                     </div>
                 </div>
 
-                <!-- Right: Sticky Contact Form -->
-                <aside id="contact-form" class="lg:sticky lg:top-24">
+                <!-- Mobile: Contact Form First, Desktop: Sticky Sidebar -->
+                <aside id="contact-form" class="lg:sticky lg:top-24 order-1 lg:order-2">
                     <div class="service-card bg-white p-6 md:p-8 rounded-lg shadow-xl">
                         <h3 class="text-xl font-bold mb-4 sg-navy">Make an Enquiry</h3>
                     @include('components.unified-contact-form', [

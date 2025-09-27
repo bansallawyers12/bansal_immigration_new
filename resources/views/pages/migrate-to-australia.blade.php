@@ -143,7 +143,7 @@
                     </div>
                     <p class="text-gray-700 mb-6">Work visa options sponsored by Australian employers.</p>
                     <ul class="space-y-3 mb-6">
-                        <li><a href="{{ route('employer-sponsored.tss-482') }}" class="text-purple-600 hover:text-purple-800 font-medium">TSS Visa (482)</a></li>
+                        <li><a href="{{ route('employer-sponsored.sid-482') }}" class="text-purple-600 hover:text-purple-800 font-medium">Skill in Demand Visa (482)</a></li>
                         <li><a href="{{ route('employer-sponsored.ens-186-trt') }}" class="text-purple-600 hover:text-purple-800 font-medium">ENS 186 TRT</a></li>
                         <li><a href="{{ route('employer-sponsored.ens-186-direct') }}" class="text-purple-600 hover:text-purple-800 font-medium">ENS 186 Direct</a></li>
                         <li><a href="{{ route('employer-sponsored.skilled-regional-494') }}" class="text-purple-600 hover:text-purple-800 font-medium">Skilled Employer Sponsored Regional (494)</a></li>
@@ -266,7 +266,7 @@
                     [
                         'title' => 'Employer Sponsored', 'icon' => 'fas fa-user-tie', 'color' => 'teal',
                         'links' => [
-                            'TSS Visa (482)' => route('employer-sponsored.tss-482'),
+                            'Skill in Demand Visa (482)' => route('employer-sponsored.sid-482'),
                             'Skilled Employer Sponsored Regional (494)' => route('employer-sponsored.skilled-regional-494'),
                             'Training Visa (407)' => route('employer-sponsored.training-visa-407'),
                             'Temporary Activity (408)' => route('employer-sponsored.temporary-activity-408'),
@@ -332,7 +332,7 @@
                 <x-migrate.tools-grid :tools="[
                     ['title' => 'PR Points Calculator', 'href' => route('migrate-to-australia.pr-calculator'), 'desc' => 'Estimate your points in 2 minutes', 'icon' => 'fas fa-calculator'],
                     ['title' => 'Postcode Checker', 'href' => route('postcode-checker'), 'desc' => 'Confirm regional classification for your area', 'icon' => 'fas fa-map-marker-alt'],
-                    ['title' => 'Student Calculator', 'href' => route('study-australia.calculator'), 'desc' => 'Check funds requirement for student visa', 'icon' => 'fas fa-user-graduate'],
+                    ['title' => 'Student Calculator', 'href' => '/study-australia/student-visa-financial-calculator', 'desc' => 'Check funds requirement for student visa', 'icon' => 'fas fa-user-graduate'],
                 ]" />
                 </div>
             <div>

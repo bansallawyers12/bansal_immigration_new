@@ -80,7 +80,7 @@
             </blockquote>
             <div class="border-t pt-4">
                 <div class="font-semibold text-gray-900">James Wilson</div>
-                <div class="text-sm text-gray-600">TSS Visa (482)</div>
+                <div class="text-sm text-gray-600">Skill in Demand Visa (482)</div>
                 <div class="text-sm text-blue-600">Marketing Manager</div>
             </div>
         </div>
@@ -117,20 +117,20 @@
         <h2 class="text-2xl font-bold text-center mb-8">Our Success Statistics</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-                <div class="text-4xl font-bold mb-2">98%</div>
+                <div class="text-4xl font-bold mb-2">10,000+</div>
+                <div class="text-sm opacity-90">Clients</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">95%</div>
                 <div class="text-sm opacity-90">Success Rate</div>
             </div>
             <div>
-                <div class="text-4xl font-bold mb-2">5000+</div>
-                <div class="text-sm opacity-90">Visas Processed</div>
-            </div>
-            <div>
-                <div class="text-4xl font-bold mb-2">15+</div>
+                <div class="text-4xl font-bold mb-2">10+</div>
                 <div class="text-sm opacity-90">Years Experience</div>
             </div>
             <div>
-                <div class="text-4xl font-bold mb-2">4.9/5</div>
-                <div class="text-sm opacity-90">Client Rating</div>
+                <div class="text-4xl font-bold mb-2">100%</div>
+                <div class="text-sm opacity-90">Licensed Agents</div>
             </div>
         </div>
     </div>
@@ -234,7 +234,7 @@
             </blockquote>
             <div class="border-t pt-4">
                 <div class="font-semibold text-gray-900">James Wilson</div>
-                <div class="text-sm text-gray-600">TSS Visa (482)</div>
+                <div class="text-sm text-gray-600">Skill in Demand Visa (482)</div>
                 <div class="text-sm text-blue-600">Marketing Manager</div>
             </div>
         </div>
@@ -271,20 +271,20 @@
         <h2 class="text-2xl font-bold text-center mb-8">Our Success Statistics</h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
-                <div class="text-4xl font-bold mb-2">98%</div>
+                <div class="text-4xl font-bold mb-2">10,000+</div>
+                <div class="text-sm opacity-90">Clients</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">95%</div>
                 <div class="text-sm opacity-90">Success Rate</div>
             </div>
             <div>
-                <div class="text-4xl font-bold mb-2">5000+</div>
-                <div class="text-sm opacity-90">Visas Processed</div>
-            </div>
-            <div>
-                <div class="text-4xl font-bold mb-2">15+</div>
+                <div class="text-4xl font-bold mb-2">10+</div>
                 <div class="text-sm opacity-90">Years Experience</div>
             </div>
             <div>
-                <div class="text-4xl font-bold mb-2">4.9/5</div>
-                <div class="text-sm opacity-90">Client Rating</div>
+                <div class="text-4xl font-bold mb-2">100%</div>
+                <div class="text-sm opacity-90">Licensed Agents</div>
             </div>
         </div>
     </div>

@@ -776,7 +776,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="font-semibold text-gray-900">12+ Years Experience</div>
+                            <div class="font-semibold text-gray-900">10+ Years Experience</div>
                             <div class="text-sm text-gray-600">Licensed migration agents</div>
                         </div>
                     </div>
@@ -798,7 +798,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="font-semibold text-gray-900">5,000+ Clients</div>
+                            <div class="font-semibold text-gray-900">10,000+ Clients</div>
                             <div class="text-sm text-gray-600">Successfully migrated</div>
                         </div>
                     </div>

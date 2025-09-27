@@ -69,7 +69,7 @@
         <ol class="flex items-center gap-2">
             <li><a href="/" class="hover:text-white">Home</a></li>
             <li>/</li>
-            <li><a href="/migration" class="hover:text-white">Migration</a></li>
+            <li><a href="/migrate-to-australia" class="hover:text-white">Migration</a></li>
             <li>/</li>
             <li class="text-white">{{ $page->title ?? 'National Innovation Visa' }}</li>
         </ol>

@@ -22,7 +22,7 @@
                 <h3 class="text-lg font-semibold mb-3 text-sg-navy">Our Services</h3>
                 <ul class="space-y-1 text-sm text-sg-navy">
                     <li><a href="/study-australia" class="hover:text-sg-light-blue transition-colors">Study in Australia</a></li>
-                    <li><a href="/migration" class="hover:text-sg-light-blue transition-colors">Skilled Migration</a></li>
+                    <li><a href="/migrate-to-australia" class="hover:text-sg-light-blue transition-colors">Skilled Migration</a></li>
                     <li><a href="/family-visa" class="hover:text-sg-light-blue transition-colors">Partner Visas</a></li>
                     <li><a href="/visitor-visa" class="hover:text-sg-light-blue transition-colors">Visitor Visas</a></li>
                     <li><a href="/business-visas" class="hover:text-sg-light-blue transition-colors">Business Visas</a></li>

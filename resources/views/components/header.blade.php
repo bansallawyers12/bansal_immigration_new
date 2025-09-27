@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 
-                <a href="/appointment" class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold whitespace-nowrap">
+                <a href="/book-an-appointment" class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold whitespace-nowrap">
                     Book Consultation
                 </a>
                 <!-- Mobile Menu Button -->
@@ -98,7 +98,7 @@
                 <a href="/postcode-checker" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
                     <i class="fas fa-map-marker-alt mr-2 text-sg-light-blue"></i>Postcode Checker
                 </a>
-                <a href="/study-australia.calculator" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
+                <a href="/study-australia/student-visa-financial-calculator" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
                     <i class="fas fa-graduation-cap mr-2 text-sg-light-blue"></i>Student Calculator
                 </a>
             </div>
@@ -147,7 +147,7 @@
                 <div id="tools-content" class="hidden pl-4 space-y-2 mt-2">
                     <a href="/migrate-to-australia/pr-point-calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">PR Calculator</a>
                     <a href="/postcode-checker" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Postcode Checker</a>
-                    <a href="/study-australia.calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Student Calculator</a>
+                    <a href="/study-australia/student-visa-financial-calculator" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Student Calculator</a>
                 </div>
             </div>
             

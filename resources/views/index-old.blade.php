@@ -212,7 +212,7 @@
                 <!-- Main Menu Items - Services -->
                 <nav class="hidden lg:flex items-center space-x-8">
                     <a href="/study-australia" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Study in Australia</a>
-                    <a href="/migration" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Skilled Migration</a>
+                    <a href="/migrate-to-australia" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Skilled Migration</a>
                     <a href="/family-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Partner Visas</a>
                     <a href="/visitor-visa" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Visitor Visas</a>
                     <a href="/business-visas" class="nav-link text-sg-dark-gray hover:text-sg-light-blue font-medium transition-colors duration-200">Business Visas</a>
@@ -226,7 +226,7 @@
                     <button class="text-sg-dark-gray hover:text-sg-light-blue p-2 rounded-lg hover:bg-gray-100 transition-all duration-200">
                         <i class="fas fa-search text-lg"></i>
                     </button>
-                    <a href="/appointment" class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold whitespace-nowrap">
+                    <a href="/book-an-appointment" class="btn-primary px-6 py-2 rounded-lg text-sm font-semibold whitespace-nowrap">
                         Book Consultation
                     </a>
                     <!-- Mobile Menu Button -->
@@ -265,7 +265,7 @@
                     <a href="/postcode-checker" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
                         <i class="fas fa-map-marker-alt mr-2 text-sg-light-blue"></i>Postcode Checker
                     </a>
-                    <a href="/study-australia.calculator" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
+                    <a href="/study-australia/student-visa-financial-calculator" class="sg-dark-gray hover:text-sg-light-blue flex items-center px-3 py-2 rounded-lg hover:bg-white transition-all duration-200 font-medium">
                         <i class="fas fa-graduation-cap mr-2 text-sg-light-blue"></i>Student Calculator
                     </a>
                 </div>
@@ -281,7 +281,7 @@
                     <h3 class="text-sm font-semibold text-sg-navy mb-3 uppercase tracking-wide">Our Services</h3>
                     <div class="space-y-2">
                         <a href="/study-australia" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Study in Australia</a>
-                        <a href="/migration" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Skilled Migration</a>
+                        <a href="/migrate-to-australia" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Skilled Migration</a>
                         <a href="/family-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Partner Visas</a>
                         <a href="/visitor-visa" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Visitor Visas</a>
                         <a href="/business-visas" class="block py-2 text-sg-dark-gray hover:text-sg-light-blue font-medium">Business Visas</a>
@@ -342,7 +342,7 @@
                     <p class="text-xl sg-dark-gray mb-8 leading-relaxed">
                         Professional Australian immigration consultants helping you achieve permanent residency, study abroad, and family reunification in Australia. MARA registered migration agents.
                     </p>
-                    <a href="/appointment" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold inline-block">
+                    <a href="/book-an-appointment" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold inline-block">
                         Book Free Consultation
                     </a>
                 </div>
@@ -374,7 +374,7 @@
                         <i class="fas fa-briefcase text-4xl"></i>
                     </div>
                     <h3 class="text-lg font-semibold sg-dark-gray mb-2">Skilled Migration</h3>
-                    <a href="/migration" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
+                    <a href="/migrate-to-australia" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
                 </div>
 
                 <!-- Family Visas -->
@@ -460,7 +460,7 @@
                     </div>
                     <h3 class="text-2xl font-bold sg-navy mb-4">Skilled Migration</h3>
                     <p class="sg-medium-gray mb-6">Fast-track your permanent residency through Australia's skilled migration programs.</p>
-                    <a href="/migration" class="sg-light-blue font-semibold hover:underline">Learn More <i class="fas fa-arrow-right ml-2"></i></a>
+                    <a href="/migrate-to-australia" class="sg-light-blue font-semibold hover:underline">Learn More <i class="fas fa-arrow-right ml-2"></i></a>
                 </div>
 
                 <!-- Family Visa -->
@@ -498,7 +498,7 @@
                         <i class="fas fa-chart-line text-3xl text-white"></i>
                     </div>
                     <h3 class="text-2xl font-bold sg-navy mb-4">Proven Track Record</h3>
-                    <p class="sg-medium-gray">With over 10 years of experience and 5000+ successful cases, we have the expertise you need.</p>
+                    <p class="sg-medium-gray">With over 15 years of experience and 5000+ successful cases, we have the expertise you need.</p>
                 </div>
                 
                 <div class="text-center p-6">
@@ -619,7 +619,7 @@
                     <h3 class="text-2xl font-bold sg-navy mb-2">Arun Bansal</h3>
                     <p class="text-sg-light-blue font-semibold mb-4">Director (MARN: 2418466)</p>
                     <p class="sg-medium-gray text-sm leading-relaxed">
-                        Director of Bansal Immigration Consultants with 10+ years of legal and migration experience, offering expert guidance backed by LLM and Migration Law qualifications.
+                        Director of Bansal Immigration Consultants with 15+ years of legal and migration experience, offering expert guidance backed by LLM and Migration Law qualifications.
                     </p>
                     </div>
                 
@@ -694,7 +694,7 @@
                 <!-- Right Side - Three Action Buttons -->
                 <div class="space-y-4">
                     <!-- Book an Appointment -->
-                    <a href="/appointment" class="block w-full bg-sg-navy text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-sg-light-blue transition-colors text-center shadow-lg">
+                    <a href="/book-an-appointment" class="block w-full bg-sg-navy text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-sg-light-blue transition-colors text-center shadow-lg">
                         <i class="fas fa-calendar-alt mr-2"></i>Book an Appointment
                     </a>
                     
@@ -736,7 +736,7 @@
                     <h3 class="text-lg font-semibold mb-6 text-sg-navy">Our Services</h3>
                     <ul class="space-y-2 text-sm text-sg-navy">
                         <li><a href="/study-australia" class="hover:text-sg-light-blue transition-colors">Study in Australia</a></li>
-                        <li><a href="/migration" class="hover:text-sg-light-blue transition-colors">Skilled Migration</a></li>
+                        <li><a href="/migrate-to-australia" class="hover:text-sg-light-blue transition-colors">Skilled Migration</a></li>
                         <li><a href="/family-visa" class="hover:text-sg-light-blue transition-colors">Partner Visas</a></li>
                         <li><a href="/visitor-visa" class="hover:text-sg-light-blue transition-colors">Visitor Visas</a></li>
                         <li><a href="/business-visas" class="hover:text-sg-light-blue transition-colors">Business Visas</a></li>

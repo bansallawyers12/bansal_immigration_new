@@ -197,7 +197,7 @@ class ImportCmsPages extends Command
         }
         
         // Employer sponsored patterns
-        if (preg_match('/\b(employee|sponsored|employer|tss|482|186|dama|global.*talent|gti|gtes|distinguished.*talent|temporary.*activity|408|400)\b/', $text)) {
+        if (preg_match('/\b(employee|sponsored|employer|sid|482|186|dama|global.*talent|gti|gtes|distinguished.*talent|temporary.*activity|408|400)\b/', $text)) {
             return 'employer-sponsored';
         }
         

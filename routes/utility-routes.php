@@ -7,8 +7,10 @@ use App\Http\Controllers\PostcodeController;
 
 // Utility Routes
 Route::get('/testimonials', [HomeController::class, 'testimonials'])->name('testimonials');
-Route::get('/our-team', [HomeController::class, 'team'])->name('team');
-Route::get('/why-choose-us', [HomeController::class, 'whyChoose'])->name('why-choose');
+Route::get('/team', [HomeController::class, 'team'])->name('team');
+Route::get('/our-team', [HomeController::class, 'team'])->name('our-team');
+Route::get('/why-choose-us', [HomeController::class, 'whyChoose'])->name('why-choose-us');
+Route::get('/why-choose', [HomeController::class, 'whyChoose'])->name('why-choose');
 Route::get('/mission-vision', [HomeController::class, 'missionVision'])->name('mission-vision');
 Route::get('/postcode-checker', [PageController::class, 'postcodeChecker'])->name('postcode-checker');
 Route::get('/api/postcode/check', [PostcodeController::class, 'check'])->name('api.postcode.check');

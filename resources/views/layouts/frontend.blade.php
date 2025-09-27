@@ -33,7 +33,7 @@
                     <div class="flex items-center space-x-4">
                         <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="hover:text-yellow-300">PR Calculator</a>
                         <a href="{{ route('postcode-checker') }}" class="hover:text-yellow-300">Postcode Checker</a>
-                        <a href="{{ route('study-australia.calculator') }}" class="hover:text-yellow-300">Student Visa Calculator</a>
+                        <a href="/study-australia/student-visa-financial-calculator" class="hover:text-yellow-300">Student Visa Calculator</a>
                         <a href="{{ route('appointment') }}" class="bg-yellow-400 text-black px-3 py-1 rounded text-xs">Book Appointment</a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <div class="flex flex-wrap gap-2 text-xs">
                         <a href="{{ route('migrate-to-australia.pr-calculator') }}" class="hover:text-yellow-300 bg-blue-800 px-2 py-1 rounded">PR Calculator</a>
                         <a href="{{ route('postcode-checker') }}" class="hover:text-yellow-300 bg-blue-800 px-2 py-1 rounded">Postcode Checker</a>
-                        <a href="{{ route('study-australia.calculator') }}" class="hover:text-yellow-300 bg-blue-800 px-2 py-1 rounded">Student Calculator</a>
+                        <a href="/study-australia/student-visa-financial-calculator" class="hover:text-yellow-300 bg-blue-800 px-2 py-1 rounded">Student Calculator</a>
                         <a href="{{ route('appointment') }}" class="bg-yellow-400 text-black px-2 py-1 rounded font-semibold">Book Appointment</a>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                         <h6 class="font-bold text-gray-900 text-base">Tools & Resources</h6>
                                     </div>
                                     <div class="space-y-2">
-                                        <a href="{{ route('study-australia.calculator') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg transition-colors duration-200 group/item">
+                                        <a href="/study-australia/student-visa-financial-calculator" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Student Visa Financial Calculator</span>
                                         </a>
                                         <a href="{{ route('study-australia.tourist-to-student') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-700 rounded-lg transition-colors duration-200 group/item">
@@ -279,8 +279,8 @@
                                         <a href="{{ route('business-visa.business-permanent-888') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Business Innovation (888)</span>
                                         </a>
-                                        <a href="{{ route('employer-sponsored.tss-482') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
-                                            <span class="group-hover/item:font-medium">TSS Visa (482)</span>
+                                        <a href="{{ route('employer-sponsored.sid-482') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
+                                            <span class="group-hover/item:font-medium">Skill in Demand Visa (482)</span>
                                         </a>
                                         <a href="{{ route('employer-sponsored.ens-186-trt') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">ENS 186 TRT</span>
@@ -363,7 +363,7 @@
                                 <a href="{{ route('study-australia.student-guardian') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200">
                                     <i class="fas fa-shield-alt w-4 h-4 mr-2 text-blue-400"></i>Student Guardian Visa (590)
                                 </a>
-                                <a href="{{ route('study-australia.calculator') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                                <a href="/study-australia/student-visa-financial-calculator" class="block py-2 px-6 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200">
                                     <i class="fas fa-calculator w-4 h-4 mr-2 text-blue-400"></i>Student Visa Calculator
                                 </a>
                             </div>
@@ -429,8 +429,8 @@
                                     <a href="{{ route('business-visa.business-permanent-888') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
                                         <i class="fas fa-building w-4 h-4 mr-2 text-indigo-400"></i>Business Innovation (888)
                                     </a>
-                                    <a href="{{ route('employer-sponsored.tss-482') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
-                                        <i class="fas fa-id-card w-4 h-4 mr-2 text-indigo-400"></i>TSS Visa (482)
+                                    <a href="{{ route('employer-sponsored.sid-482') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
+                                        <i class="fas fa-id-card w-4 h-4 mr-2 text-indigo-400"></i>Skill in Demand Visa (482)
                                     </a>
                                     <a href="{{ route('employer-sponsored.gti') }}" class="block py-2 px-6 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
                                         <i class="fas fa-rocket w-4 h-4 mr-2 text-indigo-400"></i>GTI Program

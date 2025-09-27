@@ -73,7 +73,7 @@
                 <div>
                     <h4 class="font-medium text-gray-800 mb-2">Tools & Resources</h4>
                     <ul class="space-y-1 text-sm">
-                        <li><a href="{{ route('study-australia.calculator') }}" class="text-blue-600 hover:text-blue-800">Financial Calculator</a></li>
+                        <li><a href="/study-australia/student-visa-financial-calculator" class="text-blue-600 hover:text-blue-800">Financial Calculator</a></li>
                         <li><a href="{{ route('study-australia.tourist-to-student') }}" class="text-blue-600 hover:text-blue-800">Tourist to Student</a></li>
                         <li><a href="{{ route('study-australia.afp-ipc') }}" class="text-blue-600 hover:text-blue-800">AFP/IPC Form</a></li>
                     </ul>

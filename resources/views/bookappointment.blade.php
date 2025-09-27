@@ -17,76 +17,187 @@
 
 @section('content')
 <style>
-/* Modern Design System Variables - Using Logo Colors */
+/* Modern Design System Variables - Matching Website Colors */
 :root {
-    --primary-blue: #1B4D89;
-    --primary-blue-light: #2c5aa0;
-    --dark-blue: #0a1a2e;
-    --medium-blue: #16213e;
-    --light-gray: #f8f9fa;
-    --border-gray: #f0f0f0;
-    --text-gray: #333;
-    --light-text: #666;
-    --hero-text: #f1f3f4;
-    --success-color: #53d56c;
-    --error-color: #dc3545;
-    --accent-gold: #FFD700;
-    --accent-orange: #FF6B35;
-    --accent-green: #4CAF50;
-    --accent-purple: #9C27B0;
-    --accent-red: #E91E63;
+    --primary-blue: #1e3a8a;
+    --primary-blue-light: #3b82f6;
+    --secondary-blue: #2563eb;
+    --light-blue: #dbeafe;
+    --dark-blue: #1e40af;
+    --light-gray: #f8fafc;
+    --border-gray: #e2e8f0;
+    --text-gray: #1f2937;
+    --light-text: #6b7280;
+    --hero-text: #ffffff;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --accent-gold: #f59e0b;
+    --accent-orange: #f97316;
+    --accent-green: #059669;
+    --accent-purple: #7c3aed;
+    --accent-red: #dc2626;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-/* Typography */
+/* Typography - Matching Website Font */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-    font-size: 17px;
-    line-height: 1.7;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     color: var(--text-gray);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
 
 /* Hero Section */
 .appointment-hero {
-    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--medium-blue) 50%, var(--primary-blue) 100%);
-    color: #fff;
-    padding: 70px 0;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-background-image {
+    position: absolute;
+    inset: 0;
+    background: url('{{asset('img/appointment-hero.jpeg')}}') center/cover no-repeat;
+    z-index: 1;
+    transition: transform 0.8s ease;
+}
+
+.appointment-hero:hover .hero-background-image {
+    transform: scale(1.05);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.appointment-hero:hover .hero-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-cta {
+    margin-top: 2rem;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
+    color: white;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(27, 77, 137, 0.3);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
 }
 
-.appointment-hero::before {
+.hero-btn::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: url('{{asset('img/Frontend/bg-2.jpg')}}') center/cover no-repeat;
-    opacity: 0.18;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.hero-btn:hover::before {
+    left: 100%;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(27, 77, 137, 0.4);
+    background: linear-gradient(135deg, var(--primary-blue-light), var(--primary-blue));
+}
+
+.hero-btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-text {
+    position: relative;
     z-index: 1;
 }
 
-.appointment-hero .container {
+.btn-icon {
     position: relative;
-    z-index: 2;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    font-size: 20px;
 }
 
-.appointment-hero h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #fff;
+.hero-btn:hover .btn-icon {
+    transform: translateX(5px);
 }
 
-.appointment-hero p {
-    font-size: 1.2rem;
-    color: var(--hero-text);
-    margin-bottom: 0;
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Container System */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.hero-btn:hover {
+    animation: none;
+}
+
+/* Container System - Matching Website */
 .appointment-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .appointment-container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .appointment-container {
+        padding: 0 2rem;
+    }
 }
 
 /* Grid Layout */
@@ -112,60 +223,87 @@ body {
     flex-direction: column;
 }
 
-/* Card Styles */
+/* Card Styles - Matching Website */
 .appointment-card {
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
     border: 1px solid var(--border-gray);
     overflow: hidden;
-    margin-bottom: 24px;
+    margin-bottom: 2rem;
     flex: 1;
     display: flex;
     flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.appointment-card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-2px);
 }
 
 .appointment-card-body {
-    padding: 32px;
+    padding: 2rem;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* Step Navigation */
+@media (min-width: 768px) {
+    .appointment-card-body {
+        padding: 2.5rem;
+    }
+}
+
+/* Step Navigation - Modern Design */
 .appointment-steps {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--light-gray);
+    border-radius: 12px;
+    border: 1px solid var(--border-gray);
 }
 
 .step {
     display: flex;
     align-items: center;
-    margin: 0 10px;
+    margin: 0 0.5rem;
+    position: relative;
 }
 
 .step-number {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: #e0e0e0;
+    background: var(--white);
     color: var(--light-text);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    margin-right: 8px;
+    margin-right: 0.75rem;
     font-size: 16px;
     transition: all 0.3s ease;
+    border: 2px solid var(--border-gray);
+    box-shadow: var(--shadow-sm);
 }
 
 .step.active .step-number {
     background: var(--primary-blue);
-    color: #fff;
-    transform: scale(1.1);
+    color: var(--white);
+    transform: scale(1.05);
+    border-color: var(--primary-blue);
+    box-shadow: var(--shadow-md);
+}
+
+.step.completed .step-number {
+    background: var(--success-color);
+    color: var(--white);
+    border-color: var(--success-color);
 }
 
 .step-text {
@@ -179,9 +317,13 @@ body {
     color: var(--primary-blue);
 }
 
-/* Form Elements */
+.step.completed .step-text {
+    color: var(--success-color);
+}
+
+/* Form Elements - Modern Design */
 .form-group {
-    margin-bottom: 28px;
+    margin-bottom: 1.5rem;
 }
 
 .form-section {
@@ -192,27 +334,33 @@ body {
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     font-weight: 600;
     color: var(--text-gray);
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .form-input, .form-select, .form-textarea {
     width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #e0e0e0;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-gray);
     border-radius: 8px;
     font-size: 16px;
     transition: all 0.3s ease;
     font-family: inherit;
     box-sizing: border-box;
+    background: var(--white);
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
     outline: none;
     border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(27, 77, 137, 0.1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: var(--white);
+}
+
+.form-input:hover, .form-select:hover, .form-textarea:hover {
+    border-color: var(--primary-blue-light);
 }
 
 .form-textarea {
@@ -805,30 +953,36 @@ body {
     background: #f5f5f5;
 }
 
-/* Buttons */
+/* Buttons - Modern Design */
 .appointment-btn {
-    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
-    color: #fff;
-    border: 0;
-    border-radius: 25px;
-    padding: 12px 24px;
-    text-transform: uppercase;
-    font-weight: 700;
+    background: var(--primary-blue);
+    color: var(--white);
+    border: 2px solid var(--primary-blue);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 14px;
-    letter-spacing: 0.5px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .appointment-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(27, 77, 137, 0.3);
+    box-shadow: var(--shadow-lg);
+    background: var(--primary-blue-light);
+    border-color: var(--primary-blue-light);
 }
 
 .appointment-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
+    background: var(--light-text);
+    border-color: var(--light-text);
 }
 
 .appointment-btn-secondary {
@@ -839,7 +993,9 @@ body {
 
 .appointment-btn-secondary:hover {
     background: var(--primary-blue);
-    color: #fff;
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Confirmation Table */
@@ -862,12 +1018,14 @@ body {
     color: var(--text-gray);
 }
 
-/* Information Section */
+/* Information Section - Modern Design */
 .info-section {
     background: var(--light-gray);
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 24px;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-gray);
+    box-shadow: var(--shadow-sm);
 }
 
 .info-list {
@@ -904,20 +1062,22 @@ body {
     color: var(--text-gray);
 }
 
-/* Sidebar */
+/* Sidebar - Modern Design */
 .appointment-sidebar {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 20px;
+    background: var(--white);
+    border-radius: 16px;
     padding: 0;
     overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-gray);
 }
 
 .sidebar-section {
-    padding: 20px;
-    border-bottom: 1px solid rgba(27, 77, 137, 0.1);
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-gray);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -930,10 +1090,10 @@ body {
 
 .logo-section {
     background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
-    color: white;
+    color: var(--white);
     text-align: center;
-    padding: 24px 20px;
-    border-radius: 20px 20px 0 0;
+    padding: 2rem 1.5rem;
+    border-radius: 16px 16px 0 0;
 }
 
 .logo-container {
@@ -969,16 +1129,16 @@ body {
 }
 
 .company-name {
-    font-size: 22px;
+    font-size: 1.5rem;
     font-weight: 800;
     margin: 0;
-    color: white;
+    color: var(--white);
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     letter-spacing: 0.5px;
 }
 
 .company-tagline {
-    font-size: 14px;
+    font-size: 0.875rem;
     margin: 0;
     color: rgba(255,255,255,0.95);
     font-style: italic;
@@ -987,52 +1147,52 @@ body {
 }
 
 .sidebar-title {
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--primary-blue);
-    margin-bottom: 12px;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.5rem;
 }
 
 .title-icon {
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px;
-    background: white;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--white);
     border-radius: 12px;
-    border: 1px solid rgba(27, 77, 137, 0.1);
+    border: 1px solid var(--border-gray);
     transition: all 0.3s ease;
 }
 
 .contact-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(27, 77, 137, 0.15);
+    box-shadow: var(--shadow-md);
     border-color: var(--primary-blue);
 }
 
 .contact-icon {
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
+    font-size: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-light));
-    color: white;
-    border-radius: 10px;
+    color: var(--white);
+    border-radius: 8px;
 }
 
 .contact-details {
@@ -1042,7 +1202,7 @@ body {
 }
 
 .contact-label {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--light-text);
     font-weight: 500;
     text-transform: uppercase;
@@ -1050,7 +1210,7 @@ body {
 }
 
 .contact-value {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-gray);
     font-weight: 600;
 }
@@ -1058,140 +1218,140 @@ body {
 .hours-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0.75rem;
 }
 
 .hours-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    background: white;
-    border-radius: 10px;
-    border: 1px solid rgba(27, 77, 137, 0.1);
+    padding: 0.75rem 1rem;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border-gray);
     transition: all 0.3s ease;
 }
 
 .hours-item:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(27, 77, 137, 0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 .hours-item.closed {
     opacity: 0.6;
-    background: #f8f9fa;
+    background: var(--light-gray);
 }
 
 .hours-days {
     font-weight: 600;
     color: var(--text-gray);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .hours-time {
     font-weight: 500;
     color: var(--primary-blue);
-    font-size: 13px;
+    font-size: 0.8125rem;
 }
 
 .locations-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
 }
 
 .location-item {
-    padding: 16px;
-    background: white;
+    padding: 1rem;
+    background: var(--white);
     border-radius: 12px;
-    border: 1px solid rgba(27, 77, 137, 0.1);
+    border: 1px solid var(--border-gray);
     transition: all 0.3s ease;
 }
 
 .location-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(27, 77, 137, 0.15);
+    box-shadow: var(--shadow-md);
     border-color: var(--primary-blue);
 }
 
 .location-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
+    gap: 0.625rem;
+    margin-bottom: 0.5rem;
 }
 
 .location-icon {
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .location-name {
     font-weight: 700;
     color: var(--primary-blue);
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .location-address {
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: var(--light-text);
     line-height: 1.4;
-    margin-left: 28px;
+    margin-left: 1.75rem;
 }
 
 .features-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .feature-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
-    background: white;
+    gap: 0.625rem;
+    padding: 0.75rem;
+    background: var(--white);
     border-radius: 8px;
-    border: 1px solid rgba(27, 77, 137, 0.1);
+    border: 1px solid var(--border-gray);
     transition: all 0.3s ease;
 }
 
 .feature-item:hover {
     transform: translateX(4px);
-    box-shadow: 0 2px 8px rgba(27, 77, 137, 0.1);
+    box-shadow: var(--shadow-sm);
     border-color: var(--accent-green);
 }
 
 .feature-icon {
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--accent-green);
 }
 
 .feature-text {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-gray);
     font-weight: 500;
 }
 
 .stats-section {
-    background: linear-gradient(135deg, var(--accent-orange), #F57C00);
-    color: white;
+    background: linear-gradient(135deg, var(--accent-orange), #f97316);
+    color: var(--white);
 }
 
 .stats-section .sidebar-title {
-    color: white;
+    color: var(--white);
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 0.75rem;
 }
 
 .stat-item {
     text-align: center;
-    padding: 12px 8px;
+    padding: 0.75rem 0.5rem;
     background: rgba(255,255,255,0.2);
-    border-radius: 10px;
+    border-radius: 8px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 }
@@ -1202,14 +1362,14 @@ body {
 }
 
 .stat-number {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: white;
-    margin-bottom: 3px;
+    color: var(--white);
+    margin-bottom: 0.1875rem;
 }
 
 .stat-label {
-    font-size: 10px;
+    font-size: 0.625rem;
     color: rgba(255,255,255,0.9);
     font-weight: 500;
     text-transform: uppercase;
@@ -1239,8 +1399,8 @@ body {
     display: block;
 }
 
-/* Responsive Design */
-@media (max-width: 900px) {
+/* Responsive Design - Mobile First */
+@media (max-width: 768px) {
     .appointment-grid {
         flex-direction: column;
     }
@@ -1250,16 +1410,21 @@ body {
         flex: 1 1 auto;
     }
     
-    .appointment-hero h1 {
-        font-size: 2.2rem;
+    .appointment-hero {
+        height: 300px;
     }
     
-    .appointment-hero p {
-        font-size: 1rem;
+    .hero-btn {
+        padding: 14px 28px;
+        font-size: 16px;
     }
     
     .appointment-container {
-        padding: 0 12px;
+        padding: 0 1rem;
+    }
+    
+    .appointment-card-body {
+        padding: 1.5rem;
     }
     
     .calendar-container {
@@ -1277,22 +1442,29 @@ body {
     .appointment-steps {
         justify-content: flex-start;
         overflow-x: auto;
-        padding-bottom: 10px;
+        padding: 1rem;
+        gap: 0.5rem;
     }
     
     .step {
         flex-shrink: 0;
-        margin: 0 5px;
+        margin: 0 0.25rem;
     }
     
     .step-text {
         display: none;
     }
+    
+    .step-number {
+        width: 40px;
+        height: 40px;
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 480px) {
     .appointment-card-body {
-        padding: 20px;
+        padding: 1.25rem;
     }
     
     .service-header {
@@ -1302,26 +1474,44 @@ body {
     
     .service-image {
         margin-right: 0;
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
     
     .appointment-hero {
-        padding: 40px 0;
+        height: 250px;
+    }
+    
+    .hero-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    .hero-cta {
+        margin-top: 1rem;
     }
     
     .step-number {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
+        width: 36px;
+        height: 36px;
+        font-size: 0.875rem;
+    }
+    
+    .appointment-steps {
+        padding: 0.75rem;
     }
 }
 </style>
 
 <!-- Hero Section -->
 <div class="appointment-hero">
-    <div class="container">
-        <h1>Book Your Immigration Consultation</h1>
-        <p>Schedule a confidential consultation with our experienced MARA agents.</p>
+    <div class="hero-background-image"></div>
+    <div class="hero-content">
+        <div class="hero-cta">
+            <a href="#appointment-form" class="hero-btn">
+                <span class="btn-text">Book Your Consultation</span>
+                <span class="btn-icon">→</span>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -1778,7 +1968,7 @@ body {
                                     </div>
                                     <div class="feature-item">
                                         <span class="feature-icon">✅</span>
-                                        <span class="feature-text">Over 10 years experience</span>
+                                        <span class="feature-text">Over 15 years experience</span>
                                     </div>
                                     <div class="feature-item">
                                         <span class="feature-icon">✅</span>
@@ -1807,15 +1997,15 @@ body {
                                 </h3>
                                 <div class="stats-grid">
                                     <div class="stat-item">
-                                        <div class="stat-number">1000+</div>
-                                        <div class="stat-label">Successful Cases</div>
+                                        <div class="stat-number">10,000+</div>
+                                        <div class="stat-label">Clients</div>
                                     </div>
                                     <div class="stat-item">
                                         <div class="stat-number">10+</div>
                                         <div class="stat-label">Years Experience</div>
                                     </div>
                                     <div class="stat-item">
-                                        <div class="stat-number">98%</div>
+                                        <div class="stat-number">95%</div>
                                         <div class="stat-label">Success Rate</div>
                                     </div>
                                     <div class="stat-item">

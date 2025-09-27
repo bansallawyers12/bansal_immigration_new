@@ -279,9 +279,17 @@ Route::prefix('employer-sponsored')->name('employer-sponsored.')->group(function
     Route::get('/', [PageController::class, 'show'])->defaults('category', 'employer-sponsored')->name('index');
     
     // Temporary Visas
-    Route::get('/temporary-skill-shortage-visa-482', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'tss-visa-482');
-    })->name('tss-482');
+    Route::get('/skill-in-demand-visa-482', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'sid-visa-482');
+    })->name('sid-482');
+    
+    // Redirect old 482 URLs
+    Route::get('/temporary-skill-shortage-visa-subclass-482-old', function() {
+        return redirect()->route('sid-482', [], 301);
+    });
+    Route::get('/temporary-skill-shortage-visa-subclass-482', function() {
+        return redirect()->route('sid-482', [], 301);
+    });
     Route::get('/designated-area-migration-agreements-dama', function() {
         return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'dama');
     })->name('dama');
@@ -305,12 +313,9 @@ Route::prefix('employer-sponsored')->name('employer-sponsored.')->group(function
     Route::get('/employer-nomination-direct-entry-186', function() {
         return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'ens-186-direct');
     })->name('ens-186-direct');
-    Route::get('/distinguished-talent-visa-offshore-124', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'distinguished-talent-124');
-    })->name('distinguished-talent-124');
-    Route::get('/distinguished-talent-visa-onshore-858', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'distinguished-talent-858');
-    })->name('distinguished-talent-858');
+    Route::get('/national-innovation-visa-858', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('employer-sponsored', 'national-innovation-visa');
+    })->name('national-innovation-visa');
     
     // Global Talent Visas
     Route::get('/global-talent-independent-program-gti', function() {

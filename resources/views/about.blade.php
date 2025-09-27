@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('title', 'About Us - Bansal Immigration Consultants | Expert Migration Agents')
-@section('description', 'Learn about Bansal Immigration Consultants - MARA registered migration agents with 10+ years experience helping 5000+ clients achieve their Australian dreams.')
+@section('description', 'Learn about Bansal Immigration Consultants - MARA registered migration agents with 15+ years experience helping 5000+ clients achieve their Australian dreams.')
 
 @push('styles')
 <meta property="og:title" content="About Bansal Immigration Consultants - Expert Migration Agents">
-<meta property="og:description" content="MARA registered migration agents with 10+ years experience helping clients achieve permanent residency, study abroad, and family reunification in Australia.">
+<meta property="og:description" content="MARA registered migration agents with 15+ years experience helping clients achieve permanent residency, study abroad, and family reunification in Australia.">
 <meta property="og:image" content="{{ asset('img/logo/logo.jpg') }}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ url('/about') }}">
@@ -33,7 +33,7 @@
                         <p class="text-lg text-gray-600 mb-6">Our commitment is encapsulated in our tagline: "Your Future, Our Priority." We are dedicated to transforming your immigration aspirations into reality through expert guidance, personalized attention, and unwavering support throughout your journey.</p>
                         <div class="flex flex-wrap gap-4">
                             <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">MARA Registered</div>
-                            <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">10+ Years Experience</div>
+                            <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">15+ Years Experience</div>
                             <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">5000+ Success Stories</div>
                             <div class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">95% Success Rate</div>
                         </div>
@@ -202,8 +202,8 @@
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                     <div class="text-center">
-                        <div class="text-5xl md:text-6xl font-bold text-blue-600 mb-2">5000+</div>
-                        <div class="text-lg text-gray-600">Successful Cases</div>
+                        <div class="text-5xl md:text-6xl font-bold text-blue-600 mb-2">10,000+</div>
+                        <div class="text-lg text-gray-600">Clients</div>
                     </div>
                     <div class="text-center">
                         <div class="text-5xl md:text-6xl font-bold text-green-600 mb-2">95%</div>
@@ -214,8 +214,8 @@
                         <div class="text-lg text-gray-600">Years Experience</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-5xl md:text-6xl font-bold text-orange-600 mb-2">50+</div>
-                        <div class="text-lg text-gray-600">Countries Served</div>
+                        <div class="text-5xl md:text-6xl font-bold text-orange-600 mb-2">100%</div>
+                        <div class="text-lg text-gray-600">Licensed Agents</div>
                     </div>
                 </div>
             </div>

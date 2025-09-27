@@ -19,30 +19,30 @@ class EmployerSponsoredPagesSeeder extends Seeder
         ], [
             'title' => 'Employer Sponsored Visas',
             'slug' => 'employer-sponsored',
-            'content' => '<h2>Employer Sponsored Visas</h2><p>Australia offers various employer-sponsored visa options for skilled workers who have an Australian employer willing to sponsor them. These visas provide pathways to both temporary and permanent residence in Australia.</p><h3>Types of Employer Sponsored Visas</h3><ul><li><strong>Temporary Visas:</strong> TSS Visa (482), DAMA, Skilled Regional (494)</li><li><strong>Permanent Visas:</strong> ENS 186, Distinguished Talent (124/858)</li><li><strong>Global Talent:</strong> GTI and GTES Programs</li></ul>',
+            'content' => '<h2>Employer Sponsored Visas</h2><p>Australia offers various employer-sponsored visa options for skilled workers who have an Australian employer willing to sponsor them. These visas provide pathways to both temporary and permanent residence in Australia.</p><h3>Types of Employer Sponsored Visas</h3><ul><li><strong>Temporary Visas:</strong> Skill in Demand Visa (482), DAMA, Skilled Regional (494)</li><li><strong>Permanent Visas:</strong> ENS 186, National Innovation Visa (858)</li><li><strong>Global Talent:</strong> GTES Program</li></ul>',
             'excerpt' => 'Comprehensive employer-sponsored visa services for skilled workers with Australian employer sponsorship.',
             'template' => 'pages.employer-sponsored',
             'category' => 'employer-sponsored',
             'meta_title' => 'Employer Sponsored Visas Australia - Employer Nomination Services',
-            'meta_description' => 'Expert employer-sponsored visa services including TSS 482, ENS 186, and Global Talent programs for skilled workers with Australian employer sponsorship.',
+            'meta_description' => 'Expert employer-sponsored visa services including Skill in Demand Visa 482, ENS 186, and Global Talent programs for skilled workers with Australian employer sponsorship.',
             'status' => true,
             'featured' => true,
             'order' => 1
         ]);
 
-        // TSS Visa 482
+        // Skill in Demand Visa 482
         Page::firstOrCreate([
             'category' => 'employer-sponsored',
-            'slug' => 'tss-visa-482'
+            'slug' => 'sid-visa-482'
         ], [
-            'title' => 'Temporary Skill Shortage Visa (482)',
-            'slug' => 'tss-visa-482',
-            'content' => '<h2>Temporary Skill Shortage Visa (Subclass 482)</h2><p>The TSS visa allows skilled workers to work in Australia for up to 4 years when sponsored by an approved employer. This visa has three streams: Short-term, Medium-term, and Labour Agreement.</p><h3>Key Requirements</h3><ul><li>Sponsored by an approved employer</li><li>Meet skill and English requirements</li><li>Work in an occupation on the relevant list</li><li>Meet health and character requirements</li></ul>',
-            'excerpt' => 'TSS Visa 482 allows skilled workers to work in Australia for up to 4 years with employer sponsorship.',
+            'title' => 'Skill in Demand Visa (482)',
+            'slug' => 'sid-visa-482',
+            'content' => '<h2>Skill in Demand Visa (Subclass 482)</h2><p>The Skill in Demand visa (formerly TSS visa) allows skilled workers to work in Australia for up to 4 years when sponsored by an approved employer. This visa has three streams: Short-term, Medium-term, and Labour Agreement.</p><h3>Key Requirements</h3><ul><li>Sponsored by an approved employer</li><li>Meet skill and English requirements</li><li>Work in an occupation on the relevant list</li><li>Meet health and character requirements</li></ul>',
+            'excerpt' => 'Skill in Demand Visa 482 allows skilled workers to work in Australia for up to 4 years with employer sponsorship.',
             'template' => 'pages.employer-sponsored',
             'category' => 'employer-sponsored',
-            'meta_title' => 'TSS Visa 482 - Temporary Skill Shortage Visa Australia',
-            'meta_description' => 'Complete guide to TSS Visa 482 application process, requirements, and pathways to permanent residency through employer sponsorship.',
+            'meta_title' => 'Skill in Demand Visa 482 - SID Visa Australia',
+            'meta_description' => 'Complete guide to Skill in Demand Visa 482 application process, requirements, and pathways to permanent residency through employer sponsorship.',
             'status' => true,
             'featured' => false,
             'order' => 2
@@ -127,12 +127,12 @@ class EmployerSponsoredPagesSeeder extends Seeder
         ], [
             'title' => 'Employer Nomination Scheme 186 (TRT)',
             'slug' => 'ens-186-trt',
-            'content' => '<h2>Employer Nomination Scheme 186 (Temporary Residence Transition)</h2><p>The ENS 186 TRT stream allows TSS visa holders to transition to permanent residency after working for their sponsoring employer for at least 3 years.</p><h3>Key Requirements</h3><ul><li>Hold TSS visa for at least 3 years</li><li>Worked for sponsoring employer for 3 years</li><li>Meet age, English, and skill requirements</li><li>Employer must nominate the position</li></ul>',
-            'excerpt' => 'ENS 186 TRT allows TSS visa holders to transition to permanent residency after 3 years of work.',
+            'content' => '<h2>Employer Nomination Scheme 186 (Temporary Residence Transition)</h2><p>The ENS 186 TRT stream allows Skill in Demand visa holders to transition to permanent residency after working for their sponsoring employer for at least 3 years.</p><h3>Key Requirements</h3><ul><li>Hold Skill in Demand visa for at least 3 years</li><li>Worked for sponsoring employer for 3 years</li><li>Meet age, English, and skill requirements</li><li>Employer must nominate the position</li></ul>',
+            'excerpt' => 'ENS 186 TRT allows Skill in Demand visa holders to transition to permanent residency after 3 years of work.',
             'template' => 'pages.employer-sponsored',
             'category' => 'employer-sponsored',
             'meta_title' => 'ENS 186 TRT Visa - Employer Nomination Scheme Transition',
-            'meta_description' => 'Complete guide to ENS 186 TRT visa application, requirements, and pathway from TSS to permanent residency.',
+            'meta_description' => 'Complete guide to ENS 186 TRT visa application, requirements, and pathway from Skill in Demand visa to permanent residency.',
             'status' => true,
             'featured' => false,
             'order' => 7
@@ -145,7 +145,7 @@ class EmployerSponsoredPagesSeeder extends Seeder
         ], [
             'title' => 'Employer Nomination Scheme 186 (Direct Entry)',
             'slug' => 'ens-186-direct',
-            'content' => '<h2>Employer Nomination Scheme 186 (Direct Entry)</h2><p>The ENS 186 Direct Entry stream allows skilled workers to obtain permanent residency directly without holding a TSS visa first.</p><h3>Key Requirements</h3><ul><li>Nominated by approved employer</li><li>Meet skill and English requirements</li><li>Under 45 years of age (with exceptions)</li><li>Work in nominated position for 2 years</li></ul>',
+            'content' => '<h2>Employer Nomination Scheme 186 (Direct Entry)</h2><p>The ENS 186 Direct Entry stream allows skilled workers to obtain permanent residency directly without holding a Skill in Demand visa first.</p><h3>Key Requirements</h3><ul><li>Nominated by approved employer</li><li>Meet skill and English requirements</li><li>Under 45 years of age (with exceptions)</li><li>Work in nominated position for 2 years</li></ul>',
             'excerpt' => 'ENS 186 Direct Entry allows skilled workers to obtain permanent residency directly through employer nomination.',
             'template' => 'pages.employer-sponsored',
             'category' => 'employer-sponsored',
@@ -156,37 +156,19 @@ class EmployerSponsoredPagesSeeder extends Seeder
             'order' => 8
         ]);
 
-        // Distinguished Talent 124
+        // National Innovation Visa (858)
         Page::firstOrCreate([
             'category' => 'employer-sponsored',
-            'slug' => 'distinguished-talent-124'
+            'slug' => 'national-innovation-visa'
         ], [
-            'title' => 'Distinguished Talent Visa (124)',
-            'slug' => 'distinguished-talent-124',
-            'content' => '<h2>Distinguished Talent Visa (Subclass 124)</h2><p>The 124 visa is for people with exceptional and outstanding talent who are internationally recognized in their field and would be an asset to Australia.</p><h3>Key Requirements</h3><ul><li>Internationally recognized talent</li><li>Outstanding achievement in field</li><li>Would be an asset to Australia</li><li>No age limit</li></ul>',
-            'excerpt' => 'Distinguished Talent 124 visa for internationally recognized individuals with outstanding achievements.',
+            'title' => 'National Innovation Visa (858)',
+            'slug' => 'national-innovation-visa',
+            'content' => '<h2>National Innovation Visa (Subclass 858)</h2><p>The National Innovation Visa (NIV) is Australia\'s premier pathway for exceptional individuals who can drive innovation and contribute significantly to the country\'s knowledge economy. This permanent visa replaced the Distinguished Talent visas (124 and 858) and the Global Talent Independent (GTI) program on December 6, 2024.</p><h3>Key Features</h3><ul><li>Internationally recognized record of exceptional achievement</li><li>Outstanding talent in priority sectors</li><li>Expression of Interest (EOI) required</li><li>Nomination by Australian citizen, permanent resident, or organization</li><li>Permanent residency pathway</li><li>No age limit</li></ul><h3>Priority Sectors</h3><ul><li>Critical technologies</li><li>Health industries</li><li>Renewable and low-emission technologies</li><li>Agri-food and AgTech</li><li>Defense and space</li><li>Education</li><li>Financial services and FinTech</li><li>Infrastructure and transport</li><li>Resources</li></ul><h3>Application Process</h3><ol><li>Submit Expression of Interest (EOI)</li><li>Receive invitation to apply</li><li>Submit full application with supporting documents</li><li>Provide nomination from eligible Australian citizen, permanent resident, or organization</li><li>Attend interview if required</li><li>Await decision</li></ol>',
+            'excerpt' => 'National Innovation Visa (858) for exceptional individuals who can drive innovation in Australia\'s priority sectors.',
             'template' => 'pages.employer-sponsored',
             'category' => 'employer-sponsored',
-            'meta_title' => 'Distinguished Talent 124 Visa Australia - Outstanding Talent',
-            'meta_description' => 'Complete guide to Distinguished Talent 124 visa for internationally recognized individuals with outstanding achievements.',
-            'status' => true,
-            'featured' => false,
-            'order' => 9
-        ]);
-
-        // Distinguished Talent 858
-        Page::firstOrCreate([
-            'category' => 'employer-sponsored',
-            'slug' => 'distinguished-talent-858'
-        ], [
-            'title' => 'Distinguished Talent Visa (858)',
-            'slug' => 'distinguished-talent-858',
-            'content' => '<h2>Distinguished Talent Visa (Subclass 858)</h2><p>The 858 visa is the onshore version of the Distinguished Talent visa for people already in Australia with exceptional talent.</p><h3>Key Features</h3><ul><li>Must be in Australia when applying</li><li>Internationally recognized talent</li><li>Outstanding achievement in field</li><li>Would be an asset to Australia</li></ul>',
-            'excerpt' => 'Distinguished Talent 858 visa for onshore applicants with internationally recognized outstanding talent.',
-            'template' => 'pages.employer-sponsored',
-            'category' => 'employer-sponsored',
-            'meta_title' => 'Distinguished Talent 858 Visa Australia - Onshore Outstanding Talent',
-            'meta_description' => 'Complete guide to Distinguished Talent 858 visa for onshore applicants with internationally recognized talent.',
+            'meta_title' => 'National Innovation Visa 858 Australia - Exceptional Talent Pathway',
+            'meta_description' => 'Complete guide to National Innovation Visa (858) for exceptional individuals who can drive innovation in Australia\'s priority sectors.',
             'status' => true,
             'featured' => false,
             'order' => 10

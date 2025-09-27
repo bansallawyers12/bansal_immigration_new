@@ -20,7 +20,7 @@
                 <p class="text-base sg-dark-gray mb-4 leading-relaxed">
                     Professional Australian immigration consultants helping you achieve permanent residency, study abroad, and family reunification in Australia. MARA registered migration agents.
                 </p>
-                <a href="/appointment" class="btn-primary px-5 py-2 rounded-lg text-sm font-semibold inline-block">
+                <a href="/book-an-appointment" class="btn-primary px-5 py-2 rounded-lg text-sm font-semibold inline-block">
                     Book Free Consultation
                 </a>
             </div>
@@ -52,7 +52,7 @@
                     <i class="fas fa-briefcase text-4xl"></i>
                 </div>
                 <h3 class="text-lg font-semibold sg-dark-gray mb-2">Skilled Migration</h3>
-                <a href="/migration" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
+                <a href="/migrate-to-australia" class="sg-light-blue text-sm font-medium hover:underline">Find out more</a>
             </div>
 
             <!-- Family Visas -->
@@ -138,7 +138,7 @@
                 </div>
                 <h3 class="text-2xl font-bold sg-navy mb-4">Skilled Migration</h3>
                 <p class="sg-medium-gray mb-6">Fast-track your permanent residency through Australia's skilled migration programs.</p>
-                <a href="/migration" class="sg-light-blue font-semibold hover:underline">Learn More <i class="fas fa-arrow-right ml-2"></i></a>
+                <a href="/migrate-to-australia" class="sg-light-blue font-semibold hover:underline">Learn More <i class="fas fa-arrow-right ml-2"></i></a>
             </div>
 
             <!-- Family Visa -->
@@ -176,7 +176,7 @@
                     <i class="fas fa-chart-line text-3xl text-white"></i>
                 </div>
                 <h3 class="text-2xl font-bold sg-navy mb-4">Proven Track Record</h3>
-                <p class="sg-medium-gray">With over 10 years of experience and 5000+ successful cases, we have the expertise you need.</p>
+                <p class="sg-medium-gray">With over 15 years of experience and 5000+ successful cases, we have the expertise you need.</p>
             </div>
             
             <div class="text-center p-6">
@@ -426,7 +426,7 @@
                 <h3 class="text-2xl font-bold sg-navy mb-2">Arun Bansal</h3>
                 <p class="text-sg-light-blue font-semibold mb-4">Director (MARN: 2418466)</p>
                 <p class="sg-medium-gray text-sm leading-relaxed">
-                    Director of Bansal Immigration Consultants with 10+ years of legal and migration experience, offering expert guidance backed by LLM and Migration Law qualifications.
+                    Director of Bansal Immigration Consultants with 15+ years of legal and migration experience, offering expert guidance backed by LLM and Migration Law qualifications.
                 </p>
             </div>
             
@@ -501,7 +501,7 @@
             <!-- Right Side - Three Action Buttons -->
             <div class="space-y-4">
                 <!-- Book an Appointment -->
-                <a href="/appointment" class="block w-full bg-sg-navy text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-sg-light-blue transition-colors text-center shadow-lg">
+                <a href="/book-an-appointment" class="block w-full bg-sg-navy text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-sg-light-blue transition-colors text-center shadow-lg">
                     <i class="fas fa-calendar-alt mr-2"></i>Book an Appointment
                 </a>
                 

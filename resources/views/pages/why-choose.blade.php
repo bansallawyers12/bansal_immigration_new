@@ -241,20 +241,20 @@
     <!-- Statistics -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
         <div class="text-center">
-            <div class="text-4xl font-bold text-blue-600 mb-2">5000+</div>
-            <div class="text-gray-600">Successful Cases</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
+            <div class="text-gray-600">Clients</div>
         </div>
         <div class="text-center">
             <div class="text-4xl font-bold text-green-600 mb-2">95%</div>
             <div class="text-gray-600">Success Rate</div>
         </div>
         <div class="text-center">
-            <div class="text-4xl font-bold text-purple-600 mb-2">15+</div>
+            <div class="text-4xl font-bold text-purple-600 mb-2">10+</div>
             <div class="text-gray-600">Years Experience</div>
         </div>
         <div class="text-center">
-            <div class="text-4xl font-bold text-yellow-600 mb-2">50+</div>
-            <div class="text-gray-600">Countries Served</div>
+            <div class="text-4xl font-bold text-yellow-600 mb-2">100%</div>
+            <div class="text-gray-600">Licensed Agents</div>
         </div>
     </div>
 
@@ -523,20 +523,20 @@
     <!-- Statistics -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
         <div class="text-center">
-            <div class="text-4xl font-bold text-blue-600 mb-2">5000+</div>
-            <div class="text-gray-600">Successful Cases</div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
+            <div class="text-gray-600">Clients</div>
         </div>
         <div class="text-center">
             <div class="text-4xl font-bold text-green-600 mb-2">95%</div>
             <div class="text-gray-600">Success Rate</div>
         </div>
         <div class="text-center">
-            <div class="text-4xl font-bold text-purple-600 mb-2">15+</div>
+            <div class="text-4xl font-bold text-purple-600 mb-2">10+</div>
             <div class="text-gray-600">Years Experience</div>
         </div>
         <div class="text-center">
-            <div class="text-4xl font-bold text-yellow-600 mb-2">50+</div>
-            <div class="text-gray-600">Countries Served</div>
+            <div class="text-4xl font-bold text-yellow-600 mb-2">100%</div>
+            <div class="text-gray-600">Licensed Agents</div>
         </div>
     </div>
 

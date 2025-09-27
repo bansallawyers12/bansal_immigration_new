@@ -139,9 +139,8 @@
                             <select name="template" id="template"
                                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('template') border-red-500 @enderror">
                                 <option value="default" {{ old('template', $page->template) === 'default' ? 'selected' : '' }}>Default (Modern)</option>
-                                <option value="full-width" {{ old('template', $page->template) === 'full-width' ? 'selected' : '' }}>Full Width</option>
-                                <option value="sidebar" {{ old('template', $page->template) === 'sidebar' ? 'selected' : '' }}>With Sidebar</option>
-                                <option value="landing" {{ old('template', $page->template) === 'landing' ? 'selected' : '' }}>Landing Page</option>
+                                <option value="visa-structured" {{ old('template', $page->template) === 'visa-structured' ? 'selected' : '' }}>Visa Structured (Eligibility, Processing, Costs, FAQs)</option>
+                                <option value="visa-structured-modern" {{ old('template', $page->template) === 'visa-structured-modern' ? 'selected' : '' }}>Visa Structured Modern</option>
                             </select>
                             @error('template')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

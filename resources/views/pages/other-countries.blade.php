@@ -58,8 +58,8 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                 <div class="p-6 text-center">
                     <div class="text-4xl mb-4">🇺🇸</div>
-                    <h3 class="text-xl font-semibold mb-2">USA Immigration</h3>
-                    <p class="text-gray-600 mb-4">Navigate US immigration options including work visas, green cards, and citizenship pathways.</p>
+                    <h3 class="text-xl font-semibold mb-2">USA Tourist Visa</h3>
+                    <p class="text-gray-600 mb-4">Expert guidance for B-2 tourist visa applications to the United States.</p>
                     <a href="{{ url('visitor-visa/usa') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>
@@ -153,8 +153,8 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                 <div class="p-6 text-center">
                     <div class="text-4xl mb-4">🇺🇸</div>
-                    <h3 class="text-xl font-semibold mb-2">USA Immigration</h3>
-                    <p class="text-gray-600 mb-4">Navigate US immigration options including work visas, green cards, and citizenship pathways.</p>
+                    <h3 class="text-xl font-semibold mb-2">USA Tourist Visa</h3>
+                    <p class="text-gray-600 mb-4">Expert guidance for B-2 tourist visa applications to the United States.</p>
                     <a href="{{ url('visitor-visa/usa') }}" class="text-blue-600 hover:text-blue-800 font-medium">Learn More →</a>
                 </div>
             </div>

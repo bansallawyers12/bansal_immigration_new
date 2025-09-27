@@ -4,7 +4,7 @@
 @section('description', $page->meta_description ?? $page->excerpt)
 
 @push('styles')
-<meta name="keywords" content="{{ $page->meta_keywords ?? 'visitor visa, tourist visa, work holiday visa, canada visa, new zealand visa, usa visa' }}">
+<meta name="keywords" content="{{ $page->meta_keywords ?? 'visitor visa, tourist visa, work holiday visa, canada visa, new zealand visa, usa tourist visa' }}">
 <meta property="og:title" content="{{ $page->meta_title ?? $page->title }}">
 <meta property="og:description" content="{{ $page->meta_description ?? $page->excerpt }}">
 @if($page->image)
@@ -51,7 +51,6 @@
                         <li><a href="{{ route('visitor-visa.work-holiday-417') }}" class="text-green-600 hover:text-green-800">Work & Holiday Visa (417)</a></li>
                         <li><a href="{{ route('visitor-visa.sponsored-family') }}" class="text-green-600 hover:text-green-800">Sponsored Family Stream</a></li>
                         <li><a href="{{ route('visitor-visa.onshore-extension') }}" class="text-green-600 hover:text-green-800">Onshore Visitor Visa Extension</a></li>
-                        <!-- Travel Exemption removed -->
                     </ul>
                 </div>
 
@@ -101,7 +100,7 @@
                 </div>
                 <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
                     <h3 class="text-lg font-semibold text-purple-900 mb-3">🌍 Global Reach</h3>
-                    <p class="text-purple-800">Expert guidance for visa applications to Canada, New Zealand, and the United States.</p>
+                    <p class="text-purple-800">Expert guidance for visa applications to Canada, New Zealand, and USA tourist visas.</p>
                 </div>
                 <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
                     <h3 class="text-lg font-semibold text-orange-900 mb-3">👨‍👩‍👧‍👦 Family Visits</h3>
@@ -154,9 +153,6 @@
                         <h3 class="text-xl font-semibold text-gray-900 mb-3">🇺🇸 United States</h3>
                         <ul class="space-y-2 text-sm text-gray-600">
                             <li>• B-2 Tourist Visa</li>
-                            <li>• B-1 Business Visa</li>
-                            <li>• F-1 Student Visa</li>
-                            <li>• H-1B Work Visa</li>
                         </ul>
                         <a href="{{ route('other-countries.usa') }}" class="inline-block mt-4 text-indigo-600 hover:text-indigo-800 font-medium">Learn More →</a>
                     </div>

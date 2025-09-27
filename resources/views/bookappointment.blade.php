@@ -1549,7 +1549,7 @@ html {
                     <h4>Migration Advice (Paid Service)</h4>
                     <ol type="A">
                         <li>
-                            <h6>Consultation Fee:</h6> Our fee is $150 for most types of migration advice. Please select this option if your matter is complicated and includes Administrative Appeals Tribunal (AAT) cases, Visa cancellations, or Protection visas, etc. If you believe it will require more than 10 minutes to discuss, please select this paid option.
+                            <h6>Consultation Fee:</h6> Our fee is $150 for most types of migration advice. Please select this option if your matter is complicated and includes Administrative Review Tribunal (ART) cases, Visa cancellations, or Protection visas, etc. If you believe it will require more than 10 minutes to discuss, please select this paid option.
                         </li>
                         <li>
                             <h6>Free Consultation Policy:</h6> Please note that we only provide one free consultation per client. If you have already used your free consultation, you will need to select this paid option for further advice.
@@ -1714,7 +1714,7 @@ html {
                                         <div class="service-selection-option" data-service="complex-matters">
                                             <input type="radio" name="service_type" value="complex-matters" id="service-complex">
                                             <div class="service-selection-content">
-                                                <div class="service-selection-title">Complex matters: AAT, Protection visa, Federal Case</div>
+                                                <div class="service-selection-title">Complex matters: ART, Protection visa, Federal Case</div>
                                             </div>
                                         </div>
                                         
@@ -1773,7 +1773,7 @@ html {
                                             <div class="service-price" style="color: var(--accent-orange);">$150</div>
                                         </div>
                                         <div class="service-description">
-                                            <strong>In-depth professional consultation:</strong> Comprehensive case analysis, detailed migration strategy, complex visa applications, AAT appeals, visa cancellations, protection visas, and personalized action plans. Suitable for overseas applicants and complex cases.
+                                            <strong>In-depth professional consultation:</strong> Comprehensive case analysis, detailed migration strategy, complex visa applications, ART appeals, visa cancellations, protection visas, and personalized action plans. Suitable for overseas applicants and complex cases.
                                             <br><br>
                                             <em>Available: Monday to Friday, 10:00 AM - 5:00 PM • 30-minute time slots • Includes video call option</em>
                                         </div>

@@ -260,10 +260,9 @@
                                         <a href="{{ route('visitor-visa.sponsored-family') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
                                             <span class="group-hover/item:font-medium">Sponsored Family</span>
                                         </a>
-                        <a href="{{ route('visitor-visa.onshore-extension') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
-                            <span class="group-hover/item:font-medium">Onshore Visitor Visa Extension</span>
-                        </a>
-                                        <!-- Travel Exemption removed -->
+                                        <a href="{{ route('visitor-visa.onshore-extension') }}" class="block px-3 py-2 text-sm text-gray-700 hover:bg-cyan-50 hover:text-cyan-700 rounded-lg transition-colors duration-200 group/item">
+                                            <span class="group-hover/item:font-medium">Onshore Visitor Visa Extension</span>
+                                        </a>
                                     </div>
                                 </div>
 

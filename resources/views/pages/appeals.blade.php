@@ -37,7 +37,7 @@
             <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
                 <h3 class="text-lg font-semibold text-gray-900 mb-3">Appeals</h3>
                 <ul class="space-y-1 text-sm mb-4">
-                    <li><a href="{{ route('appeals.aat-appeals') }}" class="text-blue-600 hover:text-blue-800">AAT Appeals</a></li>
+                    <li><a href="{{ route('appeals.art-appeals') }}" class="text-blue-600 hover:text-blue-800">ART Appeals</a></li>
                     <li><a href="{{ route('appeals.federal-court-appeals') }}" class="text-blue-600 hover:text-blue-800">Federal Court Appeals</a></li>
                     <li><a href="{{ route('appeals.ministerial-intervention') }}" class="text-blue-600 hover:text-blue-800">Ministerial Intervention</a></li>
                 </ul>

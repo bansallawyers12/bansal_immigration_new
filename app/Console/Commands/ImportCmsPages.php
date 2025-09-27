@@ -182,7 +182,7 @@ class ImportCmsPages extends Command
         }
         
         // Visitor visa patterns
-        if (preg_match('/\b(visitor|tourist|work.*holiday|holiday.*work|travel.*exemption|600|417|462)\b/', $text)) {
+        if (preg_match('/\b(visitor|tourist|work.*holiday|holiday.*work|600|417|462)\b/', $text)) {
             return 'visitor-visa';
         }
         

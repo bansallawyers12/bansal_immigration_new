@@ -138,7 +138,6 @@ class Page extends Model
             'visitor-visa' => [
                 'visitor-visa-600' => 'visitor-visa.600',
                 'onshore-visitor-visa-extension' => 'visitor-visa.onshore-extension',
-                // 'travel-exemption' removed
                 'work-holiday-462' => 'visitor-visa.work-holiday-462',
                 'work-holiday-417' => 'visitor-visa.work-holiday-417',
                 'sponsored-family' => 'visitor-visa.sponsored-family',
@@ -212,7 +211,7 @@ class Page extends Model
                 'business-visa' => 'business-visa.index',
             ],
             'appeals' => [
-                'aat-appeals' => 'appeals.aat-appeals',
+                'art-appeals' => 'appeals.art-appeals',
                 'federal-court-appeals' => 'appeals.federal-court-appeals',
                 'ministerial-intervention' => 'appeals.ministerial-intervention',
                 'review-process' => 'appeals.review-process',

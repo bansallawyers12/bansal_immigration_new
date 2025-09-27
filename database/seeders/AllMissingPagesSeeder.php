@@ -55,12 +55,12 @@ class AllMissingPagesSeeder extends Seeder
         ], [
             'title' => 'Appeals and Reviews',
             'slug' => 'appeals',
-            'content' => '<h2>Immigration Appeals and Reviews</h2><p>If your visa application has been refused or cancelled, you may have options to appeal the decision or request a review.</p><h3>Types of Appeals</h3><ul><li><strong>Visa Refusal Appeals:</strong> AAT review of refused applications</li><li><strong>Visa Cancellation Appeals:</strong> Challenging visa cancellations</li><li><strong>Ministerial Intervention:</strong> Special circumstances cases</li></ul>',
+            'content' => '<h2>Immigration Appeals and Reviews</h2><p>If your visa application has been refused or cancelled, you may have options to appeal the decision or request a review.</p><h3>Types of Appeals</h3><ul><li><strong>Visa Refusal Appeals:</strong> ART review of refused applications</li><li><strong>Visa Cancellation Appeals:</strong> Challenging visa cancellations</li><li><strong>Ministerial Intervention:</strong> Special circumstances cases</li></ul>',
             'excerpt' => 'Expert immigration appeals and review services for refused or cancelled visa applications.',
             'template' => 'pages.appeals',
             'category' => 'appeals',
             'meta_title' => 'Immigration Appeals Australia - Visa Refusal and Cancellation Reviews',
-            'meta_description' => 'Expert immigration appeals services including AAT reviews, visa cancellation appeals, and ministerial intervention.',
+            'meta_description' => 'Expert immigration appeals services including ART reviews, visa cancellation appeals, and ministerial intervention.',
             'status' => true,
             'featured' => true,
             'order' => 1
@@ -91,12 +91,12 @@ class AllMissingPagesSeeder extends Seeder
         ], [
             'title' => 'Other Countries',
             'slug' => 'other-countries',
-            'content' => '<h2>Immigration Services for Other Countries</h2><p>While we specialize in Australian immigration, we also provide guidance and referrals for immigration to other popular destinations.</p><h3>Countries We Cover</h3><ul><li><strong>Canada:</strong> Express Entry, Provincial Nominee Programs</li><li><strong>New Zealand:</strong> Skilled Migrant Category, Work Visas</li><li><strong>United States:</strong> Work visas, Green Card applications</li></ul>',
-            'excerpt' => 'Immigration services and guidance for Canada, New Zealand, and United States immigration programs.',
+            'content' => '<h2>Immigration Services for Other Countries</h2><p>While we specialize in Australian immigration, we also provide guidance and referrals for immigration to other popular destinations.</p><h3>Countries We Cover</h3><ul><li><strong>Canada:</strong> Express Entry, Provincial Nominee Programs</li><li><strong>New Zealand:</strong> Skilled Migrant Category, Work Visas</li><li><strong>United States:</strong> Tourist visa applications</li></ul>',
+            'excerpt' => 'Immigration services and guidance for Canada, New Zealand, and United States tourist visa applications.',
             'template' => 'pages.other-countries',
             'category' => 'other-countries',
             'meta_title' => 'Other Countries Immigration - Canada, New Zealand, USA',
-            'meta_description' => 'Immigration services and guidance for Canada, New Zealand, and United States immigration programs.',
+            'meta_description' => 'Immigration services and guidance for Canada, New Zealand, and United States tourist visa applications.',
             'status' => true,
             'featured' => true,
             'order' => 1
@@ -143,10 +143,6 @@ class AllMissingPagesSeeder extends Seeder
                 'excerpt' => 'Offshore Tourist Visa Extension for extending your stay in Australia.',
                 'meta_title' => 'Offshore Tourist Visa Extension Australia - Visa Extension',
                 'meta_description' => 'Complete guide to extending your tourist visa while in Australia, requirements and application process.'
-            ],
-            [
-                // Travel Exemption removed
-                'meta_description' => 'Complete guide to travel exemptions for entering Australia during COVID-19 restrictions.'
             ]
         ];
 

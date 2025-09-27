@@ -11,8 +11,8 @@ class AppealsNewPagesSeeder extends Seeder
     {
         $pages = [
             [
-                'title' => 'AAT Appeals',
-                'slug' => 'aat-appeals',
+                'title' => 'ART Appeals',
+                'slug' => 'art-appeals',
             ],
             [
                 'title' => 'Federal Court Appeals',

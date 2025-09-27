@@ -121,7 +121,7 @@
                             </details>
                             <details class="py-4 group">
                                 <summary class="cursor-pointer font-semibold sg-navy flex items-center justify-between">Can you help with refusals or appeals?<i class="fas fa-plus text-sg-light-blue group-open:rotate-45 transition-transform"></i></summary>
-                                <p class="pt-2 sg-medium-gray">We can review refusals and represent you for AAT appeals with a strong case strategy.</p>
+                                <p class="pt-2 sg-medium-gray">We can review refusals and represent you for ART appeals with a strong case strategy.</p>
                             </details>
                         </div>
                     </div>

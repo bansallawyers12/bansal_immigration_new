@@ -77,7 +77,6 @@ Route::prefix('visitor-visa')->name('visitor-visa.')->group(function () {
     Route::get('/onshore-visitor-visa-extension', function() {
         return app(\App\Http\Controllers\PageController::class)->show('visitor-visa', 'onshore-visitor-visa-extension');
     })->name('onshore-extension');
-    // Travel Exemption removed
     Route::get('/work-holiday-visa-462', function() {
         return app(\App\Http\Controllers\PageController::class)->show('visitor-visa', 'work-holiday-462');
     })->name('work-holiday-462');
@@ -344,9 +343,9 @@ Route::prefix('business-visas')->name('business-visa.')->group(function () {
 Route::prefix('appeals')->name('appeals.')->group(function () {
     Route::get('/', [PageController::class, 'show'])->defaults('category', 'appeals')->name('index');
     // New main items
-    Route::get('/aat-appeals', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'aat-appeals');
-    })->name('aat-appeals');
+    Route::get('/art-appeals', function() {
+        return app(\App\Http\Controllers\PageController::class)->show('appeals', 'art-appeals');
+    })->name('art-appeals');
     Route::get('/federal-court-appeals', function() {
         return app(\App\Http\Controllers\PageController::class)->show('appeals', 'federal-court-appeals');
     })->name('federal-court-appeals');

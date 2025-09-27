@@ -136,11 +136,11 @@
                 <p class="text-indigo-600 font-medium mb-3">Appeals & Review Specialist (MARA 5678901)</p>
                 <p class="text-gray-600 text-sm mb-4">
                     David specializes in visa refusals, cancellations, and appeals. He has a strong track record 
-                    of successfully representing clients at the Administrative Appeals Tribunal (AAT).
+                    of successfully representing clients at the Administrative Review Tribunal (ART).
                 </p>
                 <div class="flex flex-wrap gap-2">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Appeals</span>
-                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">AAT</span>
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">ART</span>
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Reviews</span>
                 </div>
             </div>
@@ -366,11 +366,11 @@
                 <p class="text-indigo-600 font-medium mb-3">Appeals & Review Specialist (MARA 5678901)</p>
                 <p class="text-gray-600 text-sm mb-4">
                     David specializes in visa refusals, cancellations, and appeals. He has a strong track record 
-                    of successfully representing clients at the Administrative Appeals Tribunal (AAT).
+                    of successfully representing clients at the Administrative Review Tribunal (ART).
                 </p>
                 <div class="flex flex-wrap gap-2">
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Appeals</span>
-                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">AAT</span>
+                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">ART</span>
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Reviews</span>
                 </div>
             </div>

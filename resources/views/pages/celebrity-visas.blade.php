@@ -5,42 +5,142 @@
 
 @push('styles')
 <style>
-    /* Celebrity Visa Specific Styles - Air.inc inspired */
-    .celebrity-gradient {
-        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+    /* Celebrity Visa Specific Styles - Sky & Clouds Background */
+    .sky-gradient {
+        background: linear-gradient(180deg, 
+            #e0e7ff 0%, 
+            #c7d2fe 15%, 
+            #a5b4fc 30%, 
+            #c084fc 45%, 
+            #fbbf24 60%, 
+            #fb923c 75%, 
+            #f97316 90%, 
+            #ea580c 100%);
         position: relative;
+        min-height: 100vh;
     }
     
-    .celebrity-gradient::before {
-        content: '';
+    .floating-cloud-bg {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
-        opacity: 0.6;
-    }
-    
-    .air-inspired-bg {
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        position: relative;
-    }
-    
-    .air-inspired-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        overflow: hidden;
         pointer-events: none;
+    }
+    
+    .cloud {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50px;
+        opacity: 0.9;
+        animation: cloudFloat 30s infinite linear;
+    }
+    
+    .cloud::before,
+    .cloud::after {
+        content: '';
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50px;
+    }
+    
+    .cloud::before {
+        width: 50px;
+        height: 50px;
+        top: -25px;
+        left: 10px;
+    }
+    
+    .cloud::after {
+        width: 60px;
+        height: 40px;
+        top: -15px;
+        right: 10px;
+    }
+    
+    .cloud-large {
+        width: 100px;
+        height: 40px;
+        top: 20%;
+        left: -120px;
+        animation-delay: 0s;
+        animation-duration: 40s;
+    }
+    
+    .cloud-medium {
+        width: 80px;
+        height: 30px;
+        top: 60%;
+        left: -100px;
+        animation-delay: 10s;
+        animation-duration: 35s;
+    }
+    
+    .cloud-small {
+        width: 60px;
+        height: 25px;
+        top: 40%;
+        left: -80px;
+        animation-delay: 20s;
+        animation-duration: 30s;
+    }
+    
+    .cloud-extra-large {
+        width: 120px;
+        height: 50px;
+        top: 70%;
+        left: -140px;
+        animation-delay: 15s;
+        animation-duration: 45s;
+    }
+    
+    @keyframes cloudFloat {
+        0% {
+            transform: translateX(0) translateY(0px);
+        }
+        25% {
+            transform: translateX(25vw) translateY(-10px);
+        }
+        50% {
+            transform: translateX(50vw) translateY(5px);
+        }
+        75% {
+            transform: translateX(75vw) translateY(-5px);
+        }
+        100% {
+            transform: translateX(calc(100vw + 140px)) translateY(0px);
+        }
+    }
+    
+    .floating-content {
+        position: relative;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 1rem 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    .floating-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .floating-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        background: rgba(255, 255, 255, 0.2);
     }
     
     .gold-gradient {
@@ -236,50 +336,48 @@
 @endpush
 
 @section('content')
-<!-- Hero Section with Parallax Background -->
-<div class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Animated Background -->
-    <div class="absolute inset-0 celebrity-gradient">
-        <div class="hero-particles">
-            <div class="particle" style="left: 10%; animation-delay: 0s; width: 4px; height: 4px;"></div>
-            <div class="particle" style="left: 20%; animation-delay: 1s; width: 6px; height: 6px;"></div>
-            <div class="particle" style="left: 30%; animation-delay: 2s; width: 3px; height: 3px;"></div>
-            <div class="particle" style="left: 40%; animation-delay: 3s; width: 5px; height: 5px;"></div>
-            <div class="particle" style="left: 50%; animation-delay: 4s; width: 4px; height: 4px;"></div>
-            <div class="particle" style="left: 60%; animation-delay: 5s; width: 7px; height: 7px;"></div>
-            <div class="particle" style="left: 70%; animation-delay: 6s; width: 3px; height: 3px;"></div>
-            <div class="particle" style="left: 80%; animation-delay: 7s; width: 5px; height: 5px;"></div>
-            <div class="particle" style="left: 90%; animation-delay: 8s; width: 4px; height: 4px;"></div>
-        </div>
+<!-- Hero Section with Sky & Clouds Background -->
+<div class="relative min-h-screen flex items-center justify-center overflow-hidden sky-gradient">
+    <!-- Floating Clouds Background -->
+    <div class="floating-cloud-bg">
+        <div class="cloud cloud-large"></div>
+        <div class="cloud cloud-medium"></div>
+        <div class="cloud cloud-small"></div>
+        <div class="cloud cloud-extra-large"></div>
+        
+        <!-- Additional clouds for more dynamic effect -->
+        <div class="cloud cloud-large" style="top: 30%; animation-delay: 25s; animation-duration: 50s;"></div>
+        <div class="cloud cloud-medium" style="top: 50%; animation-delay: 5s; animation-duration: 38s;"></div>
+        <div class="cloud cloud-small" style="top: 80%; animation-delay: 30s; animation-duration: 42s;"></div>
     </div>
     
-    <!-- Hero Content -->
-    <div class="relative z-10 text-center text-gray-900 px-4 max-w-6xl mx-auto">
+    <!-- Hero Content Floating in Clouds -->
+    <div class="floating-content text-center px-4 max-w-6xl mx-auto">
         <div class="floating-element">
-            <h1 class="text-5xl md:text-7xl hero-title mb-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-lg">
                 Celebrity Visas
             </h1>
         </div>
         
         <div class="floating-element mb-8">
-            <p class="text-xl md:text-2xl mb-8 text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p class="text-xl md:text-2xl mb-8 text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
                 Where Dreams Meet Reality - Success Stories of Punjabi, Haryanvi, Bollywood Stars, and Religious Leaders Who Made Australia Their Home
             </p>
         </div>
         
         <div class="floating-element">
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <div class="category-badge">Bollywood Singers</div>
-                <div class="category-badge">Punjabi Artists</div>
-                <div class="category-badge">Haryanvi Performers</div>
-                <div class="category-badge">Religious Leaders</div>
-                <div class="category-badge">Film Actors</div>
-                <div class="category-badge">TV Personalities</div>
+                <div class="category-badge bg-white/20 backdrop-blur-sm border border-white/30 text-white">Bollywood Singers</div>
+                <div class="category-badge bg-white/20 backdrop-blur-sm border border-white/30 text-white">Punjabi Artists</div>
+                <div class="category-badge bg-white/20 backdrop-blur-sm border border-white/30 text-white">Haryanvi Performers</div>
+                <div class="category-badge bg-white/20 backdrop-blur-sm border border-white/30 text-white">Religious Leaders</div>
+                <div class="category-badge bg-white/20 backdrop-blur-sm border border-white/30 text-white">Film Actors</div>
+                <div class="category-badge bg-white/20 backdrop-blur-sm border border-white/30 text-white">TV Personalities</div>
             </div>
         </div>
         
         <div class="floating-element">
-            <a href="#success-stories" class="cta-button text-lg px-8 py-4">
+            <a href="#success-stories" class="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold rounded-full hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                 <span class="mr-2">✨</span>
                 Explore Success Stories
                 <span class="ml-2">→</span>
@@ -288,7 +386,7 @@
     </div>
     
     <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-600 opacity-70 animate-bounce">
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white opacity-80 animate-bounce">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
@@ -296,37 +394,41 @@
 </div>
 
 <!-- Success Statistics -->
-<section class="py-20 air-inspired-bg">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Celebrating <span class="text-blue-600">Success</span>
+<section class="py-20 sky-gradient relative">
+    <div class="floating-cloud-bg">
+        <div class="cloud cloud-medium" style="top: 10%; animation-delay: 35s; animation-duration: 55s;"></div>
+        <div class="cloud cloud-small" style="top: 30%; animation-delay: 45s; animation-duration: 40s;"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="floating-content text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+                Trusted by <span class="text-yellow-300">Celebrities</span>
             </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Join the ranks of successful celebrities who trusted Bansal Immigration for their Australian journey
+            <p class="text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md">
+                From Bollywood stars to religious leaders, we've helped celebrities achieve their Australian dreams with complete confidentiality and expert guidance
             </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="text-center">
-                <div class="stats-counter">50+</div>
-                <div class="text-lg font-semibold text-gray-700 mt-2">Celebrity Clients</div>
-                <div class="text-sm text-gray-500">Successfully migrated</div>
+            <div class="floating-card text-center">
+                <div class="stats-counter text-white">50+</div>
+                <div class="text-lg font-semibold text-white mt-2">Celebrity Clients</div>
+                <div class="text-sm text-white/80">Successfully migrated</div>
             </div>
-            <div class="text-center">
-                <div class="stats-counter">100%</div>
-                <div class="text-lg font-semibold text-gray-700 mt-2">Success Rate</div>
-                <div class="text-sm text-gray-500">Visa approval rate</div>
+            <div class="floating-card text-center">
+                <div class="stats-counter text-white">100%</div>
+                <div class="text-lg font-semibold text-white mt-2">Success Rate</div>
+                <div class="text-sm text-white/80">Visa approval rate</div>
             </div>
-            <div class="text-center">
-                <div class="stats-counter">15+</div>
-                <div class="text-lg font-semibold text-gray-700 mt-2">Years Experience</div>
-                <div class="text-sm text-gray-500">Celebrity visa expertise</div>
+            <div class="floating-card text-center">
+                <div class="stats-counter text-white">15+</div>
+                <div class="text-lg font-semibold text-white mt-2">Years Experience</div>
+                <div class="text-sm text-white/80">Celebrity visa expertise</div>
             </div>
-            <div class="text-center">
-                <div class="stats-counter">24/7</div>
-                <div class="text-lg font-semibold text-gray-700 mt-2">Support</div>
-                <div class="text-sm text-gray-500">Dedicated celebrity service</div>
+            <div class="floating-card text-center">
+                <div class="stats-counter text-white">100%</div>
+                <div class="text-lg font-semibold text-white mt-2">Confidentiality</div>
+                <div class="text-sm text-white/80">Privacy guaranteed</div>
             </div>
         </div>
     </div>
@@ -356,7 +458,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Celebrity Card Template -->
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         🎤 Singer
                     </div>
@@ -370,7 +472,7 @@
                     </div>
                 </div>
                 
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         🎭 Actor
                     </div>
@@ -384,7 +486,7 @@
                     </div>
                 </div>
                 
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         📺 TV Host
                     </div>
@@ -411,7 +513,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-orange-400 to-red-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         🎤 Punjabi Singer
                     </div>
@@ -425,7 +527,7 @@
                     </div>
                 </div>
                 
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         🎸 Musician
                     </div>
@@ -452,7 +554,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-teal-400 to-blue-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         💃 Dancer
                     </div>
@@ -466,7 +568,7 @@
                     </div>
                 </div>
                 
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-pink-400 to-rose-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         🎵 Folk Singer
                     </div>
@@ -493,7 +595,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         🕉️ Spiritual Teacher
                     </div>
@@ -507,7 +609,7 @@
                     </div>
                 </div>
                 
-                <div class="celebrity-card rounded-2xl p-6">
+                <div class="floating-card rounded-2xl p-6">
                     <div class="aspect-square bg-gradient-to-br from-violet-400 to-purple-500 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl celebrity-image">
                         ⛪ Religious Leader
                     </div>
@@ -526,48 +628,52 @@
 </section>
 
 <!-- Why Choose Us for Celebrity Visas -->
-<section class="py-20 air-inspired-bg">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Why Choose <span class="text-blue-600">Bansal Immigration</span>
+<section class="py-20 sky-gradient relative">
+    <div class="floating-cloud-bg">
+        <div class="cloud cloud-large" style="top: 15%; animation-delay: 50s; animation-duration: 60s;"></div>
+        <div class="cloud cloud-medium" style="top: 70%; animation-delay: 55s; animation-duration: 45s;"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="floating-content text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+                Why Choose <span class="text-yellow-300">Bansal Immigration</span>
             </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p class="text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md">
                 Specialized expertise in celebrity and cultural visas with personalized service
             </p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center p-6">
+            <div class="floating-card text-center p-6">
                 <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <span class="text-2xl">🎯</span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Specialized Expertise</h3>
-                <p class="text-gray-600">Deep understanding of celebrity and cultural visa requirements</p>
+                <h3 class="text-xl font-bold text-white mb-2">Specialized Expertise</h3>
+                <p class="text-white/90">Deep understanding of celebrity and cultural visa requirements</p>
             </div>
             
-            <div class="text-center p-6">
+            <div class="floating-card text-center p-6">
                 <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <span class="text-2xl">🔒</span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Confidentiality</h3>
-                <p class="text-gray-600">Complete privacy and discretion for high-profile clients</p>
+                <h3 class="text-xl font-bold text-white mb-2">Confidentiality</h3>
+                <p class="text-white/90">Complete privacy and discretion for high-profile clients</p>
             </div>
             
-            <div class="text-center p-6">
+            <div class="floating-card text-center p-6">
                 <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <span class="text-2xl">⚡</span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Fast Processing</h3>
-                <p class="text-gray-600">Priority handling for celebrity visa applications</p>
+                <h3 class="text-xl font-bold text-white mb-2">Fast Processing</h3>
+                <p class="text-white/90">Priority handling for celebrity visa applications</p>
             </div>
             
-            <div class="text-center p-6">
+            <div class="floating-card text-center p-6">
                 <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <span class="text-2xl">🤝</span>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">24/7 Support</h3>
-                <p class="text-gray-600">Dedicated support team available round the clock</p>
+                <h3 class="text-xl font-bold text-white mb-2">24/7 Support</h3>
+                <p class="text-white/90">Dedicated support team available round the clock</p>
             </div>
         </div>
     </div>

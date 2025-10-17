@@ -59,9 +59,9 @@ class AppointmentController extends Controller
         $validator = Validator::make($request->all(), [
             'full_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'location' => 'required|in:office,online',
-            'meeting_type' => 'required|in:in_person,video_call,phone_call',
+            'phone' => 'required|string|max:20|regex:/^[\+]?[0-9\s\-\(\)]{6,20}$/',
+            'location' => 'required|in:adelaide,melbourne',
+            'meeting_type' => 'required|in:phone,in-person,video-call',
             'preferred_language' => 'required|string|max:50',
             'enquiry_type' => 'required|in:tr,tourist,education,pr_complex',
             'service_type' => 'nullable|string|max:100',
@@ -69,7 +69,23 @@ class AppointmentController extends Controller
             'enquiry_details' => 'required|string',
             'appointment_date' => 'required|date|after_or_equal:today',
             'appointment_time' => 'required|date_format:H:i',
-            'duration_minutes' => 'nullable|integer|min:15|max:180'
+            'duration_minutes' => 'nullable|integer|min:15|max:180',
+            'assigned_admin_id' => 'nullable|exists:users,id'
+        ], [
+            'phone.regex' => 'Please enter a valid phone number (6-20 digits, may include +, spaces, hyphens, and parentheses).',
+            'email.email' => 'Please enter a valid email address.',
+            'full_name.required' => 'Full name is required.',
+            'phone.required' => 'Phone number is required.',
+            'email.required' => 'Email address is required.',
+            'enquiry_details.required' => 'Please provide details about your enquiry.',
+            'appointment_date.required' => 'Please select an appointment date.',
+            'appointment_time.required' => 'Please select an appointment time.',
+            'appointment_date.after_or_equal' => 'Appointment date must be today or in the future.',
+            'appointment_time.date_format' => 'Please select a valid appointment time.',
+            'duration_minutes.integer' => 'Duration must be a valid number.',
+            'duration_minutes.min' => 'Duration must be at least 15 minutes.',
+            'duration_minutes.max' => 'Duration cannot exceed 180 minutes.',
+            'assigned_admin_id.exists' => 'Selected admin user does not exist.'
         ]);
 
         if ($validator->fails()) {
@@ -80,13 +96,70 @@ class AppointmentController extends Controller
             ], 422);
         }
 
-        // Check if time slot is available
-        $isAvailable = $this->checkTimeSlotAvailability(
-            $request->appointment_date,
-            $request->appointment_time,
-            $request->enquiry_type,
-            $request->duration_minutes ?? 30
-        );
+        // Additional defensive check for empty date/time
+        if (empty($request->appointment_date) || empty($request->appointment_time)) {
+            \Log::warning('Empty appointment date or time', [
+                'appointment_date' => $request->appointment_date,
+                'appointment_time' => $request->appointment_time,
+                'all_data' => $request->all()
+            ]);
+            
+            return response()->json([
+                'success' => false,
+                'message' => 'Please select both appointment date and time.',
+                'errors' => [
+                    'appointment_date' => empty($request->appointment_date) ? ['Please select an appointment date'] : [],
+                    'appointment_time' => empty($request->appointment_time) ? ['Please select an appointment time'] : []
+                ]
+            ], 422);
+        }
+
+        // Validate date and time format before proceeding
+        try {
+            $testDate = Carbon::parse($request->appointment_date);
+            $testTime = Carbon::createFromFormat('H:i', $request->appointment_time);
+            
+            // Verify they're valid
+            if (!$testDate || !$testTime) {
+                throw new \Exception('Invalid date or time format');
+            }
+        } catch (\Exception $e) {
+            \Log::warning('Invalid date/time format in request', [
+                'error' => $e->getMessage(),
+                'appointment_date' => $request->appointment_date,
+                'appointment_time' => $request->appointment_time
+            ]);
+            
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid date or time format. Please ensure you selected a valid date and time.',
+                'errors' => [
+                    'appointment_date' => ['Please select a valid date'],
+                    'appointment_time' => ['Please select a valid time']
+                ]
+            ], 422);
+        }
+
+        // Check if time slot is available (with error handling)
+        try {
+            $isAvailable = $this->checkTimeSlotAvailability(
+                $request->appointment_date,
+                $request->appointment_time,
+                $request->enquiry_type,
+                $request->duration_minutes ?? 30
+            );
+        } catch (\Exception $e) {
+            \Log::error('Error checking time slot availability', [
+                'error' => $e->getMessage(),
+                'date' => $request->appointment_date,
+                'time' => $request->appointment_time
+            ]);
+            
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid date or time format. Please try again.'
+            ], 422);
+        }
 
         if (!$isAvailable) {
             return response()->json([
@@ -118,7 +191,7 @@ class AppointmentController extends Controller
                 'is_paid' => $isPaid,
                 'amount' => $baseAmount,
                 'final_amount' => $baseAmount,
-                'assigned_to' => $request->assigned_admin_id,
+                'assigned_to' => $request->input('assigned_admin_id'),
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
                 'form_data' => $request->all()
@@ -138,16 +211,47 @@ class AppointmentController extends Controller
 
             if ($isPaid) {
                 $response['payment_required'] = true;
-                $response['payment_url'] = route('payments.show', $appointment);
+                $response['redirect'] = route('payments.show', $appointment);
                 $response['amount'] = $baseAmount;
+            } else {
+                // Redirect to success page for free appointments
+                $response['redirect'] = route('appointments.success', $appointment);
             }
 
             return response()->json($response);
 
         } catch (\Exception $e) {
+            \Log::error('Failed to create appointment', [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => basename($e->getFile()),
+                'trace' => $e->getTraceAsString(),
+                'request_data' => [
+                    'full_name' => $request->full_name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'location' => $request->location,
+                    'meeting_type' => $request->meeting_type,
+                    'preferred_language' => $request->preferred_language,
+                    'enquiry_type' => $request->enquiry_type,
+                    'service_type' => $request->service_type,
+                    'service' => $request->input('service'),
+                    'specific_service' => $request->specific_service,
+                    'appointment_date' => $request->appointment_date,
+                    'appointment_time' => $request->appointment_time,
+                    'selected_date' => $request->input('selected_date'),
+                    'selected_time' => $request->input('selected_time'),
+                ]
+            ]);
+            
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to book appointment. Please try again.'
+                'message' => 'Failed to book appointment. Please try again.',
+                'debug' => config('app.debug') ? [
+                    'error' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'file' => basename($e->getFile())
+                ] : null
             ], 500);
         }
     }
@@ -438,9 +542,9 @@ class AppointmentController extends Controller
         $validator = Validator::make($request->all(), [
             'full_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'location' => 'required|in:office,online',
-            'meeting_type' => 'required|in:in_person,video_call,phone_call',
+            'phone' => 'required|string|max:20|regex:/^[\+]?[0-9\s\-\(\)]{6,20}$/',
+            'location' => 'required|in:adelaide,melbourne',
+            'meeting_type' => 'required|in:phone,in-person,video-call',
             'preferred_language' => 'required|string|max:50',
             'enquiry_type' => 'required|in:tr,tourist,education,pr_complex',
             'service_type' => 'nullable|string|max:100',
@@ -452,6 +556,22 @@ class AppointmentController extends Controller
             'status' => 'required|in:pending,confirmed,in_progress,completed,cancelled,no_show',
             'admin_notes' => 'nullable|string',
             'assigned_admin_id' => 'nullable|exists:users,id'
+        ], [
+            'phone.regex' => 'Please enter a valid phone number (6-20 digits, may include +, spaces, hyphens, and parentheses).',
+            'email.email' => 'Please enter a valid email address.',
+            'full_name.required' => 'Full name is required.',
+            'phone.required' => 'Phone number is required.',
+            'email.required' => 'Email address is required.',
+            'enquiry_details.required' => 'Please provide details about your enquiry.',
+            'appointment_date.required' => 'Please select an appointment date.',
+            'appointment_time.required' => 'Please select an appointment time.',
+            'appointment_time.date_format' => 'Please select a valid appointment time.',
+            'duration_minutes.integer' => 'Duration must be a valid number.',
+            'duration_minutes.min' => 'Duration must be at least 15 minutes.',
+            'duration_minutes.max' => 'Duration cannot exceed 180 minutes.',
+            'status.required' => 'Status is required.',
+            'status.in' => 'Please select a valid status.',
+            'assigned_admin_id.exists' => 'Selected admin user does not exist.'
         ]);
 
         if ($validator->fails()) {

@@ -48,7 +48,6 @@ class Appointment extends Model
 
     protected $casts = [
         'appointment_date' => 'date',
-        'appointment_time' => 'datetime:H:i',
         'appointment_datetime' => 'datetime',
         'confirmed_at' => 'datetime',
         'cancelled_at' => 'datetime',
@@ -67,9 +66,46 @@ class Appointment extends Model
         
         static::saving(function ($appointment) {
             if ($appointment->appointment_date && $appointment->appointment_time) {
-                $date = Carbon::parse($appointment->appointment_date);
-                $time = Carbon::parse($appointment->appointment_time);
-                $appointment->appointment_datetime = $date->setTime($time->hour, $time->minute);
+                try {
+                    $date = Carbon::parse($appointment->appointment_date);
+                    // Don't parse appointment_time as datetime if it's already a time string
+                    if (is_string($appointment->appointment_time) && preg_match('/^\d{2}:\d{2}(:\d{2})?$/', $appointment->appointment_time)) {
+                        // It's a time string like "10:30" or "10:30:00"
+                        list($hour, $minute) = explode(':', $appointment->appointment_time);
+                        $appointment->appointment_datetime = $date->setTime((int)$hour, (int)$minute, 0);
+                    } else {
+                        // It's already a Carbon instance or datetime
+                        $time = Carbon::parse($appointment->appointment_time);
+                        $appointment->appointment_datetime = $date->setTime($time->hour, $time->minute);
+                    }
+                } catch (\Exception $e) {
+                    \Log::error('Error generating appointment_datetime', [
+                        'error' => $e->getMessage(),
+                        'appointment_date' => $appointment->appointment_date,
+                        'appointment_time' => $appointment->appointment_time,
+                        'appointment_time_type' => gettype($appointment->appointment_time)
+                    ]);
+                    
+                    // CRITICAL: Must provide fallback to satisfy database NOT NULL constraint
+                    // Attempt multiple fallback strategies
+                    try {
+                        // Strategy 1: Use date + default 9 AM time
+                        if ($appointment->appointment_date) {
+                            $date = Carbon::parse($appointment->appointment_date);
+                            $appointment->appointment_datetime = $date->setTime(9, 0, 0);
+                        } else {
+                            // Strategy 2: Use current datetime if date is also invalid
+                            $appointment->appointment_datetime = now();
+                        }
+                    } catch (\Exception $fallbackError) {
+                        // Strategy 3: Ultimate fallback - current datetime
+                        \Log::critical('All fallback strategies failed for appointment_datetime', [
+                            'fallback_error' => $fallbackError->getMessage(),
+                            'appointment_date' => $appointment->appointment_date
+                        ]);
+                        $appointment->appointment_datetime = now();
+                    }
+                }
             }
         });
     }

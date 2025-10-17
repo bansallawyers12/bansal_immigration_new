@@ -143,6 +143,17 @@ mark {
     }
 }
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* Utility classes */
 .animate-fadeInUp {
     animation: fadeInUp 0.6s ease-out;
@@ -162,6 +173,10 @@ mark {
 
 .animate-bounce {
     animation: bounce 1s infinite;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.3s ease-out;
 }
 
 /* Line clamp utility */

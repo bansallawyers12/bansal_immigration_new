@@ -833,6 +833,44 @@ html {
     font-size: 14px;
 }
 
+/* Timezone Indicator */
+.timezone-indicator {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.timezone-icon {
+    font-size: 20px;
+}
+
+.timezone-text {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.timezone-text strong {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+@media (max-width: 768px) {
+    .timezone-indicator {
+        padding: 10px 14px;
+    }
+    
+    .timezone-text {
+        font-size: 13px;
+    }
+}
+
 /* Calendar & Time Slots */
 .calendar-container {
     display: flex;
@@ -1399,6 +1437,81 @@ html {
     display: block;
 }
 
+/* Inline Field Error Styling */
+.field-error {
+    display: none;
+    margin-top: 8px;
+    padding: 10px 12px;
+    background-color: #fef2f2;
+    border-left: 4px solid var(--error-color);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--error-color);
+    animation: slideDown 0.3s ease;
+}
+
+.field-error.show {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.error-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+
+.error-text {
+    flex: 1;
+    line-height: 1.4;
+}
+
+/* Error State for Input Fields */
+.form-input.error,
+.form-textarea.error,
+.form-select.error {
+    border-color: var(--error-color);
+    background-color: #fef2f2;
+}
+
+.form-input.error:focus,
+.form-textarea.error:focus,
+.form-select.error:focus {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Error State for Radio Button Groups */
+.location-options.error,
+.meeting-options.error,
+.language-options.error,
+.service-selection-options.error,
+.service-options.error {
+    border: 2px solid var(--error-color);
+    border-radius: 12px;
+    padding: 12px;
+    background-color: #fef2f2;
+}
+
+/* Success State (optional for good UX) */
+.form-input.success,
+.form-textarea.success {
+    border-color: var(--success-color);
+}
+
+/* Error Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive Design - Mobile First */
 @media (max-width: 768px) {
     .appointment-grid {
@@ -1550,7 +1663,7 @@ html {
                     <input type="hidden" name="meeting_type" id="meeting-type-input">
                     <input type="hidden" name="preferred_language" id="preferred-language-input">
                     <input type="hidden" name="service_type" id="service-type-input">
-                    <input type="hidden" name="service" id="service-input">
+                    <input type="hidden" name="specific_service" id="service-input">
                             
                             <!-- Step 1: Location Selection -->
                             <div id="location-section" class="form-section">
@@ -1570,6 +1683,10 @@ html {
                                             <div class="location-address">Level 8/278 Collins St<br>Melbourne VIC 3000</div>
                                         </div>
                                     </div>
+                                    <div class="field-error" id="location-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -1587,12 +1704,24 @@ html {
                                             <div class="meeting-title">In Person</div>
                                             <div class="meeting-subtitle">Visit our office</div>
                                         </div>
-                                        <div class="meeting-option" data-meeting="video-call" style="display: none;">
-                                            <input type="radio" name="meeting_type" value="video-call" id="meeting-video">
+                                        <div class="meeting-option" data-meeting="video-call" id="video-call-option" style="opacity: 0.5; pointer-events: none;">
+                                            <input type="radio" name="meeting_type" value="video-call" id="meeting-video" disabled>
                                             <div class="meeting-icon">📹</div>
-                                            <div class="meeting-title">Video Call</div>
-                                            <div class="meeting-subtitle">Online consultation</div>
+                                            <div class="meeting-title">
+                                                Video Call 
+                                                <span style="color: var(--accent-orange); font-size: 14px; margin-left: 4px;">★</span>
+                                            </div>
+                                            <div class="meeting-subtitle">
+                                                Online consultation
+                                                <span style="color: var(--accent-orange); font-size: 11px; display: block; margin-top: 4px;">
+                                                    * Available for paid appointments only
+                                                </span>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="field-error" id="meeting-type-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
                                     </div>
                                 </div>
 
@@ -1614,6 +1743,10 @@ html {
                                             <div class="language-flag">🇮🇳</div>
                                             <div class="language-name">Punjabi</div>
                                         </div>
+                                    </div>
+                                    <div class="field-error" id="preferred-language-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
                                     </div>
                                 </div>
 
@@ -1685,6 +1818,10 @@ html {
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="field-error" id="service-type-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
+                                    </div>
                                 </div>
 
                                 <div class="text-center" style="margin-top: 24px;">
@@ -1749,6 +1886,10 @@ html {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="field-error" id="service-error" style="display: none;">
+                                    <span class="error-icon">⚠️</span>
+                                    <span class="error-text"></span>
+                                </div>
                                 <div class="text-center" style="margin-top: 24px;">
                                     <button type="button" class="appointment-btn appointment-btn-secondary" onclick="prevStep(2)" style="margin-right: 12px;">Previous</button>
                                     <button type="button" class="appointment-btn" onclick="nextStep(4)">Next Step</button>
@@ -1763,10 +1904,18 @@ html {
                                     <div class="form-group">
                                         <label for="full-name">Full Name</label>
                                         <input type="text" id="full-name" name="full_name" class="form-input" required>
+                                        <div class="field-error" id="full-name-error" style="display: none;">
+                                            <span class="error-icon">⚠️</span>
+                                            <span class="error-text"></span>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email Address</label>
                                         <input type="email" id="email" name="email" class="form-input" required>
+                                        <div class="field-error" id="email-error" style="display: none;">
+                                            <span class="error-icon">⚠️</span>
+                                            <span class="error-text"></span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1797,11 +1946,19 @@ html {
                                         </select>
                                         <input type="tel" id="phone" name="phone" class="form-input" placeholder="400 000 000" required style="flex: 1;">
                                     </div>
+                                    <div class="field-error" id="phone-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="enquiry-details">Details of Enquiry</label>
                                     <textarea id="enquiry-details" name="enquiry_details" class="form-textarea" placeholder="Please provide detailed information about your enquiry..." required></textarea>
+                                    <div class="field-error" id="enquiry-details-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -1815,6 +1972,15 @@ html {
 
                                 <div class="form-group">
                                     <label>Select Date & Time</label>
+                                    
+                                    <!-- NEW: Timezone Indicator -->
+                                    <div class="timezone-indicator" id="timezone-indicator" style="display: none;">
+                                        <span class="timezone-icon">🕐</span>
+                                        <span class="timezone-text" id="timezone-text">
+                                            All times shown in <strong>Adelaide Time (ACST)</strong>
+                                        </span>
+                                    </div>
+                                    
                                     <div class="calendar-container">
                                         <div class="calendar-widget">
                                             <div class="calendar-header">
@@ -1831,13 +1997,21 @@ html {
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="selected-date-input" name="selected_date">
-                                    <input type="hidden" id="selected-time-input" name="selected_time">
+                                    <div class="field-error" id="appointment-date-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
+                                    </div>
+                                    <div class="field-error" id="appointment-time-error" style="display: none;">
+                                        <span class="error-icon">⚠️</span>
+                                        <span class="error-text"></span>
+                                    </div>
+                                    <input type="hidden" id="selected-date-input" name="appointment_date">
+                                    <input type="hidden" id="selected-time-input" name="appointment_time">
                                 </div>
 
                                 <div class="text-center" style="margin-top: 24px;">
                                     <button type="button" class="appointment-btn appointment-btn-secondary" onclick="prevStep(3)" style="margin-right: 12px;">Previous</button>
-                                    <button type="button" class="appointment-btn" onclick="nextStep(4)">Review & Confirm</button>
+                                    <button type="button" class="appointment-btn" onclick="nextStep(5)">Review & Confirm</button>
                                 </div>
                             </div>
 
@@ -2030,10 +2204,12 @@ html {
 
 <script>
 // Modern appointment booking JavaScript
+// Make these global so external JS files can access them
+window.selectedDate = null;
+window.selectedTime = null;
+
 document.addEventListener('DOMContentLoaded', function() {
     let currentStep = 1;
-    let selectedDate = null;
-    let selectedTime = null;
     
     // Initialize the form
     initializeForm();
@@ -2077,18 +2253,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.add('selected');
                 this.querySelector('input[type="radio"]').checked = true;
                 
-                // Show/hide video call option based on service
-                const meetingTypeSelect = document.getElementById('meeting-type');
-                if (meetingTypeSelect) {
-                    const videoOption = meetingTypeSelect.querySelector('option[value="video-call"]');
-                    if (videoOption) {
-                        if (this.dataset.service === 'paid-consultation') {
-                            videoOption.style.display = 'block';
-                        } else {
-                            videoOption.style.display = 'none';
-                            if (meetingTypeSelect.value === 'video-call') {
-                                meetingTypeSelect.value = '';
-                            }
+                // Show/hide and enable/disable video call option based on service
+                const videoCallOption = document.querySelector('.meeting-option[data-meeting="video-call"]');
+                const videoCallRadio = document.getElementById('meeting-video');
+                
+                if (videoCallOption && videoCallRadio) {
+                    const isPaidService = this.dataset.service === 'paid-consultation' || 
+                                         this.dataset.service === 'overseas-enquiry';
+                    
+                    if (isPaidService) {
+                        // Enable video call for paid services
+                        videoCallOption.style.opacity = '1';
+                        videoCallOption.style.pointerEvents = 'auto';
+                        videoCallRadio.disabled = false;
+                    } else {
+                        // Disable video call for free services
+                        videoCallOption.style.opacity = '0.5';
+                        videoCallOption.style.pointerEvents = 'none';
+                        videoCallRadio.disabled = true;
+                        
+                        // If video call was selected, deselect it
+                        if (videoCallRadio.checked) {
+                            videoCallRadio.checked = false;
+                            videoCallOption.classList.remove('selected');
                         }
                     }
                 }
@@ -2180,8 +2367,8 @@ document.addEventListener('DOMContentLoaded', function() {
                        document.getElementById('email').value.trim() !== '' &&
                        document.getElementById('phone').value.trim() !== '' &&
                        document.getElementById('enquiry-details').value.trim() !== '' &&
-                       selectedDate !== null &&
-                       selectedTime !== null;
+                       window.selectedDate !== null &&
+                       window.selectedTime !== null;
             }
         };
         
@@ -2226,8 +2413,8 @@ document.addEventListener('DOMContentLoaded', function() {
                            document.getElementById('email').value.trim() !== '' &&
                            document.getElementById('phone').value.trim() !== '' &&
                            document.getElementById('enquiry-details').value.trim() !== '' &&
-                           selectedDate !== null &&
-                           selectedTime !== null;
+                           window.selectedDate !== null &&
+                           window.selectedTime !== null;
                 }
             };
             
@@ -2279,7 +2466,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const isToday = date.toDateString() === new Date().toDateString();
                 const isPast = date < new Date().setHours(0, 0, 0, 0);
                 const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-                const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+                const isSelected = window.selectedDate && date.toDateString() === window.selectedDate.toDateString();
                 
                 let classes = 'calendar-day';
                 if (isPast || isWeekend) classes += ' unavailable';
@@ -2296,12 +2483,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 dayEl.addEventListener('click', function() {
                     const dateStr = this.dataset.date;
                     const [year, month, day] = dateStr.split('-');
-                    selectedDate = new Date(year, month - 1, day);
+                    window.selectedDate = new Date(year, month - 1, day);
                     
                     document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
                     this.classList.add('selected');
                     
-                    document.getElementById('selected-date').textContent = selectedDate.toLocaleDateString('en-AU');
+                    document.getElementById('selected-date').textContent = window.selectedDate.toLocaleDateString('en-AU');
                     document.getElementById('selected-date-input').value = dateStr;
                     
                     loadTimeSlots(dateStr);
@@ -2419,8 +2606,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         slot.addEventListener('click', function() {
                             document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
                             this.classList.add('selected');
-                            selectedTime = this.dataset.time;
-                            document.getElementById('selected-time-input').value = selectedTime;
+                            window.selectedTime = this.dataset.time;
+                            document.getElementById('selected-time-input').value = window.selectedTime;
                         });
                     });
                 } else {
@@ -2463,7 +2650,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         selectedMeetingType ? selectedMeetingType.closest('.meeting-option').querySelector('.meeting-title').textContent : '';
         
         document.getElementById('confirm-datetime').textContent = 
-            `${selectedDate ? selectedDate.toLocaleDateString('en-AU') : ''} at ${selectedTime || ''}`;
+            `${window.selectedDate ? window.selectedDate.toLocaleDateString('en-AU') : ''} at ${window.selectedTime || ''}`;
         
         document.getElementById('confirm-details').textContent = document.getElementById('enquiry-details').value;
         
@@ -2473,63 +2660,40 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('submit-paid').style.display = isPaid ? 'inline-block' : 'none';
     }
     
-    // Handle paid appointment submission
-    document.getElementById('submit-paid').addEventListener('click', function() {
-        // Populate hidden form fields before submission
-        populateFormFields();
-        // Here you would integrate with your payment system (Stripe, etc.)
-        alert('Payment integration would be implemented here. For now, this will submit as a paid appointment.');
-        document.getElementById('appointment-form').submit();
-    });
-    
-    // Handle free appointment submission
-    document.getElementById('submit-free').addEventListener('click', function() {
-        // Populate hidden form fields before submission
-        populateFormFields();
-        document.getElementById('appointment-form').submit();
-    });
-    
-    function populateFormFields() {
-        // Get selected values and populate hidden fields
+    // Form submission handlers moved to separate files for better organization
+
+    // JavaScript functionality moved to separate files for better organization
+
+    // Update timezone display based on selected location
+    function updateTimezoneDisplay() {
         const selectedLocation = document.querySelector('input[name="location"]:checked');
-        const selectedMeetingType = document.querySelector('input[name="meeting_type"]:checked');
-        const selectedLanguage = document.querySelector('input[name="preferred_language"]:checked');
-        const selectedServiceType = document.querySelector('input[name="service_type"]:checked');
-        const selectedService = document.querySelector('input[name="service"]:checked');
+        const timezoneIndicator = document.getElementById('timezone-indicator');
+        const timezoneText = document.getElementById('timezone-text');
         
         if (selectedLocation) {
-            document.getElementById('location-input').value = selectedLocation.value;
+            const location = selectedLocation.value;
+            
+            if (location === 'adelaide') {
+                timezoneText.innerHTML = 'All times shown in <strong>Adelaide Time (ACST)</strong>';
+            } else if (location === 'melbourne') {
+                timezoneText.innerHTML = 'All times shown in <strong>Melbourne Time (AEST)</strong>';
+            }
+            
+            timezoneIndicator.style.display = 'flex';
         }
-        if (selectedMeetingType) {
-            document.getElementById('meeting-type-input').value = selectedMeetingType.value;
-        }
-        if (selectedLanguage) {
-            document.getElementById('preferred-language-input').value = selectedLanguage.value;
-        }
-        if (selectedServiceType) {
-            document.getElementById('service-type-input').value = selectedServiceType.value;
-        }
-        if (selectedService) {
-            document.getElementById('service-input').value = selectedService.value;
-        }
-        
-        // Map service type to enquiry type
-        let enquiryType = 'tr'; // default
-        if (selectedServiceType) {
-            const serviceTypeMapping = {
-                'permanent-residency': 'pr_complex',
-                'temporary-residency': 'tr',
-                'jrp-skill-assessment': 'tr',
-                'tourist-visa': 'tourist',
-                'education-visa': 'education',
-                'complex-matters': 'pr_complex',
-                'visa-cancellation': 'pr_complex',
-                'international-migration': 'pr_complex'
-            };
-            enquiryType = serviceTypeMapping[selectedServiceType.value] || 'tr';
-        }
-        document.getElementById('enquiry-type-input').value = enquiryType;
     }
+
+    // Add event listeners to location options
+    document.querySelectorAll('.location-option').forEach(option => {
+        option.addEventListener('click', function() {
+            setTimeout(updateTimezoneDisplay, 100);
+        });
+    });
+
+    // Also update when radio button is clicked directly
+    document.querySelectorAll('input[name="location"]').forEach(radio => {
+        radio.addEventListener('change', updateTimezoneDisplay);
+    });
 
     // Promo code validation
     let currentPromoCode = '';
@@ -2638,4 +2802,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+<!-- Include separate JavaScript files for better organization -->
+<script src="{{ asset('js/appointment-form-errors.js') }}"></script>
+<script src="{{ asset('js/appointment-form-steps.js') }}"></script>
+<script src="{{ asset('js/appointment-form-submission.js') }}"></script>
+
 @endsection

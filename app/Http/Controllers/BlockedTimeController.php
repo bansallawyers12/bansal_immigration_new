@@ -98,6 +98,8 @@ class BlockedTimeController extends Controller
             'recurrence_end_date' => 'nullable|date|after:blocked_date|required_unless:recurrence_type,none',
             'blocked_enquiry_types' => 'nullable|array',
             'blocked_enquiry_types.*' => 'in:tr,tourist,education,pr_complex',
+            'blocked_locations' => 'nullable|array',
+            'blocked_locations.*' => 'in:melbourne,adelaide',
             'block_type' => 'required|in:unavailable,busy,holiday,maintenance',
             'is_active' => 'boolean'
         ]);
@@ -117,6 +119,7 @@ class BlockedTimeController extends Controller
                 'recurrence_type' => $request->recurrence_type,
                 'recurrence_end_date' => $request->recurrence_end_date,
                 'blocked_enquiry_types' => $request->blocked_enquiry_types,
+                'blocked_locations' => $request->blocked_locations,
                 'block_type' => $request->block_type,
                 'is_active' => $request->boolean('is_active', true),
                 'created_by' => Auth::id()

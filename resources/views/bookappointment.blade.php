@@ -1598,6 +1598,12 @@ html {
 
                         <form id="appointment-form" method="POST" action="{{ route('appointments.store') }}">
                     @csrf
+                    <input type="hidden" name="enquiry_type" id="enquiry-type-input">
+                    <input type="hidden" name="location" id="location-input">
+                    <input type="hidden" name="meeting_type" id="meeting-type-input">
+                    <input type="hidden" name="preferred_language" id="preferred-language-input">
+                    <input type="hidden" name="service_type" id="service-type-input">
+                    <input type="hidden" name="service" id="service-input">
                             
                             <!-- Step 1: Location Selection -->
                             <div id="location-section" class="form-section">
@@ -2301,6 +2307,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     loadTimeSlots(dateStr);
                 });
             });
+            
+            // Check for blocked dates and mark them as unavailable
+            checkBlockedDates();
         }
         
         prevMonthBtn.addEventListener('click', () => {
@@ -2316,56 +2325,112 @@ document.addEventListener('DOMContentLoaded', function() {
         renderCalendar();
     }
     
+    function checkBlockedDates() {
+        // Get current month dates
+        const calendarDays = document.querySelectorAll('.calendar-day:not(.unavailable)');
+        const selectedServiceType = document.querySelector('input[name="service_type"]:checked');
+        
+        let enquiryType = 'tr'; // default
+        
+        // Map service types to enquiry types
+        if (selectedServiceType) {
+            const serviceTypeMapping = {
+                'permanent-residency': 'pr_complex',
+                'temporary-residency': 'tr',
+                'jrp-skill-assessment': 'tr',
+                'tourist-visa': 'tourist',
+                'education-visa': 'education',
+                'complex-matters': 'pr_complex',
+                'visa-cancellation': 'pr_complex',
+                'international-migration': 'pr_complex'
+            };
+            enquiryType = serviceTypeMapping[selectedServiceType.value] || 'tr';
+        }
+        
+        // Check each date for blocked times
+        calendarDays.forEach(dayEl => {
+            const dateStr = dayEl.dataset.date;
+            
+            // Get selected location
+            const selectedLocation = document.querySelector('input[name="location"]:checked');
+            const location = selectedLocation ? selectedLocation.value : 'melbourne';
+            
+            // Check if this date has any available slots
+            fetch(`/api/appointments/available-slots?date=${dateStr}&enquiry_type=${enquiryType}&location=${location}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success || !data.available_slots || data.available_slots.length === 0) {
+                        // No available slots, mark as unavailable
+                        dayEl.classList.add('unavailable');
+                        dayEl.style.opacity = '0.3';
+                        dayEl.style.cursor = 'not-allowed';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking blocked dates:', error);
+                });
+        });
+    }
+    
     function loadTimeSlots(date) {
         const timeSlotsContainer = document.getElementById('time-slots');
         
-        // Determine timing based on selected service
-        const selectedService = document.querySelector('input[name="service"]:checked');
-        let timeSlots = [];
+        // Show loading state
+        timeSlotsContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">Loading available time slots...</div>';
         
-        if (selectedService && selectedService.closest('.service-option').dataset.timing === 'free') {
-            // Free consultation: 12:00 PM - 3:00 PM, 15-minute intervals
-            timeSlots = [
-                '12:00 PM', '12:15 PM', '12:30 PM', '12:45 PM',
-                '01:00 PM', '01:15 PM', '01:30 PM', '01:45 PM',
-                '02:00 PM', '02:15 PM', '02:30 PM', '02:45 PM'
-            ];
-        } else if (selectedService && selectedService.closest('.service-option').dataset.timing === 'paid') {
-            // Paid consultation: 10:00 AM - 5:00 PM, 30-minute intervals
-            timeSlots = [
-                '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-                '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-                '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM',
-                '04:00 PM', '04:30 PM'
-            ];
-        } else {
-            // Default time slots if no service selected
-            timeSlots = [
-                '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-                '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM',
-                '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM',
-                '04:00 PM', '04:30 PM'
-            ];
+        // Determine enquiry type based on selected service
+        const selectedService = document.querySelector('input[name="service"]:checked');
+        const selectedServiceType = document.querySelector('input[name="service_type"]:checked');
+        
+        let enquiryType = 'tr'; // default
+        
+        // Map service types to enquiry types
+        if (selectedServiceType) {
+            const serviceTypeMapping = {
+                'permanent-residency': 'pr_complex',
+                'temporary-residency': 'tr',
+                'jrp-skill-assessment': 'tr',
+                'tourist-visa': 'tourist',
+                'education-visa': 'education',
+                'complex-matters': 'pr_complex',
+                'visa-cancellation': 'pr_complex',
+                'international-migration': 'pr_complex'
+            };
+            enquiryType = serviceTypeMapping[selectedServiceType.value] || 'tr';
         }
         
-        let html = '';
-        timeSlots.forEach(time => {
-            // You can add logic here to check if time slot is already booked
-            // For now, all slots are available
-            html += `<div class="time-slot" data-time="${time}">${time}</div>`;
-        });
+        // Get selected location
+        const selectedLocation = document.querySelector('input[name="location"]:checked');
+        const location = selectedLocation ? selectedLocation.value : 'melbourne';
         
-        timeSlotsContainer.innerHTML = html;
-        
-        // Add click handlers to time slots
-        document.querySelectorAll('.time-slot').forEach(slot => {
-            slot.addEventListener('click', function() {
-                document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-                this.classList.add('selected');
-                selectedTime = this.dataset.time;
-                document.getElementById('selected-time-input').value = selectedTime;
+        // Call API to get available time slots
+        fetch(`/api/appointments/available-slots?date=${date}&enquiry_type=${enquiryType}&location=${location}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.available_slots && data.available_slots.length > 0) {
+                    let html = '';
+                    data.available_slots.forEach(slot => {
+                        html += `<div class="time-slot" data-time="${slot.time}">${slot.display}</div>`;
+                    });
+                    timeSlotsContainer.innerHTML = html;
+                    
+                    // Add click handlers to time slots
+                    document.querySelectorAll('.time-slot').forEach(slot => {
+                        slot.addEventListener('click', function() {
+                            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                            this.classList.add('selected');
+                            selectedTime = this.dataset.time;
+                            document.getElementById('selected-time-input').value = selectedTime;
+                        });
+                    });
+                } else {
+                    timeSlotsContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #ef4444;">No available time slots for this date. Please select another date.</div>';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading time slots:', error);
+                timeSlotsContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #ef4444;">Error loading time slots. Please try again.</div>';
             });
-        });
     }
     
     
@@ -2410,10 +2475,61 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle paid appointment submission
     document.getElementById('submit-paid').addEventListener('click', function() {
+        // Populate hidden form fields before submission
+        populateFormFields();
         // Here you would integrate with your payment system (Stripe, etc.)
         alert('Payment integration would be implemented here. For now, this will submit as a paid appointment.');
         document.getElementById('appointment-form').submit();
     });
+    
+    // Handle free appointment submission
+    document.getElementById('submit-free').addEventListener('click', function() {
+        // Populate hidden form fields before submission
+        populateFormFields();
+        document.getElementById('appointment-form').submit();
+    });
+    
+    function populateFormFields() {
+        // Get selected values and populate hidden fields
+        const selectedLocation = document.querySelector('input[name="location"]:checked');
+        const selectedMeetingType = document.querySelector('input[name="meeting_type"]:checked');
+        const selectedLanguage = document.querySelector('input[name="preferred_language"]:checked');
+        const selectedServiceType = document.querySelector('input[name="service_type"]:checked');
+        const selectedService = document.querySelector('input[name="service"]:checked');
+        
+        if (selectedLocation) {
+            document.getElementById('location-input').value = selectedLocation.value;
+        }
+        if (selectedMeetingType) {
+            document.getElementById('meeting-type-input').value = selectedMeetingType.value;
+        }
+        if (selectedLanguage) {
+            document.getElementById('preferred-language-input').value = selectedLanguage.value;
+        }
+        if (selectedServiceType) {
+            document.getElementById('service-type-input').value = selectedServiceType.value;
+        }
+        if (selectedService) {
+            document.getElementById('service-input').value = selectedService.value;
+        }
+        
+        // Map service type to enquiry type
+        let enquiryType = 'tr'; // default
+        if (selectedServiceType) {
+            const serviceTypeMapping = {
+                'permanent-residency': 'pr_complex',
+                'temporary-residency': 'tr',
+                'jrp-skill-assessment': 'tr',
+                'tourist-visa': 'tourist',
+                'education-visa': 'education',
+                'complex-matters': 'pr_complex',
+                'visa-cancellation': 'pr_complex',
+                'international-migration': 'pr_complex'
+            };
+            enquiryType = serviceTypeMapping[selectedServiceType.value] || 'tr';
+        }
+        document.getElementById('enquiry-type-input').value = enquiryType;
+    }
 
     // Promo code validation
     let currentPromoCode = '';

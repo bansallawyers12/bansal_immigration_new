@@ -22,6 +22,7 @@ class BlockedTime extends Model
         'recurrence_data',
         'recurrence_end_date',
         'blocked_enquiry_types',
+        'blocked_locations',
         'is_active',
         'block_type',
         'created_by'
@@ -34,6 +35,7 @@ class BlockedTime extends Model
         'recurrence_end_date' => 'date',
         'recurrence_data' => 'array',
         'blocked_enquiry_types' => 'array',
+        'blocked_locations' => 'array',
         'is_all_day' => 'boolean',
         'is_active' => 'boolean'
     ];
@@ -95,6 +97,19 @@ class BlockedTime extends Model
     }
 
     /**
+     * Check if this blocked time affects a specific location
+     */
+    public function affectsLocation(string $location): bool
+    {
+        // If no specific locations are set, it affects all locations
+        if (empty($this->blocked_locations)) {
+            return true;
+        }
+
+        return in_array($location, $this->blocked_locations);
+    }
+
+    /**
      * Check if a specific time slot is blocked
      */
     public function blocksTimeSlot(string $time): bool
@@ -115,9 +130,9 @@ class BlockedTime extends Model
     }
 
     /**
-     * Get all blocked time slots for a specific date and enquiry type
+     * Get all blocked time slots for a specific date, enquiry type, and location
      */
-    public static function getBlockedSlotsForDate($date, $enquiryType = null)
+    public static function getBlockedSlotsForDate($date, $enquiryType = null, $location = null)
     {
         $query = static::active()
                       ->forDate($date);
@@ -130,6 +145,11 @@ class BlockedTime extends Model
         $blockedSlots = [];
 
         foreach ($blockedTimes as $blockedTime) {
+            // Check if this blocked time affects the specified location
+            if ($location && !$blockedTime->affectsLocation($location)) {
+                continue;
+            }
+
             if ($blockedTime->is_all_day) {
                 // If it's all day, return a special marker
                 $blockedSlots[] = [
@@ -204,9 +224,9 @@ class BlockedTime extends Model
     /**
      * Check if time slot is available considering blocked times
      */
-    public static function isTimeSlotAvailable($date, $time, $enquiryType = null, $duration = 30)
+    public static function isTimeSlotAvailable($date, $time, $enquiryType = null, $duration = 30, $location = null)
     {
-        $blockedSlots = static::getBlockedSlotsForDate($date, $enquiryType);
+        $blockedSlots = static::getBlockedSlotsForDate($date, $enquiryType, $location);
         
         // Check for all-day blocks
         if ($blockedSlots->contains('type', 'all_day')) {

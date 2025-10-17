@@ -25,31 +25,50 @@
         </div>
     </div>
 
-    <!-- Calendar Type Filter -->
+    <!-- Location Filter -->
     <div class="bg-white rounded-lg shadow mb-6 p-4">
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-sm font-medium text-gray-700 mr-4">Filter by Location:</span>
+            <a href="{{ route('admin.appointments.index') }}" 
+               class="px-3 py-1 rounded-full text-xs font-medium {{ !request('location') ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
+                All Locations
+            </a>
+            <a href="{{ route('admin.appointments.index', ['location' => 'melbourne']) }}" 
+               class="px-3 py-1 rounded-full text-xs font-medium {{ request('location') == 'melbourne' ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-700 hover:bg-blue-200' }}">
+                Melbourne Office
+            </a>
+            <a href="{{ route('admin.appointments.index', ['location' => 'adelaide']) }}" 
+               class="px-3 py-1 rounded-full text-xs font-medium {{ request('location') == 'adelaide' ? 'bg-red-600 text-white' : 'bg-red-100 text-red-700 hover:bg-red-200' }}">
+                Adelaide Office
+            </a>
+        </div>
+        
+        @if(request('location') == 'melbourne' || !request('location'))
+        <!-- Calendar Type Filter (only for Melbourne) -->
         <div class="flex flex-wrap gap-2">
             <span class="text-sm font-medium text-gray-700 mr-4">Filter by Calendar Type:</span>
-            <a href="{{ route('admin.appointments.index') }}" 
+            <a href="{{ route('admin.appointments.index', array_merge(request()->all(), ['enquiry_type' => null])) }}" 
                class="px-3 py-1 rounded-full text-xs font-medium {{ !request('enquiry_type') ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
                 All Types
             </a>
-            <a href="{{ route('admin.appointments.index', ['enquiry_type' => 'tr']) }}" 
+            <a href="{{ route('admin.appointments.index', array_merge(request()->all(), ['enquiry_type' => 'tr'])) }}" 
                class="px-3 py-1 rounded-full text-xs font-medium {{ request('enquiry_type') == 'tr' ? 'bg-blue-600 text-white' : 'bg-blue-100 text-blue-700 hover:bg-blue-200' }}">
                 TR (TRand JRP)
             </a>
-            <a href="{{ route('admin.appointments.index', ['enquiry_type' => 'tourist']) }}" 
+            <a href="{{ route('admin.appointments.index', array_merge(request()->all(), ['enquiry_type' => 'tourist'])) }}" 
                class="px-3 py-1 rounded-full text-xs font-medium {{ request('enquiry_type') == 'tourist' ? 'bg-green-600 text-white' : 'bg-green-100 text-green-700 hover:bg-green-200' }}">
                 Tourist Visa
             </a>
-            <a href="{{ route('admin.appointments.index', ['enquiry_type' => 'education']) }}" 
+            <a href="{{ route('admin.appointments.index', array_merge(request()->all(), ['enquiry_type' => 'education'])) }}" 
                class="px-3 py-1 rounded-full text-xs font-medium {{ request('enquiry_type') == 'education' ? 'bg-yellow-600 text-white' : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200' }}">
                 Education
             </a>
-            <a href="{{ route('admin.appointments.index', ['enquiry_type' => 'pr_complex']) }}" 
+            <a href="{{ route('admin.appointments.index', array_merge(request()->all(), ['enquiry_type' => 'pr_complex'])) }}" 
                class="px-3 py-1 rounded-full text-xs font-medium {{ request('enquiry_type') == 'pr_complex' ? 'bg-purple-600 text-white' : 'bg-purple-100 text-purple-700 hover:bg-purple-200' }}">
                 PR/Complex
             </a>
         </div>
+        @endif
     </div>
 
     <!-- Appointments Table -->
@@ -62,6 +81,7 @@
                             <tr class="border-b border-gray-200">
                                 <th class="text-left py-3 px-4 font-semibold text-gray-700">Client</th>
                                 <th class="text-left py-3 px-4 font-semibold text-gray-700">Date & Time</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-700">Location</th>
                                 <th class="text-left py-3 px-4 font-semibold text-gray-700">Type</th>
                                 <th class="text-left py-3 px-4 font-semibold text-gray-700">Status</th>
                                 <th class="text-left py-3 px-4 font-semibold text-gray-700">Actions</th>
@@ -86,6 +106,12 @@
                                         <div class="font-medium text-gray-900">{{ $appointment->appointment_date->format('M d, Y') }}</div>
                                         <div class="text-gray-500">{{ $appointment->appointment_time->format('g:i A') }}</div>
                                     </div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                               {{ $appointment->location === 'adelaide' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800' }}">
+                                        {{ ucfirst($appointment->location) }} Office
+                                    </span>
                                 </td>
                                 <td class="py-3 px-4">
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" 

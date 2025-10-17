@@ -19,6 +19,11 @@ class AppointmentController extends Controller
         $query = Appointment::with('assignedAdmin')
                            ->orderBy('appointment_datetime', 'desc');
 
+        // Filter by location
+        if ($request->filled('location')) {
+            $query->where('location', $request->location);
+        }
+
         // Filter by enquiry type (calendar type)
         if ($request->filled('enquiry_type')) {
             $query->byEnquiryType($request->enquiry_type);

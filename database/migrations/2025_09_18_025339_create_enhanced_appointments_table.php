@@ -24,10 +24,10 @@ return new class extends Migration
             
             // Service Information
             $table->enum('enquiry_type', [
-                'immigration_consultation',
-                'visa_application', 
-                'legal_advice',
-                'document_review'
+                'tr',
+                'tourist',
+                'education',
+                'pr_complex'
             ])->index(); // Index for calendar filtering
             
             $table->string('service_type')->nullable(); // free/paid consultation

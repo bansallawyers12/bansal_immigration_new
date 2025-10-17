@@ -110,6 +110,25 @@
                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
 
+                    <!-- Blocked Locations -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Block Specific Locations (leave empty to block all locations)</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="blocked_locations[]" value="melbourne" 
+                                       {{ in_array('melbourne', old('blocked_locations', [])) ? 'checked' : '' }}
+                                       class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200">
+                                <span class="ml-2 text-sm text-gray-700">Melbourne Office</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="blocked_locations[]" value="adelaide" 
+                                       {{ in_array('adelaide', old('blocked_locations', [])) ? 'checked' : '' }}
+                                       class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200">
+                                <span class="ml-2 text-sm text-gray-700">Adelaide Office</span>
+                            </label>
+                        </div>
+                    </div>
+
                     <!-- Blocked Enquiry Types -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Block Specific Calendar Types (leave empty to block all)</label>

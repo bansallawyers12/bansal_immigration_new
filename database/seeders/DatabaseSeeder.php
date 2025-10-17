@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             AdditionalMigrationPagesSeeder::class,
             SuburbSeeder::class,
             PostcodeRangeSeeder::class,
+            CmsPagesSeeder::class,
         ]);
     }
 }

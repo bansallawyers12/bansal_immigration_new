@@ -421,7 +421,7 @@
                 <div class="text-sm text-white/80">Visa approval rate</div>
             </div>
             <div class="floating-card text-center">
-                <div class="stats-counter text-white">15+</div>
+                <div class="stats-counter text-white">10+</div>
                 <div class="text-lg font-semibold text-white mt-2">Years Experience</div>
                 <div class="text-sm text-white/80">Celebrity visa expertise</div>
             </div>

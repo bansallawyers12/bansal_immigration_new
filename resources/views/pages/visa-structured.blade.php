@@ -271,31 +271,32 @@
     <div class="container mx-auto px-4 py-8 max-w-7xl animate-fade-in-up">
     <!-- Modern Breadcrumb -->
     <nav class="mb-8" aria-label="Breadcrumb">
-        <ol class="flex items-center space-x-2 text-sm">
+        <ol class="flex items-center flex-wrap gap-2 text-sm">
             <li>
-                <a href="/" class="flex items-center text-gray-500 hover:text-blue-600 transition-colors duration-200">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="/" class="flex items-center text-gray-500 hover:text-blue-600 transition-colors duration-200 whitespace-nowrap">
+                    <svg class="w-4 h-4 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                     </svg>
-                    Home
+                    <span class="hidden sm:inline">Home</span>
+                    <span class="sm:hidden">H</span>
                 </a>
             </li>
-            <li>
+            <li class="flex-shrink-0">
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
             </li>
             <li>
-                <a href="/{{ $page->category }}" class="text-gray-500 hover:text-blue-600 transition-colors duration-200 capitalize font-medium">
+                <a href="/{{ $page->category }}" class="text-gray-500 hover:text-blue-600 transition-colors duration-200 capitalize font-medium truncate max-w-32 sm:max-w-none">
                     {{ str_replace('-', ' ', $page->category) }}
                 </a>
             </li>
-            <li>
+            <li class="flex-shrink-0">
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
             </li>
-            <li class="text-gray-900 font-semibold truncate max-w-xs">{{ $page->title }}</li>
+            <li class="text-gray-900 font-semibold truncate max-w-48 sm:max-w-none">{{ $page->title }}</li>
         </ol>
     </nav>
 
@@ -304,7 +305,7 @@
     $heroBgUrl = $page->image ? asset('storage/' . $page->image) : null;
 @endphp
 
-<div class="relative rounded-2xl overflow-hidden mb-12 h-80 md:h-96 lg:h-[28rem] shadow-2xl group">
+<div class="relative rounded-2xl overflow-hidden mb-12 min-h-96 md:min-h-[28rem] lg:min-h-[32rem] shadow-2xl group">
     @if($heroBgUrl)
         <div class="absolute inset-0 transition-transform duration-700 group-hover:scale-105" style="background-image:url('{{ $heroBgUrl }}');background-size:cover;background-position:center;"></div>
         <div class="absolute inset-0 bg-gradient-to-br from-blue-900/55 via-blue-800/50 to-blue-700/55"></div>
@@ -314,28 +315,28 @@
     
     <!-- Removed dotted pattern for cleaner image visibility -->
     
-    <div class="relative h-full text-white p-8 md:p-12 flex items-center">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full">
+    <div class="relative text-white p-6 md:p-8 lg:p-12 py-12 md:py-16 lg:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full max-w-6xl mx-auto">
             <div class="space-y-6">
                 <div class="space-y-4">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                         {{ $page->title }}
                     </h1>
                 @if($page->excerpt)
-                    <p class="text-blue-100 text-xl leading-relaxed max-w-2xl">{{ $page->excerpt }}</p>
+                    <p class="text-blue-100 text-lg sm:text-xl leading-relaxed max-w-2xl">{{ $page->excerpt }}</p>
                 @endif
                 </div>
                 
-                <div class="flex flex-wrap gap-4">
-                    <a href="#overview" class="group/btn inline-flex items-center px-6 py-3 bg-white text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        <svg class="w-5 h-5 mr-2 group-hover/btn:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4">
+                    <a href="#overview" class="group/btn inline-flex items-center justify-center px-6 py-3 bg-white text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <svg class="w-5 h-5 mr-2 group-hover/btn:animate-pulse flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         Overview
                     </a>
                     @if(!empty($page->visa_steps))
-                    <a href="#how-to-apply" class="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="#how-to-apply" class="inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300">
+                        <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                         How to Apply
@@ -768,11 +769,29 @@
             </section>
             @endif
 
-            <!-- Modern FAQs Section with Card Layout -->
+            <!-- Modern FAQs Section with Mobile Accordion -->
             @if($showFaqs)
             <section id="faqs" class="">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Got Questions? We've Got Answers</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Mobile: Accordion Layout -->
+                <div class="md:hidden space-y-4">
+                    @foreach($page->visa_faqs as $faq)
+                        @continue(empty($faq['question']) || empty($faq['answer']))
+                        <details class="bg-white rounded-2xl shadow-soft group">
+                            <summary class="p-6 cursor-pointer flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 rounded-2xl">
+                                <h3 class="text-lg font-semibold text-gray-900 pr-4">{{ $faq['question'] }}</h3>
+                                <i class="fas fa-plus text-blue-600 group-open:rotate-45 transition-transform duration-200 flex-shrink-0"></i>
+                            </summary>
+                            <div class="px-6 pb-6 pt-0">
+                                <div class="prose max-w-none text-gray-700">{!! \Illuminate\Support\Str::markdown($faq['answer']) !!}</div>
+                            </div>
+                        </details>
+                    @endforeach
+                </div>
+
+                <!-- Desktop: Card Grid Layout -->
+                <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($page->visa_faqs as $faq)
                         @continue(empty($faq['question']) || empty($faq['answer']))
                         <div class="bg-white rounded-2xl shadow-soft p-6 h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
@@ -896,7 +915,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="font-semibold text-gray-900">12+ Years Experience</div>
+                            <div class="font-semibold text-gray-900">10+ Years Experience</div>
                             <div class="text-sm text-gray-600">Licensed migration agents</div>
                         </div>
                     </div>
@@ -918,7 +937,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="font-semibold text-gray-900">5,000+ Clients</div>
+                            <div class="font-semibold text-gray-900">10,000+ Clients</div>
                             <div class="text-sm text-gray-600">Successfully migrated</div>
                         </div>
                     </div>

@@ -79,7 +79,7 @@ class ImmigrationSeeder extends Seeder
         $sliders = [
             [
                 'title' => 'Your Australian Dream Starts Here',
-                'subtitle' => 'Expert Immigration Consultants with 15+ Years Experience',
+                'subtitle' => 'Expert Immigration Consultants with 10+ Years Experience',
                 'image' => 'slider1.jpg',
                 'image_alt' => 'Australian Immigration Consultants',
                 'link' => '/contact',

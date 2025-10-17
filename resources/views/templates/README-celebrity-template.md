@@ -81,7 +81,7 @@ The `celebrity-visa-template.blade.php` is a reusable template designed specific
 If variables are not provided, the template uses sensible defaults:
 - Hero title: "Celebrity Visas"
 - Default category badges: Bollywood Stars, Punjabi Artists, Religious Leaders, Cultural Ambassadors
-- Default stats: 50+ Celebrity Clients, 100% Success Rate, 15+ Years Experience, 24/7 Support
+- Default stats: 50+ Celebrity Clients, 100% Success Rate, 10+ Years Experience, 24/7 Support
 - Default features: Specialized Expertise, Confidentiality, Fast Processing, 24/7 Support
 
 ## Features

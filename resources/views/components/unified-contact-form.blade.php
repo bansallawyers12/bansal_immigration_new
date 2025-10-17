@@ -75,8 +75,10 @@
             <input type="tel" 
                    id="contact-phone" 
                    name="phone" 
+                   pattern="[\+]?[0-9\s\-\(\)]{8,20}"
+                   title="Please enter a valid phone number (8-20 digits, may include +, spaces, hyphens, and parentheses)"
                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                   placeholder="Enter your phone number">
+                   placeholder="Enter your phone number (e.g., 0412 345 678 or +61 412 345 678)">
             <div class="field-error text-red-500 text-sm mt-1 hidden"></div>
         </div>
         @endif

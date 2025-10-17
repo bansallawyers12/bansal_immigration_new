@@ -51,24 +51,45 @@ class ContactController extends Controller
             return redirect()->back()->with('success', 'Thank you! Your message has been sent successfully.');
         }
 
-        // Validate the form data
-        $validatedData = $request->validate([
+        // Determine if subject is required based on form variant
+        $formVariant = $request->input('form_variant', 'standard');
+        $subjectRequired = !in_array($formVariant, ['compact', 'call_back']);
+
+        // Build validation rules dynamically
+        $validationRules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:20',
-            'subject' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:20|regex:/^[\+]?[0-9\s\-\(\)]{8,20}$/',
             'message' => 'required|string|max:2000',
             'g-recaptcha-response' => 'required',
             'form_source' => 'nullable|string|max:50',
             'form_variant' => 'nullable|string|max:50',
-        ], [
+        ];
+
+        // Add subject validation conditionally
+        if ($subjectRequired) {
+            $validationRules['subject'] = 'required|string|max:255';
+        } else {
+            $validationRules['subject'] = 'nullable|string|max:255';
+        }
+
+        // Build custom error messages
+        $errorMessages = [
             'name.required' => 'Name is required.',
             'email.required' => 'Email is required.',
             'email.email' => 'The email must be a valid email address.',
-            'subject.required' => 'Subject is required.',
+            'phone.regex' => 'Please enter a valid phone number (8-20 digits, may include +, spaces, hyphens, and parentheses).',
             'message.required' => 'Message is required.',
             'g-recaptcha-response.required' => 'Please complete the reCAPTCHA verification.',
-        ]);
+        ];
+
+        // Add subject error message conditionally
+        if ($subjectRequired) {
+            $errorMessages['subject.required'] = 'Subject is required.';
+        }
+
+        // Validate the form data
+        $validatedData = $request->validate($validationRules, $errorMessages);
 
         // Verify reCAPTCHA
         $recaptchaSecret = config('services.recaptcha.secret');
@@ -104,7 +125,7 @@ class ContactController extends Controller
                 'name' => $validatedData['name'],
                 'contact_email' => $validatedData['email'],
                 'contact_phone' => $validatedData['phone'] ?? null,
-                'subject' => $validatedData['subject'],
+                'subject' => $validatedData['subject'] ?? 'Call Back Request',
                 'message' => $validatedData['message'],
                 'status' => 'unread',
                 'form_source' => $validatedData['form_source'] ?? null,

@@ -180,7 +180,7 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Our Impact</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div>
-                    <div class="text-4xl font-bold text-blue-600 mb-2">5000+</div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
                     <div class="text-gray-600 mb-2">Lives Changed</div>
                     <p class="text-sm text-gray-500">Successful immigration journeys that have transformed lives and created new opportunities.</p>
                 </div>
@@ -190,7 +190,7 @@
                     <p class="text-sm text-gray-500">We've helped clients from around the world achieve their Australian dreams.</p>
                 </div>
                 <div>
-                    <div class="text-4xl font-bold text-purple-600 mb-2">15+</div>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">10+</div>
                     <div class="text-gray-600 mb-2">Years of Service</div>
                     <p class="text-sm text-gray-500">Consistent dedication to excellence and client success over the years.</p>
                 </div>
@@ -389,7 +389,7 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Our Impact</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div>
-                    <div class="text-4xl font-bold text-blue-600 mb-2">5000+</div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
                     <div class="text-gray-600 mb-2">Lives Changed</div>
                     <p class="text-sm text-gray-500">Successful immigration journeys that have transformed lives and created new opportunities.</p>
                 </div>
@@ -399,7 +399,7 @@
                     <p class="text-sm text-gray-500">We've helped clients from around the world achieve their Australian dreams.</p>
                 </div>
                 <div>
-                    <div class="text-4xl font-bold text-purple-600 mb-2">15+</div>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">10+</div>
                     <div class="text-gray-600 mb-2">Years of Service</div>
                     <p class="text-sm text-gray-500">Consistent dedication to excellence and client success over the years.</p>
                 </div>

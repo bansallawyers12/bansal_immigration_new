@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <!-- 15+ Years Experience -->
+        <!-- 10+ Years Experience -->
         <div class="flex items-start space-x-4">
             <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
@@ -59,9 +59,9 @@
                 </div>
             </div>
             <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">15+ Years Experience</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">10+ Years Experience</h3>
                 <p class="text-gray-600 leading-relaxed">
-                    With over 15 years of combined experience in Australian immigration law, we have witnessed and 
+                    With over 10+ years of combined experience in Australian immigration law, we have witnessed and 
                     adapted to numerous policy changes. Our deep understanding of the system helps us navigate 
                     complex cases with confidence.
                 </p>
@@ -333,7 +333,7 @@
             </div>
         </div>
 
-        <!-- 15+ Years Experience -->
+        <!-- 10+ Years Experience -->
         <div class="flex items-start space-x-4">
             <div class="flex-shrink-0">
                 <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
@@ -341,9 +341,9 @@
                 </div>
             </div>
             <div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">15+ Years Experience</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">10+ Years Experience</h3>
                 <p class="text-gray-600 leading-relaxed">
-                    With over 15 years of combined experience in Australian immigration law, we have witnessed and 
+                    With over 10+ years of combined experience in Australian immigration law, we have witnessed and 
                     adapted to numerous policy changes. Our deep understanding of the system helps us navigate 
                     complex cases with confidence.
                 </p>

@@ -30,7 +30,7 @@
                             </div>
                             <div>
                                 <p class="text-sm text-sg-light-blue font-semibold">Trusted by thousands</p>
-                                <p class="text-xs sg-medium-gray">MARA Registered • 5000+ cases</p>
+                                <p class="text-xs sg-medium-gray">MARA Registered • 10,000+ cases</p>
                             </div>
                         </div>
                         <ul class="space-y-3 sg-medium-gray">

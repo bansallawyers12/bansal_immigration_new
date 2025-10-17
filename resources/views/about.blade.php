@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('title', 'About Us - Bansal Immigration Consultants | Expert Migration Agents')
-@section('description', 'Learn about Bansal Immigration Consultants - MARA registered migration agents with 15+ years experience helping 5000+ clients achieve their Australian dreams.')
+@section('description', 'Learn about Bansal Immigration Consultants - MARA registered migration agents with 10+ years experience helping 10,000+ clients achieve their Australian dreams.')
 
 @push('styles')
 <meta property="og:title" content="About Bansal Immigration Consultants - Expert Migration Agents">
-<meta property="og:description" content="MARA registered migration agents with 15+ years experience helping clients achieve permanent residency, study abroad, and family reunification in Australia.">
+<meta property="og:description" content="MARA registered migration agents with 10+ years experience helping clients achieve permanent residency, study abroad, and family reunification in Australia.">
 <meta property="og:image" content="{{ asset('img/logo/logo.jpg') }}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ url('/about') }}">
@@ -17,7 +17,7 @@
             <div class="text-center max-w-4xl mx-auto">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6">About Bansal Immigration</h1>
                 <p class="text-xl md:text-2xl text-gray-200 mb-8">Your Future, Our Priority</p>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto">MARA registered migration agents with over 10 years of experience, helping thousands of families achieve their Australian dreams through expert guidance and personalized service.</p>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">MARA registered migration agents with over 10+ years of experience, helping thousands of families achieve their Australian dreams through expert guidance and personalized service.</p>
             </div>
         </div>
     </section>
@@ -29,19 +29,19 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-4xl font-bold text-gray-900 mb-6">Who We Are</h2>
-                        <p class="text-lg text-gray-600 mb-6">Bansal Immigration Consultants is a premier immigration consultancy firm based in Melbourne, Australia. With over a decade of experience, we specialize in providing comprehensive immigration services tailored to meet the unique needs of our clients.</p>
+                        <p class="text-lg text-gray-600 mb-6">Bansal Immigration Consultants is a premier immigration consultancy firm based in Melbourne, Australia. With over 10+ years of experience, we specialize in providing comprehensive immigration services tailored to meet the unique needs of our clients.</p>
                         <p class="text-lg text-gray-600 mb-6">Our commitment is encapsulated in our tagline: "Your Future, Our Priority." We are dedicated to transforming your immigration aspirations into reality through expert guidance, personalized attention, and unwavering support throughout your journey.</p>
                         <div class="flex flex-wrap gap-4">
                             <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">MARA Registered</div>
-                            <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">15+ Years Experience</div>
-                            <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">5000+ Success Stories</div>
+                            <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">10+ Years Experience</div>
+                            <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">10,000+ Success Stories</div>
                             <div class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">95% Success Rate</div>
                         </div>
                     </div>
                     <div class="relative">
                         <img src="{{ asset('img/team/team-photo.jpg') }}" alt="Bansal Immigration Team" class="rounded-2xl shadow-2xl w-full">
                         <div class="absolute -bottom-6 -right-6 bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold text-lg">
-                            Trusted by 5000+ Families
+                            Trusted by 10,000+ Families
                         </div>
                     </div>
                 </div>

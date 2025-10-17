@@ -20,7 +20,7 @@
         <h2 class="text-3xl font-bold text-gray-900 mb-6">Expert Immigration Professionals</h2>
         <p class="text-lg text-gray-600 leading-relaxed">
             Our team consists of highly qualified and experienced migration agents who are registered with the Migration Agents Registration Authority (MARA). 
-            We bring together decades of combined experience in Australian immigration law and policy, ensuring you receive the most accurate and up-to-date advice.
+            We bring together over 10+ years of combined experience in Australian immigration law and policy, ensuring you receive the most accurate and up-to-date advice.
         </p>
     </div>
 
@@ -39,7 +39,7 @@
                 <h4 class="text-lg font-semibold text-gray-900 mb-2">Rajesh Bansal</h4>
                 <p class="text-blue-600 font-medium mb-3">Principal Migration Agent (MARA 1234567)</p>
                 <p class="text-gray-600 text-sm mb-4">
-                    With over 15 years of experience in Australian immigration law, Rajesh specializes in skilled migration, 
+                    With over 10+ years of experience in Australian immigration law, Rajesh specializes in skilled migration, 
                     family visas, and complex appeal cases. He has successfully helped thousands of clients achieve their immigration goals.
                 </p>
                 <div class="flex flex-wrap gap-2">
@@ -193,14 +193,14 @@
                 <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-clock text-white text-2xl"></i>
                 </div>
-                <h3 class="font-semibold text-gray-900 mb-2">15+ Years Experience</h3>
-                <p class="text-sm text-gray-600">Combined decades of experience in Australian immigration law.</p>
+                <h3 class="font-semibold text-gray-900 mb-2">10+ Years Experience</h3>
+                <p class="text-sm text-gray-600">Combined 10+ years of experience in Australian immigration law.</p>
             </div>
             <div class="text-center">
                 <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-users text-white text-2xl"></i>
                 </div>
-                <h3 class="font-semibold text-gray-900 mb-2">5000+ Clients</h3>
+                <h3 class="font-semibold text-gray-900 mb-2">10,000+ Clients</h3>
                 <p class="text-sm text-gray-600">Successfully helped thousands of clients achieve their immigration goals.</p>
             </div>
         </div>
@@ -250,7 +250,7 @@
         <h2 class="text-3xl font-bold text-gray-900 mb-6">Expert Immigration Professionals</h2>
         <p class="text-lg text-gray-600 leading-relaxed">
             Our team consists of highly qualified and experienced migration agents who are registered with the Migration Agents Registration Authority (MARA). 
-            We bring together decades of combined experience in Australian immigration law and policy, ensuring you receive the most accurate and up-to-date advice.
+            We bring together over 10+ years of combined experience in Australian immigration law and policy, ensuring you receive the most accurate and up-to-date advice.
         </p>
     </div>
 
@@ -269,7 +269,7 @@
                 <h4 class="text-lg font-semibold text-gray-900 mb-2">Rajesh Bansal</h4>
                 <p class="text-blue-600 font-medium mb-3">Principal Migration Agent (MARA 1234567)</p>
                 <p class="text-gray-600 text-sm mb-4">
-                    With over 15 years of experience in Australian immigration law, Rajesh specializes in skilled migration, 
+                    With over 10+ years of experience in Australian immigration law, Rajesh specializes in skilled migration, 
                     family visas, and complex appeal cases. He has successfully helped thousands of clients achieve their immigration goals.
                 </p>
                 <div class="flex flex-wrap gap-2">
@@ -423,14 +423,14 @@
                 <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-clock text-white text-2xl"></i>
                 </div>
-                <h3 class="font-semibold text-gray-900 mb-2">15+ Years Experience</h3>
-                <p class="text-sm text-gray-600">Combined decades of experience in Australian immigration law.</p>
+                <h3 class="font-semibold text-gray-900 mb-2">10+ Years Experience</h3>
+                <p class="text-sm text-gray-600">Combined 10+ years of experience in Australian immigration law.</p>
             </div>
             <div class="text-center">
                 <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-users text-white text-2xl"></i>
                 </div>
-                <h3 class="font-semibold text-gray-900 mb-2">5000+ Clients</h3>
+                <h3 class="font-semibold text-gray-900 mb-2">10,000+ Clients</h3>
                 <p class="text-sm text-gray-600">Successfully helped thousands of clients achieve their immigration goals.</p>
             </div>
         </div>

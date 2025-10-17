@@ -176,7 +176,7 @@
                     <i class="fas fa-chart-line text-3xl text-white"></i>
                 </div>
                 <h3 class="text-2xl font-bold sg-navy mb-4">Proven Track Record</h3>
-                <p class="sg-medium-gray">With over 15 years of experience and 5000+ successful cases, we have the expertise you need.</p>
+                <p class="sg-medium-gray">With over 10+ years of experience and 10,000+ successful cases, we have the expertise you need.</p>
             </div>
             
             <div class="text-center p-6">
@@ -297,7 +297,7 @@
                 <h3 class="text-2xl font-bold sg-navy mb-2">Arun Bansal</h3>
                 <p class="text-sg-light-blue font-semibold mb-4">Director (MARN: 2418466)</p>
                 <p class="sg-medium-gray text-sm leading-relaxed">
-                    Director of Bansal Immigration Consultants with 15+ years of legal and migration experience, offering expert guidance backed by LLM and Migration Law qualifications.
+                    Director of Bansal Immigration Consultants with 10+ years of legal and migration experience, offering expert guidance backed by LLM and Migration Law qualifications.
                 </p>
             </div>
             

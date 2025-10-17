@@ -1518,59 +1518,6 @@ html {
 <!-- Main Content -->
 <section class="py-16" style="background-color: var(--light-gray);">
     <div class="appointment-container">
-        <!-- Information Section -->
-        <div class="info-section">
-            <ol class="info-list">
-                <li>
-                    <h4>Migration Consultation (Free Option)</h4>
-                    <ol type="A">
-                        <li>
-                            <h6>In-Person or Phone Meetings:</h6> We offer free consultations to discuss your immigration matters, either in person or over the phone. If your inquiry is related to Australian Permanent Residency (PR), we encourage you to select the PR Appointment option and provide the required information in advance.
-                        </li>
-                        <li>
-                            <h6>10-Minute Free Phone Consultations:</h6> We also provide a 10-minute free phone consultation for any immigration-related matter. However, due to time constraints and the need for specific details to provide accurate advice, we kindly request that you include all relevant information in the query box when booking your consultation.
-                        </li>
-                    </ol>
-                </li>
-
-                <li>
-                    <h4>Overseas Applicant Enquiry</h4>
-                    <ol type="A">
-                        <li>
-                            <h6>Paid Appointment Only:</h6> The first free appointment service is exclusively available to clients who are currently within Australia. If you are outside Australia or inquiring on behalf of someone outside Australia, please select the Migration Advice option and pay the consultation fee of $150.
-                        </li>
-                        <li>
-                            <h6>Required Information:</h6> To assist us in providing accurate advice, please send a detailed resume of the applicant, along with any specific questions you have, to our email address. This will allow us to review the information before discussing the matter with you.
-                        </li>
-                    </ol>
-                </li>
-
-                <li>
-                    <h4>Migration Advice (Paid Service)</h4>
-                    <ol type="A">
-                        <li>
-                            <h6>Consultation Fee:</h6> Our fee is $150 for most types of migration advice. Please select this option if your matter is complicated and includes Administrative Review Tribunal (ART) cases, Visa cancellations, or Protection visas, etc. If you believe it will require more than 10 minutes to discuss, please select this paid option.
-                        </li>
-                        <li>
-                            <h6>Free Consultation Policy:</h6> Please note that we only provide one free consultation per client. If you have already used your free consultation, you will need to select this paid option for further advice.
-                        </li>
-                    </ol>
-                </li>
-            </ol>
-
-            <p style="font-style: italic; margin-top: 20px;"><strong>Note:</strong> If you do not provide the required information, we may cancel your appointment without prior notice.</p>
-
-            <div style="margin-top: 20px;">
-                <p><strong>Additional Information:</strong></p>
-                <p>If you book your appointment via this link, all appointments will be scheduled with one of our <strong>available MARA agents</strong>. Should you want to talk to any specific person, kindly mention their names in the query section.</p>
-                
-                <p><strong>Ajay Bansal is no longer involved with BANSAL Immigration. He has his own firm, BANSAL Lawyers. If you want to book an appointment with him, kindly click this link to book appointment:</strong> <a style="text-decoration: underline; color: var(--primary-blue);" href="https://www.bansallawyers.com.au/book-an-appointment" target="_blank">Book an Appointment | Schedule a Consultation with Top Law Firm Bansal Lawyers Melbourne</a>.</p>
-
-                <p><strong>Need Help?</strong></p>
-                <p>If you're unsure which option to choose, feel free to call our friendly staff at <strong>03 9602 1330</strong>. They can assist with booking your appointment or help you choose the right option.</p>
-            </div>
-        </div>
-
         <div class="appointment-grid">
             <div class="appointment-left">
                 <!-- Main Appointment Form -->
@@ -1974,7 +1921,7 @@ html {
                                     </div>
                                     <div class="feature-item">
                                         <span class="feature-icon">✅</span>
-                                        <span class="feature-text">Over 15 years experience</span>
+                                        <span class="feature-text">Over 10+ years experience</span>
                                     </div>
                                     <div class="feature-item">
                                         <span class="feature-icon">✅</span>
@@ -2024,9 +1971,62 @@ html {
                     </div>
                 </div>
             </aside>
+        </div>
+
+        <!-- Information Section -->
+        <div class="info-section" style="margin-top: 40px;">
+            <ol class="info-list">
+                <li>
+                    <h4>Migration Consultation (Free Option)</h4>
+                    <ol type="A">
+                        <li>
+                            <h6>In-Person or Phone Meetings:</h6> We offer free consultations to discuss your immigration matters, either in person or over the phone. If your inquiry is related to Australian Permanent Residency (PR), we encourage you to select the PR Appointment option and provide the required information in advance.
+                        </li>
+                        <li>
+                            <h6>10-Minute Free Phone Consultations:</h6> We also provide a 10-minute free phone consultation for any immigration-related matter. However, due to time constraints and the need for specific details to provide accurate advice, we kindly request that you include all relevant information in the query box when booking your consultation.
+                        </li>
+                    </ol>
+                </li>
+
+                <li>
+                    <h4>Overseas Applicant Enquiry</h4>
+                    <ol type="A">
+                        <li>
+                            <h6>Paid Appointment Only:</h6> The first free appointment service is exclusively available to clients who are currently within Australia. If you are outside Australia or inquiring on behalf of someone outside Australia, please select the Migration Advice option and pay the consultation fee of $150.
+                        </li>
+                        <li>
+                            <h6>Required Information:</h6> To assist us in providing accurate advice, please send a detailed resume of the applicant, along with any specific questions you have, to our email address. This will allow us to review the information before discussing the matter with you.
+                        </li>
+                    </ol>
+                </li>
+
+                <li>
+                    <h4>Migration Advice (Paid Service)</h4>
+                    <ol type="A">
+                        <li>
+                            <h6>Consultation Fee:</h6> Our fee is $150 for most types of migration advice. Please select this option if your matter is complicated and includes Administrative Review Tribunal (ART) cases, Visa cancellations, or Protection visas, etc. If you believe it will require more than 10 minutes to discuss, please select this paid option.
+                        </li>
+                        <li>
+                            <h6>Free Consultation Policy:</h6> Please note that we only provide one free consultation per client. If you have already used your free consultation, you will need to select this paid option for further advice.
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+
+            <p style="font-style: italic; margin-top: 20px;"><strong>Note:</strong> If you do not provide the required information, we may cancel your appointment without prior notice.</p>
+
+            <div style="margin-top: 20px;">
+                <p><strong>Additional Information:</strong></p>
+                <p>If you book your appointment via this link, all appointments will be scheduled with one of our <strong>available MARA agents</strong>. Should you want to talk to any specific person, kindly mention their names in the query section.</p>
+                
+                <p><strong>Ajay Bansal is no longer involved with BANSAL Immigration. He has his own firm, BANSAL Lawyers. If you want to book an appointment with him, kindly click this link to book appointment:</strong> <a style="text-decoration: underline; color: var(--primary-blue);" href="https://www.bansallawyers.com.au/book-an-appointment" target="_blank">Book an Appointment | Schedule a Consultation with Top Law Firm Bansal Lawyers Melbourne</a>.</p>
+
+                <p><strong>Need Help?</strong></p>
+                <p>If you're unsure which option to choose, feel free to call our friendly staff at <strong>03 9602 1330</strong>. They can assist with booking your appointment or help you choose the right option.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <script>
 // Modern appointment booking JavaScript

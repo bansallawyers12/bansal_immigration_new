@@ -15,6 +15,14 @@
                 </a>
                 
 				<p class="text-sg-navy text-sm mb-2">Please review our <a href="{{ route('terms-conditions') }}" class="text-sg-light-blue hover:underline">consultation Terms &amp; Conditions</a>.</p>
+                
+                <!-- PDF Documents -->
+                <div class="mt-4">
+                    <ul class="space-y-1 text-sm text-sg-navy">
+                        <li><a href="/code-of-conduct-march-2022.pdf" target="_blank" class="hover:text-sg-light-blue transition-colors">Code of Conduct</a></li>
+                        <li><a href="/consumer_guide_english.pdf" target="_blank" class="hover:text-sg-light-blue transition-colors">Consumer Guide</a></li>
+                    </ul>
+                </div>
             </div>
             
             <!-- Services -->
@@ -77,12 +85,12 @@
                 <div class="text-sm text-sg-navy mb-2 md:mb-0">
                     <p>&copy; {{ date('Y') }} Bansal Immigration. All rights reserved. | MARA Registered Migration Agents</p>
                 </div>
-				<div class="flex space-x-6 text-sm text-sg-navy">
-					<a href="{{ route('privacy-policy') }}" class="hover:text-sg-light-blue transition-colors">Privacy Policy</a>
-					<a href="{{ route('terms-conditions') }}" class="hover:text-sg-light-blue transition-colors">Terms &amp; Conditions</a>
-					<a href="{{ route('disclaimer') }}" class="hover:text-sg-light-blue transition-colors">Disclaimer</a>
-					<a href="{{ route('cookie-policy') }}" class="hover:text-sg-light-blue transition-colors">Cookie Policy</a>
-				</div>
+			<div class="flex space-x-6 text-sm text-sg-navy">
+				<a href="{{ route('privacy-policy') }}" class="hover:text-sg-light-blue transition-colors">Privacy Policy</a>
+				<a href="{{ route('terms-conditions') }}" class="hover:text-sg-light-blue transition-colors">Terms &amp; Conditions</a>
+				<a href="{{ route('disclaimer') }}" class="hover:text-sg-light-blue transition-colors">Disclaimer</a>
+				<a href="{{ route('cookie-policy') }}" class="hover:text-sg-light-blue transition-colors">Cookie Policy</a>
+			</div>
             </div>
         </div>
     </div>

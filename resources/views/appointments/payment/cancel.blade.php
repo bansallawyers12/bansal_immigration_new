@@ -68,7 +68,7 @@
 
         <!-- Action Buttons -->
         <div class="text-center">
-            <a href="{{ route('appointments.book') }}" 
+            <a href="{{ route('appointment') }}" 
                class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 mr-4">
                 <i class="fas fa-calendar-plus mr-2"></i>
                 Try Booking Again

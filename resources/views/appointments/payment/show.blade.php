@@ -97,7 +97,7 @@
 
                 <!-- Cancel Link -->
                 <div class="text-center mt-4">
-                    <a href="{{ route('appointments.book') }}" 
+                    <a href="{{ route('appointment') }}" 
                        class="text-gray-500 hover:text-gray-700 text-sm">
                         <i class="fas fa-arrow-left mr-1"></i>
                         Back to booking

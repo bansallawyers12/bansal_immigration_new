@@ -16,8 +16,8 @@ use App\Http\Controllers\PaymentController;
 
 // Public Appointment Routes
 Route::prefix('appointments')->name('appointments.')->group(function () {
-    // Public booking form
-    Route::get('/book', [AppointmentController::class, 'showBookingForm'])->name('book');
+    // Public booking form - DISABLED: Using /book-an-appointment instead (HomeController)
+    // Route::get('/book', [AppointmentController::class, 'showBookingForm'])->name('book');
     Route::post('/book', [AppointmentController::class, 'store'])->name('store');
     
     // Public appointment details (with token)

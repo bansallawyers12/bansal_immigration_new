@@ -130,26 +130,6 @@ Route::prefix('migrate-to-australia')->name('migrate-to-australia.')->group(func
         return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'skilled-work-regional-provisional-visa-subclass-491');
     })->name('skilled-work-regional');
     
-    // Skill Assessment
-    Route::get('/acs-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'acs-skill-assessment');
-    })->name('acs-assessment');
-    Route::get('/vetassess-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'vetassess-skill-assessment');
-    })->name('vetassess-assessment');
-    Route::get('/job-ready-program', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'job-ready-program');
-    })->name('job-ready-program');
-    Route::get('/ea-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'ea-skill-assessment');
-    })->name('ea-assessment');
-    Route::get('/accountant-skill-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'accountant-skill-assessment');
-    })->name('accountant-assessment');
-    Route::get('/nursing-aphara-anmac-assessment', function() {
-        return app(\App\Http\Controllers\PageController::class)->show('migrate-to-australia', 'nursing-aphara-registration-and-anmac-skill-assessment');
-    })->name('nursing-assessment');
-    
     // Others
     Route::get('/pr-point-calculator', [PageController::class, 'prPointCalculator'])->name('pr-calculator');
     Route::get('/how-to-claim-regional-points', function() {

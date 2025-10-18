@@ -248,70 +248,62 @@
                 </div>
             </div>
             
-            <h3 class="text-2xl font-bold text-sg-navy mb-8">Partnered with Leading Organizations</h3>
+            <h3 class="text-2xl font-bold text-sg-navy mb-8">Registered with Leading Organizations</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-                <!-- Partner 1 -->
+                <!-- Partner 1 - ACAP -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">UNI</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/ACAP-202211222220-ACAP40Years-FinalLogo.webp') }}" alt="ACAP" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2018</span>
                 </div>
                 
-                <!-- Partner 2 -->
+                <!-- Partner 2 - ICEF -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">EDU</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/ICEF_logo.svg') }}" alt="ICEF" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2019</span>
                 </div>
                 
-                <!-- Partner 3 -->
+                <!-- Partner 3 - ISANA -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">TECH</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/ISANA-Logo.png') }}" alt="ISANA" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2020</span>
                 </div>
                 
-                <!-- Partner 4 -->
+                <!-- Partner 4 - Chisholm -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">GOV</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/logo-chisholm-white.png') }}" alt="Chisholm" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2017</span>
                 </div>
                 
-                <!-- Partner 5 -->
+                <!-- Partner 5 - UP Education -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">HEALTH</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/logo-up-education.svg') }}" alt="UP Education" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2021</span>
                 </div>
                 
-                <!-- Partner 6 -->
+                <!-- Partner 6 - MA -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">FIN</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/MA-Logo.png') }}" alt="MA" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2019</span>
                 </div>
                 
-                <!-- Partner 7 -->
+                <!-- Partner 7 - MIA -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">LEGAL</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/mia-logo.png') }}" alt="MIA" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2016</span>
                 </div>
                 
-                <!-- Partner 8 -->
+                <!-- Partner 8 - Southern Cross University -->
                 <div class="partner-logo flex flex-col items-center">
-                    <div class="w-24 h-24 bg-white rounded-lg shadow-md flex items-center justify-center mb-2">
-                        <div class="text-2xl font-bold text-sg-navy">CONS</div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-lg shadow-md flex items-center justify-center p-2 border border-slate-200">
+                        <img src="{{ asset('registered_partner_logos/southern-cross-university.png') }}" alt="Southern Cross University" class="max-w-full max-h-full object-contain">
                     </div>
-                    <span class="text-sm text-sg-dark-gray">Partners since 2022</span>
                 </div>
             </div>
         </div>
@@ -420,8 +412,8 @@
         <div class="mb-12">
     <div class="flex justify-center mb-8">
         <div class="service-card bg-white p-8 rounded-lg text-center max-w-sm w-full">
-            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-sg-light-blue shadow-lg mb-6">
-                <img src="/img/team/arun-bansal.jpg" alt="Arun Bansal" class="w-full h-full object-cover">
+            <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                <img src="/img/team/ArunsirWeb.png" alt="Arun Bansal" class="w-full h-full object-cover">
             </div>
             <h3 class="text-2xl font-bold sg-navy mb-2">Arun Bansal</h3>
             <p class="text-sg-light-blue font-semibold mb-4">Director (MARN: 2418466)</p>
@@ -435,7 +427,7 @@
         <div class="flex flex-nowrap space-x-8 pb-4 justify-center md:justify-start">
             
             <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
-                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-sg-light-blue shadow-lg mb-6">
+                <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
                     <img src="/img/team/vipul-goyal.png" alt="Vipul Goyal" class="w-full h-full object-cover">
                 </div>
                 <h3 class="text-xl font-bold sg-navy mb-2">Vipul Goyal</h3>
@@ -446,7 +438,7 @@
             </div>
             
             <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
-                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-sg-light-blue shadow-lg mb-6">
+                <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
                     <img src="/img/team/mandeep-singh.png" alt="Mandeep Singh" class="w-full h-full object-cover">
                 </div>
                 <h3 class="text-xl font-bold sg-navy mb-2">Mandeep Singh</h3>
@@ -457,7 +449,7 @@
             </div>
             
             <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
-                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-sg-light-blue shadow-lg mb-6">
+                <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
                     <img src="/img/team/iqbal-singh-sran.png" alt="Iqbal Singh Sran" class="w-full h-full object-cover">
                 </div>
                 <h3 class="text-xl font-bold sg-navy mb-2">Iqbal Singh Sran</h3>
@@ -468,13 +460,24 @@
             </div>
             
             <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
-                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-sg-light-blue shadow-lg mb-6">
+                <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
                     <img src="/img/team/yadwinder-pal-singh.png" alt="Yadwinder Pal Singh" class="w-full h-full object-cover">
                 </div>
                 <h3 class="text-xl font-bold sg-navy mb-2">Yadwinder Pal Singh</h3>
                 <p class="text-sg-light-blue font-semibold mb-4 text-sm">Migration Agent (MARA: 2519042)</p>
                 <p class="sg-medium-gray text-xs leading-relaxed hidden lg:block">
                     Specialises in Employer Sponsored, Skilled, Partner, Student, and Temporary Residence visas with an empathetic and personalised approach.
+                </p>
+            </div>
+            
+            <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
+                <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                    <img src="/img/team/mamta-puri.png" alt="Mamta Puri" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xl font-bold sg-navy mb-2">Mamta Puri</h3>
+                <p class="text-sg-light-blue font-semibold mb-4 text-sm">Migration Agent (MARA: )</p>
+                <p class="sg-medium-gray text-xs leading-relaxed hidden lg:block">
+                    <!-- Details to be added later -->
                 </p>
             </div>
 

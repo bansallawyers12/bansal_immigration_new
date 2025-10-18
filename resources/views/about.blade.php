@@ -112,81 +112,94 @@
     </section>
 
     <!-- Our Team -->
-    <section class="py-20 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4">Meet Our Expert Team</h2>
-                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">MARA registered migration agents with extensive experience and proven track records</p>
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold sg-navy mb-4">Meet Our Expert Team</h2>
+                <p class="text-xl sg-medium-gray max-w-3xl mx-auto">Professional migration agents with years of experience helping you achieve your Australian dreams</p>
+            </div>
+            
+            <!-- Team Grid -->
+            <div class="mb-12">
+        <div class="flex justify-center mb-8">
+            <div class="service-card bg-white p-8 rounded-lg text-center max-w-sm w-full">
+                <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                    <img src="/img/team/ArunsirWeb.png" alt="Arun Bansal" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-2xl font-bold sg-navy mb-2">Arun Bansal</h3>
+                <p class="text-sg-light-blue font-semibold mb-4">Director (MARN: 2418466)</p>
+                <p class="sg-medium-gray text-sm leading-relaxed">
+                    Director of Bansal Immigration Consultants with 10+ years of legal and migration experience, offering expert guidance backed by LLM and Migration Law qualifications.
+                </p>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <div class="flex flex-nowrap space-x-8 pb-4 justify-center md:justify-start">
+                
+                <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
+                    <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                        <img src="/img/team/vipul-goyal.png" alt="Vipul Goyal" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold sg-navy mb-2">Vipul Goyal</h3>
+                    <p class="text-sg-light-blue font-semibold mb-4 text-sm">Migration Agent (MARA: 2418571)</p>
+                    <p class="sg-medium-gray text-xs leading-relaxed hidden lg:block">
+                        Provides expert guidance across skilled, student, and family visas with deep legal knowledge and a client-focused approach.
+                    </p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Arun Bansal -->
-                    <div class="text-center group">
-                        <div class="relative mb-6">
-                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-300 transition-colors">
-                                <img src="{{ asset('img/profile_imgs/Arun Sir.png') }}" alt="Arun Bansal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            </div>
-                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
-                                Director
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Arun Bansal</h3>
-                        <p class="text-yellow-400 text-sm mb-3 font-medium">MARN: 2418466</p>
-                        <p class="text-gray-300 text-sm leading-relaxed">Director with 10+ years of legal and migration experience. Specializes in complex visa cases and appeals.</p>
+                <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
+                    <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                        <img src="/img/team/mandeep-singh.png" alt="Mandeep Singh" class="w-full h-full object-cover">
                     </div>
-
-                    <!-- Vipul Goyal -->
-                    <div class="text-center group">
-                        <div class="relative mb-6">
-                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-300 transition-colors">
-                                <img src="{{ asset('img/profile_imgs/Vipul Sir.png') }}" alt="Vipul Goyal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            </div>
-                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
-                                Migration Agent
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Vipul Goyal</h3>
-                        <p class="text-yellow-400 text-sm mb-3 font-medium">MARN: 2418571</p>
-                        <p class="text-gray-300 text-sm leading-relaxed">Experienced Migration Agent specializing in skilled migration and family visa applications.</p>
-                    </div>
-
-                    <!-- Mamta Puri -->
-                    <div class="text-center group">
-                        <div class="relative mb-6">
-                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-300 transition-colors">
-                                <img src="{{ asset('img/profile_imgs/Maleesha Maam.png') }}" alt="Mamta Puri" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            </div>
-                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
-                                Migration Agent
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Mamta Puri</h3>
-                        <p class="text-yellow-400 text-sm mb-3 font-medium">MARN: 1569359</p>
-                        <p class="text-gray-300 text-sm leading-relaxed">Dedicated Migration Agent with expertise in student visas and partner visa applications.</p>
-                    </div>
-
-                    <!-- Iqbal -->
-                    <div class="text-center group">
-                        <div class="relative mb-6">
-                            <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-yellow-400 group-hover:border-yellow-300 transition-colors">
-                                <img src="{{ asset('img/profile_imgs/Iqbal Sir.png') }}" alt="Iqbal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            </div>
-                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
-                                Migration Agent
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Iqbal</h3>
-                        <p class="text-yellow-400 text-sm mb-3 font-medium">MARN: [To be provided]</p>
-                        <p class="text-gray-300 text-sm leading-relaxed">Experienced Migration Agent committed to providing personalized service and expert guidance.</p>
-                    </div>
+                    <h3 class="text-xl font-bold sg-navy mb-2">Mandeep Singh</h3>
+                    <p class="text-sg-light-blue font-semibold mb-4 text-sm">Migration Agent (MARA: 2518789)</p>
+                    <p class="sg-medium-gray text-xs leading-relaxed hidden lg:block">
+                        Offers expert support in student, partner, and skilled visas, guiding clients with clarity, precision, and personalised migration solutions.
+                    </p>
                 </div>
                 
-                <div class="text-center mt-12">
-                    <a href="{{ route('contact') }}" class="inline-flex items-center bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-colors transform hover:scale-105">
-                        Contact Our Team <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
+                    <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                        <img src="/img/team/iqbal-singh-sran.png" alt="Iqbal Singh Sran" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold sg-navy mb-2">Iqbal Singh Sran</h3>
+                    <p class="text-sg-light-blue font-semibold mb-4 text-sm">Migration Agent (MARA: 2418677)</p>
+                    <p class="sg-medium-gray text-xs leading-relaxed hidden lg:block">
+                        Specialises in student, partner, and skilled visas, delivering trusted advice and personalised solutions to make every migration journey smooth and successful.
+                    </p>
                 </div>
+                
+                <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
+                    <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                        <img src="/img/team/yadwinder-pal-singh.png" alt="Yadwinder Pal Singh" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold sg-navy mb-2">Yadwinder Pal Singh</h3>
+                    <p class="text-sg-light-blue font-semibold mb-4 text-sm">Migration Agent (MARA: 2519042)</p>
+                    <p class="sg-medium-gray text-xs leading-relaxed hidden lg:block">
+                        Specialises in Employer Sponsored, Skilled, Partner, Student, and Temporary Residence visas with an empathetic and personalised approach.
+                    </p>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-lg text-center flex-shrink-0 w-64">
+                    <div class="w-64 h-72 mx-auto overflow-hidden mb-6">
+                        <img src="/img/team/mamta-puri.png" alt="Mamta Puri" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold sg-navy mb-2">Mamta Puri</h3>
+                    <p class="text-sg-light-blue font-semibold mb-4 text-sm">Migration Agent (MARA: )</p>
+                    <p class="sg-medium-gray text-xs leading-relaxed hidden lg:block">
+                        <!-- Details to be added later -->
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>        
+            <!-- CTA -->
+            <div class="text-center">
+                <a href="/contact" class="btn-primary px-8 py-4 rounded-lg text-lg font-semibold inline-block">
+                    <i class="fas fa-envelope mr-2"></i>Contact Our Team
+                </a>
             </div>
         </div>
     </section>

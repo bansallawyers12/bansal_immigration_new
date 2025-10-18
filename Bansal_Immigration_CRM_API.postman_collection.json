@@ -1,0 +1,551 @@
+{
+	"info": {
+		"_postman_id": "bansal-crm-api-2024",
+		"name": "Bansal Immigration - CRM API",
+		"description": "Complete API collection for integrating Bansal Immigration appointment system with CRM.\n\n## Setup Instructions\n\n1. Import this collection into Postman\n2. Import the environment file (Bansal_CRM_API.postman_environment.json)\n3. Set your API token in the environment variables\n4. Start testing!\n\n## Authentication\n\nAll endpoints require Bearer token authentication. Set the `api_token` variable in your environment.\n\n## Rate Limiting\n\n- Limit: 60 requests per minute\n- Exceeding limit returns 429 status\n\n## Base URL\n\nhttps://bansalimmigration.com/api/crm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "Get All Appointments (Paginated)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/appointments?per_page=50&page=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "50",
+									"description": "Results per page (default: 50, max: 100)"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-01-01",
+									"description": "Filter by start date (Y-m-d format)",
+									"disabled": true
+								},
+								{
+									"key": "end_date",
+									"value": "2024-12-31",
+									"description": "Filter by end date (Y-m-d format)",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "confirmed",
+									"description": "Filter by status: pending, confirmed, in_progress, completed, cancelled, no_show",
+									"disabled": true
+								},
+								{
+									"key": "location",
+									"value": "melbourne",
+									"description": "Filter by location: melbourne, adelaide",
+									"disabled": true
+								},
+								{
+									"key": "enquiry_type",
+									"value": "tr",
+									"description": "Filter by type: tr, tourist, education, pr_complex",
+									"disabled": true
+								},
+								{
+									"key": "created_after",
+									"value": "2024-11-01T00:00:00Z",
+									"description": "Get appointments created after this datetime (ISO 8601)",
+									"disabled": true
+								},
+								{
+									"key": "updated_after",
+									"value": "2024-11-01T00:00:00Z",
+									"description": "Get appointments updated after this datetime (ISO 8601)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retrieve a paginated list of appointments with optional filters.\n\n### Query Parameters\n\n- `per_page` - Results per page (default: 50, max: 100)\n- `page` - Page number\n- `start_date` - Filter by appointment start date (Y-m-d)\n- `end_date` - Filter by appointment end date (Y-m-d)\n- `status` - Filter by status\n- `location` - Filter by office location\n- `enquiry_type` - Filter by enquiry type\n- `created_after` - Incremental sync: get records created after datetime\n- `updated_after` - Incremental sync: get records updated after datetime\n\n### Use Cases\n\n**Initial Full Sync:**\n```\nGET /appointments?per_page=100\n```\n\n**Incremental Sync:**\n```\nGET /appointments?updated_after=2024-11-18T10:30:00Z\n```\n\n**Filter by Date Range:**\n```\nGET /appointments?start_date=2024-11-01&end_date=2024-11-30\n```"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/appointments?per_page=50",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"appointments"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "50"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": 1,\n      \"full_name\": \"John Doe\",\n      \"email\": \"john@example.com\",\n      \"phone\": \"+61 412 345 678\",\n      \"location\": \"melbourne\",\n      \"meeting_type\": \"in-person\",\n      \"preferred_language\": \"English\",\n      \"enquiry_type\": \"tr\",\n      \"enquiry_type_display\": \"TR (TRand JRP)\",\n      \"service_type\": \"temporary-residency\",\n      \"specific_service\": \"Subclass 482 TSS Visa\",\n      \"enquiry_details\": \"Need help with TSS visa application...\",\n      \"appointment_date\": \"2024-11-15\",\n      \"appointment_time\": \"10:00\",\n      \"appointment_datetime\": \"2024-11-15T10:00:00.000000Z\",\n      \"duration_minutes\": 30,\n      \"status\": \"confirmed\",\n      \"status_display\": \"Confirmed\",\n      \"is_paid\": true,\n      \"amount\": \"150.00\",\n      \"discount_amount\": \"0.00\",\n      \"final_amount\": \"150.00\",\n      \"promo_code\": null,\n      \"assigned_admin\": {\n        \"id\": 1,\n        \"name\": \"Admin User\",\n        \"email\": \"admin@bansalimmigration.com\"\n      },\n      \"payment\": {\n        \"id\": 1,\n        \"status\": \"completed\",\n        \"amount\": \"150.00\",\n        \"payment_method\": \"stripe\",\n        \"paid_at\": \"2024-11-10T14:30:00.000000Z\"\n      },\n      \"admin_notes\": \"Client has all documents ready\",\n      \"client_notes\": null,\n      \"confirmed_at\": \"2024-11-10T14:35:00.000000Z\",\n      \"cancelled_at\": null,\n      \"cancellation_reason\": null,\n      \"created_at\": \"2024-11-10T14:25:00.000000Z\",\n      \"updated_at\": \"2024-11-10T14:35:00.000000Z\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 150,\n    \"per_page\": 50,\n    \"current_page\": 1,\n    \"last_page\": 3,\n    \"from\": 1,\n    \"to\": 50\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Appointment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/appointments/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Appointment ID"
+								}
+							]
+						},
+						"description": "Retrieve details of a specific appointment by ID.\n\n### Path Parameters\n\n- `id` - Appointment ID (required)\n\n### Response\n\nReturns complete appointment details including:\n- Client information\n- Appointment details\n- Payment information\n- Assigned admin\n- Status and notes"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/appointments/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"appointments",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": 1,\n    \"full_name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"phone\": \"+61 412 345 678\",\n    \"location\": \"melbourne\",\n    \"meeting_type\": \"in-person\",\n    \"preferred_language\": \"English\",\n    \"enquiry_type\": \"tr\",\n    \"enquiry_type_display\": \"TR (TRand JRP)\",\n    \"service_type\": \"temporary-residency\",\n    \"specific_service\": \"Subclass 482 TSS Visa\",\n    \"enquiry_details\": \"Need help with TSS visa application...\",\n    \"appointment_date\": \"2024-11-15\",\n    \"appointment_time\": \"10:00\",\n    \"appointment_datetime\": \"2024-11-15T10:00:00.000000Z\",\n    \"duration_minutes\": 30,\n    \"status\": \"confirmed\",\n    \"status_display\": \"Confirmed\",\n    \"is_paid\": true,\n    \"amount\": \"150.00\",\n    \"discount_amount\": \"0.00\",\n    \"final_amount\": \"150.00\",\n    \"promo_code\": null,\n    \"assigned_admin\": {\n      \"id\": 1,\n      \"name\": \"Admin User\",\n      \"email\": \"admin@bansalimmigration.com\"\n    },\n    \"payment\": {\n      \"id\": 1,\n      \"status\": \"completed\",\n      \"amount\": \"150.00\",\n      \"payment_method\": \"stripe\",\n      \"paid_at\": \"2024-11-10T14:30:00.000000Z\"\n    },\n    \"admin_notes\": \"Client has all documents ready\",\n    \"client_notes\": null,\n    \"confirmed_at\": \"2024-11-10T14:35:00.000000Z\",\n    \"cancelled_at\": null,\n    \"cancellation_reason\": null,\n    \"created_at\": \"2024-11-10T14:25:00.000000Z\",\n    \"updated_at\": \"2024-11-10T14:35:00.000000Z\"\n  }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/appointments/999999",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"appointments",
+										"999999"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Appointment not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Recent Appointments (Polling)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/appointments/recent?minutes=30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"recent"
+							],
+							"query": [
+								{
+									"key": "minutes",
+									"value": "30",
+									"description": "Number of minutes to look back (default: 30, min: 1, max: 1440)"
+								}
+							]
+						},
+						"description": "Get appointments created in the last N minutes. Perfect for polling scenarios.\n\n### Query Parameters\n\n- `minutes` - Number of minutes to look back (default: 30, min: 1, max: 1440)\n\n### Use Cases\n\n**Polling Every 5 Minutes:**\n```\nGET /appointments/recent?minutes=10\n```\n(Use 10 minutes with 5-minute polling to ensure no records are missed)\n\n**Hourly Check:**\n```\nGET /appointments/recent?minutes=65\n```\n\n**Daily Catch-up:**\n```\nGET /appointments/recent?minutes=1440\n```\n\n### Recommended Setup\n\n- Poll every 5-10 minutes\n- Use lookback of 15 minutes (buffer for timezone/clock drift)\n- Handle duplicates by checking `external_id`"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/appointments/recent?minutes=30",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"appointments",
+										"recent"
+									],
+									"query": [
+										{
+											"key": "minutes",
+											"value": "30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"count\": 5,\n  \"data\": [\n    {\n      \"id\": 156,\n      \"full_name\": \"Jane Smith\",\n      \"email\": \"jane@example.com\",\n      \"phone\": \"+61 423 456 789\",\n      \"location\": \"adelaide\",\n      \"meeting_type\": \"video-call\",\n      \"preferred_language\": \"English\",\n      \"enquiry_type\": \"tourist\",\n      \"enquiry_type_display\": \"Tourist Visa\",\n      \"service_type\": \"tourist-visa\",\n      \"specific_service\": \"Visitor Visa (Subclass 600)\",\n      \"enquiry_details\": \"Planning to visit family in Australia\",\n      \"appointment_date\": \"2024-11-20\",\n      \"appointment_time\": \"14:00\",\n      \"appointment_datetime\": \"2024-11-20T14:00:00.000000Z\",\n      \"duration_minutes\": 45,\n      \"status\": \"pending\",\n      \"status_display\": \"Pending\",\n      \"is_paid\": false,\n      \"amount\": \"100.00\",\n      \"discount_amount\": \"0.00\",\n      \"final_amount\": \"100.00\",\n      \"promo_code\": null,\n      \"assigned_admin\": null,\n      \"payment\": null,\n      \"admin_notes\": null,\n      \"client_notes\": null,\n      \"confirmed_at\": null,\n      \"cancelled_at\": null,\n      \"cancellation_reason\": null,\n      \"created_at\": \"2024-11-18T10:25:00.000000Z\",\n      \"updated_at\": \"2024-11-18T10:25:00.000000Z\"\n    }\n  ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Export Appointments as CSV",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/csv",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/appointments/export?start_date=2024-01-01&end_date=2024-12-31",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"export"
+							],
+							"query": [
+								{
+									"key": "start_date",
+									"value": "2024-01-01",
+									"description": "Filter by start date (Y-m-d format)"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-12-31",
+									"description": "Filter by end date (Y-m-d format)"
+								},
+								{
+									"key": "status",
+									"value": "confirmed",
+									"description": "Filter by status",
+									"disabled": true
+								},
+								{
+									"key": "location",
+									"value": "melbourne",
+									"description": "Filter by location",
+									"disabled": true
+								},
+								{
+									"key": "enquiry_type",
+									"value": "tr",
+									"description": "Filter by enquiry type",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Download appointments as CSV file for bulk import into CRM or data analysis.\n\n### Query Parameters\n\nSupports same filters as GET /appointments:\n- `start_date` - Filter by appointment start date\n- `end_date` - Filter by appointment end date\n- `status` - Filter by status\n- `location` - Filter by location\n- `enquiry_type` - Filter by enquiry type\n\n### CSV Columns\n\n- ID\n- Name\n- Email\n- Phone\n- Location\n- Meeting Type\n- Language\n- Enquiry Type\n- Service Type\n- Appointment Date\n- Appointment Time\n- Duration\n- Status\n- Is Paid\n- Amount\n- Final Amount\n- Promo Code\n- Admin Notes\n- Created At\n- Updated At\n\n### Limits\n\n- Maximum 10,000 records per export\n- For larger datasets, use multiple requests with date ranges\n\n### Download with cURL\n\n```bash\ncurl -X GET \"{{base_url}}/appointments/export?start_date=2024-01-01\" \\\n  -H \"Authorization: Bearer YOUR_TOKEN\" \\\n  -o appointments.csv\n```"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Appointment Statistics",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/appointments/stats?start_date=2024-11-01&end_date=2024-11-30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"stats"
+							],
+							"query": [
+								{
+									"key": "start_date",
+									"value": "2024-11-01",
+									"description": "Start date for statistics (default: start of current month)"
+								},
+								{
+									"key": "end_date",
+									"value": "2024-11-30",
+									"description": "End date for statistics (default: end of current month)"
+								}
+							]
+						},
+						"description": "Get aggregated statistics about appointments for a date range.\n\n### Query Parameters\n\n- `start_date` - Start date (Y-m-d format). Default: start of current month\n- `end_date` - End date (Y-m-d format). Default: end of current month\n\n### Statistics Included\n\n- Total appointments\n- Count by status (pending, confirmed, completed, cancelled)\n- Paid appointments count\n- Total revenue\n- Breakdown by enquiry type\n- Breakdown by location\n\n### Use Cases\n\n**Current Month Stats:**\n```\nGET /appointments/stats\n```\n\n**Custom Date Range:**\n```\nGET /appointments/stats?start_date=2024-01-01&end_date=2024-12-31\n```\n\n**Last 7 Days:**\n```\nGET /appointments/stats?start_date=2024-11-11&end_date=2024-11-18\n```"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/appointments/stats?start_date=2024-11-01&end_date=2024-11-30",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"appointments",
+										"stats"
+									],
+									"query": [
+										{
+											"key": "start_date",
+											"value": "2024-11-01"
+										},
+										{
+											"key": "end_date",
+											"value": "2024-11-30"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"period\": {\n    \"start_date\": \"2024-11-01T00:00:00.000000Z\",\n    \"end_date\": \"2024-11-30T23:59:59.000000Z\"\n  },\n  \"stats\": {\n    \"total_appointments\": 45,\n    \"pending\": 12,\n    \"confirmed\": 25,\n    \"completed\": 5,\n    \"cancelled\": 3,\n    \"paid_appointments\": 30,\n    \"total_revenue\": \"6750.00\",\n    \"by_enquiry_type\": {\n      \"tr\": 20,\n      \"tourist\": 10,\n      \"education\": 8,\n      \"pr_complex\": 7\n    },\n    \"by_location\": {\n      \"melbourne\": 35,\n      \"adelaide\": 10\n    }\n  }\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints for managing and retrieving appointment data for CRM integration."
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Test API Connection",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/appointments/stats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"stats"
+							]
+						},
+						"description": "Quick test to verify API connectivity and token validity.\n\nIf this returns 200 OK, your setup is correct.\n\nPossible responses:\n- 200 OK - API is accessible, token is valid\n- 401 Unauthorized - Token is invalid or missing\n- 429 Too Many Requests - Rate limit exceeded\n- 500 Server Error - Server issue"
+					},
+					"response": []
+				}
+			],
+			"description": "Test endpoints to verify API connectivity and authentication."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{api_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Pre-request script for all requests",
+					"",
+					"// Check if API token is set",
+					"if (!pm.environment.get('api_token')) {",
+					"    console.warn('⚠️ API token not set! Please set api_token in your environment.');",
+					"}",
+					"",
+					"// Log request details",
+					"console.log('📤 Request:', pm.request.method, pm.request.url.toString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Test script for all requests",
+					"",
+					"// Log response details",
+					"console.log('📥 Response:', pm.response.code, pm.response.status);",
+					"",
+					"// Check for common errors",
+					"if (pm.response.code === 401) {",
+					"    console.error('❌ Authentication failed. Check your API token.');",
+					"    pm.test('Authentication Error - Invalid or missing token', function() {",
+					"        pm.expect(pm.response.code).to.not.equal(401);",
+					"    });",
+					"}",
+					"",
+					"if (pm.response.code === 429) {",
+					"    console.error('❌ Rate limit exceeded. Wait before retrying.');",
+					"    const retryAfter = pm.response.headers.get('Retry-After');",
+					"    if (retryAfter) {",
+					"        console.log('⏰ Retry after:', retryAfter, 'seconds');",
+					"    }",
+					"}",
+					"",
+					"// Validate response structure for successful requests",
+					"if (pm.response.code === 200) {",
+					"    pm.test('Response has success field', function() {",
+					"        const jsonData = pm.response.json();",
+					"        pm.expect(jsonData).to.have.property('success');",
+					"    });",
+					"    ",
+					"    console.log('✅ Request successful');",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://bansalimmigration.com/api/crm",
+			"type": "string"
+		}
+	]
+}
+

@@ -25,7 +25,7 @@ class PaymentController extends Controller
     {
         // Check if appointment requires payment
         if (!$appointment->requiresPayment()) {
-            return redirect()->route('appointment.success', $appointment)
+            return redirect()->route('appointments.success', $appointment)
                 ->with('info', 'This appointment does not require payment.');
         }
 

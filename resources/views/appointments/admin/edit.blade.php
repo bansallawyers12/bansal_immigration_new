@@ -120,7 +120,7 @@
 
                         <div>
                             <label for="appointment_time" class="block text-sm font-medium text-gray-700">Appointment Time *</label>
-                            <input type="time" name="appointment_time" id="appointment_time" value="{{ old('appointment_time', $appointment->appointment_time->format('H:i')) }}" 
+                            <input type="time" name="appointment_time" id="appointment_time" value="{{ old('appointment_time', \Carbon\Carbon::parse($appointment->appointment_time)->format('H:i')) }}" 
                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 @error('appointment_time') border-red-300 @enderror" 
                                    required>
                             @error('appointment_time')

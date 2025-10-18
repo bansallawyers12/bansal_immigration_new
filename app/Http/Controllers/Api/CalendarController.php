@@ -20,7 +20,8 @@ class CalendarController extends Controller
             'date' => 'required|date|after_or_equal:today',
             'enquiry_type' => 'required|in:tr,tourist,education,pr_complex',
             'location' => 'required|in:melbourne,adelaide',
-            'duration' => 'nullable|integer|min:15|max:180'
+            'duration' => 'nullable|integer|min:15|max:180',
+            'is_paid' => 'nullable|boolean'
         ]);
 
         if ($validator->fails()) {
@@ -34,9 +35,10 @@ class CalendarController extends Controller
         $enquiryType = $request->enquiry_type;
         $location = $request->location;
         $duration = $request->duration ?? 30;
+        $isPaid = $request->boolean('is_paid', false);
 
-        $availableSlots = $this->getAvailableSlotsForDate($date, $enquiryType, $duration, $location);
-        $workingHours = $this->getWorkingHoursForLocation($location, $enquiryType);
+        $availableSlots = $this->getAvailableSlotsForDate($date, $enquiryType, $duration, $location, $isPaid);
+        $workingHours = $this->getWorkingHoursForLocation($location, $enquiryType, $isPaid);
 
         return response()->json([
             'success' => true,
@@ -90,7 +92,7 @@ class CalendarController extends Controller
                     'id' => 'appointment_' . $appointment->id,
                     'title' => $appointment->full_name . ' - ' . $appointment->enquiry_type_display,
                     'start' => $appointment->appointment_datetime->toISOString(),
-                    'end' => $appointment->appointment_datetime->addMinutes($appointment->duration_minutes)->toISOString(),
+                    'end' => $appointment->appointment_datetime->copy()->addMinutes($appointment->duration_minutes)->toISOString(),
                     'backgroundColor' => $appointment->calendar_color,
                     'type' => 'appointment'
                 ];
@@ -109,9 +111,9 @@ class CalendarController extends Controller
     /**
      * Get available slots for a specific date (private helper)
      */
-    private function getAvailableSlotsForDate($date, $enquiryType, $duration = 30, $location = 'melbourne')
+    private function getAvailableSlotsForDate($date, $enquiryType, $duration = 30, $location = 'melbourne', $isPaid = false)
     {
-        $workingHours = $this->getWorkingHoursForLocation($location, $enquiryType);
+        $workingHours = $this->getWorkingHoursForLocation($location, $enquiryType, $isPaid);
         $availableSlots = [];
         
         $currentTime = Carbon::parse($date . ' ' . $workingHours['start']);
@@ -163,57 +165,80 @@ class CalendarController extends Controller
 
     /**
      * Get working hours based on location and enquiry type
+     * Now reads from database calendar_settings table
      */
-    private function getWorkingHoursForLocation($location, $enquiryType)
+    private function getWorkingHoursForLocation($location, $enquiryType, $isPaid = false)
     {
-        if ($location === 'adelaide') {
-            // Adelaide: Single unified calendar for all types
-            return [
-                'start' => '09:00',
-                'end' => '17:00',
-                'interval' => 30,
-                'name' => 'Adelaide Office',
-                'color' => '#dc3545' // Red for Adelaide
-            ];
-        } else {
-            // Melbourne: 4 different calendars based on enquiry type
-            return match($enquiryType) {
-                'tr' => [
+        // Get setting from database
+        $setting = \App\Models\CalendarSetting::getSettingFor($location, $enquiryType, $isPaid);
+        
+        // Define colors for different calendars
+        $colors = [
+            'adelaide' => '#dc3545',
+            'tr' => '#007bff',
+            'tourist' => '#28a745',
+            'education' => '#ffc107',
+            'pr_complex' => '#6f42c1'
+        ];
+        
+        // Fallback to hardcoded values if no setting found
+        if (!$setting) {
+            if ($location === 'adelaide') {
+                return [
                     'start' => '09:00',
                     'end' => '17:00',
                     'interval' => 30,
-                    'name' => 'TR (TRand JRP)',
-                    'color' => '#007bff'
-                ],
-                'tourist' => [
-                    'start' => '10:00',
-                    'end' => '16:00', 
-                    'interval' => 45,
-                    'name' => 'Tourist Visa',
-                    'color' => '#28a745'
-                ],
-                'education' => [
-                    'start' => '09:30',
-                    'end' => '17:30',
-                    'interval' => 60,
-                    'name' => 'Education',
-                    'color' => '#ffc107'
-                ],
-                'pr_complex' => [
-                    'start' => '11:00',
-                    'end' => '15:00',
-                    'interval' => 30,
-                    'name' => 'PR/Complex',
-                    'color' => '#6f42c1'
-                ],
-                default => [
-                    'start' => '09:00',
-                    'end' => '17:00',
-                    'interval' => 30,
-                    'name' => 'General',
-                    'color' => '#6c757d'
-                ]
-            };
+                    'name' => 'Adelaide Office',
+                    'color' => '#dc3545'
+                ];
+            } else {
+                return match($enquiryType) {
+                    'tr' => [
+                        'start' => '09:00',
+                        'end' => '17:00',
+                        'interval' => 30,
+                        'name' => 'TR (TRand JRP)',
+                        'color' => '#007bff'
+                    ],
+                    'tourist' => [
+                        'start' => '10:00',
+                        'end' => '16:00', 
+                        'interval' => 45,
+                        'name' => 'Tourist Visa',
+                        'color' => '#28a745'
+                    ],
+                    'education' => [
+                        'start' => '09:30',
+                        'end' => '17:30',
+                        'interval' => 60,
+                        'name' => 'Education',
+                        'color' => '#ffc107'
+                    ],
+                    'pr_complex' => [
+                        'start' => '11:00',
+                        'end' => '15:00',
+                        'interval' => 30,
+                        'name' => 'PR/Complex',
+                        'color' => '#6f42c1'
+                    ],
+                    default => [
+                        'start' => '09:00',
+                        'end' => '17:00',
+                        'interval' => 30,
+                        'name' => 'General',
+                        'color' => '#6c757d'
+                    ]
+                };
+            }
         }
+        
+        // Return formatted setting from database
+        return [
+            'start' => \Carbon\Carbon::parse($setting->start_time)->format('H:i'),
+            'end' => \Carbon\Carbon::parse($setting->end_time)->format('H:i'),
+            'interval' => $setting->slot_duration_minutes,
+            'name' => $setting->calendar_name,
+            'color' => $colors[$setting->enquiry_type ?? 'adelaide'] ?? '#6c757d'
+        ];
     }
 }

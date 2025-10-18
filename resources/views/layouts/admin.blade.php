@@ -234,6 +234,13 @@
                 </div>
                 
                 <div class="menu-item">
+                    <a href="{{ route('admin.calendar-settings.index') }}" class="menu-link {{ request()->routeIs('admin.calendar-settings*') ? 'active' : '' }}">
+                        <i class="menu-icon fas fa-clock"></i>
+                        <span>Calendar Settings</span>
+                    </a>
+                </div>
+                
+                <div class="menu-item">
                     <a href="{{ route('admin.promo-codes.index') }}" class="menu-link {{ request()->routeIs('admin.promo-codes*') ? 'active' : '' }}">
                         <i class="menu-icon fas fa-tags"></i>
                         <span>Promo Codes</span>

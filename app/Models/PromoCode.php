@@ -213,7 +213,8 @@ class PromoCode extends Model
                     ->when($userId, function($query) use ($userId) {
                         return $query->where(function($q) use ($userId) {
                             $q->where('is_one_time_use', false)
-                              ->orWhereJsonDoesntContain('used_by_users', $userId);
+                              ->orWhereJsonDoesntContain('used_by_users', $userId)
+                              ->orWhereNull('used_by_users'); // Allow if never used
                         });
                     })
                     ->first();

@@ -46,7 +46,7 @@ class AppointmentSeeder extends Seeder
             ['name' => 'Ahmed Hassan', 'email' => 'ahmed.hassan@email.com', 'phone' => '+1-555-0105'],
         ];
 
-        $enquiryTypes = ['immigration_consultation', 'visa_application', 'legal_advice', 'document_review'];
+        $enquiryTypes = ['tr', 'tourist', 'education', 'pr_complex'];
         $statuses = ['pending', 'confirmed', 'completed'];
         $locations = ['office', 'online'];
         $meetingTypes = ['in_person', 'video_call', 'phone_call'];

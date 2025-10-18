@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CalendarController;
 use App\Http\Controllers\Api\HomeApiController;
+use App\Http\Controllers\Api\AppointmentApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +39,6 @@ Route::prefix('appointments')->group(function () {
     
     // Get calendar events (appointments and blocked times)
     Route::get('/calendar-events', [CalendarController::class, 'getCalendarEvents']);
-    
-    // Check if a specific time slot is available
-    Route::post('/check-availability', [CalendarController::class, 'checkSlotAvailability']);
 });
 
 // Admin API routes (protected by auth middleware)
@@ -54,5 +52,17 @@ Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
     // Blocked times management API
     Route::prefix('blocked-times')->group(function () {
         Route::get('/calendar', [\App\Http\Controllers\BlockedTimeController::class, 'calendar']);
+    });
+});
+
+// CRM Integration API routes (protected by API authentication)
+Route::middleware(['auth:sanctum', 'throttle:60,1'])->prefix('crm')->group(function () {
+    // Appointments API for CRM
+    Route::prefix('appointments')->group(function () {
+        Route::get('/', [AppointmentApiController::class, 'index']);
+        Route::get('/export', [AppointmentApiController::class, 'export']);
+        Route::get('/recent', [AppointmentApiController::class, 'recent']);
+        Route::get('/stats', [AppointmentApiController::class, 'stats']);
+        Route::get('/{id}', [AppointmentApiController::class, 'show']);
     });
 });

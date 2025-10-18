@@ -187,7 +187,7 @@ class AppointmentController extends Controller
                 'appointment_date' => $request->appointment_date,
                 'appointment_time' => $request->appointment_time,
                 'duration_minutes' => $request->duration_minutes ?? 30,
-                'status' => $isPaid ? 'pending_payment' : 'pending',
+                'status' => 'pending', // All appointments start as pending regardless of payment
                 'is_paid' => $isPaid,
                 'amount' => $baseAmount,
                 'final_amount' => $baseAmount,
@@ -264,7 +264,8 @@ class AppointmentController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required|date|after_or_equal:today',
             'enquiry_type' => 'required|in:tr,tourist,education,pr_complex',
-            'duration' => 'nullable|integer|min:15|max:180'
+            'duration' => 'nullable|integer|min:15|max:180',
+            'is_paid' => 'nullable|boolean'
         ]);
 
         if ($validator->fails()) {
@@ -277,9 +278,10 @@ class AppointmentController extends Controller
         $date = $request->date;
         $enquiryType = $request->enquiry_type;
         $duration = $request->duration ?? 30;
+        $isPaid = $request->boolean('is_paid', false);
 
         // Define different working hours for different enquiry types
-        $workingHours = $this->getWorkingHoursForEnquiryType($enquiryType);
+        $workingHours = $this->getWorkingHoursForEnquiryType($enquiryType, $isPaid);
         
         $availableSlots = [];
         $currentTime = Carbon::parse($date . ' ' . $workingHours['start']);
@@ -335,41 +337,65 @@ class AppointmentController extends Controller
 
     /**
      * Get working hours configuration for different enquiry types (4 different calendars)
+     * Now reads from database calendar_settings table
      */
-    private function getWorkingHoursForEnquiryType($enquiryType)
+    private function getWorkingHoursForEnquiryType($enquiryType, $isPaid = false)
     {
-        return match($enquiryType) {
-            'tr' => [
-                'start' => '09:00',
-                'end' => '17:00',
-                'interval' => 30,
-                'lunch_break' => ['start' => '12:00', 'end' => '13:00']
-            ],
-            'tourist' => [
-                'start' => '10:00',
-                'end' => '16:00', 
-                'interval' => 45,
-                'lunch_break' => ['start' => '12:30', 'end' => '13:30']
-            ],
-            'education' => [
-                'start' => '09:30',
-                'end' => '17:30',
-                'interval' => 60,
-                'lunch_break' => ['start' => '12:00', 'end' => '14:00']
-            ],
-            'pr_complex' => [
-                'start' => '11:00',
-                'end' => '15:00',
-                'interval' => 30,
-                'lunch_break' => null
-            ],
-            default => [
-                'start' => '09:00',
-                'end' => '17:00',
-                'interval' => 30,
-                'lunch_break' => ['start' => '12:00', 'end' => '13:00']
-            ]
-        };
+        // Get setting from database
+        $setting = \App\Models\CalendarSetting::getSettingFor('melbourne', $enquiryType, $isPaid);
+        
+        // Fallback to hardcoded values if no setting found
+        if (!$setting) {
+            return match($enquiryType) {
+                'tr' => [
+                    'start' => '09:00',
+                    'end' => '17:00',
+                    'interval' => 30,
+                    'lunch_break' => ['start' => '12:00', 'end' => '13:00']
+                ],
+                'tourist' => [
+                    'start' => '10:00',
+                    'end' => '16:00', 
+                    'interval' => 45,
+                    'lunch_break' => ['start' => '12:30', 'end' => '13:30']
+                ],
+                'education' => [
+                    'start' => '09:30',
+                    'end' => '17:30',
+                    'interval' => 60,
+                    'lunch_break' => ['start' => '12:00', 'end' => '14:00']
+                ],
+                'pr_complex' => [
+                    'start' => '11:00',
+                    'end' => '15:00',
+                    'interval' => 30,
+                    'lunch_break' => null
+                ],
+                default => [
+                    'start' => '09:00',
+                    'end' => '17:00',
+                    'interval' => 30,
+                    'lunch_break' => ['start' => '12:00', 'end' => '13:00']
+                ]
+            };
+        }
+        
+        // Return formatted setting from database
+        $result = [
+            'start' => \Carbon\Carbon::parse($setting->start_time)->format('H:i'),
+            'end' => \Carbon\Carbon::parse($setting->end_time)->format('H:i'),
+            'interval' => $setting->slot_duration_minutes,
+            'lunch_break' => null
+        ];
+        
+        if ($setting->lunch_break_start && $setting->lunch_break_end) {
+            $result['lunch_break'] = [
+                'start' => \Carbon\Carbon::parse($setting->lunch_break_start)->format('H:i'),
+                'end' => \Carbon\Carbon::parse($setting->lunch_break_end)->format('H:i')
+            ];
+        }
+        
+        return $result;
     }
 
     /**
@@ -617,7 +643,7 @@ class AppointmentController extends Controller
                 'duration_minutes' => $request->duration_minutes ?? 30,
                 'status' => $request->status,
                 'admin_notes' => $request->admin_notes,
-                'assigned_admin_id' => $request->assigned_admin_id,
+                'assigned_to' => $request->assigned_admin_id,
                 'updated_at' => now()
             ]);
 

@@ -66,9 +66,63 @@ class AppointmentFormSubmission {
         // Populate hidden fields
         this.populateFormFields();
         
-        // For now, submit as free (payment integration would go here)
-        alert('Payment integration would be implemented here. For now, this will submit as a paid appointment.');
-        this.submitForm();
+        // Submit as paid appointment with payment flag
+        this.submitFormPaid();
+    }
+
+    // Submit form as paid appointment
+    async submitFormPaid() {
+        try {
+            // Collect form data
+            const formData = new FormData(this.form);
+            const jsonData = Object.fromEntries(formData.entries());
+            
+            // Add payment flag to trigger payment flow
+            jsonData.is_paid = true;
+            
+            // Map date/time fields
+            jsonData.appointment_date = document.getElementById('selected-date-input').value;
+            jsonData.appointment_time = document.getElementById('selected-time-input').value;
+            
+            // Submit via AJAX
+            const response = await fetch(this.form.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Success - redirect to payment page or success page
+                if (data.redirect) {
+                    this.showSuccessMessage(data.message || 'Redirecting to payment...');
+                    
+                    setTimeout(() => {
+                        window.location.href = data.redirect;
+                    }, 1000);
+                } else {
+                    alert(data.message);
+                }
+            } else {
+                // Handle errors
+                if (data.errors && window.FieldErrorHandler) {
+                    window.FieldErrorHandler.handleServerErrors(data.errors);
+                } else if (data.message) {
+                    alert(data.message);
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            // Re-enable button
+            this.resetLoadingState();
+        }
     }
 
     // Validate the entire form

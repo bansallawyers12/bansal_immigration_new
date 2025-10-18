@@ -120,6 +120,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::put('/visa-management/{id}', [\App\Http\Controllers\Admin\VisaManagementController::class, 'update'])->name('visa-management.update');
     Route::post('/visa-management/bulk-update', [\App\Http\Controllers\Admin\VisaManagementController::class, 'bulkUpdate'])->name('visa-management.bulk-update');
     Route::get('/visa-management/get-by-category', [\App\Http\Controllers\Admin\VisaManagementController::class, 'getByCategory'])->name('visa-management.get-by-category');
+    
+    // Calendar Settings Management Routes
+    Route::get('/calendar-settings', [\App\Http\Controllers\Admin\CalendarSettingController::class, 'index'])->name('calendar-settings.index');
+    Route::get('/calendar-settings/{calendarSetting}/edit', [\App\Http\Controllers\Admin\CalendarSettingController::class, 'edit'])->name('calendar-settings.edit');
+    Route::put('/calendar-settings/{calendarSetting}', [\App\Http\Controllers\Admin\CalendarSettingController::class, 'update'])->name('calendar-settings.update');
+    Route::post('/calendar-settings/{calendarSetting}/toggle', [\App\Http\Controllers\Admin\CalendarSettingController::class, 'toggleStatus'])->name('calendar-settings.toggle');
 });
 
 // Include specialized route files

@@ -129,7 +129,16 @@ class PaymentService
         if ($promoCode) {
             $promo = PromoCode::where('code', $promoCode)->first();
             if ($promo) {
-                $promo->markAsUsedBy($appointment->user_id);
+                $promo->increment('used_count');
+                
+                // Track by email for public appointments
+                if ($promo->is_one_time_use && $appointment->email) {
+                    $usedByUsers = $promo->used_by_users ?? [];
+                    if (!in_array($appointment->email, $usedByUsers)) {
+                        $usedByUsers[] = $appointment->email;
+                        $promo->update(['used_by_users' => $usedByUsers]);
+                    }
+                }
             }
         }
 
@@ -179,7 +188,16 @@ class PaymentService
             if ($payment->promo_code) {
                 $promo = PromoCode::where('code', $payment->promo_code)->first();
                 if ($promo) {
-                    $promo->markAsUsedBy($appointment->user_id);
+                    $promo->increment('used_count');
+                    
+                    // Track by email for public appointments
+                    if ($promo->is_one_time_use && $appointment->email) {
+                        $usedByUsers = $promo->used_by_users ?? [];
+                        if (!in_array($appointment->email, $usedByUsers)) {
+                            $usedByUsers[] = $appointment->email;
+                            $promo->update(['used_by_users' => $usedByUsers]);
+                        }
+                    }
                 }
             }
 

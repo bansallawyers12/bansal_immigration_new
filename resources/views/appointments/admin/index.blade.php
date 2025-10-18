@@ -104,7 +104,7 @@
                                 <td class="py-3 px-4">
                                     <div class="text-sm">
                                         <div class="font-medium text-gray-900">{{ $appointment->appointment_date->format('M d, Y') }}</div>
-                                        <div class="text-gray-500">{{ $appointment->appointment_time->format('g:i A') }}</div>
+                                        <div class="text-gray-500">{{ \Carbon\Carbon::parse($appointment->appointment_time)->format('g:i A') }}</div>
                                     </div>
                                 </td>
                                 <td class="py-3 px-4">

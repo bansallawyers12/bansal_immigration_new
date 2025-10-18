@@ -10,7 +10,7 @@
             <p class="text-gray-600 mt-1">View appointment information and manage status</p>
         </div>
         <div class="flex space-x-2">
-            <a href="{{ route('admin.appointments.edit', $id) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium">
+            <a href="{{ route('admin.appointments.edit', $appointment) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium">
                 <i class="fas fa-edit mr-2"></i>Edit Appointment
             </a>
             <a href="{{ route('admin.appointments.index') }}" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium">
